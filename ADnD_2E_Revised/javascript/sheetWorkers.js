@@ -489,6 +489,43 @@ on('clicked:hide-toast', function(eventInfo) {
     });
 });
 
+on('change:character_name', function (eventInfo) {
+    getAttrs(['character_name'], function (values) {
+        let characterName = values.character_name.trim()
+        if (!characterName)
+            return false;
+
+        let message = `Your character's name contains`;
+        let suffix = `This can break various buttons and calculations on the sheet.\n\nPlease remove special characters to ensure the sheet functions as expected. Alternatively try using single quotes ' as these has not yet caused any issues.`
+
+        let parenthesis = (characterName.match(/[()]/g) || []).length
+        if (parenthesis > 0) {
+            showToast(ERROR, 'Parenthesis in Character name', `${message} parenthesis '()'. ${suffix}`);
+            return false;
+        }
+
+        let curlyBracket = (characterName.match(/[{}]/g) || []).length
+        if (curlyBracket > 0) {
+            showToast(ERROR, 'Curly brackets in Character name', `${message} curly brackets '{}'. ${suffix}'`);
+            return false;
+        }
+
+        let squareBrackets = (characterName.match(/[\[\]]/g) || []).length
+        if (squareBrackets > 0) {
+            showToast(ERROR, 'Square brackets in Character name', `${message} square brackets '[]'. ${suffix}`);
+            return false;
+        }
+
+        let doubleQuotes = (characterName.match(/"/g) || []).length
+        if (doubleQuotes > 0) {
+            showToast(ERROR, 'Double quotes in Character name', `${message} double quotes '"'. ${suffix}`);
+            return false;
+        }
+
+        return true;
+    })
+})
+
 //#region Ability Scores logic
 // Ability Score Parser function
 const EXCEPTIONAL_STRENGTH_REGEX = /18[\[(]([0-9]{1,3})[\])]/; // Ie. 18[65], 18(65)
