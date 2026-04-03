@@ -117,6 +117,10 @@ const displaySize = function(size) {
     }
 }
 
+const unique = function (value, index, array) {
+    return array.indexOf(value) === index;
+}
+
 const sizeToInt = function(size) {
     if (typeof size !== 'string' || size.length === 0)
         return '';
@@ -489,42 +493,33 @@ on('clicked:hide-toast', function(eventInfo) {
     });
 });
 
+//#region Text field correction
+const SPECIAL_CHARACTER_REGEX = /[(){}\[\]"]/g
 on('change:character_name', function (eventInfo) {
-    getAttrs(['character_name'], function (values) {
-        let characterName = values.character_name.trim()
-        if (!characterName)
-            return false;
+    console.log(eventInfo);
+    if (isSheetWorkerUpdate(eventInfo)) {
+        return;
+    }
 
-        let message = `Your character's name contains`;
-        let suffix = `This can break various buttons and calculations on the sheet.\n\nPlease remove special characters to ensure the sheet functions as expected. Alternatively try using single quotes ' as these has not yet caused any issues.`
+    if (!eventInfo.newValue) {
+        return;
+    }
 
-        let parenthesis = (characterName.match(/[()]/g) || []).length
-        if (parenthesis > 0) {
-            showToast(ERROR, 'Parenthesis in Character name', `${message} parenthesis '()'. ${suffix}`);
-            return false;
-        }
+    let specialCharacters = eventInfo.newValue.match(SPECIAL_CHARACTER_REGEX)
+    if (!specialCharacters) {
+        return;
+    }
 
-        let curlyBracket = (characterName.match(/[{}]/g) || []).length
-        if (curlyBracket > 0) {
-            showToast(ERROR, 'Curly brackets in Character name', `${message} curly brackets '{}'. ${suffix}'`);
-            return false;
-        }
+    let message = `@{${eventInfo.sourceAttribute}} had the special characters '${specialCharacters.filter(unique).join(", ")}'. As these can break various buttons, calculations, and functionality on the sheet, they have been removed.\n\nFor flavor names, try using single quotes ' as these has not yet caused any issues. For instance: Thaldrin 'Hawkeye' Ravenflock.`
 
-        let squareBrackets = (characterName.match(/[\[\]]/g) || []).length
-        if (squareBrackets > 0) {
-            showToast(ERROR, 'Square brackets in Character name', `${message} square brackets '[]'. ${suffix}`);
-            return false;
-        }
 
-        let doubleQuotes = (characterName.match(/"/g) || []).length
-        if (doubleQuotes > 0) {
-            showToast(ERROR, 'Double quotes in Character name', `${message} double quotes '"'. ${suffix}`);
-            return false;
-        }
+    let toast = getToastObject(INFO, "Special characters removed", message);
+    let newValue = {...toast};
+    newValue[eventInfo.sourceAttribute] = eventInfo.newValue.replaceAll(SPECIAL_CHARACTER_REGEX, '');
 
-        return true;
-    })
+    setAttrs(newValue);
 })
+//#endregion
 
 //#region Ability Scores logic
 // Ability Score Parser function
@@ -2777,7 +2772,7 @@ function critEffectExplanations(critEffect, set) {
         return;
 
     injuryMatch = injuryMatch.map(s => s.toLowerCase().replace('internal ', '').trim())
-        .filter((v, i, a) => a.indexOf(v) === i);
+        .filter(unique);
     injuryMatch.forEach(key => {
         switch (key) {
             case 'graze':
