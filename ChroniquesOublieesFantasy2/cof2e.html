@@ -1,8 +1,8 @@
 <div class="cofmain">
   <!-- Nouvelle version fiche -->
-  <input type="hidden" name="attr_verfdp" value="1.14.0">
+  <input type="hidden" name="attr_verfdp" value="1.15.0">
   <!-- Version courante fiche -->
-  <input type="hidden" name="attr_version" value="1.14.0">
+  <input type="hidden" name="attr_version" value="1.15.0">
   <!-- Mode debug -->
   <input type="hidden" name="attr_debug_mode" value="0">
 
@@ -90,7 +90,7 @@
 
   <input type="hidden" name="attr_rang_cavalier" value="0">
     
-  <!-- COFantasy MOD interaction -->
+  <!-- COFantasy2 MOD interaction -->
   <input type="hidden" name="attr_script_title" value="">
   <input type="hidden" name="attr_cofantasy" value="">
 
@@ -117,6 +117,11 @@
   <!-- Ongoing effects -->
   <input type="hidden" name="attr_ongoing_actmod" value="">
 
+  <!-- Gears ids -->
+  <input type="hidden" name="attr_armor_gearid" value="">
+  <input type="hidden" name="attr_shield_gearid" value="">
+  <input type="hidden" name="attr_helmet_gearid" value="">
+
   <!-- Charmancer
   <input type="hidden" name="attr_charmancer" value=""> -->
 
@@ -127,7 +132,7 @@
     <div>
       <img
         class="logo"
-        title="Version 1.14.0 - 31/01/2026"
+        title="Version 1.15.0 - 06/04/2026"
         src="https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/ChroniquesOublieesFantasy2/cof2e_logo.jpg"
       />
       <input type="hidden" class="d20roll-btns" name="attr_cfg_d20roll" value="0">
@@ -156,7 +161,8 @@
         <button type="action" class="flat-btn img-btn" name="act_token_min-btn" title="%{token_min-btn} Diminuer la taille de 10%">
           <span class="img-btn">-</span>
         </button>
-        <button type="action" class="flat-btn img-btn" name="act_token_def-btn" title="%{token_def-btn} Lier les barres du token">
+        <input type="hidden" class="token-script" name="attr_script_show" value="0">
+        <button type="action" class="flat-btn img-btn token-script" name="act_token_def-btn" title="%{token_def-btn} Lier les barres du token">
           <span class="img-btn">2</span>
         </button>
         <button type="action" class="flat-btn img-btn" name="act_token_siz-btn" title="%{token_siz-btn} Forcer la taille">
@@ -164,6 +170,12 @@
         </button>
         <button type="action" class="flat-btn img-btn" name="act_token_max-btn" title="%{token_max-btn} Augmenter la taille de 10%">
             <span class="img-btn">+</span>
+        </button>
+      </div>
+      <input type="hidden" class="token-script" name="attr_script_show" value="0">
+      <div class="d-flex d-flex-between token-script">
+        <button type="action" class="flat-btn img-btn" name="act_token_def-btn" title="%{token_def-btn} Lier les barres du token">
+          <span class="img-btn">2</span>
         </button>
       </div>
     </div>
@@ -297,12 +309,12 @@
         </div>
         <div class="d-flex d-flex-middle">
           <strong>Type</strong>
-          <select class="select-sm" name="attr_sheet_type">
+          <select class="select-sm is-mook" name="attr_sheet_type">
             <option value="pc" selected>PJ</option>
             <option value="npc">PNJ</option>
           </select>
-          <input type="checkbox" name="attr_mook" title="@{mook} Fiche de mook" value="1">
           <input type="hidden" name="attr_sheet_type">
+          <input type="checkbox" class="is-mook" name="attr_mook" title="@{mook} Fiche de mook" value="1" checked>
           <button type="action" class="flat-btn img-btn" name="act_charmancer-btn" title="Lancer le Persomancien">
             <span class="img-btn">x</span>
           </button>
@@ -806,6 +818,7 @@
               <div class="bordered">
                 <input type="hidden" name="attr_vitesse_cases" value="7" />
                 <input type="hidden" name="attr_vitesse_pas" value="35" />
+                <input type="hidden" name="attr_vitesse_def" value="7" />
                 <input type="number" class="two-digits" name="attr_vitesse" title="@{vitesse} Vitesse de déplacement&#10;1 case = 1,5m = 5 pas" value="10">&nbsp;m&nbsp;
                 (cases : <span name="attr_vitesse_cases" title="Vitesse en cases"></span>,
                 pas : <span name="attr_vitesse_pas" title="Vitesse en pas"></span>)
@@ -1201,6 +1214,11 @@
 
         </div>
 
+        <div class="post-it p2">
+          <input type="hidden" class="post-it" name="attr_postit" value="">
+          <textarea class="post-it one-row" name="attr_postit" title="@{postit}" placeholder="Autres notes..."></textarea>
+        </div>
+
         <!-- Fiche PJ, Onglet Caractéristiques, Sous-onglets -->
         <input type="hidden" class="tabs-toggle" name="attr_pc_subtab1" value="attacks" />
         <div class="pc-subtabs">
@@ -1215,6 +1233,65 @@
         <!-- Attaques & Armes -->
         <div class="pc-attacks-subtab">
           
+          <input type="hidden" class="opt-tact" name="attr_optact" value="0">
+          <div class="opt-tact d-inline p2">
+            <div class="d-flex d-flex-between align-self-center">
+              <select class="select-lg" name="attr_tactique" title="@{attr_tactique} Options tactiques">
+                <option value="0">Aucune</option>
+                <option value="1">Atq assurée +5,DM/2</option>
+                <option value="2">Atq précise -3,+1d4° DM</option>
+                <option value="3">Atq violente -7,+2d4° DM</option>
+                <option value="4">Tir visé (L),+PER DM</option>
+              </select>
+
+              <input type="hidden" class="fav-tact" name="attr_favtact1" value="0">
+              <div class="fav-tact align-self-center">
+                &nbsp;
+                <input type="checkbox" name="attr_favtact1_on" value="1">
+                <input type="hidden" name="attr_favtact1_name">
+                &nbsp;<span name="attr_favtact1_name"></span>
+                <input type="hidden" name="attr_favtact1_id">
+              </div>
+
+              <input type="hidden" class="fav-tact" name="attr_favtact2" value="0">
+              <div class="fav-tact align-self-center">
+                <span class="p2">|</span>
+                <input type="checkbox" name="attr_favtact2_on" value="1">
+                <input type="hidden" name="attr_favtact2_name">
+                &nbsp;<span name="attr_favtact2_name"></span>
+                <input type="hidden" name="attr_favtact2_id">
+              </div>
+
+              <input type="hidden" class="fav-tact" name="attr_favtact3" value="0">
+              <div class="fav-tact align-self-center">
+                <span class="p2">|</span>
+                <input type="checkbox" name="attr_favtact3_on" value="1">
+                <input type="hidden" name="attr_favtact3_name">
+                &nbsp;<span name="attr_favtact3_name"></span>
+                <input type="hidden" name="attr_favtact3_id">
+              </div>
+
+              <input type="hidden" class="fav-tact" name="attr_favtact4" value="0">
+              <div class="fav-tact align-self-center">
+                <span class="p2">|</span>
+                <input type="checkbox" name="attr_favtact4_on" value="1">
+                <input type="hidden" name="attr_favtact4_name">
+                &nbsp;<span name="attr_favtact4_name"></span>
+                <input type="hidden" name="attr_favtact4_id">
+              </div>
+
+              <input type="hidden" class="fav-tact" name="attr_favtact5" value="0">
+              <div class="fav-tact align-self-center">
+                <span class="p2">|</span>
+                <input type="checkbox" name="attr_favtact5_on" value="1">
+                <input type="hidden" name="attr_favtact5_name">
+                &nbsp;<span name="attr_favtact5_name"></span>
+                <input type="hidden" name="attr_favtact5_id">
+              </div>
+            </div>
+            <br>
+          </div>
+
           <div class="pc-attacks">
             
             <div class="weapon">
@@ -1236,8 +1313,11 @@
 
               <div class="weapon">
                 
+                <input type="hidden" name="attr_arme-new" value="1">
                 <div>
                   <input type="hidden" name="attr_attack-btn" value="">
+                  <button type="action" class="hidden" name="act_atkdual1-btn"></button>
+                  <button type="action" class="hidden" name="act_atkdual2-btn"></button>
                   <button type="action" class="hidden" name="act_attack-btn">
                     <span class="d20-btn">t</span>
                   </button>
@@ -1357,7 +1437,7 @@
                     <input class="two-digits" type="number" name="attr_arme-usure" title="@{arme-usure} Usure">
                   </div>
                   <div class="bordered">
-                    <input type="text" name="attr_arme-atkmods" placeholder="Modificateurs d'attaque" title="@{arme-atkmods} Modificateurs séparés par des virgules&#10; deBonus: avec dé bonus&#10; deMalus: avec dé malus&#10; auto: réussite automatique&#10; choc: peut faire des attaques non léthales sans malus&#10; explodeMax: dés de dégâts explosifs&#10; pasDeDmg: l'attaque ne fait pas de DM&#10; poudre: arme à poudre&#10; reroll1: relance les 1 sur les dés de DM (:1 = une seule fois)&#10; tempDmg: fait toujours des attaques non léthales&#10; zone: sort de zone&#10; magie: bonus att.+DM&#10; magieAtt: bonus att.&#10; magieDmg: bonus DM&#10; affutee: critiques améliorés&#10; fleau: bonus DM contre créature&#10; element: bonus DM élémentaires/substance&#10; manoeuvres: attaques spéciales" value="">
+                    <input type="text" name="attr_arme-atkmods" placeholder="Modificateurs d'attaque" title="@{arme-atkmods} Modificateurs séparés par des virgules&#10; deBonus: avec dé bonus&#10; deMalus: avec dé malus&#10; auto: réussite automatique&#10; choc: peut faire des attaques non léthales sans malus&#10; explodeMax: dés de dégâts explosifs&#10; pasDeDmg: l'attaque ne fait pas de DM&#10; poudre: arme à poudre&#10; reroll1: relance les 1 sur les dés de DM (:1 = une seule fois)&#10; tempDmg: fait toujours des attaques non léthales&#10; zone: sort de zone&#10; magie: bonus att.+DM&#10; magieAtt: bonus att.&#10; magieDmg: bonus DM&#10; affutee: critiques améliorés&#10; fleau: bonus DM contre créature&#10; element: bonus DM élémentaires/substance&#10; fumble: Seuil d'échec critique&#10; manoeuvres: attaques spéciales" value="">
                   </div>
                   <div class="bordered">
                     <input type="checkbox" name="attr_arme-active" title="@{arme-active} Attaque active" value="1" checked>
@@ -1421,59 +1501,7 @@
             
             <div class="sheet-col">
               <h4 title="DM non doublés en cas de coup critique">Options Tactiques</h4>
-<!--
-              <div class="pc-tactic">
-                <div>
-                  <input type="radio" name="attr_tactique" value="0" checked>
-                  Aucune
-                </div>
-                <div>
-                </div>
-              </div>
 
-              <div class="pc-tactic">
-                <div>
-                  <input type="radio" name="attr_tactique" value="1">
-                  Attaque assurée
-                </div>
-                <div>
-                  +5 en attaque et DM divisés par 2
-                </div>
-              </div>
-
-              <div class="pc-tactic">
-                <div>
-                  <input type="radio" name="attr_tactique" value="2">
-                  Attaque précise
-                </div>
-                <div>
-                  -3 en attaque et +1d4° DM
-                </div>
-              </div>
-
-              <div class="pc-tactic">
-                <div>
-                  <input type="radio" name="attr_tactique" value="3">
-                  Attaque violente
-                </div>
-                <div>
-                  -7 en attaque et +2d4° DM
-                </div>
-              </div>
-
-              <div class="pc-tactic">
-                <div class="d-flex">
-                  <input type="checkbox" name="attr_tactautre" value="1">
-                  <input type="text" class="align-self-center" name="attr_tactname" placeholder="Autre tactique" value="">
-                </div>
-                <div class="d-flex">
-                  <input type="number" class="align-self-center" name="attr_tactdiv" value="0">
-                  &nbsp;<input type="checkbox" name="attr_tactroll" title="@{tactroll} Avec dé bonus" value="1">
-                  &nbsp;<input type="checkbox" name="attr_tactroll" title="@{tactroll} Avec dé malus" value="2">
-                  <input type="text" class="w-auto align-self-center" name="attr_tactdmdiv" placeholder="DM supplémentaires" value="">
-                </div>
-              </div>
--->
               <div class="pc-tactic">
                 <div class="d-flex">
                   <select class="select-lg" name="attr_tactique" title="@{attr_tactique}">
@@ -1481,6 +1509,7 @@
                     <option value="1">Attaque assurée (+5, DM/2)</option>
                     <option value="2">Attaque précise (-3, +1d4° DM)</option>
                     <option value="3">Attaque violente (-7, +2d4°)</option>
+                    <option value="4">Tir visé (L, +PER DM)</option>
                   </select>
                 </div>
                 <div class="d-flex align-self-center">
@@ -1493,8 +1522,8 @@
 
                 <div class="pc-tactic">
                   <div class="d-flex">
-                    <input type="checkbox" name="attr_tact-on" value="1">
-                    <input type="text" class="align-self-center" name="attr_tact-name" placeholder="Autre tactique" value="">
+                    <input type="checkbox" name="attr_tact-on" title="@{tact-on} Activer / Désactiver" value="1">
+                    <input type="text" class="align-self-center" name="attr_tact-name" title="@{tact-name} Nom" placeholder="Nom / Capacité" value="">
                   </div>
                   <div class="d-flex">
                     <input type="number" class="two-digits align-self-center" name="attr_tact-div" title="@{tact-div} Bonus pour toucher" value="0">
@@ -1598,15 +1627,40 @@
                   <select name="attr_main_autre" class="select-lg hand-other">
                   </select>
                 </div>
+
+              </div>
+
+              <input type="hidden" class="pc-dual" name="attr_dual_wield" value="0">
+              <div class="pc-hands pc-dual">
+
+                <div>
+                  <input type="hidden" name="attr_deux_armes-btn" value="">
+                  <button type="action" class="hidden" name="act_deux_armes-btn"/>
+                  <input type="hidden" name="attr_deux_armes_btn" value="0">
+                  <button type="roll" class="flat-btn" name="roll_deux_armes" title="%{deux_armes-btn} Attaque main secondaire" value="@{deux_armes-btn}"/>
+                </div>
+
+                <div class="block-title">
+                  <span class="align-self-center">Combat à Deux Armes (L)</span>
+                  <input type="hidden" name="attr_deux_armes" value="">
+                </div>
+
               </div>
               
             </div>
 
             <div class="sheet-col">
 
+              <h4>Autres conditions particulières</h4>
+
               <div class="d-flex">
-                <input type="checkbox" name="attr_en_selle" title="@{en_selle}" value="1">
+                <input type="checkbox" name="attr_en_selle" title="@{en_selle} Combat monté (p.215)" value="1">
                 <span>&nbsp;En selle</span>
+              </div>
+
+              <div class="d-flex">
+                <input type="checkbox" name="attr_condition_aquatique" title="@{condition_aquatique} Combat en milieu aquatique (p.215)" value="1">
+                <span>&nbsp;En milieu aquatique</span>
               </div>
 
             </div>
@@ -1701,6 +1755,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie1-1" title="@{voie1-1}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v1r1_param" title="@{v1r1_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v1r1_use_max" value="0">
                   <div class="ability-uses">
                     <input type="number" name="attr_v1r1_use" title="@{v1r1_use} Utilisations">
@@ -1725,6 +1782,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie1-2" title="@{voie1-2}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v1r2_param" title="@{v1r2_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v1r2_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v1r2_use" title="@{v1r2_use} Utilisations">
@@ -1749,6 +1809,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie1-3" title="@{voie1-3}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v1r3_param" title="@{v1r3_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>                  
                   <input type="hidden" class="ability-uses" name="attr_v1r3_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v1r3_use" title="@{v1r3_use} Utilisations">
@@ -1773,6 +1836,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie1-4" title="@{voie1-4}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v1r4_param" title="@{v1r4_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v1r4_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v1r4_use" title="@{v1r4_use} Utilisations" >
@@ -1797,6 +1863,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie1-5" title="@{voie1-5}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v1r5_param" title="@{v1r5_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v1r5_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v1r5_use" title="@{v1r5_use} Utilisations" >
@@ -1835,6 +1904,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie2-1" title="@{voie2-1}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v2r1_param" title="@{v2r1_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v2r1_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v2r1_use" title="@{v2r1_use} Utilisations" >
@@ -1859,6 +1931,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie2-2" title="@{voie2-2}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v2r2_param" title="@{v2r2_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v2r2_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v2r2_use" title="@{v2r2_use} Utilisations" >
@@ -1883,6 +1958,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie2-3" title="@{voie2-3}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v2r3_param" title="@{v2r3_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v2r3_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v2r3_use" title="@{v2r3_use} Utilisations" >
@@ -1907,6 +1985,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie2-4" title="@{voie2-4}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v2r4_param" title="@{v2r4_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v2r4_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v2r4_use" title="@{v2r4_use} Utilisations" >
@@ -1931,6 +2012,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie2-5" title="@{voie2-5}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v2r5_param" title="@{v2r5_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v2r5_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v2r5_use" title="@{v2r5_use} Utilisations" >
@@ -1969,6 +2053,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie3-1" title="@{voie3-1}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v3r1_param" title="@{v3r1_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v3r1_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v3r1_use" title="@{v3r1_use} Utilisations" >
@@ -1993,6 +2080,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie3-2" title="@{voie3-2}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v3r2_param" title="@{v3r2_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v3r2_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v3r2_use" title="@{v3r2_use} Utilisations" >
@@ -2017,6 +2107,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie3-3" title="@{voie3-3}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v3r3_param" title="@{v3r3_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v3r3_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v3r3_use" title="@{v3r3_use} Utilisations" >
@@ -2041,6 +2134,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie3-4" title="@{voie3-4}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v3r4_param" title="@{v3r4_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v3r4_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v3r4_use" title="@{v3r4_use} Utilisations" >
@@ -2065,6 +2161,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie3-5" title="@{voie3-5}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v3r5_param" title="@{v3r5_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v3r5_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v3r5_use" title="@{v3r5_use} Utilisations" >
@@ -2108,6 +2207,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie4-1" title="@{voie4-1}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v4r1_param" title="@{v4r1_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v4r1_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v4r1_use" title="@{v4r1_use} Utilisations" >
@@ -2132,6 +2234,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie4-2" title="@{voie4-2}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v4r2_param" title="@{v4r2_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v4r2_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v4r2_use" title="@{v4r2_use} Utilisations" >
@@ -2156,6 +2261,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie4-3" title="@{voie4-3}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v4r3_param" title="@{v4r3_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v4r3_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v4r3_use" title="@{v4r3_use} Utilisations" >
@@ -2180,6 +2288,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie4-4" title="@{voie4-4}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v4r4_param" title="@{v4r4_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v4r4_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v4r4_use" title="@{v4r4_use} Utilisations" >
@@ -2204,6 +2315,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie4-5" title="@{voie4-5}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v4r5_param" title="@{v4r5_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v4r5_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v4r5_use" title="@{v4r5_use} Utilisations" >
@@ -2242,6 +2356,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie5-1" title="@{voie5-1}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v5r1_param" title="@{v5r1_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v5r1_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v5r1_use" title="@{v5r1_use} Utilisations" >
@@ -2266,6 +2383,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie5-2" title="@{voie5-2}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v5r2_param" title="@{v5r2_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v5r2_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v5r2_use" title="@{v5r2_use} Utilisations" >
@@ -2290,6 +2410,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie5-3" title="@{voie5-3}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v5r3_param" title="@{v5r3_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v5r3_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v5r3_use" title="@{v5r3_use} Utilisations" >
@@ -2314,6 +2437,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie5-4" title="@{voie5-4}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v5r4_param" title="@{v5r4_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v5r4_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v5r4_use" title="@{v5r4_use} Utilisations" >
@@ -2338,6 +2464,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie5-5" title="@{voie5-5}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v5r5_param" title="@{v5r5_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v5r5_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v5r5_use" title="@{v5r5_use} Utilisations" >
@@ -2376,6 +2505,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie6-1" title="@{voie6-1}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v6r1_param" title="@{v6r1_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v6r1_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v6r1_use" title="@{v6r1_use} Utilisations" >
@@ -2400,6 +2532,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie6-2" title="@{voie6-2}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v6r2_param" title="@{v6r2_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v6r2_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v6r2_use" title="@{v6r2_use} Utilisations" >
@@ -2424,6 +2559,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie6-3" title="@{voie6-3}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v6r3_param" title="@{v6r3_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v6r3_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v6r3_use" title="@{v6r3_use} Utilisations" >
@@ -2448,6 +2586,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie6-4" title="@{voie6-4}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v6r4_param" title="@{v6r4_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v6r4_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v6r4_use" title="@{v6r4_use} Utilisations" >
@@ -2472,6 +2613,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie6-5" title="@{voie6-5}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v6r5_param" title="@{v6r5_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v6r5_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v6r5_use" title="@{v6r5_use} Utilisations" >
@@ -2515,6 +2659,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie7-1" title="@{voie7-1}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v7r1_param" title="@{v7r1_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v7r1_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v7r1_use" title="@{v7r1_use} Utilisations" >
@@ -2539,6 +2686,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie7-2" title="@{voie7-2}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v7r2_param" title="@{v7r2_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v7r2_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v7r2_use" title="@{v7r2_use} Utilisations" >
@@ -2563,6 +2713,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie7-3" title="@{voie7-3}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v7r3_param" title="@{v7r3_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v7r3_use_max" value="0">
                   <div class="ability-uses">
                     <input type="number" name="attr_v7r3_use" title="@{v7r3_use} Utilisations" >
@@ -2587,6 +2740,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie7-4" title="@{voie7-4}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v7r4_param" title="@{v7r4_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v7r4_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v7r4_use" title="@{v7r4_use} Utilisations" >
@@ -2611,6 +2767,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie7-5" title="@{voie7-5}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v7r5_param" title="@{v7r5_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v7r5_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v7r5_use" title="@{v7r5_use} Utilisations" >
@@ -2649,6 +2808,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie8-1" title="@{voie8-1}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v8r1_param" title="@{v8r1_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v8r1_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v8r1_use" title="@{v8r1_use} Utilisations" >
@@ -2673,6 +2835,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie8-2" title="@{voie8-2}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v8r2_param" title="@{v8r2_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v8r2_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v8r2_use" title="@{v8r2_use} Utilisations" >
@@ -2697,6 +2862,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie8-3" title="@{voie8-3}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v8r3_param" title="@{v8r3_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v8r3_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v8r3_use" title="@{v8r3_use} Utilisations" >
@@ -2721,6 +2889,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie8-4" title="@{voie8-4}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v8r4_param" title="@{v8r4_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v8r4_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v8r4_use" title="@{v8r4_use} Utilisations" >
@@ -2745,6 +2916,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie8-5" title="@{voie8-5}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v8r5_param" title="@{v8r5_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v8r5_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v8r5_use" title="@{v8r5_use} Utilisations" >
@@ -2783,6 +2957,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie9-1" title="@{voie9-1}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v9r1_param" title="@{v9r1_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v9r1_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v9r1_use" title="@{v9r1_use} Utilisations" >
@@ -2807,6 +2984,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie9-2" title="@{voie9-2}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v9r2_param" title="@{v9r2_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v9r2_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v9r2_use" title="@{v9r2_use} Utilisations" >
@@ -2831,6 +3011,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie9-3" title="@{voie9-3}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v9r3_param" title="@{v9r3_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v9r3_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v9r3_use" title="@{v9r3_use} Utilisations" >
@@ -2855,6 +3038,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie9-4" title="@{voie9-4}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v9r4_param" title="@{v9r4_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v9r4_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v9r4_use" title="@{v9r4_use} Utilisations" >
@@ -2879,6 +3065,9 @@
                     </div>
                   </summary>
                   <span name="attr_voie9-5" title="@{voie9-5}"></span>
+                  <div class="d-flex">
+                    <input type="text"  name="attr_v9r5_param" title="@{v9r5_param} Paramètre de capacité" placeholder="Paramètre de capacité" value="">
+                  </div>
                   <input type="hidden" class="ability-uses" name="attr_v9r5_use_max" value="0">
                   <div class="ability-uses">                  
                     <input type="number" name="attr_v9r5_use" title="@{v9r5_use} Utilisations" >
@@ -3950,7 +4139,11 @@
               </div>
             </div>
             <div class="sheet-col">
-              <h4>Armes</h4>
+              <h4>Armes
+                <button type="action" class="img-btn flat-btn float-right", name="act_martial_training" title="Armes & armures maîtrisées">
+                  <span class="img-btn img-btn-lg">i</span>
+                </button>
+              </h4>
               <div>
                 <textarea class="one-row" name="attr_maitrises_armes" title="@{maitrises_armes}" placeholder="Autres maitrises d'armes"></textarea>
               </div>
@@ -5089,7 +5282,9 @@
                     <textarea class="one-row" name="attr_equip-props" title="@{equip-props} Propriétés"></textarea>
                     &nbsp;<input type="checkbox" name="attr_equip-atk" title="@{equip-atk} A une attaque" value="1">
                     &nbsp;<span>A une attaque</span>
-                    <input type="hidden" name="attr_atkid" value="">
+                    <input type="hidden" name="attr_equip-atklbl" value="">
+                    <span class="has-script" name="attr_equip-atklbl"></span>
+                    <input type="hidden" name="attr_equip-atkid" value="">
                   </div>
 
                   <div class="d-flex">
@@ -5289,7 +5484,7 @@
               </li>
               <li class="config-check">
                 <input type="checkbox" name="attr_cfg_optact" value="1">
-                <span title="Réinitialiser les options tactiques après une attaque">Options tactiques par round</span>
+                <span title="Réinitialiser les options tactiques après une attaque">Options tactiques par attaque</span>
               </li>
             </ul>
 
@@ -5303,9 +5498,14 @@
                 <input type="checkbox" name="attr_voies_789" value="1">
                 <span>Voies 7-8-9</span>
               </li>
-              <li class="config-check">
+              <li class="config-check" title="Système de compétences (Atlas & règles optionnelles, p. 223)">
                 <input type="checkbox" name="attr_use_skills" value="1">
                 <span>Compétences</span>
+              </li>
+              <li class="config-check" title="Affiche les options tactiques standard et de 3 à 5 options personnelles sur l'onglet Attaques">
+                <input type="checkbox" name="attr_optact" value="1">
+                <span>Options tactiques favorites</span>
+                <input type="number" name="attr_optact_nb" min="3" max="5" value="3">
               </li>
             </ul>
 
@@ -5430,6 +5630,22 @@
                 <li class="config-check" title="Atlas & règles optionnelles, p. 209">
                   <input type="checkbox" name="attr_cfg_shadow" value="1">
                   <span>Lutte contre l'Ombre</span>
+                </li>
+              </ul>
+            </details>
+
+            <details>
+              <summary>
+                <h4><input type="checkbox" name="attr_cfg_companion" value="1">&nbsp;Compagnon du joueur</h4>
+              </summary>
+              <ul>
+                <li class="config-check">
+                  <input type="checkbox" name="attr_cfg_comp_ppl" value="1">
+                  <span>Autoriser les peuples</span>
+                </li>
+                <li class="config-check">
+                  <input type="checkbox" name="attr_cfg_comp_prof" value="1">
+                  <span>Autoriser les profils</span>
                 </li>
               </ul>
             </details>
@@ -5774,8 +5990,8 @@
       <div class="pc-script-tab">
         <h3><span name="attr_script_title"></span></h3>
 
-        <input class="show-script" type="hidden" name="attr_script_show" value="0">
-        <div class="show-script">
+        <input class="has-script" type="hidden" name="attr_script_show" value="0">
+        <div class="has-script">
           <div class="sheet-2colrow">
   
             <div class="sheet-col">
@@ -5997,6 +6213,29 @@
           <div class="sheet-col">
 
             <ul>
+
+              <li>
+                <details>
+                  <summary>
+                    <strong>Version 1.15.0</strong> (2026-04-06)
+                  </summary>
+                  <ul>
+                    <li>Affichage optionnel des options tactiques favorites sur le sous-onglet Attaques</li>
+                    <li>Ajout d'une option de configuration pour les options tactiques favorites</li>
+                    <li>Ajout d'un champ post-it pour saisie de notes</li>
+                    <li>Ajout d'un bouton pour le combat à deux armes dans le sous-onglet <em>En main</em></li>
+                    <li>Ajout d'une case pour le combat en milieu aquatique dans le sous-onglet <em>En main</em></li>
+                    <li>Prise en compte des armes maîtrisées par profil</li>
+                    <li>Ajout d'une icone pour afficher les maîtrises martiales</li>
+                    <li><strong>Compagnon du Joueur</strong>
+                      <ul>
+                        <li>Ajout des peuples optionnels et des profils</li>
+                        <li>Prise en compte des bonus de manoeuvres et aux DM des armes</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </details>
+              </li>
 
               <li>
                 <details>
@@ -6446,7 +6685,7 @@
               <div class="npc-trait">
                 <div class="block-title">Vitesse</div>
                 <div class="bordered">
-                  <input type="number" name="attr_vitesse" title="@{vitesse} Déplacement" value="">&nbsp;m
+                  <input type="number" class="two-digits" name="attr_vitesse" title="@{vitesse} Déplacement (m)" value="">
                 </div>
               </div>
 
@@ -6483,6 +6722,8 @@
               <div class="npc-trait-rd">
                 <div class="block-title">
                   <span>RD</span>
+                  <input type="hidden" class="immu-dm" name="attr_immudm" value="">
+                  <span class="immu-dm"> & Immunités</span>
                 </div>
                 <div class="bordered">
                   <details>
@@ -6491,10 +6732,13 @@
                       <span name="attr_rrdm"></span>
                     </summary>
                     <div class="d-flex m2">
-                      <textarea class="one-row" name="attr_rd" title="@{rd}" placeholder="Réductions DM..."></textarea>
+                      <textarea class="one-row" name="attr_rd" title="@{rd} Réductions DM" placeholder="Réductions DM..."></textarea>
                     </div>
                     <div class="d-flex m2">
-                      <textarea class="one-row" name="attr_resdm" title="@{resdm}" placeholder="Résistances aux DM..."></textarea>
+                      <textarea class="one-row" name="attr_resdm" title="@{resdm} Résistances aux DM" placeholder="Résistances aux DM..."></textarea>
+                    </div>
+                    <div class="d-flex m2">
+                      <textarea class="one-row" name="attr_immudm" title="@{immudm} Immunités aux DM" placeholder="Immunités DM..."></textarea>
                     </div>
                   </details>
                 </div>
@@ -6508,6 +6752,7 @@
             <button type="action" class="flat-btn img-btn" name="act_description-btn" title="%{description-btn}">
               <h4 class="img-btn">Description</h4>
             </button>
+            <input type="checkbox" name="attr_desc_anonyme" title="Description anonymisée" value="1">
             <textarea name="attr_pnj_desc" class="x-large" title="@{pnj_desc}"></textarea>  
           </div>
   
@@ -6524,6 +6769,74 @@
         <hr>
 
         <div class="npc-attacks-subtab">
+
+          <input type="hidden" class="fav-abilities" name="attr_fav_abilities" value="0">
+          <div class="fav-abilities d-inline p2">
+            <div class="d-flex d-flex-between align-self-center">
+              <h4 class="d-inline">Capacités favorites :&nbsp;</h4>
+
+              <input type="hidden" class="fav-ability" name="attr_favability1" value="0">
+              <div class="d-inline">
+                <button type="action" class="flat-btn img-btn" name="act_fav_ability1-btn" title="%{fav_ability1-btn}">
+                  <input type="hidden" name="attr_favability1_id">
+                  <input type="hidden" name="attr_favability1_name">
+                  <span name="attr_favability1_name"></span>
+                </button>
+                <input type="hidden" name="attr_favability1_freq">
+                <span name="attr_favability1_freq"></span>
+              </div>
+
+              <input type="hidden" class="fav-ability" name="attr_favability2" value="0">
+              <div class="d-inline">
+                <span class="p2">|</span>
+                <button type="action" class="flat-btn img-btn" name="act_fav_ability2-btn" title="%{fav_ability2-btn}">
+                  <input type="hidden" name="attr_favability2_id">
+                  <input type="hidden" name="attr_favability2_name">
+                  <span name="attr_favability2_name"></span>
+                </button>
+                <input type="hidden" name="attr_favability2_freq">
+                <span name="attr_favability2_freq"></span>
+              </div>
+
+              <input type="hidden" class="fav-ability" name="attr_favability3" value="0">
+              <div class="d-inline">
+                <span class="p2">|</span>
+                <button type="action" class="flat-btn img-btn" name="act_fav_ability3-btn" title="%{fav_ability3-btn}">
+                  <input type="hidden" name="attr_favability3_id">
+                  <input type="hidden" name="attr_favability3_name">
+                  <span name="attr_favability3_name"></span>
+                </button>
+                <input type="hidden" name="attr_favability3_freq">
+                <span name="attr_favability3_freq"></span>
+              </div>
+
+              <input type="hidden" class="fav-ability" name="attr_favability4" value="0">
+              <div class="d-inline">
+                <span class="p2">|</span>
+                <button type="action" class="flat-btn img-btn" name="act_fav_ability4-btn" title="%{fav_ability3-btn}">
+                  <input type="hidden" name="attr_favability4_id">
+                  <input type="hidden" name="attr_favability4_name">
+                  <span name="attr_favability4_name"></span>
+                </button>
+                <input type="hidden" name="attr_favability4_freq">
+                <span name="attr_favability4_freq"></span>
+              </div>
+
+              <input type="hidden" class="fav-ability" name="attr_favability5" value="0">
+              <div class="d-inline">
+                <span class="p2">|</span>
+                <button type="action" class="flat-btn img-btn" name="act_fav_ability5-btn" title="%{fav_ability3-btn}">
+                  <input type="hidden" name="attr_favability5_id">
+                  <input type="hidden" name="attr_favability5_name">
+                  <span name="attr_favability5_name"></span>
+                </button>
+                <input type="hidden" name="attr_favability5_freq">
+                <span name="attr_favability5_freq"></span>
+              </div>
+
+            </div>
+            <br>
+          </div>
 
           <div class="npc-attacks">
           
@@ -6548,6 +6861,7 @@
   
               <div class="weapon">
                 
+                <input type="hidden" name="attr_arme-new" value="1">
                 <div>
                   <input type="hidden" name="attr_npcatk-btn" value="">
                   <button type="action" class="hidden" name="act_npcatk-btn">
@@ -6569,6 +6883,8 @@
                     <option value="2d20kh1">Dé bonus</option>
                     <option value="2d20kl1">Dé malus</option>
                   </select>&nbsp;
+                  <input type="hidden" name="attr_arme-atkbase" value="">
+                  <span class="align-self-center" name="attr_arme-atkbase" title="@{arme-atkbase} Score de base"></span>
                   <input type="number" class="two-digits" name="attr_arme-atk" title="@{arme-atk} Bonus d'attaque" value="">
                 </div>
                 <div class="d-flex d-flex-middle bordered">
@@ -6608,6 +6924,7 @@
                         &nbsp;Autres
                       </option>
                       <option value="magiques">M - Magiques</option>
+                      <option value="drain">Dr - Drain</option>
                     </optgroup>
                   </select>
                   &nbsp;<span class="align-self-center">+</span>&nbsp;
@@ -6644,7 +6961,7 @@
                   </div>
                   <div class="bordered">
                     <input type="checkbox" name="attr_arme-active" title="@{arme-active} Attaque active" value="1" checked>
-                    <input type="text" name="attr_arme-atkmods" placeholder="Modificateurs d'attaque" title="@{arme-atkmods} Modificateurs séparés par des virgules&#10; deBonus: avec dé bonus&#10; deMalus: avec dé malus&#10; auto: réussite automatique&#10; choc: peut faire des attaques non léthales sans malus&#10; explodeMax: dés de dégâts explosifs&#10; pasDeDmg: l'attaque ne fait pas de DM&#10; poudre: arme à poudre&#10; reroll1: relance les 1 sur les dés de DM (:1 = une seule fois)&#10; tempDmg: fait toujours des attaques non léthales&#10; jet:N: lance le jet de capacité N&#10;" value="">
+                    <input type="text" name="attr_arme-atkmods" placeholder="Modificateurs d'attaque" title="@{arme-atkmods} Modificateurs séparés par des virgules&#10; deBonus: avec dé bonus&#10; deMalus: avec dé malus&#10; auto: réussite automatique&#10; choc: peut faire des attaques non léthales sans malus&#10; explodeMax: dés de dégâts explosifs&#10; pasDeDmg: l'attaque ne fait pas de DM&#10; poudre: arme à poudre&#10; reroll1: relance les 1 sur les dés de DM (:1 = une seule fois)&#10; tempDmg: fait toujours des attaques non léthales&#10; jet:N: lance le jet de capacité N&#10; btn:N: affiche un bouton pour le jet de capacité N&#10;" value="">
                   </div>
                   <div class="bordered">
                     <textarea class="one-row" name="attr_arme-options" placeholder="Options d'attaque avec argument" title="@{arme-options} Options d'attaque"></textarea>
@@ -7085,6 +7402,11 @@
                 <span>Attaques ciblées</span>
               </li>
 
+              <li class="config-check">
+                <input type="checkbox" name="attr_fav_abilities" value="1">
+                <span>Capacités favorites</span>
+              </li>
+
             </ul>
 
             <h4>Règles optionnelles</h4>
@@ -7289,8 +7611,8 @@
       <div class="npc-script-tab">
         <h3><span name="attr_script_title"></span></h3>
 
-        <input class="show-script" type="hidden" name="attr_script_show" value="0">
-        <div class="show-script">
+        <input class="has-script" type="hidden" name="attr_script_show" value="0">
+        <div class="has-script">
 
           <div class="sheet-2colrow">
   
@@ -7500,6 +7822,20 @@
           <div class="sheet-col">
 
             <ul>
+
+              <li>
+                <details>
+                  <summary>
+                    <strong>Version 1.15.0</strong> (2026-04-06)
+                  </summary>
+                  <ul>
+                    <li>Ajout d'un modificateur d'attaque btn:N pour afficher un bouton de chat d'appel de la capacité no N</li>
+                    <li>Possibilité d'envoyer la description du PNJ de manière anonyme (pas de barre de titre avec son nom)</li>
+                    <li>Affichage optionnel des capacités favorites sur le sous-onglet Attaques</li>
+                    <li>Ajout d'une option de configuration pour les capacités favorites</li>
+                  </ul>
+                </details>
+              </li>
 
               <li>
                 <details>
@@ -8030,14 +8366,18 @@
 <rolltemplate class="sheet-rolltemplate-cof2">
 
   {{^token}}
+  {{#perso}}
   <div class="sheet-rt sheet-rt-header sheet-color-{{color}} sheet-rt-title">
     {{perso}}
   </div>
+  {{/perso}}
   {{/token}}
   {{#token}}
   <div class="sheet-rt sheet-rt-2cols sheet-rt-header sheet-color-{{color}} sheet-rt-title">
     <div class="sheet-rt-token">{{token}}</div>
+    {{#perso}}
     <div>{{perso}}</div>
+    {{/perso}}
   </div>
   {{/token}}
   <div class="sheet-rt sheet-rt-2cols sheet-rt-header sheet-color-{{color}}">
@@ -8092,6 +8432,7 @@
     {{/broll}}
   {{/powder}}
   {{#dm}}
+  {{#rollTotal() computed::hasdm 1}}
   <div class="sheet-rt sheet-rt-2cols">
     <div>Dommages</div>
     <div>
@@ -8112,8 +8453,10 @@
     <div>{{dmextra}}</div>
     {{/dmextra}}
   </div>
+  {{/rollTotal() computed::hasdm 1}}
   {{/dm}}
   {{#dmcrit}}
+  {{#rollTotal() computed::hasdm 1}}
     {{#rollWasCrit() roll}}
     <div class="sheet-rt sheet-rt-2cols">
       <div><span class="sheet-rt-critical">CRITIQUE !</span></div>
@@ -8130,12 +8473,18 @@
       </div>
     </div>
     {{/rollWasCrit() broll}}
+  {{/rollTotal() computed::hasdm 1}}
   {{/dmcrit}}
   {{#roll}}
     {{#rollTotal() computed::critsuccess 1}}
     <div class="sheet-rt sheet-rt-text">
       <span class="sheet-rt sheet-rt-critical">{{crithit}}</span>
     </div>
+    {{#critspec}}
+    <div class="sheet-rt sheet-rt-text">
+      <span class="sheet-rt sheet-rt-critical">{{critspec}}</span>
+    </div>
+    {{/critspec}}
     {{/rollTotal() computed::critsuccess 1}}
     {{#broll}}
       {{#rollTotal() computed::bcritsuccess 1}}
@@ -8144,6 +8493,11 @@
         <br>
         <span class="sheet-rt sheet-rt-critical">{{crithit}}</span>
       </div>
+      {{#critspec}}
+      <div class="sheet-rt sheet-rt-text">
+        <span class="sheet-rt sheet-rt-critical">{{critspec}}</span>
+      </div>
+      {{/critspec}}
       {{/rollTotal() computed::bcritsuccess 1}}
     {{/broll}}
   {{/roll}}
@@ -8243,7 +8597,7 @@
 
 /**
  * COF2e Sheet Worker
- * v1.14.0
+ * v1.15.0
  */
 
 const SWData = {
@@ -8267,6 +8621,10 @@ const SWData = {
       "cfg_usure",
       "cfg_use_fear"
     ],
+    companion: [
+      "cfg_comp_ppl",
+      "cfg_comp_prof"
+    ],
     tokens: {
       size: 70,
       target: {
@@ -8274,7 +8632,7 @@ const SWData = {
         opposed: "[[1d20[Dé] + @{target|atkcac}[Att. Contact Cible] ]]",
         name: "@{target|token_name}",
       },
-      PC: {
+      pc: {
         bar1: "",
         bar1_link: "pm",
         bar2: "",
@@ -8284,7 +8642,7 @@ const SWData = {
         bar4: "",
         bar4_link: "vitesse_cases",
       },
-      NPC: {
+      npc: {
         bar1: "",
         bar1_link: "", 
         bar2: "",
@@ -8294,7 +8652,7 @@ const SWData = {
         bar4: "",
         bar4_link: "vitesse_cases"
       },
-      MOOK: {
+      mook: {
         bar1: "",
         bar1_link: "", 
         bar2: "",
@@ -8347,9 +8705,12 @@ const SWData = {
       Aventuriers: [
         { 
           value: "Arquebusier",
+          companion: false,
           pv: 4,
           atks: { cac: 2, tir: 3, mag: 0 },
           skills: "artisanat,athletisme,equitation,intimidation,natation,sciences,vigilance",
+          weapons: [ "cac-1m", "tir", "poudre" ],
+          def: { max: 4, shield: 0 },
           gear: [
             {
               name: "Pétoire",
@@ -8371,9 +8732,12 @@ const SWData = {
         },
         { 
           value: "Barde",
+          companion: false,
           pv: 4,
           atks: { cac: 2, tir: 1, mag: 2 },
           skills: "acrobaties,artisanat,athletisme,commerce,connaissances,divertissement,empathie,equitation,intimidation,natation, persuasion, religion, renseignement,tromperie",
+          weapons: [ "cac-1m" ],
+          def: { max: 3, shield: 0 },
           gear : [
             {
               name: "Rapière",
@@ -8394,10 +8758,44 @@ const SWData = {
           ]
         },
         { 
+          value: "Caravanier",
+          companion: true,
+          pv: 4,
+          atks: { cac: 0, tir: 0, mag: 0 },
+          skills: "",
+          weapons: [ "cac-1m", "tir", "baton", "lance" ],
+          def: { max: 4, shield: 1 },
+          gear : [
+            {
+              name: "Epée courte",
+              number: "1",
+            },
+            {
+              name: "Arc court",
+              number: "1",
+            },
+            {
+              name: "Dague",
+              number: "1",
+            },
+            {
+              name: "Cuir renforcé",
+              number: "1",
+            },
+            {
+              name: "Petit bouclier",
+              number: "1",
+            }
+          ]
+        },
+        { 
           value: "Rôdeur",
+          companion: false,
           pv: 4,
           atks: { cac: 2, tir: 3, mag: 0 },
           skills: "acrobaties,artisanat,athletisme,discretion,equitation,escalade,medecine,natation,survie,vigilance",
+          weapons: [ "cac-1m", "tir" ],
+          def: { max: 3, shield: 0 },
           gear: [
             {
               name: "Epée longue",
@@ -8419,9 +8817,12 @@ const SWData = {
         },
         { 
           value: "Voleur",
+          companion: false,
           pv: 4,
           atks: { cac: 2, tir: 2, mag: 1 }, 
           skills: "acrobaties,artisanat,athletisme,commerce,discrétion,escalade,effraction,intimidation,natation,persuasion,renseignement,tromperie,vigilance",
+          weapons: [ "cac-1m", "tir" ],
+          def: { max: 2, shield: 0 },
           gear: [
             {
               name: "Rapière",
@@ -8449,9 +8850,12 @@ const SWData = {
       Combattants: [
         { 
           value: "Barbare",
+          companion: false,
           pv: 5,
           atks: { cac: 3, tir: 2, mag: 0 },
           skills: "artisanat,athletisme,equitation,escalade,intimidation,natation,survie,vigilance",
+          weapons: [ "cac-1m", "cac-2m", "arc", "bola", "fronde", "sarbacane" ],
+          def: { max: 3, shield: 2 },
           gear: [
             {
               name: "Hache à deux mains",
@@ -8473,9 +8877,12 @@ const SWData = {
         },
         { 
           value: "Chevalier",
+          companion: false,
           pv: 5,
           atks: { cac: 3, tir: 0, mag: 2 },
           skills: "athlétisme,connaissance,equitation,intimidation,natation,persuasion,religion",
+          weapons: [ "cac-1m", "cac-2m" ],
+          def: { max: 6, shield: 2 },
           gear: [
             {
               name: "Epée longue",
@@ -8497,9 +8904,12 @@ const SWData = {
         },
         { 
           value: "Guerrier",
+          companion: false,
           pv: 5,
           atks: { cac: 3, tir: 2, mag: 0 },
           skills: "artisanat,athletisme,equitation,intimidation,natation",
+          weapons: [ "cac-1m", "cac-2m", "tir" ],
+          def: { max: 5, shield: 2 },
           gear: [
             {
               name: "Epée longue",
@@ -8523,13 +8933,47 @@ const SWData = {
             }
           ]
         },
+        { 
+          value: "Parangon",
+          companion: true,
+          pv: 5,
+          atks: { cac: 0, tir: 0, mag: 0 },
+          skills: "",
+          weapons: [ "cac-1m", "cac-2m", "tir" ],
+          def: { max: 4, shield: 0 },
+          gear: [
+            {
+              name: "Sabre droit",
+              number: "1",
+            },
+            {
+              name: "Sabre d'entraînement",
+              number: "1",
+            },
+            {
+              name: "Dague",
+              number: "1",
+            },
+            {
+              name: "Arc court",
+              number: "1",
+            },
+            {
+              name: "Chemise de mailles",
+              number: "1",
+            }
+          ]
+        },
       ],
       Mages: [
         { 
           value: "Ensorceleur",
+          companion: false,
           pv: 3,
           atks: { cac: 1, tir: 1, mag: 3 },
           skills: "artisanat,connaissance,occultisme,sciences",
+          weapons: [ "baton", "dague" ],
+          def: { max: 0, shield: 0 },
           gear: [
             {
               name: "Bâton ferré",
@@ -8543,9 +8987,12 @@ const SWData = {
         },
         { 
           value: "Forgesort",
+          companion: false,
           pv: 3,
           atks: { cac: 2, tir: 0, mag: 3 },
           skills: "artisanat,connaissance,occultisme,sciences",
+          weapons: [ "baton", "dague", "marteau", "arbalete legere" ],
+          def: { max: 2, shield: 0 },
           gear: [
             {
               name: "Bâton ferré",
@@ -8563,9 +9010,12 @@ const SWData = {
         },
         { 
           value: "Magicien",
+          companion: false,
           pv: 3,
           atks: { cac: 1, tir: 1, mag: 3 },
           skills: "artisanat,connaissance,occultisme,sciences",
+          weapons: [ "baton", "dague" ],
+          def: { max: 0, shield: 0 },
           gear: [
             {
               name: "Bâton ferré",
@@ -8582,10 +9032,36 @@ const SWData = {
           ]
         },
         { 
+          value: "Primaliste",
+          companion: true,
+          pv: 4,
+          atks: { cac: 0, tir: 0, mag: 0 },
+          skills: "",
+          weapons: [ "baton", "dague", "fronde", "gourdin", "hachette", "marteau" ],
+          def: { max: 2, shield: 0 },
+          gear: [
+            {
+              name: "Marteau",
+              number: "1"
+            },
+            {
+              name: "Fronde",
+              number: "1"
+            },
+            {
+              name: "Cuir simple",
+              number: "1"
+            }
+          ]
+        },
+        { 
           value: "Sorcier",
+          companion: false,
           pv: 3,
           atks: { cac: 1, tir: 1, mag: 3 },
           skills: "artisanat,connaissance,occultisme,sciences",
+          weapons: [ "baton", "dague" ],
+          def: { max: 0, shield: 0 },
           gear: [
             {
               name: "Bâton ferré",
@@ -8604,10 +9080,36 @@ const SWData = {
       ],
       Mystiques: [
         { 
+          value: "Chamane",
+          companion: true,
+          pv: 4,
+          atks: { cac: 0, tir: 0, mag: 0 },
+          skills: "",
+          weapons: [ "arc court", "baton", "dague", "epieu", "fronde", "lance", "marteau", "masse" ],
+          def: { max: 2, shield: 0 },
+          gear: [
+            {
+              name: "Masse",
+              number: "1",
+            },
+            {
+              name: "Dague",
+              number: "1",
+            },
+            {
+              name: "Cuir simple",
+              number: "1",
+            }
+          ]
+        },
+        { 
           value: "Druide",
+          companion: false,
           pv: 4,
           atks: { cac: 2, tir: 1, mag: 2 },
           skills: "artisanat,athletisme,connaissance,discretion,equitation,empathie,medecine,natation,religion,survie,vigilance",
+          weapons: [ "baton", "dague", "epieu", "javelot", "arc court" ],
+          def: { max: 2, shield: 1 },
           gear: [
             {
               name: "Epieu",
@@ -8629,9 +9131,12 @@ const SWData = {
         },
         { 
           value: "Moine",
+          companion: false,
           pv: 4,
           atks: { cac: 3, tir: 0, mag: 2 },
           skills: "acrobaties,artisanat,athletisme,connaissance,discretion,empathie,escalade,medecine,natation,religion,survie,vigilance",
+          weapons: [ "cac-1m", "cac-2m" ],
+          def: { max: 0, shield: 0 },
           gear: [
             {
               name: "Bâton ferré",
@@ -8641,9 +9146,12 @@ const SWData = {
         },
         { 
           value: "Prêtre",
+          companion: false,
           pv: 4,
           atks: { cac: 2, tir: 0, mag: 3 },
           skills: "artisanat,athletisme,connaissance,empathie,equitation,intimidation,medecine,persuasion,religion,survie",
+          weapons: [ "baton", "cac-1m", "contondant" ],
+          def: { max: 4, shield: 1 },
           gear: [
             {
               name: "Marteau de guerre",
@@ -8660,6 +9168,31 @@ const SWData = {
           ]
         },
       ],
+      Psionique: [
+        {
+          value: "Psionique",
+          companion: true,
+          pv: 4,
+          atks: { cac: 0, tir: 0, mag: 3 },
+          skills: [],
+          weapons: [ "cac-1m-lg", "cac-2m-lg", "tir-lg" ],
+          def: { max: 4, shield: 0 },
+          gear: [
+            {
+              name: "Epée courte",
+              number: "1"
+            },
+            {
+              name: "Dague",
+              number: "1"
+            },
+            {
+              name: "Cuir renforcé",
+              number: "1"
+            }
+          ]
+        }
+      ]
     },
     STATS: [ 
       "agilité",
@@ -8719,19 +9252,19 @@ const SWData = {
           Si la cible est acculée (mur, précipice, adversaire), elle perd autant en DEF pour 1 round.
           Cette action peut être précédée d’un déplacement de 10 m en direction de la cible.`
         },
-        { 
+        {
           name: "Bloquer°",
           mod: "-5",
           effect: `La cible est immobilisée pendant 1 round (dé malus en attaque et pas de déplacement).
           Contre une créature de NC inférieur au niveau de l’attaquant, ce dernier peut maintenir sa prise à chaque round qui suit en emportant un test opposé de FOR (action limitée, modifiée en cas de différence de taille).`
         },
-        { 
+        {
           name: "Désarmer°",
           mod: "-5",
           effect: `La cible laisse tomber son arme au sol. 
           Elle peut la ramasser avant tout le monde en sacrifiant son prochain tour (elle n’agira pas).`
         },
-        { 
+        {
           name: "Aveugler",
           mod: "-5",
           effect: `La cible est aveuglée pendant 1 round (‑5 en attaque au contact et en DEF, ‑10 contre une cible à distance).`
@@ -8742,17 +9275,17 @@ const SWData = {
           effect: `La cible est renversée (‑5 en DEF et action d’attaque pour se relever). 
           Cette action peut être précédée d’un déplacement de 10 m en direction de la cible.`
         },
-        { 
+        {
           name: "Renverser° (quad.:-10)",
           mod: "-10",
           effect: `La cible est renversée (‑5 en DEF et action d’attaque pour se relever). 
           Cette action peut être précédée d’un déplacement de 10 m en direction de la cible.`
         },
-        { 
+        {
           name: "Etourdir°",
           mod: "-10",
           effect: `La cible est étourdie pendant 1 round (pas d’action et ‑5 en DEF). 
-          Si cette manoeuvre est réussie contre une cible surprise de NC inférieur au niveau de l’attaquant, elle doit réussir un test de CON difficulté 10 (15 si l’attaquant utilise une arme contondante) ou être assommée (inconsciente) pour 1d6 min.`
+          Si cette manoeuvre est réussie contre une cible surprise de NC inférieur au niveau de l’attaquant, elle doit réussir un test de CON difficulté 10 (15 si l’attaquant utilise une arme contondante) ou être assommée (inconsciente) pour [[1d6]] min.`
         },
       ]
     },
@@ -8794,6 +9327,19 @@ const SWData = {
         description: [
           "Tombe au sol inconscient",
           "Perd 1 Dé de Récupération"
+        ]
+      },
+      {
+        name: "aquatique",
+        label: "Milieu aquatique",
+        emoji: "",
+        lowFantasy: false,
+        effects: {
+          def: -5
+        },
+        description: [
+          "Vitesse divisée par deux",
+          "Dé malus aux attaques"
         ]
       },
       {
@@ -8938,7 +9484,7 @@ const SWData = {
         description: [
           "Pas d'action au premier round de combat"
         ]
-      }      
+      }   
     ],
     SKILLS: [
       {
@@ -9130,7 +9676,8 @@ const SWData = {
       props: [
         "dm-2m: 1d4",
         "type-dm: contondants",
-      ]
+      ],
+      tags: [ "baton", "cac-2m", "cac-2m-lg", "contondant" ]
     },
     {
       name: "Bâton ferré",
@@ -9138,7 +9685,16 @@ const SWData = {
       props: [
         "dm-2m: 1d6",
         "type-dm: contondants",
-      ]
+      ],
+      tags: [ "baton", "cac-2m", "cac-2m-lg", "contondant" ]
+    },
+    {
+      name: "Bola",
+      altname: "",
+      props: [
+        "portee: 10"
+      ],
+      tags: [ "bola", "tir", "tir-lg" ]
     },
     {
       name: "Dague",
@@ -9147,7 +9703,8 @@ const SWData = {
         "dm-1m: 1d4",
         "type-dm: perforants",
         "lancer: 5"
-      ]
+      ],
+      tags: [ "dague", "cac-1m", "cac-1m-lg" ]
     },
     {
       name: "Epée à deux mains",
@@ -9155,7 +9712,8 @@ const SWData = {
       props: [ 
         "dm-2m: 2d6",
         "type-dm: tranchants",
-      ]
+      ],
+      tags: [ "epee a deux mains", "cac-2m" ]
     },
     {
       name: "Epée bâtarde",
@@ -9164,7 +9722,8 @@ const SWData = {
         "dm-1m: 1d8",
         "dm-2m: 1d12",
         "type-dm: tranchants",
-      ]
+      ],
+      tags: [ "epee batarde", "cac-1m" ]
     },
     {
       name: "Epée courte",
@@ -9172,7 +9731,9 @@ const SWData = {
       props: [ 
         "dm-1m: 1d6",
         "type-dm: perforants",
-      ]
+      ],
+      tags: [ "epee courte", "cac-1m", "cac-1m-lg" ],
+      critical: "+[[@{agi}]] DM"
     },
     {
       name: "Epée longue",
@@ -9180,7 +9741,8 @@ const SWData = {
       props: [ 
         "dm-1m: 1d8",
         "type-dm: tranchants",
-      ]
+      ],
+      tags: [ "epee longue", "cac-1m" ]
     },
     {
       name: "Epieu",
@@ -9189,6 +9751,11 @@ const SWData = {
         "dm-1m: 1d6",
         "dm-2m: 1d10",
         "type-dm: perforants",
+      ],
+      tags: [ "epieu", "cac-1m", "cac-1m-lg" ],
+      maneuvers: [ 
+        { maneuver: "repousser", mod: 3 },
+        { maneuver: "renverser", mod: 3 },
       ]
     },
     {
@@ -9197,7 +9764,8 @@ const SWData = {
       props: [
         "dm-1m: 1d6",
         "type-dm: contondants",
-      ]
+      ],
+      tags: [ "fleau", "cac-1m", "cac-1m-lg", "contondant" ]
     },
     {
       name: "Fléau à deux mains",
@@ -9205,7 +9773,32 @@ const SWData = {
       props: [
         "dm-2m: 1d10",
         "type-dm: contondants",
-      ]
+      ],
+      tags: [ "fleau a deux mains", "cac-2m", "contondant" ]
+    },
+    {
+      name: "Fouet",
+      altname: "",
+      props: [
+        "dm-1m: 1",
+        "type-dm: contondants",
+        "special: Allonge 3m",
+        "atk: atktir",
+        "bonus-dm: 0"
+      ],
+      tags: [ "fouet", "cac-1m", "cac-1m-lg", "contondant" ]
+    },
+    {
+      name: "Fouet de guerre",
+      altname: "",
+      props: [
+        "dm-1m: 1d4",
+        "type-dm: tranchants",
+        "special: Allonge 3m, [[1d4+@{agi}]] DM sur action (L)",
+        "atk: atktir",
+        "bonus-dm: 0"
+      ],
+      tags: [ "fouet de guerre", "cac-1m", "cac-1m-lg" ]
     },
     {
       name: "Gourdin",
@@ -9213,6 +9806,10 @@ const SWData = {
       props: [
         "dm-1m: 1d4",
         "type-dm: contondants",
+      ],
+      tags: [ "gourdin", "cac-1m", "cac-1m-lg", "contondant" ],
+      maneuvers: [ 
+        { maneuver: "etourdir", mod: 4 },
       ]
     },
     {
@@ -9221,7 +9818,8 @@ const SWData = {
       props: [
         "dm-1m: 1d8",
         "type-dm: tranchants",
-      ]
+      ],
+      tags: [ "hache", "cac-1m" ]
     },
     {
       name: "Hache à deux mains",
@@ -9229,7 +9827,8 @@ const SWData = {
       props: [
         "dm-2m: 2d6",
         "type-dm: tranchants",
-      ]
+      ],
+      tags: [ "hache a deux mains", "cac-2m" ]
     },
     {
       name: "Lance",
@@ -9239,6 +9838,11 @@ const SWData = {
         "dm-2m: 1d10",
         "type-dm: perforants",
         "lancer: 10"
+      ],
+      tags: [ "lance", "cac-1m", "cac-1m-lg" ],
+      maneuvers: [ 
+        { maneuver: "repousser", mod: 3 },
+        { maneuver: "renverser", mod: 3 },
       ]
     },
     {
@@ -9247,6 +9851,21 @@ const SWData = {
       props: [
         "dm-1m: 2d6",
         "type-dm: perforants",
+      ],
+      tags: [ "lance de cavalerie", "cac-1m" ]
+    },
+    {
+      name: "Mains nues",
+      altname: "",
+      props: [
+        "dm-1m: 1d4",
+        "type-dm: contondants",
+      ],
+      tags: [ "marteau", "cac-1m", "cac-1m-lg", "contondant" ],
+      maneuvers: [ 
+        { maneuver: "bloquer",    mod: 3 },
+        { maneuver: "gener",      mod: 3 },
+        { maneuver: "renverser",  mod: 3 },
       ]
     },
     {
@@ -9255,7 +9874,12 @@ const SWData = {
       props: [
         "dm-1m: 1d6",
         "type-dm: contondants",
-      ]
+      ],
+      tags: [ "marteau", "cac-1m", "cac-1m-lg", "contondant" ],
+      maneuvers: [ 
+        { maneuver: "etourdir", mod: 2 },
+      ],
+      critical: "-2 en att. et en DEF si la cible porte une armure de plaques",
     },
     {
       name: "Masse",
@@ -9263,7 +9887,21 @@ const SWData = {
       props: [
         "dm-1m: 1d6",
         "type-dm: contondants",
+      ],
+      tags: [ "masse", "cac-1m", "cac-1m-lg", "contondant" ],
+      maneuvers: [ 
+        { maneuver: "etourdir", mod: 2 },
       ]
+    },
+    {
+      name: "Pioche de guerre",
+      altname: "",
+      props: [
+        "dm-2m: 1d10",
+        "type-dm: perforants",
+        "critique: 18"
+      ],
+      tags: [ "pioche de guerre", "cac-2m" ]
     },
     {
       name: "Pique",
@@ -9271,7 +9909,8 @@ const SWData = {
       props: [
         "dm-2m: 1d10",
         "type-dm: perforants",
-      ]
+      ],
+      tags: [ "pique", "cac-2m" ]
     },
     {
       name: "Rapière",
@@ -9280,7 +9919,42 @@ const SWData = {
         "critique: 19",
         "dm-1m: 1d6",
         "type-dm: perforants",
-      ]
+      ],
+      tags: [ "rapiere", "cac-1m" ]
+    },
+    {
+      name: "Sabre court",
+      altname: "",
+      props: [
+        "critique: 19",
+        "dm-1m: 1d4",
+        "type-dm: tranchants",
+        "atkmods: explodeMax"
+      ],
+      tags: [ "sabre court", "cac-1m" ]
+    },
+    {
+      name: "Sabre droit",
+      altname: "",
+      props: [
+        "critique: 19",
+        "dm-1m: 1d6",
+        "dm-2m: 1d8",
+        "type-dm: tranchants",
+        "atkmods: explodeMax"
+      ],
+      tags: [ "sabre droit", "cac-1m" ]
+    },
+    {
+      name: "Sarbacane",
+      altname: "",
+      props: [
+        "dm-1m: 1",
+        "type-dm: perforants",
+        "special: [[1d4+@{per}]] en action (L)",
+        "portee: 10"
+      ],
+      tags: [ "sarbacane", "tir", "tir-lg" ]
     },
     {
       name: "Stylet",
@@ -9288,7 +9962,37 @@ const SWData = {
       props: [ 
         "dm-1m: 1d3",
         "type-dm: perforants",
+      ],
+      tags: [ "stylet", "cac-1m", "cac-1m-lg" ]
+    },
+    {
+      name: "Trident",
+      altname: "",
+      props: [
+        "dm-1m: 1d6",
+        "dm-2m: 1d10",
+        "type-dm: perforants",
+        "lancer: 10"
+      ],
+      tags: [ "trident", "cac-1m", "cac-1m-lg" ],
+      maneuvers: [ 
+        { maneuver: "bloquer",    mod: 2 },
+        { maneuver: "desarmer",   mod: 2 },
+        { maneuver: "repousser",  mod: 2 },
+        { maneuver: "renverser",  mod: 2 },
       ]
+    },
+    {
+      name: "Tribâton",
+      altname: "",
+      props: [
+        "dm-2m: 1d6",
+        "type-dm: contondants",
+        "bonus-dm: agi",
+        "special: Echec critique = 1 DM (utilisateur)",
+        "atkmods: fumble 2"
+      ],
+      tags: [ "tribaton", "cac-2m", "cac-2m-lg", "contondant" ]
     },
     {
       name: "Vivelame",
@@ -9297,7 +10001,8 @@ const SWData = {
         "critique: 19",
         "dm-2m: 1d10",
         "type-dm: tranchants",
-      ]
+      ],
+      tags: [ "vivelame", "cac-2m" ]
     },
     {
       name: "Arbalète de poing",
@@ -9306,7 +10011,8 @@ const SWData = {
         "dm-1m: 1d6",
         "portee: 10",
         "type-dm: perforants",
-      ]
+      ],
+      tags: [ "arbalete de poing", "arbalete", "tir", "tir-lg" ]
     },
     {
       name: "Arbalète lègère",
@@ -9315,7 +10021,8 @@ const SWData = {
         "dm-2m: 2d4",
         "portee: 30",
         "type-dm: perforants",
-      ]
+      ],
+      tags: [ "arbalete legere", "arbalete", "tir", "tir-lg" ]
     },
     {
       name: "Arbalète lourde",
@@ -9324,7 +10031,8 @@ const SWData = {
         "dm-2m: 2d6",
         "portee: 60",
         "type-dm: perforants",
-      ]
+      ],
+      tags: [ "arbalete lourde", "arbalete", "tir" ]
     },
     {
       name: "Arc court",
@@ -9333,7 +10041,8 @@ const SWData = {
         "dm-2m: 1d6",
         "portee: 30",
         "type-dm: perforants",
-      ]
+      ],
+      tags: [ "arc court", "arc", "tir", "tir-lg" ]
     },
     {
       name: "Arc long",
@@ -9342,7 +10051,8 @@ const SWData = {
         "dm-2m: 1d8",
         "portee: 50",
         "type-dm: perforants",
-      ]
+      ],
+      tags: [ "arc", "arc long", "tir" ]
     },
     {
       name: "Couteaux de lancer",
@@ -9351,7 +10061,8 @@ const SWData = {
         "dm-1m: 1d4",
         "portee: 10",
         "type-dm: perforants",
-      ]
+      ],
+      tags: [ "couteaux de lancer", "cac-1m", "cac-1m-lg" ]
     },
     {
       name: "Fronde",
@@ -9360,7 +10071,8 @@ const SWData = {
         "dm-1m: 1d4",
         "portee: 20",
         "type-dm: contondants",
-      ]
+      ],
+      tags: [ "fronde", "tir", "tir-lg" ]
     },
     {
       name: "Hachette",
@@ -9369,7 +10081,8 @@ const SWData = {
         "dm-1m: 1d6",
         "portee: 5",
         "type-dm: perforants",
-      ]
+      ],
+      tags: [ "hachette", "cac-1m", "cac-1m-lg" ]
     },
     {
       name: "Javelot",
@@ -9377,7 +10090,8 @@ const SWData = {
       props: [
         "dm-1m: 1d6",
         "type-dm: perforants",
-      ]
+      ],
+      tags: [ "javelot", "tir", "tir-lg" ]
     },
     {
       name: "Lance-pierre",
@@ -9385,7 +10099,8 @@ const SWData = {
       props: [
         "dm-1m: 1d3",
         "type-dm: contondants",
-      ]
+      ],
+      tags: [ "lance pierre", "tir", "tir-lg" ]
     },
     {
       name: "Pétoire",
@@ -9394,7 +10109,8 @@ const SWData = {
         "dm-1m: 1d10",
         "portee: 20",
         "type-dm: perforants",
-      ]
+      ],
+      tags: [ "petoire", "poudre" ]
     },
     {
       name: "Mousquet",
@@ -9403,7 +10119,8 @@ const SWData = {
         "dm-2m: 2d6",
         "portee: 50",
         "type-dm: perforants",
-      ]
+      ],
+      tags: [ "mousquet", "poudre" ]
     },
     {
       name: "Tissus matelassés",
@@ -9515,6 +10232,26 @@ const SWData = {
     { pv: 4, name: "vagabond", profile: "barde",
       abilities: [ "rumeurs et legendes", "eclectique", "attirail", "comprehension des langues", "deguisement" ]
      },
+    {
+      pv: 4, name: "baroudeur", profile: "caravanier",
+      abilities: [ "infatigable", "reflexes du heros", "techniques exotiques", "art de la survie", "talent personnel" ]
+     },
+    {
+      pv: 4, name: "diplomate", profile: "caravanier",
+      abilities: [ "us et coutumes", "polyglotte", "felure", "charisme heroique", "rien d'impossible" ]
+     },
+    {
+      pv: 4, name: "explorateur", profile: "caravanier",
+      abilities: [ "sur terre", "en mer", "par monts et par vaux", "maitre de la survie", "dans le ciel" ]
+     },
+    {
+      pv: 4, name: "garde personnel", profile: "caravanier",
+      abilities: [ "garde", "garde rapprochee", "capacite de garde", "dernier recours", "lien magique" ]
+     },
+    {
+      pv: 4, name: "marchand", profile: "caravanier",
+      abilities: [ "deux pour le prix d'un", "en reserve", "outils de qualite", "signe exterieur de richesse", "caravane sur pattes" ]
+     },
     { pv: 4, name: "archer", profile: "rodeur",
       abilities: [ "archer emerite", "tir chirurgical", "dans le mille", "tir rapide", "fleche de mort" ]
      },
@@ -9590,6 +10327,26 @@ const SWData = {
     { pv: 5, name: "soldat", profile: "guerrier",
       abilities: [ "teigneux", "prouesse", "piqure de rappel", "force heroique", "rempart" ]
      },
+    {
+      pv: 5, name: "arc et cheval", profile: "parangon",
+      abilities: [ "equitation martiale", "tir en mouvement", "tir expert", "perception heroique", "tirs successifs" ]
+     },
+    {
+      pv: 5, name: "honneur", profile: "parangon",
+      abilities: [ "chef ne", "duel", "honorable", "volonte heroique", "surmonter la douleur" ]
+     },
+    {
+      pv: 5, name: "maitrise interieure", profile: "parangon",
+      abilities: [ "esprit vide", "main vide", "cri", "technique mortelle", "puissance du cri" ]
+     },
+    {
+      pv: 5, name: "sabre", profile: "parangon",
+      abilities: [ "technique du sabre", "frappe du vide", "lames jumelles", "agilite heroique", "deluge de lames" ]
+     },
+    {
+      pv: 5, name: "traditions", profile: "parangon",
+      abilities: [ "esprit eclaire", "force de la repetition", "lame de lignee", "instant present", "tradition familiale" ]
+     },
     { pv: 3, name: "mage", profile: "ensorceleur,forgesort,magicien,sorcier",
       abilities: [ "occultisme", "maitrise de la magie", "tour de magie", "esprit superieur", "tempete de mana" ]
      },
@@ -9647,6 +10404,26 @@ const SWData = {
     { pv: 3, name: "magie universelle", profile: "magicien",
       abilities: [ "lumiere", "familier", "invisibilite", "vol", "teleportation" ]
      },
+    {
+      pv: 4, name: "bois", profile: "primaliste",
+      abilities: [ "pluie d'echardes", "bois durci", "cheval de bois", "explosion du bois", "figurine en bois" ]
+     },
+    {
+      pv: 4, name: "brumes", profile: "primaliste",
+      abilities: [ "temperation", "manteau de brume", "armure de brume", "volonte heroique", "nuage personnel" ]
+     },
+    {
+      pv: 4, name: "rivieres", profile: "primaliste",
+      abilities: [ "traversee", "source claire", "lance liquide", "fluide", "crue devastatrice" ]
+     },
+    {
+      pv: 4, name: "sol", profile: "primaliste",
+      abilities: [ "sens de la terre", "pilier magique", "sables mouvants", "passage par le sol", "champ mortel" ]
+     },
+    {
+      pv: 4, name: "torche", profile: "primaliste",
+      abilities: [ "torche", "feu de camp", "torche puissante", "boutefeu", "passage par le feu" ]
+     },
     { pv: 3, name: "demon", profile: "sorcier",
       abilities: [ "malediction", "beaute de la succube", "pacte demoniaque", "aspect du demon", "invocation d'un demon" ]
      },
@@ -9664,6 +10441,26 @@ const SWData = {
      },
     { pv: 3, name: "arcanes obscurs", profile: "sorcier",
       abilities: [ "contact vampirique", "tentation du demon", "epidemie", "aura maudite", "extinction de masse" ]
+     },
+    {
+      pv: 4, name: "esprit animal", profile: "chamane",
+      abilities: [ "esprit du loup", "esprit du serpe", "esprit de l'ours", "esprit de l'aigle", "esprit du poisson" ]
+     },
+    {
+      pv: 4, name: "esprits des choses", profile: "chamane",
+      abilities: [ "dialogue avec les objets", "pierre vivante", "arme vivante", "siphon de magie", "esprit du lieu" ]
+     },
+    {
+      pv: 4, name: "esprits malefiques", profile: "chamane",
+      abilities: [ "esprits predateurs", "esprits de cauchemars", "metal corrompu", "esprits hurlants", "esprit insecte" ]
+     },
+    {
+      pv: 4, name: "esprit vital", profile: "chamane",
+      abilities: [ "esprits des ancetres", "esprit du foyer", "esprit protecteur", "perception heroique", "esprit lie" ]
+     },
+    {
+      pv: 4, name: "forme d'esprit", profile: "chamane",
+      abilities: [ "esprit de veille", "esprit de repos", "arpenteur de reves", "perception des esprits", "esprit vagabond" ]
      },
     { pv: 4, name: "animaux", profile: "druide",
       abilities: [ "langage des animaux", "petit compagnon", "nuee d'insectes", "masque du predateur", "forme animale" ]
@@ -9713,37 +10510,190 @@ const SWData = {
     { pv: 4, name: "corruption", profile: "pretre",
       abilities: [ "blessure mineure", "poison", "blessure majeure", "vengeance", "epidemie" ]
      },
+    { pv: 4, name: "attaque mentale", profile: "psionique",
+      abilities: [ "attaque mentale", "bouclier psi", "attaque etourdissante", "volonte heroique", "vague psionique" ]
+     },
+    { pv: 4, name: "controle corporel", profile: "psionique",
+      abilities: [ "proprioception", "transe de regeneration", "controle du metabolisme", "constitution heroique", "acceleration" ]
+     },
+    { pv: 4, name: "empathie", profile: "psionique",
+      abilities: [ "perception extra-sensorielle", "defense intuitive", "perception du passe", "perception heroique", "vision lointaine" ]
+     },
+    { pv: 4, name: "telekinesie", profile: "psionique",
+      abilities: [ "manipulation a distance", "champ de protection", "onde de choc", "psychoportation", "puissance de l'esprit" ]
+     },
+    { pv: 4, name: "telepathie", profile: "psionique",
+      abilities: [ "telepathie", "cameleon mental", "suggestion", "imposture mentale", "domination psy" ]
+     }
   ],
   HERITAGE: [
     {
+      name: [ "ame forgee", "ame-forgee" ],
+      abilities: [ "metallique", "choc electrique", "infiltration", "rayon ardent", "machine de guerre" ],
+      companion: true
+    },
+    {
+      name: [ "cambion" ],
+      abilities: [ "ami des ombres", "enfant des tenebres", "resistances", "la belle et la bete", "forge par les tenebres" ],
+      companion: true
+    },
+    {
+      name: [ "demi elfe", "demi-elfe", "demie elfe", "demie-elfe" ],
+      abilities: [ "heritages", "nomade", "capacite d'apprentissage", "sang feerique", "empathie fantastique" ],
+      companion: true
+    },
+    {
+      name: [ "demi ogre", "demi-ogre", "demie ogre", "demie-ogre", "demie ogresse", "demie-ogresse" ],
+      abilities: [ "reaction violente", "violence ciblee", "vorace", "toujours plus lourd", "monumental" ],
+      companion: true
+    },
+    {
       name: [ "demi orc", "demi-orc", "demie orque", "demie-orque" ],
-      abilities: [ "impressionnant", "talent pour la violence", "critique brutal", "attaque sanglante", "colosse" ]
+      abilities: [ "impressionnant", "talent pour la violence", "critique brutal", "attaque sanglante", "colosse" ],
+      companion: false
+    },
+    {
+      name: [ "drakonide", "drakeide", "sangdragon", "sang-dragon" ],
+      abilities: [ "sang dragon", "souffle", "ecailles robustes", "fureur drakonide / ailes puissantes", "heritage draconique" ],
+      companion: true
     },
     {
       name: [ "elfe haut", "haut elfe", "haut-elfe" ],
-      abilities: [ "lumiere interieure", "force d'ame", "talent pour la magie", "immortel", "superiorite elfique" ]
+      abilities: [ "lumiere interieure", "force d'ame", "talent pour la magie", "immortel", "superiorite elfique" ],
+      companion: false
+    },
+    {
+      name: [ "elfe pale" ],
+      abilities: [ "natif de la foret sombre", "resistance au poison", "fleau des morts", "provoquer la chance", "superiorite elfique" ],
+      companion: true
+    },
+    {
+      name: [ "elfe des profondeurs", "elfe noir", "drow" ],
+      abilities: [ "enfant des tenebres", "lames et sorcellerie", "combat a deux armes", "maitrise des arbaletes", "superiorite elfique" ],
+      companion: true
     },
     {
       name: [ "elfe sylvain", "elfe sylvaine", "elfe sylvestre", "elfe des bois" ],
-      abilities: [ "lumiere des etoiles", "enfant de la foret", "archer emerite", "fleche sanglante", "superiorite elfique" ]
+      abilities: [ "lumiere des etoiles", "enfant de la foret", "archer emerite", "fleche sanglante", "superiorite elfique" ],
+      companion: false
+    },
+    {
+      name: [ "farfadet" ],
+      abilities: [ "ne d'un chou", "langage des animaux", "invisibilite", "monture feerique", "seigneur feerique" ],
+      companion: true
+    },
+    {
+      name: [ "fee" ],
+      abilities: [ "nee d'une fleur", "pirouette", "poudre de fee", "fee reveree", "lady fee" ],
+      companion: true
+    },
+    {
+      name: [ "felis", "felys" ],
+      abilities: [ "ame feline", "armes naturelles", "vif et discret", "metamorphose feline", "nature feline" ],
+      companion: true
+    },
+    {
+      name: [ "frouin" ],
+      abilities: [ "avarie", "minus", "parano", "attaque simultanee", "champion de la survie" ],
+      companion: true
     },
     {
       name: [ "gnome" ],
-      abilities: [ "don etrange", "petit pote", "insignifiant", "merveille technologique", "bonne nature" ]
+      abilities: [ "don etrange", "petit pote", "insignifiant", "merveille technologique", "bonne nature" ],
+      companion: false
+    },
+    {
+      name: [ "gobelin", "gobeline" ],
+      abilities: [ "vivacite gobeline", "attaque groupee", "kafouiller", "worg", "vif et alerte" ],
+      companion: true
     },
     {
       name: [ "halfelin", "halfeline" ],
-      abilities: [ "petite taille", "resistance legendaire", "bon pour le moral", "petit veinard", "vif et bien nourri" ]
+      abilities: [ "petite taille", "resistance legendaire", "bon pour le moral", "petit veinard", "vif et bien nourri" ],
+      companion: false
     },
     {
       name: [ "humain", "humaine" ],
-      abilities: [ "diversite", "instinct de survie", "touche-a-tout", "loup parmi les loups", "polyvalence" ]
+      abilities: [ "diversite", "instinct de survie", "touche-a-tout", "loup parmi les loups", "polyvalence" ],
+      companion: false
+    },
+    {
+      name: [ "kobold" ],
+      abilities: [ "ruse kobold", "chetif", "piege improvise", "attaque vicieuse", "ruse instinctive" ],
+      companion: true
+    },
+    {
+      name: [ "minotaure" ],
+      abilities: [ "coup de corne", "charge puissante", "frenesie", "encorner", "colosse" ],
+      companion: true
     },
     {
       name: [ "nain", "naine" ],
-      abilities: [ "habitant des tunnels", "haches et marteaux", "resistance a la magie", "fils du roc", "tenacite" ]
-    }
+      abilities: [ "habitant des tunnels", "haches et marteaux", "resistance a la magie", "fils du roc", "tenacite" ],
+      companion: false
+    },
+    {
+      name: [ "nephilim" ],
+      abilities: [ "photosensible", "enfant de la lumiere", "resistances", "la plume et l'acier", "forge par la lumiere" ],
+      companion: true
+    },
+    {
+      name: [ "ophidien", "ophidienne" ],
+      abilities: [ "sang des anciens", "regard hypnotique", "crachat", "mutation serpentine", "forme de serpent" ],
+      companion: true
+    },
+    {
+      name: [ "satyre", "faune" ],
+      abilities: [ "bonne nature", "encorner et ruer", "compagnon de voyage", "magie sauvage", "ascendance naturelle" ],
+      companion: true
+    },
+    {
+      name: [ "wolfer" ],
+      abilities: [ "chasseur ne", "griffes et crocs", "loi de la meute", "forme de loup", "esprit du loup" ],
+      companion: true
+    },
   ],
+  SENS: {
+    "âmeforgée": "Vision dans le noir",
+    "cambion": "Vision dans le noir",
+    "demielfe": "Lumière des étoiles",
+    "demieelfe": "Lumière des étoiles",
+    "demiogre": "Vision dans le noir",
+    "demieogre": "Vision dans le noir",
+    "demieogresse": "Vision dans le noir",
+    "demiorc": "Vision dans le noir",
+    "demieorc": "Vision dans le noir",
+    "demieorque": "Vision dans le noir",
+    "drakonide": "Vision dans le noir",
+    "drakeide": "Vision dans le noir",
+    "sangdragon": "Vision dans le noir",
+    "elfehaut": "Lumière des étoiles",
+    "elfehaute": "Lumière des étoiles",
+    "elfepale": "Vision dans le noir",
+    "elfedesprofondeurs": "Vision dans le noir",
+    "drow": "Vision dans le noir",
+    "elfesylvain": "Lumière des étoiles",
+    "elfesylvaine": "Lumière des étoiles",
+    "elfesylvestre": "Lumière des étoiles",
+    "elfedesbois": "Lumière des étoiles",
+    "felis": "Lumière des étoiles",
+    "felys": "Lumière des étoiles",
+    "frouin": "Vision dans le noir",
+    "gnome": "Vision dans le noir",
+    "gobelin": "Vision dans le noir",
+    "gobeline": "Vision dans le noir",
+    "kobold": "Vision dans le noir",
+    "farfadet": "Vision dans le noir",
+    "fee": "Vision dans le noir",
+    "nain": "Vision dans le noir",
+    "naine": "Vision dans le noir",
+    "nephilim": "Lumière des étoiles",
+    "ophidien": "Vision dans le noir",
+    "ophidienne": "Vision dans le noir",
+    "satyre": "Lumière des étoiles",
+    "faune": "Lumière des étoiles",
+    "wolfer": "Vision dans le noir",
+  },
   ATTACKS: {
     CF: [
       "se blesse lui-même (DM / 2)",
@@ -10301,6 +11251,29 @@ function changeEvent(attributeList, section = "") {
 }
 
 /**
+ * Return a list of clicked: events as string
+ * @param {string[]} buttonList - List of buttons
+ * @param {string} [section=""] - Repeating section name
+ * @returns {string}
+ */
+function clickedEvent(buttonList, section = "") {
+  if (section !== "")
+    buttonList = buttonList.map(attr => `repeating_${section}:${attr}`);
+  return eventList("clicked", buttonList, " ");
+}
+
+/**
+ * Return list of change/reorder/remove events for repeating section
+ * @param {string} section - section name
+ * @param {boolean} reorder - add change event for the reorder attribute
+ * @returns {string}
+ */
+function repeatEvents(section, reorder = false) {
+  const repOrder = reorder ? ` change:_reporder:${section}` : "";
+  return `change:repeating_${section} remove:repeating_${section}${repOrder}`;
+}
+
+/**
  * Return repeating attribute name
  * @param {string} section - section name
  * @param {string} name - attribute name
@@ -10469,7 +11442,7 @@ function buildChatMsg(msg, options) {
   if (template !== "")
     return `${whisper}&{template:${template}} ${title ? (template === "default" ? `{{name=${title} }}` : `{{${title} }}`) : "" } ${chatMsg}`;
   else
-    return msg;
+    return `${whisper}${msg}`;
 }
 
 /**
@@ -10498,9 +11471,16 @@ function diceRoll(roll) {
 function sendChatCmd(chatCmd) {
   startRoll(chatCmd, roll => {
     if (chatCmd.startsWith("!"))
-      console.log(chatCmd);
+      console.log(chatCmd, roll);
     finishRoll(roll.rollId);
   });
+}
+
+async function sendChatCmdAsync(chatCmd) {
+  const roll = await startRoll(chatCmd);
+  if (chatCmd.startsWith("!"))
+    console.log(chatCmd, roll);
+  finishRoll(roll.rollId);
 }
 
 /**
@@ -10530,10 +11510,12 @@ function sendChatMsg(msg, options) {
       updates.set("last_rolls", last_rolls);
 
     if (roll.results.roll) {
-      const rx = "\\[(" + SWData.PC.COMBAT.maneuvers.map(mn => mn.name.split(" ")[0]).join("|") + ")\\]\\)";
+      const rx = "\\[(" + SWData.PC.COMBAT.maneuvers.map(mn => mn.name.split(" ")[0]).join("|") + ")\\].*\\)";
       const matched = roll.results.roll.expression.match(rx);
-      if (matched)
+      if (matched) {
         updates.set("last_maneuver", `${ cleanText(matched[1]) }~${roll.rollId}`); // make it unique
+        computed.hasdm=0;
+      }
     }
 
     // check TN
@@ -10550,7 +11532,7 @@ function sendChatMsg(msg, options) {
     }
 
     // check crit success
-    if (options.critical) {
+    if (options.critical || options.critspec) {
       const rollD20 = diceRoll(roll.results.roll);
       if (rollD20 >= options.crit)
         computed.critsuccess = 1;
@@ -10620,8 +11602,10 @@ function rollTemplate(props, options = {}) {
         props.tags = options.tags.join(" | ");
     }
   }
+  const anonymous = (options.title) ? boolval(options.title) : true;
+  const title = anonymous ? [] : [ "perso=@{character_name}" ];
   return [
-    "perso=@{character_name}",
+    ...title,
     "color=@{couleur_pj}",
     ...Object.entries(props).map(e => {
       const [ prop, value ] = e;
@@ -10794,19 +11778,21 @@ function d20Roll(base, d20Roll, cfcs = {}) {
  * @returns {boolean}
  */
 function hasMODScript(values) {
-  if (!values.scriptVersion)
-    return false;
-  return values.scriptVersion;
+  if (typeof values.scriptVersion === "boolean")
+    return values.scriptVersion;
+  if (strval(values.scriptVersion) === "true")
+    return true;
+  return boolval(values.scriptVersion);
 }
 
 /**
  * Returns Token Mod command to complete
- * @param {string} charName - character name
+ * @param {string} charId - character id
  * @param {Object} [props={}] - properties name/value pairs
  * @returns {string}
  */
-function tokenMod(charName, props = {}) {
-  const tokenmod = `!token-mod {{ --current-page --ignore-selected --ids @{${charName}|character_id}`;
+function tokenMod(charId, props = {}) {  
+  const tokenmod = `!token-mod {{ --current-page --ignore-selected --ids ${charId}`;
   const tokenProps = Object.keys(props).map(prop => `${prop}|${props[prop]}`).join(" ");
   return tokenmod + (tokenProps !== "" ? " --set " : "") + tokenProps + " }}";
 }
@@ -11100,7 +12086,6 @@ function getPathsWithRank(search, values) {
   return withRank.length;
 }
 
-
 /**
  * Return list of attributes for fear conditions
  * @returns {string[]}
@@ -11256,7 +12241,34 @@ function displayMod(mod) {
  * @returns {string}
  */
 function replaceDevol(expr) {
-  return expr.replaceAll(/d(4°|E)/g, "@{devol}");
+  return expr.replaceAll(/d(4°|E|4[Ee])/g, "@{devol}");
+}
+
+/**
+ * Return die roll macro for evolutive dice
+ * @param {number} number - number of dice to roll
+ * @param {string} devol - evolutive dice value
+ * @returns {string}
+ */
+function rollDEvol(number, devol) {
+  return devol === "2d6" 
+  ? `${ 2 * number }d6`
+  : `${number}${devol}`;
+}
+
+/**
+ * Expand evolutive dice expression
+ * @param {string} dm - DM dice expression
+ * @param {string} devol - evolutive dice value
+ * @returns {string}
+ */
+function expandDEvol(dm, devol) {
+  if (dm.includes("@{devol}")) {
+    const [ matched, dice ] = dm.match(/([0-9]+)@{devol}/);
+    if (matched)
+      dm = dm.replace(matched, rollDEvol(intval(dice), devol));
+  }
+  return dm;
 }
 
 // ===============
@@ -11349,37 +12361,64 @@ on("change:cfg_d20roll", function() {
  * Populate the profiles datalist
  * @param {string} family - name of profiles family
  * @param {string} profile - name of current profile
+ * @param {boolean} useCompanion - allow companion profiles
  * @returns 
  */
-function setProfilesList(family, profile) {
+function setProfilesList(family, profile, useCompanion) {
   const profiles = SWData.PC.PROFILES[family] || [];
   if (profiles.length === 0)
     return;
+  let optionsArray = [ ...profiles, ...SWData.PC.PROFILES.Psionique ];
+  if (!useCompanion)
+    optionsArray = optionsArray.filter(prof => !prof.companion);
+  optionsArray = optionsArray.map(prof => ({ value: prof.value, selected: (prof.value === profile)}))
   populateListOptions({
     elemSelector: "#pc-profiles",
-    optionsArray: profiles.map(prof => ({ value: prof.value, selected: (prof.value === profile)}))
+    optionsArray
   });
+}
+
+/**
+ * Return primary profile
+ * @param {string} profile - profile value (possibly prime/2nd)
+ * @returns {string}
+ */
+function mainProfile(profile) {
+  return strval(strval(profile).split("/")[0]);
 }
 
 /**
  * Get profile data object
  * @param {string} profile - profile name
  * @param {string} [selectFamily=""] - family name
- * @returns {object}
+ * @returns { {
+ *    value: string,
+ *    companion: boolean,
+ *    pv: number,
+ *    atks: { cac: number, tir: number, mag: number },
+ *    skills: string,
+ *    weapons: string[],
+ *    def: { max: number, shield: number }
+ *    gear: { name: string, number: string }[]
+ *    family: string
+ * } }
  */
 function getProfileData(profile, selectFamily = "") {
-  let data;
-  const [ primary ] = strval(profile).split("/");
-  if (primary) {
-    for (const family in SWData.PC.PROFILES) {
-      if (selectFamily !== "" && family.toLowerCase() !== selectFamily.toLowerCase())
+  let data = {};
+  let family = "";
+  const primary = mainProfile(profile);
+  if (primary !== "") {
+    for (const f in SWData.PC.PROFILES) {
+      if (selectFamily !== "" && f.toLowerCase() !== selectFamily.toLowerCase())
         continue;
-      data = SWData.PC.PROFILES[family].find(p => primary.toLowerCase() === p.value.toLowerCase());
-      if (data)
+      data = SWData.PC.PROFILES[f].find(p => cleanText(primary) === cleanText(p.value));
+      if (data) {
+        family = f;
         break;
+      }
     }
   }
-  return data;
+  return { ...data, family };
 }
 
 /**
@@ -11389,28 +12428,29 @@ function getProfileData(profile, selectFamily = "") {
  * - set PC & DR base
  */
 on("change:famille", function(eventInfo) {
-  getAttrs([ "profil", "famille" ], function(values) {
+  getAttrs([ "profil", "famille", "cfg_comp_prof" ], function(values) {
     const family = strval(values.famille);
     const profile = strval(values.profil);
-    setProfilesList(family, profile);
+    const useCompanion = boolval(values.cfg_comp_prof);
+    setProfilesList(family, profile, useCompanion);
 
     const updates = new Map();
 
     let dRecup = 8;
     let pcBase = 2;
     let drBase = 2;
-    let voie123pv = 4;
+    let voies123pv = 4;
     switch (family) {
       case "Aventuriers":
         pcBase = 3;
         break;
       case "Combattants":
         dRecup = 10;
-        voie123pv = 5;
+        voies123pv = 5;
         break;
       case "Mages":
         dRecup = 6;
-        voie123pv = 3;
+        voies123pv = 3;
         break;
       case "Mystiques":
         drBase = 3;
@@ -11419,9 +12459,9 @@ on("change:famille", function(eventInfo) {
     updates.set("drecup", dRecup);
     updates.set("pc_base", pcBase);
     updates.set("dr_base", drBase);
-    updates.set("voie1pv", voie123pv);
-    updates.set("voie2pv", voie123pv);
-    updates.set("voie3pv", voie123pv);
+    updates.set("voie1pv", voies123pv);
+    updates.set("voie2pv", voies123pv);
+    updates.set("voie3pv", voies123pv);
 
     logAndSet(Object.fromEntries(updates), logTitle(eventInfo));
   });
@@ -11472,9 +12512,10 @@ on("change:profil", function(eventInfo) {
 on("change:peuple", function(eventInfo) {
   const path = SWData.settings.peoplePath;
   const rankNames = seq(5).map(rank => abilityInfo({ path, rank }).rankName);
-  getAttrs([ "peuple", ...rankNames ], function(values) {
+  getAttrs([ "peuple", "cfg_comp_ppl", ...rankNames ], function(values) {
     const updates = new Map();
     const people = strval(values.peuple);
+    const useCompanion = strval(values.cfg_comp_ppl);
     
     if (people.trim() === "") {
       updates.set(abilityInfo({ path }).pathName, "");
@@ -11497,6 +12538,8 @@ on("change:peuple", function(eventInfo) {
     const peopleInfo = SWData.HERITAGE.find(p => p.name.includes(cleanText(people)));
     if (!peopleInfo)
       return;
+    if (!useCompanion && peopleInfo.companion)
+      return;
     
     updates.set(abilityInfo({ path }).pathName, people);
     rankNames.forEach((rank, ix) => {
@@ -11504,20 +12547,7 @@ on("change:peuple", function(eventInfo) {
         updates.set(abilityInfo({ path, rank: ix + 1 }).rankName, capitalize(peopleInfo.abilities[ix]));
     });
 
-    const sens = ({
-      "demiorc": "Vision dans le noir",
-      "demieorc": "Vision dans le noir",
-      "demieorque": "Vision dans le noir",
-      "elfehaut": "Lumière des étoiles",
-      "elfehaute": "Lumière des étoiles",
-      "elfesylvain": "Lumière des étoiles",
-      "elfesylvaine": "Lumière des étoiles",
-      "elfesylvestre": "Lumière des étoiles",
-      "elfedesbois": "Lumière des étoiles",
-      "gnome": "Vision dans le noir",
-      "nain": "Vision dans le noir",
-      "naine": "Vision dans le noir"
-    })[people.replaceAll("-", "").replaceAll(" ", "").trim().toLowerCase()];
+    const sens = SWData.SENS[people.replaceAll("-", "").replaceAll(" ", "").trim().toLowerCase()];
     if (sens)
       updates.set("sens", sens);
 
@@ -11547,22 +12577,26 @@ function updateAttacksBase(level, levelCap, attributes) {
 /**
  * Return the evolutive die for level
  * @param {number} level - PC's level
+ * @param {boolean} [upgrade=false] - Upgrade evolutive die category (half-elf)
  * @returns {string} 
  */
-function getDEvol(level) {
+function getDEvol(level, upgrade = false) {
   let dEvol;
   switch (true) {
     case level >= 15:
-      dEvol = "d12";
+      dEvol = upgrade ? "2d6" : "d12";
       break;
     case level >= 12:
-      dEvol = "d10";
+      dEvol = upgrade ? "d12" : "d10";
       break;
     case level >= 9:
-      dEvol = "d8";
+      dEvol = upgrade ? "d10" : "d8";
       break;
     case level >= 6:
-      dEvol = "d6";
+      dEvol = upgrade ? "d8" : "d6";
+      break;
+    case level >= 3:
+      dEvol = upgrade ? "d6" : "d4";
       break;
     default:
       dEvol = "d4";
@@ -11578,13 +12612,17 @@ on(changeEvent([
   "cfg_use_epic", "cfg_use_capped6", "cfg_atk_diff"
 ]), function(eventInfo) {
   getAttrs([ 
-    "sheet_type", "niveau", "profil", "pc", "pc_max",
-    "cfg_use_epic", "cfg_use_capped6", "cfg_atk_diff",
+    "sheet_type", "peuple", "niveau", "profil", "pc", "pc_max",
+    "cfg_use_epic", "cfg_use_capped6", "cfg_atk_diff", "cfg_comp_ppl",
     "noms_rangs",
   ], function(values) {
     if (strval(values.sheet_type) === SWData.SHEET_TYPE.NPC)
       return;
 
+    const peuple = cleanText(strval(values.peuple)).replaceAll("-", " ").replaceAll(" ", "");
+    const upgrade = boolval(values.cfg_comp_ppl) 
+                    && [ "demielfe", "demieelfe" ].includes(peuple)
+                    && hasAbilityName("capacite d'apprentissage", values);
     const cappedAt6 = boolval(values.cfg_use_capped6);
     const atkDiff = boolval(values.cfg_atk_diff);
     // base progression
@@ -11609,7 +12647,7 @@ on(changeEvent([
       atks = profile.atks;
     Object.keys(atks).forEach(atk => updateAttrs.set(`atk${atk}_base`, atks[atk]));
     updateAttrs = updateAttacksBase(level, levelCap, updateAttrs);
-    updateAttrs.set("devol", getDEvol(level));
+    updateAttrs.set("devol", getDEvol(level, upgrade));
     updateAttrs.set("def_base", 10);
     
     // epic progression
@@ -11941,12 +12979,17 @@ seq(9).forEach(p => {
  * Compute max PC
  */
 function updatePCMax(eventInfo) {
-  getAttrs([ "sheet_type", "pcmax_force", "pc_base", "cha", "pc_buff", "cfg_pc_var" ], function(values) {
-    if (strval(values.sheet_type) === SWData.SHEET_TYPE.NPC)
-      return;
+  getAttrs([ "sheet_type", "pcmax_force", "pc_max", "pc_base", "cha", "pc_buff", "cfg_pc_var" ], function(values) {
     if (boolval(values.pcmax_force))
       return;
-    
+
+    // Trick auto-calc for NPC
+    if (strval(values.sheet_type) === SWData.SHEET_TYPE.NPC) {
+      values.pc_base = intval(values.pc_max);
+      values.cha = 0;
+    }
+    delete values.pc_max;
+
     const doublePC = boolval(values.cfg_pc_var) ? 2 : 1;
     delete values.cfg_pc_var;
     const pc_max = addValues(values) * doublePC;
@@ -11957,7 +13000,7 @@ function updatePCMax(eventInfo) {
 /**
  * On PC components change
  */
-on(changeEvent([ "pc_base","cha","pc_buff","cfg_pc_var" ]), updatePCMax);
+on(changeEvent([ "pc_base", "cha", "pc_buff", "cfg_pc_var" ]), updatePCMax);
 
 /**
  * Return list of attributes for luck roll button
@@ -12311,12 +13354,16 @@ on("clicked:maneuver-btn", function() {
 /**
  * On speed/m change, compute feet & square speed
  */
-on("change:vitesse", function () {
-  getAttrs([ "vitesse" ], function(values) {
+on("change:vitesse", function (eventInfo) {
+  const worker = (strval(eventInfo.sourceType) === "sheetworker");
+  getAttrs([ "vitesse", "vitesse_def", "condition_aquatique" ], function(values) {
     const vitesse = numval(values.vitesse);
+    const aquatic = numval(values.condition_aquatique);
+    let vitesse_def = numval(values.vitesse_def);
+    vitesse_def = worker || aquatic ? vitesse_def : vitesse;
     const vitesse_cases = Math.ceil(vitesse / 1.5);
     const vitesse_pas = vitesse_cases * 5;
-    setAttrs({ vitesse_pas, vitesse_cases });
+    setAttrs({ vitesse_def, vitesse_pas, vitesse_cases });
   });
 });
 
@@ -12328,15 +13375,39 @@ on("change:sens", function () {
     if (numval(values.sens_portee) !== 0)
       return;
     let sens_portee = 0;
-    switch (strval(values.peuple.toLowerCase()) + "," + strval(values.sens).toLowerCase()) {
-      case "demi-orc,vision dans le noir":
-      case "demie-orc,vision dans le noir":
-      case "demie-orque,vision dans le noir":
+    const peuple = cleanText(strval(values.peuple.toLowerCase())).replaceAll("-", "").replaceAll(" ", "");
+    switch (peuple + "," + strval(values.sens).toLowerCase()) {
+      case "cambion,vision dans le noir":
+      case "demiogre,vision dans le noir":
+      case "demieogresse,vision dans le noir":
+      case "demiorc,vision dans le noir":
+      case "demieorc,vision dans le noir":
+      case "demieorque,vision dans le noir":
+      case "drakonide,vision dans le noir":
+      case "drakeide,vision dans le noir":
+      case "sangdragon,vision dans le noir":
+      case "elfepale,vision dans le noir":
+      case "elfedesprofondeurs,vision dans le noir":
+      case "elfenoir,vision dans le noir":
+      case "elfenoire,vision dans le noir":
+      case "drow,vision dans le noir":
+      case "frouin,vision dans le noir":
+      case "gobelin,vision dans le noir":
+      case "gobeline,vision dans le noir":
+      case "kobold,vision dans le noir":
       case "nain,vision dans le noir":
       case "naine,vision dans le noir":
+      case "ophidien,vision dans le noir":
+      case "ophidienne,vision dans le noir":
+      case "wolfer,vision dans le noir":
         sens_portee = 30;
         break;
+      case "farfadet,vision dans le noir":
+      case "fee,vision dans le noir":
+        sens_portee = 20;
+        break;
       case "gnome,vision dans le noir":
+      case "ameforgee,vision dans le noir":
         sens_portee = 10;
         break;
     }
@@ -12362,11 +13433,12 @@ function wounded(values) {
   let condition_affaibli = 0;
   let condition_inconscient = 0;
   let effects = [];
-  if (pv <= 1) {
+
+  if (pv <= 1 && !hasMODScript(values)) {
     condition_affaibli = 1;
     effects.push("subit la condition Affaibli-e (PV = 1)");
   } 
-  if (pv === 0) {
+  if (pv === 0 && !hasMODScript(values)) {
     dr = Math.max(dr - 1, 0);
     condition_inconscient = 1;
     effects.push("perd un DR et tombe au sol inconscient-e (PV = 0)");
@@ -12397,7 +13469,11 @@ function wounded(values) {
  * @param {boolean} [buttonClicked=true] - Updated via button
  */
 function updatePVDR(vp, lossOrGain, buttonClicked = true) {
-  getAttrs([ "sheet_type", "pv", "pv_max", "dr", "rd", "notif_pv" ], function (values) {
+  getAttrs([ 
+    "sheet_type", "scriptVersion",
+    "pv", "pv_max", "notif_pv",
+    "dr", "rd" 
+  ], function (values) {
     let pv = intval(values.pv);
     const pvMax = intval(values.pv_max);
     let dr = intval(values.dr);
@@ -12487,7 +13563,7 @@ on("clicked:vigloss-btn clicked:vigheal-btn", function (eventInfo) {
 on("change:pv change:pvig", function (eventInfo) {
   const PV = strval(eventInfo.triggerName) === "pvig" ? "PVIG" : "pv";
   getAttrs([ 
-    "sheet_type", "character_name",
+    "sheet_type", "character_id", "scriptVersion",
     "tokenmod", "token_tint_on", "token_tint", "tkmarker_dead_on", "tkmarker_dead", 
     "pv", "pv_max", "PVIG"
   ], function (values) {
@@ -12511,7 +13587,7 @@ on("change:pv change:pvig", function (eventInfo) {
       tokenProps.statusmarkers = `${deadOrAlive}${markerDead}`;
     }
     if (Object.keys(tokenProps).length > 0)
-      sendChatCmd(tokenMod(strval(values.character_name), tokenProps));
+      sendChatCmd(tokenMod(strval(values.character_id), tokenProps));
     if (isNPC)
       return;
   
@@ -12522,7 +13598,7 @@ on("change:pv change:pvig", function (eventInfo) {
 /**
  * On Recup button click
  */
-on("clicked:drecup-btn clicked:recovery_fast-btn clicked:recovery_full-btn", function(eventInfo) {
+on(clickedEvent([ "drecup-btn", "recovery_fast-btn", "recovery_full-btn"]), function(eventInfo) {
   const recoveryBtn = strval(eventInfo.triggerName).split(":")[1];
   const typeRecup = [ "fast", "full" ].findIndex(b => recoveryBtn === `recovery_${b}-btn`);
   const recupAttrs = [
@@ -12848,15 +13924,40 @@ on("change:help_roll", function() {
  * Roll evolutive die
  */
 on("clicked:devol-btn", function() {
+  getAttrs([ "devol" ], function(values) {
     askValue("Nombre de dés ?", function(dice) {
-    const chatMsg = rollTemplate({
-      lsub: "Jet",
-      rsub: "Dé évolutif",
-      roll: `[[${dice}@{devol}]]`
-    });
-    sendChatMsg(chatMsg);
+      let devol = strval(values.devol);
+      const chatMsg = rollTemplate({
+        lsub: "Jet",
+        rsub: "Dé évolutif",
+        roll: `[[${ rollDEvol(intval(dice), devol) }]]`
+      });
+      sendChatMsg(chatMsg);
+    })
   });
 });
+
+/**
+ * Return condition object info
+ * @param {string} name - Name of condition
+ * @returns { { 
+ *  name: string,
+ *  label: string,
+ *  emoji: string,
+ *  lowFantasy: boolean,
+ *  effects: {
+ *    def?: number,
+ *    init?: number,
+ *    atkcac?: number,
+ *    atktir?: number,
+ *    atkmag?: number
+ *  }
+ *  description: string[]
+ *  } }
+ */
+function getConditionInfo(name) {
+  return SWData.PC.CONDITIONS.find(cond => cond.name === name) || {};
+}
 
 /**
  * Return a Map of attribute buffs values
@@ -12943,10 +14044,10 @@ function displayCondition(label, effects, description, notify) {
  */
 SWData.PC.CONDITIONS.forEach(condition => {
   const { name, label, effects, description } = condition;
+  const buffs = Object.keys(effects).map(attribute => `${attribute}_cond`);
 
   // Set/Unset conditions
   on(`clicked:${name}-icon`, function () {
-    const buffs = Object.entries(effects).map(([ attribute ]) => `${attribute}_cond`);
     getAttrs([ "conditions_markers", `condition_${name}`, ...buffs ], function(values) {
       const [ markers, attribute, ...buffs ] = Object.keys(values);
       const hasCondition = 1 - intval(values[attribute]);
@@ -12977,7 +14078,7 @@ SWData.PC.CONDITIONS.forEach(condition => {
  */
 on("change:conditions_markers", function() {
   getAttrs([ 
-    "character_name", "conditions_markers",
+    "character_id", "conditions_markers",
     "tokenmod", "tkmarker_cond"
   ], function (values) {
     const statusmarkers = strval(values.conditions_markers);
@@ -12987,7 +14088,7 @@ on("change:conditions_markers", function() {
     const markConditions = boolval(values.tkmarker_cond);
     if (!tokenmod || !markConditions)
       return;
-    sendChatCmd(tokenMod(strval(values.character_name), { statusmarkers }));
+    sendChatCmd(tokenMod(strval(values.character_id), { statusmarkers }));
   });
 });
 
@@ -13100,40 +14201,67 @@ function insertRolls(text, options = {}) {
  * Detect weapon name and get properties
  */
 on("change:repeating_armes:arme-nom clicked:renum_atk-btn", function(eventInfo) {
-  const renumber = (eventInfo.triggerName === "clicked:renum_atk-btn");
+  const rptAtk = "armes";
+  const renumber = (strval(eventInfo.triggerName.split(":")[1]) === "renum_atk-btn");
   let atkId = "";
   if (!renumber)
     atkId = strval(eventInfo.triggerName.split("_")[2]);
   getSectionIDsOrdered("repeating_armes", function (rowIds) {
-    const labels = rowIds.map(id => rptAttr("armes", "arme-label", id));
+    const labels = rowIds.map(id => rptAttr(rptAtk, "arme-label", id));
+    const names = rowIds.map(id => rptAttr(rptAtk, "arme-nom", id));
     getAttrs([
-      "character_name", "max_attack_label", "scriptVersion",
-      ...rptAttrs("armes", [ "arme-nom", "arme-gearid" ]),
-      ...labels
+      "scriptVersion", "character_name",
+      "profil", "max_attack_label",
+      rptAttr(rptAtk, "arme-new"),
+      ...rptAttrs(rptAtk, [ "arme-nom", "arme-gearid" ]),
+      ...labels,
+      ...names
     ], function (values) {
+      const charName = strval(values.character_name);
+      const useScript = hasMODScript(values);
       const updates = new Map();
 
       if (!renumber) {
-        // display attack options row if script detected
-        updates.set(rptAttr("armes", "armeopt"), hasMODScript(values) ? 1 : 0);
+        
+        // display attack options row for new row if script detected
+        const newRow = rptAttr(rptAtk, "arme-new"),
+              isNewRow = boolval(values[newRow]);
+        if (useScript && isNewRow)
+          updates.set(rptAttr(rptAtk, "armeopt"), 1);
+        updates.set(newRow, 0);
+        
         // update roll button linked attribute
-        const atkBtn = rptAttr("armes", "attack-btn", atkId);
-        updates.set(atkBtn, `%{${ strval(values.character_name) }|${atkBtn}}`);
+        const atkBtn = rptAttr(rptAtk, "attack-btn", atkId);
+        updates.set(atkBtn, `%{${charName}|${atkBtn}}`);
       }
       
+      // process renumbering
+      const renumbered = [];
       const maxLabel = intval(values.max_attack_label);
       let numLabel = renumber ? 0 : maxLabel;
       labels.forEach(label => {
         if (renumber || intval(values[label]) === 0)
           updates.set(label, ++numLabel);
-        updates.set(label.replace("label", "showlbl"), hasMODScript(values) ? 1 : 0);
+        if (renumber) {
+          const id = rptInfo(label).rowId;
+          const name = strval(values[rptAttr(rptAtk, "arme-nom", id)])
+          renumbered.push(`**${numLabel}** : ${name}`);
+        }
+        updates.set(label.replace("label", "showlbl"), useScript ? 1 : 0);        
       });
       if (renumber || numLabel > maxLabel)
         updates.set("max_attack_label", numLabel);
+      if (renumber && renumbered.length > 0) {
+        sendChatMsg("Renumérotation des attaques de " + charName, { template: "", whisper: "gm" });
+        renumbered.forEach(r => sendChatMsg(r, { template: "", whisper: "gm" }));
+        updateLabelsInGears();
+      }
 
-      const gearId = strval(values[rptAttr("armes", "arme-gearid")]);
+      const gearId = strval(values[rptAttr(rptAtk, "arme-gearid")]);
       if (gearId === "") {
-        const atkName = cleanText(strval(values[rptAttr("armes", "arme-nom")]));
+
+        // if not linked to inventory, detect weapon name
+        const atkName = cleanText(strval(values[rptAttr(rptAtk, "arme-nom")]));
         const weapon = SWData.GEARS.find(gear => {
           if (atkName.includes(cleanText(gear.name)))
             return true;
@@ -13145,8 +14273,10 @@ on("change:repeating_armes:arme-nom clicked:renum_atk-btn", function(eventInfo) 
           }
           return false;
         });
+
+        // weapon known, set base attack parameters
         if (weapon) {
-          updates.set(rptAttr("armes", "arme-atk"), "atkcac");
+          updates.set(rptAttr(rptAtk, "arme-atk"), "atkcac");
           let dm1m = "",
               dm2m = "",
               dm = "";
@@ -13157,22 +14287,27 @@ on("change:repeating_armes:arme-nom clicked:renum_atk-btn", function(eventInfo) 
             if (name === "dm-2m")
               dm2m = value;
             if (name === "portee") {
-              updates.set(rptAttr("armes", "arme-portee"), value);
-              updates.set(rptAttr("armes", "arme-atk"), "atktir");
-              updates.set(rptAttr("armes", "arme-bonus"), "0");
+              updates.set(rptAttr(rptAtk, "arme-portee"), value);
+              updates.set(rptAttr(rptAtk, "arme-atk"), "atktir");
+              updates.set(rptAttr(rptAtk, "arme-bonus"), "0");
             }
             if (name === "critique")
-              updates.set(rptAttr("armes", "arme-crit"), value);
+              updates.set(rptAttr(rptAtk, "arme-crit"), value);
             if (name === "type-dm")
-              updates.set(rptAttr("armes", "arme-dmtype"), value);
+              updates.set(rptAttr(rptAtk, "arme-dmtype"), value);
           });
           if (dm1m !== "" && dm2m !== "")
             dm = dm1m + "/" + dm2m;
           else
             dm = dm1m + dm2m;
-          updates.set(rptAttr("armes", "arme-dm"), dm);
+          updates.set(rptAttr(rptAtk, "arme-dm"), dm);
           if (dm1m === "" && dm2m !== "")
-            updates.set(rptAttr("armes", "arme-2m"), 1);
+            updates.set(rptAttr(rptAtk, "arme-2m"), 1);
+          const wp = weaponTrained(strval(values.profil), weapon.name);
+          if (!wp.trained) {
+            updates.set(rptAttr(rptAtk, "arme-atkmods"), "deMalus");
+            sendChatMsg(wp.message, { whisper: "gm", template: "" });
+          }
         }
       }  
 
@@ -13254,15 +14389,31 @@ on("clicked:repeating_armes:ongoing-btn", function() {
 on("change:repeating_armes:arme-atktype change:repeating_npcarmes:arme-atktype", function(eventInfo) {
   const { section } = rptInfo(eventInfo.triggerName);
   const attr = rptAttr(section, "arme-atktype");
-  getAttrs([ attr, "scriptVersion" ], function(values) {
+  getAttrs([ 
+    attr,
+    "sheet_type", "scriptVersion",
+    "atkbase_pnj", "atkcac_pnj", "atktir_pnj", "atkmag_pnj"
+  ], function(values) {
     const type = strval(values[attr]);
     let reset = {};
     if (type !== "trait")
       reset = { [rptAttr(section, "jet-resid")]: "" };
+    let atkBase = "";
+    if (strval(values.sheet_type) === SWData.SHEET_TYPE.NPC && boolval(values.atkbase_pnj)) {
+      atkBase =({
+        "": "",
+        "main": `${ intval(values.atkcac_pnj) } + `,
+        "jet": `${ intval(values.atktir_pnj) } + `,
+        "trait": `${ intval(values.atktir_pnj) } + `,
+        "sort": `${ intval(values.atkmag_pnj) } + `,
+        "naturel": `${ intval(values.atkcac_pnj) } + `,
+      })[type];
+    }
     setAttrs({
       [rptAttr(section, "arme-main")]: (type === "main" && hasMODScript(values)) ? 1 : 0,
       [rptAttr(section, "arme-jet")]: type === "jet" ? 1 : 0,
       [rptAttr(section, "arme-trait")]: type === "trait" ? 1 : 0,
+      [rptAttr(section, "arme-atkbase")]: atkBase,
       ...reset
     });
   });
@@ -13361,15 +14512,21 @@ function rangeWithUnits(portee, extra = 0) {
 /**
  * Return the roll query for maneuvers
  * @param {number} cha - CHA stat value
+ * @param { { maneuver: string, mod: number }[] } [hasBonus=[]] - maneuvers with bonus
  * @returns {string}
  */
-function maneuversRollQuery(cha) {
+function maneuversRollQuery(cha, hasBonus = []) {
   const maneuvers = SWData.PC.COMBAT.maneuvers.map(mn => {
     const [ title ] = mn.name.split(" ");
     mn.name = mn.name.replace("{{cha}}", cha);
     mn.name += mn.name.includes("(") ? "" : " (" + mn.mod + ")";
     mn.mod = mn.mod.replace("{{cha}}", cha);
-    return `${mn.name},[[${ mn.mod === "-" ? "0" : mn.mod }]][${title}]`;
+    const maneuverBonus = hasBonus.find(b => b.maneuver === cleanText(title).replace("°", ""));
+    const bonus = {
+      label: (maneuverBonus) ? ` (+${maneuverBonus.mod})` : "",
+      roll: (maneuverBonus) ? ` + [[${maneuverBonus.mod}]][Bonus arme]` : ""
+    };
+    return `${mn.name}${bonus.label},[[${ mn.mod === "-" ? "0" : mn.mod }]][${title}]${bonus.roll}`;
   }).join("|");
   return " +(?{Manoeuvre ?|Aucune,0|" + maneuvers + "})";
 }
@@ -13377,8 +14534,9 @@ function maneuversRollQuery(cha) {
 /**
  * Roll an attack in chat
  */
-on("clicked:repeating_armes:attack-btn", async function(eventInfo) {
+on(clickedEvent([ "attack-btn", "atkdual1-btn", "atkdual2-btn" ], "armes"), async function(eventInfo) {
   const { rowId: attackId } = rptInfo(eventInfo.triggerName);
+  const { attribute: atkButton } = rptInfo(eventInfo.triggerName);
   const section = "repeating_armes_arme-";
   const rptThrown = "repeating_armes_jet-";
   const rptOngoing = "repeating_armes_etendu-";
@@ -13404,14 +14562,13 @@ on("clicked:repeating_armes:attack-btn", async function(eventInfo) {
     "visibilite"
   ];
   getAttrs([
-    "scriptVersion",
-    "character_name",
+    "scriptVersion", "character_name", "famille", "devol",
     "cfg_1attack_roll", "cfg_cible", "cfg_optact",
     "cfg_d20roll", "d20roll",
     "cfg_crit_diff", "cfg_tbl_crit", "cfg_tbl_fumble",
     "cfg_use_ammo", "cfg_usure",
     "cfg_lowfan", "cfg_shadow", "pc",
-    "atkcac", "atktir", "atkmag",
+    "manoeuvre", "atkcac", "atktir", "atkmag",
     "agi_dsup", "per_dsup", "cha",
     "bouclier_eqp",
     "condition_affaibli", "condition_immobilise",
@@ -13419,7 +14576,7 @@ on("clicked:repeating_armes:attack-btn", async function(eventInfo) {
     "tactique",
     ...rptTacticAll,
     "noms_voies", "rangs_voies",
-    "en_selle",
+    "deux_armes", "en_selle", "condition_aquatique",
     ...luckButtonAttrs(),
     ...sitModAttrs.map(attr => `modsit_${attr}`),
     ...attackAttrs.map(attr => rptAttr("armes", `arme-${attr}`)),
@@ -13442,6 +14599,8 @@ on("clicked:repeating_armes:attack-btn", async function(eventInfo) {
     const restrained = intval(values.condition_immobilise);
     const pathNames = getPathNames(strval(values.noms_voies));
     const mounted = boolval(values.en_selle);
+    const aquatic = boolval(values.condition_aquatique);
+    const maneuver = boolval(values.manoeuvre);
     
     // situational modifiers
     let modCover = intval(values.modsit_couvert) * -1;
@@ -13463,7 +14622,8 @@ on("clicked:repeating_armes:attack-btn", async function(eventInfo) {
     const usure = strval(values[section + "usure"]);
     const resourceId = strval(values[`${rptThrown}resid`]);
     const resourceNbr = Math.max(1, intval(values[`${rptThrown}nbre`]));
-
+    const devol = strval(values.devol);
+    
     // all attacks buffs 
     const allAtkBuffs = allRollsBuff(values, "attacks");
 
@@ -13481,6 +14641,15 @@ on("clicked:repeating_armes:attack-btn", async function(eventInfo) {
 
     let atkTitle = "Attaque";
     const allTags = getAllTags(values);
+
+    // combat à deux armes
+    let dualWield = strval(values.deux_armes);
+    if (atkButton.includes("atkdual") && !modifiers.includes("demalus"))
+      modifiers.push("demalus");
+
+    // combat en milieu aquatique
+    if (aquatic && !modifiers.includes("demalus"))
+      modifiers.push("demalus");
 
     const extraDM = [];
 
@@ -13514,7 +14683,8 @@ on("clicked:repeating_armes:attack-btn", async function(eventInfo) {
     }
 
     // Special tactics
-    let tacticBonus = "";
+    let tacticBonus = "",
+        aimedShot = "";
     switch (tactics) {
       case 1:
         atkTitle = "Attaque assurée";
@@ -13523,25 +14693,33 @@ on("clicked:repeating_armes:attack-btn", async function(eventInfo) {
       case 2:
         atkTitle = "Attaque précise";
         tacticBonus = ` -3[${atkTitle}]`;
-        extraDM.push(` + [[1@{devol}]] ${atkTitle}`);
+        extraDM.push(` + [[${ rollDEvol(1, devol) }]] ${atkTitle}`);
         break;
       case 3:
         atkTitle = "Attaque violente";
         tacticBonus = ` -7[${atkTitle}]`;
-        extraDM.push(` + [[2@{devol}]] ${atkTitle}`);
+        extraDM.push(` + [[${ rollDEvol(2, devol) }]] ${atkTitle}`);
+        break;
+      case 4:
+        if (atk === "atktir" && portee !== "") {
+          atkTitle = "Tir visé (L)";
+          aimedShot = ` + @{per}[${atkTitle}]`;
+        }
         break;
     }
     
     tacticIds.forEach(id => {
       if (!boolval(values[rptAttr("tactic", "tact-on", id)]))
         return;
-      const tactName = strval(values[rptAttr("tactic", "tact-name", id)]);
+      const tactName = strval(values[rptAttr("tactic", "tact-name", id)]).replace("*", "").trim();
       const tactBM = intval(values[rptAttr("tactic", "tact-div", id)]);
       if (tactBM !== 0)
         tacticBonus += ` + (${tactBM})[${tactName}]`;
-      const tactDM = strval(values[rptAttr("tactic", "tact-dmdiv", id)]);
-      if (tactDM !== "")
-        extraDM.push(` + [[${ replaceDevol(tactDM) }]] ${tactName}`);
+      let tactDM = strval(values[rptAttr("tactic", "tact-dmdiv", id)]);
+      if (tactDM !== "") {
+        tactDM = expandDEvol(replaceDevol(tactDM), devol);
+        extraDM.push(` + [[${tactDM}]] ${tactName}`);
+      }
       const tactRoll = intval(values[rptAttr("tactic", "tact-roll", id)]);
       if (tactRoll === 1) {
         if (modifiers.includes("demalus"))
@@ -13613,7 +14791,7 @@ on("clicked:repeating_armes:attack-btn", async function(eventInfo) {
     if (bRoll && useOneRoll)
       bRoll = false;
     
-    let fumble = "1";
+    let fumble = strval(getAtkMod(modifiers, "fumble"), "1");
 
     let powder = "";
     if (modifiers.includes("poudre")) {
@@ -13627,15 +14805,30 @@ on("clicked:repeating_armes:attack-btn", async function(eventInfo) {
     // Valeur d'Ombre
     const shadow = shadowValue(values);
 
-    // Manoeuvres
-    const maneuvers = modifiers.includes("manoeuvres") ? maneuversRollQuery(intval(values.cha)) : "";
+    // Manoeuvres & coups critiques
+    const isFighter = cleanText(values.famille).startsWith("combattant");
+    let hasBonus = [];
+    let critSpecial = "";
+    if (isFighter) {
+      const weapon = SWData.GEARS.find(gear => cleanText(gear.name) === cleanText(name));
+      if (maneuver) {
+        if (weapon?.maneuvers) 
+          hasBonus = weapon.maneuvers;
+        if (!modifiers.includes("manoeuvres"))
+          modifiers.push("manoeuvres");
+      } else {
+        if (weapon?.critical)
+          critSpecial = weapon.critical;
+      }
+    }
+    const maneuvers = modifiers.includes("manoeuvres") ? maneuversRollQuery(intval(values.cha), hasBonus) : "";
 
     // Attack roll
     let attack = "";
     if (!hasMalusDie && !hasBonusDie)
-      roll = d20Roll(roll, strval(values.d20roll), { cf: fumble, cs: `>${crit}` });
+      roll = d20Roll(roll, strval(values.d20roll), { cf: `<${fumble}`, cs: `>${crit}` });
     else
-      roll = rollCfCs(roll, { cf: fumble, cs: `>${crit}` });
+      roll = rollCfCs(roll, { cf: `<${fumble}`, cs: `>${crit}` });
     if (atk !== "0")
       attack = `[[${roll}[Dés] + @{${atk}}[Bonus]${magicHit}${fear}${shadow.malus} + ${atkdiv}[Divers]${allAtkBuffs}${tacticBonus}${modSit}${maneuvers} ]]`;
     
@@ -13643,7 +14836,9 @@ on("clicked:repeating_armes:attack-btn", async function(eventInfo) {
     let [ dm, ...dmextra ] = strval(values[section + "dm"]).split(" ");
     dm = replaceDevol(dm);
     if (dm.includes("/")) {
-      const [ dm1m, dm2m ] = dm.split("/");
+      let [ dm1m, dm2m ] = dm.split("/");
+      dm1m = expandDEvol(dm1m, devol);
+      dm2m = expandDEvol(dm2m, devol);
       dm = shieldUsed ? dm1m : `?{Maniée à|Une main,${dm1m}|Deux mains,${dm2m}}`;
     }
 
@@ -13659,7 +14854,10 @@ on("clicked:repeating_armes:attack-btn", async function(eventInfo) {
     const dmdesc = [ dmtype, ...dmextra ].join(" ").trim();
     const dmbonus = strval(values[section + "bonus"]);
     const dmdiv = strval(values[section + "dmdiv"]);
+    
     let dmAbilities = "";
+    if (dmbonus.includes("per"))
+      aimedShot = "";
 
     if (boolval(values.cfg_lowfan))
       modifiers.push("explodemax");
@@ -13696,7 +14894,7 @@ on("clicked:repeating_armes:attack-btn", async function(eventInfo) {
 
     let dmroll = "";
     if (dm !== "" )
-      dmroll = `${dm}${dmOpt} + ${dmbonus}[Bonus]${magicDM}${ shadow.dm } + ${dmdiv}[Divers]${dmAbilities}`;
+      dmroll = `${dm}${dmOpt} + ${dmbonus}[Bonus]${aimedShot}${magicDM}${ shadow.dm } + ${dmdiv}[Divers]${dmAbilities}`;
     if (dmroll !== "" && tactics === 1)
       dmroll = `floor((${dmroll})/2)`;
     if (dmroll !== "")
@@ -13784,6 +14982,7 @@ on("clicked:repeating_armes:attack-btn", async function(eventInfo) {
       rollf: "[[0]]",
       brollf: "[[0]]",
       rolleffect: rollEffect,
+      hasdm: "[[1]]",
       dm: dmroll,
       dmdesc,
       critdiff: `[[${useCritDiff}]]`,
@@ -13796,6 +14995,7 @@ on("clicked:repeating_armes:attack-btn", async function(eventInfo) {
       bcritsuccess: "",
       crithit: "",
       critfail: "",
+      critspec: "",
       fumbletest: "",
       fumble: "",
       tohit: "",
@@ -13816,11 +15016,16 @@ on("clicked:repeating_armes:attack-btn", async function(eventInfo) {
       }
     }
 
-    if (rollOptions.critical) {
+    if (rollOptions.critical || critSpecial !== "") {
       atkProps.critsuccess = "[[0]]";
       atkProps.crithit = critHit;
       if (atkProps.broll !== "")
         atkProps.bcritsuccess = "[[0]]";
+    }
+    if (critSpecial !== "") {
+      atkProps.critspec = critSpecial;
+      rollOptions.critspec = true;
+      rollOptions.crit = crit;
     }
 
     if (rollOptions.fumble) {
@@ -13832,8 +15037,13 @@ on("clicked:repeating_armes:attack-btn", async function(eventInfo) {
       atkProps.fumble = fumbleEffect;
     }
 
-    if (boolval(values.cfg_cible)) {
-      atkProps.tohit = SWData.settings.tokens.target.def;
+    if (boolval(values.cfg_cible) && !atkButton.includes("atkdual")) {
+      if (modifiers.includes("manoeuvres")) {
+        atkProps.tohit = SWData.settings.tokens.target.opposed;
+        atkProps.opposed = "[[1]]";
+      } else {
+        atkProps.tohit = SWData.settings.tokens.target.def;
+      }
       atkProps.target = SWData.settings.tokens.target.name;
       atkProps.targetname = `[[0[${atkProps.target}] ]]`;
     }
@@ -13841,8 +15051,11 @@ on("clicked:repeating_armes:attack-btn", async function(eventInfo) {
     const chatMsg = rollTemplate(atkProps, { tags: allTags });
     sendChatMsg(chatMsg, rollOptions);
     
-    if (tactics > 0)
-      setAttrs({ tactique: "0" });
+    dualWield = dualWield.replace(atkButton, "");
+    let updates = { deux_armes: dualWield };
+    if (dualWield === "" && tactics > 0)
+      updates = { ...updates, tactique: "0" };
+    setAttrs(updates);    
     if (tactRound) {
       const reset = new Map();
       tacticIds.map(id => rptAttr("tactic", "tact-on", id)).forEach(attr => {
@@ -13863,13 +15076,8 @@ on("clicked:repeating_armes:attack-btn", async function(eventInfo) {
     const ongoingPrms = ongoingAttrs().map(attr => strval(values[rptOngoing + attr]));
     if(ongoingPrms.some(v => v !== "")) {
       const [ ogEff, ogName, ogTime ] = ongoingPrms;
-      let effectName = name + " " + ogEff;
-      if (ogName !== "")
-        effectName = ogName;
-      //effectName += " " + ogEff;
-      let timeSpan = "";
-      if (ogTime !== "")
-        timeSpan = insertRolls(" " + ogTime + " ").trim();
+      const effectName = (ogName !== "") ? ogName : name + " " + ogEff;
+      const timeSpan = (ogTime !== "") ? insertRolls(" " + ogTime + " ").trim() : "";
       const ongoing_actmod = effectName + "~" + timeSpan + "~" + new Date().toISOString();
       setAttrs({ ongoing_actmod });
     }
@@ -13890,6 +15098,59 @@ on("change:tactique", function() {
       "-7 en attaque, +2d4° DM",
     ][tactique];
     setAttrs({ tactdesc });
+  });
+});
+
+/**
+ * Display favorite tactics above attacks
+ */
+on("change:optact change:optact_nb " + repeatEvents("tactic", true), async function() {
+  const allIds = await getSectionIDsOrderedAsync("tactic");
+  getAttrs([
+    "optact",
+    "optact_nb",
+    ...allIds.map(id => rptAttr("tactic", "tact-on", id)),
+    ...allIds.map(id => rptAttr("tactic", "tact-name", id))
+  ], function(values) {
+    if (!boolval(values.optact))
+      return;
+    const nbOfOpts = Math.max(3, intval(values.optact_nb));
+
+    const favs = [];
+    allIds.forEach(id => {
+      if (strval(values[rptAttr("tactic", "tact-name", id)]).endsWith("*"))
+        favs.push(id);
+    });
+    
+    const updates = new Map();
+    seq(nbOfOpts).forEach(ix => {
+      updates.set(`favtact${ix}`, 0);
+      updates.set(`favtact${ix}_name`, "");
+      updates.set(`favtact${ix}_id`, "");
+    });
+    
+    let tactIds = [ ...new Set([ ...favs, ...allIds ]) ];
+    if (tactIds.length > 0) {
+      tactIds = tactIds.slice(0, nbOfOpts);
+      tactIds.forEach((id, ix) => {
+        updates.set(`favtact${ ix + 1 }`, 1);
+        updates.set(`favtact${ ix + 1 }_on`, intval(values[rptAttr("tactic", "tact-on", id)]));
+        updates.set(`favtact${ ix + 1 }_name`, strval(values[rptAttr("tactic", "tact-name", id)]).replace("*", ""));
+        updates.set(`favtact${ ix + 1 }_id`, id);
+      });
+    }
+    setAttrs(Object.fromEntries(updates));
+  })
+});
+
+/**
+ * Enable / Disable tactics above attacks
+ */
+on(changeEvent(nameSeq(5, "favtact#_on")), function(eventInfo) {
+  const checked = intval(eventInfo.newValue);
+  const optId = strval(eventInfo.sourceAttribute).split("_")[0] + "_id";
+  getAttrs([ optId ], function(values) {
+    setAttrs({ [rptAttr("tactic", "tact-on", values[optId] )]: checked });
   });
 });
 
@@ -13962,6 +15223,26 @@ function getWeaponGearAttr(data) {
 }
 
 /**
+ * Return weapon's training for a profile
+ * @param {string} profile - profile name
+ * @param {string} weapon - weapon name
+ * @returns { { trained: boolean, message: string } }
+ */
+function weaponTrained(profile, weapon) {
+  const trainedWith = getProfileData(profile).weapons;
+  const message = `Le profil **${profile}** ne maitrise pas **${weapon}** et subit un dé malus en attaque`;
+  weapon = cleanText(weapon);
+  const tags = SWData.GEARS
+    .find(gear => weapon === cleanText(gear.name) || gear.altname.split(",").includes(weapon))
+    .tags;
+  const trained = tags.some(tag => trainedWith.includes(tag));
+  return {
+    trained,
+    message: trained ? "" : message
+  };
+}
+
+/**
  * Change objects in hands 
  */
 on("change:main_princ change:main_autre", function(eventInfo) {
@@ -14025,6 +15306,23 @@ on("change:main_princ change:main_autre", function(eventInfo) {
 });
 
 /**
+ * Dual wielding combat
+ */
+on("change:main_princ change:main_autre", function() {
+  getAttrs([ "main_princ", "main_autre" ], async function(values) {
+    const mainHand = strval(strval(values.main_princ).split("~")[1]);
+    const offHand = strval(strval(values.main_autre).split("~")[1]);
+    let dual_wield = 0;
+    if (mainHand !== "" && offHand !== "") {
+      const offDM = await getAttrsAsync([ rptAttr("armes", "arme-dm", offHand) ]);
+      const dm = strval(strval(offDM[Object.keys(offDM)[0]]).split("/")[0]);
+      dual_wield = dm.toLowerCase().match(/1[dD][2346]/) ? 1 : 0;
+    }
+    setAttrs({ dual_wield });
+  });
+});
+
+/**
  * Process in-hand attack button
  */
 on("clicked:main_princ-btn clicked:main_autre-btn", function (eventInfo) {
@@ -14035,8 +15333,39 @@ on("clicked:main_princ-btn clicked:main_autre-btn", function (eventInfo) {
     const [ rowId ] = strval(values[hand]).split("~").slice(1);
     if (!rowId)
       return;
-    const attack = `%{${charName}|${ rptAttr("armes", "attack-btn", rowId) }`;
+    const attack = `%{${charName}|${ rptAttr("armes", "attack-btn", rowId) }}`;
     sendChatCmd(attack);
+  });
+});
+
+/**
+ * Process dual wield attack button
+ */
+on("clicked:deux_armes-btn", function () {
+  getAttrs([ "character_name", "main_princ", "main_autre" ], function(values) {
+    const charName = strval(values.character_name);
+    let rowId;
+    [ rowId ] = strval(values.main_princ).split("~").slice(1);
+    sendChatCmd(`%{${charName}|${ rptAttr("armes", "atkdual1-btn", rowId) }}`);
+    [ rowId ] = strval(values.main_autre).split("~").slice(1);
+    setAttrs({ 
+      next_roll: `%{${charName}|${ rptAttr("armes", "atkdual2-btn", rowId) }}` + "~" + new Date().toISOString(),
+      deux_armes: "atkdual1-btn" + "atkdual2-btn"
+    });
+  });
+});
+
+/**
+ * Toggle aquatic conditions
+ */
+on("change:condition_aquatique", function () {
+  const { effects } = getConditionInfo("aquatique");
+  const buffs = Object.keys(effects).map(attr => `${attr}_cond`);
+  getAttrs([ "condition_aquatique", "vitesse_def", ...buffs ], function(values) {
+    const aquatic = intval(values.condition_aquatique);
+    const vitesse = Math.floor(intval(values.vitesse_def) / ( aquatic === 1 ? 2 : 1 ));
+    const updates = setCondition(aquatic, effects, buffs, values);
+    setAttrs({ vitesse, ...Object.fromEntries(updates) });
   });
 });
 
@@ -15254,7 +16583,7 @@ function rebuildBuffLists() {
 /**
  * On change of repeating buffs
  */
-on("change:repeating_buffs remove:repeating_buffs", function () {
+on(repeatEvents("buffs", false), function () {
   rebuildBuffLists();
 });
 
@@ -15289,7 +16618,7 @@ function parseBuffList(attribute) {
       let expression = strval(buff.split(":")[1]).trim();
       if (pathBuffs && pathBuffList.includes(expression)) {
         expression = expression.replace("[", "").replace("]", "");
-        value = pathBuffs[expression] || 0;
+        value = intval(pathBuffs[expression]);
       } else {
         const attrBuff = SWData.PC.BUFFS.From.find(a => `[${a}]` === expression.toLowerCase());
         if (attrBuff) {
@@ -15660,6 +16989,84 @@ function encumbrance() {
 }
 
 /**
+ * On click on martial training icon button
+ */
+on("clicked:martial_training", function() {
+  getAttrs([ "character_name", "profil" ], function(values) {
+    const { weapons, def } = getProfileData(values.profil);
+    if (!weapons && !def)
+      return;
+    
+    const simpleRangedWeapons = [ "arc", "bola", "fronde", "sarbacane" ];
+    
+    let weaponTraining = [ ...weapons ];
+    // all melee weapons
+    if (weapons.includes("cac-2m"))
+      weaponTraining = weaponTraining.filter(wtag => wtag !== "cac-1m");
+    // all light melee weapons
+    if (weapons.includes("cac-2m-lg"))
+      weaponTraining = weaponTraining.filter(wtag => wtag !== "cac-1m-lg");
+    // bludgeoning melee weapons
+    if (weapons.includes("contondant") && weapons.includes("cac-1m"))
+      weaponTraining = weaponTraining.filter(wtag => wtag !== "cac-1m");
+    // lowtech ranged weapons
+    const lightWeapons = [ "cac-1m-lg", "cac-2m-lg", "tir-lg" ];
+    const simpleRanged = weapons.filter(wtag => simpleRangedWeapons.includes(wtag));
+    if (simpleRanged.length > 0 && simpleRangedWeapons.every(wtag => simpleRanged.includes(wtag)))
+        weaponTraining.push("tir-simple");
+    // Weapons training
+    const trained = weaponTraining.map(wtag => {
+      if (simpleRangedWeapons.includes(wtag))
+        return "";
+      return ({
+        "cac-1m": "Armes de contact à une main",
+        "cac-1m-lg": "Armes légère à une main",
+        "contondant": "Armes contondantes à une main",
+        "cac-2m": "Toutes les armes de contact",
+        "cac-2m-lg": "Toutes les armes légères",
+        "tir": "Toutes les armes à distance",
+        "tir-lg": "Toutes les armes à distance légères",
+        "tir-simple": "Armes à distance simples",
+        "poudre": "Armes à poudre",
+      })[wtag] || capitalize(wtag);
+    }).filter(t => t !== "");
+    const light = [];
+    if (weaponTraining.some(wt => lightWeapons.includes(wt)))
+      light.push("*Armes légères*=1d6 DM max, critique : 20");
+
+    // Armor & shield
+    const armor = SWData.GEARS.findLast(gear => {
+      const prop = gear.props.find(prop => {
+        const { name } = parseNameValue(prop);
+        if (name === "armure")
+          return true;
+      });
+      if (!prop)
+        return false;
+      const { value } = parseNameValue(prop);
+      if (intval(value) <= def.max)
+        return true;
+    });
+    const shield = [ "Aucun", "Petit bouclier", "Tous" ][def.shield];
+
+    const defense = [
+      `Armure max.=${ strval(armor?.name, "Aucune") }`,
+      `Bouclier=${shield}`
+    ]
+    sendChatMsg([
+      "title=Maîtrises martiales",
+      ...trained.map((wt, ix) => `${ ix+1 }.=${wt}`),
+      ...light,
+      ...defense,
+      `desc=${ strval(values.character_name) } (${ strval(values.profil) })`
+      ], {
+      template: "custom",
+      whisper: "gm"
+    });
+  });
+});
+
+/**
  * On click on the gear props help button
  */
 on("clicked:helpgear-btn", async function() {
@@ -15952,7 +17359,7 @@ SWData.COINS.forEach(coin => {
 /**
  * On changes in equipement list
  */
-on("change:repeating_equipement remove:repeating_equipement", function() {
+on(repeatEvents("equipement", false), function() {
   encumbrance();
 });
 
@@ -16063,7 +17470,10 @@ on("change:repeating_equipement:equip-on", function(eventInfo) {
       `${section}_equip-props`, 
       `${section}_equip-atkid`, 
       ...allGears,
-      ...hands
+      ...hands,
+      "armor_gearid",
+      "shield_gearid",
+      "helmet_gearid",
     ], function (values) {
       const equiped = intval(values[`${section}_equip-on`]);
       const name = strval(values[`${section}_equip-nom`]);
@@ -16134,18 +17544,29 @@ on("change:repeating_equipement:equip-on", function(eventInfo) {
       if (equiped === 1) {
         updates.set(defense, defBonus);
         updates.set(defense + "_malus", defMalus);
-        if (armor) 
+        if (armor) {
           updates.set("def_car_max", defCarMax);
+          updates.set("armor_gearid", equipId);
+        }
         if (shield) {
           if (strval(values[hands[1]]) === "2m") {
             updates.set(hands[0], "");
             unEquip2Hands = true;
           }
           updates.set(hands[1], "bouclier");
+          updates.set("shield_gearid", equipId);
         }
+        if (helmet)
+          updates.set("helmet_gearid", equipId);
       } else {
         if (shield && strval(values[hands[1]]) === "bouclier")
           updates.set(hands[1], "");
+        if (armor && equipId === strval(values.armor_gearid))
+          updates.set("armor_gearid", "");
+        if (shield && equipId === strval(values.shield_gearid))
+          updates.set("shield_gearid", "");
+        if (helmet && equipId === strval(values.helmet_gearid))
+          updates.set("helmet_gearid", "");
       }
 
       if (updates.size > 0)
@@ -16201,9 +17622,9 @@ on(changeEvent([
     "atkid",
     "predicats"
   ].map(a => rptAttr("equipement", `equip-${a}`));
-  getAttrs([ "cfg_usure", ...gearAttrs ], function(values) {
+  getAttrs([ ...gearAttrs, "profil", "cfg_usure" ], function(values) {
+    const [ name, detail, props, atk, atkid, pred ] = Object.keys(values);
     const usure = boolval(values.cfg_usure);
-    const [ name, detail, props, atk, atkid, pred ] = Object.keys(values).slice(1);
     const equipment = strval(values[name]);
     const description = strval(values[detail]);
     const properties = strval(values[props]);
@@ -16229,7 +17650,11 @@ on(changeEvent([
       "type-dm",
       "portee",
       "lancer",
-      "usure"
+      "usure",
+      "special",
+      "atk",
+      "bonus-dm",
+      "atkmods"
     ];
 
     const magicMods = [
@@ -16249,6 +17674,7 @@ on(changeEvent([
       "bouclier-malus",
       "agi-max",
     ];
+
     properties.split("\n").forEach(prop => {
       const { name, value } = parseNameValue(prop);
       if (name === "" || defProps.includes(name))
@@ -16268,7 +17694,8 @@ on(changeEvent([
       attributes.set(rptAttr("equipement", "equip-atkid"), attackId);
       const rowId = rptAttr("armes", "arme-", attackId);
       attributes.set(rowId + "nom", equipment);
-      const atk = attackRow.has("portee") ? "atktir" : "atkcac";
+      let atk = strval(attackRow.get("atk"), "atkcac");
+      atk = attackRow.has("portee") ? "atktir" : atk;
       attributes.set(rowId + "atk", atk);
       attributes.set(rowId + "crit", strval(attackRow.get("critique")));
       const dm1m = attackRow.has("dm-1m") ? strval(attackRow.get("dm-1m")) : "";
@@ -16281,10 +17708,16 @@ on(changeEvent([
       if (dm === dm2m)
         attributes.set(rowId + "2m", 1);
       attributes.set(rowId + "dm", dm);
-      attributes.set(rowId + "arme-bonus", atk === "atkcac" ? "@{for}" : "");
+      let bonusDM = strval(attackRow.get("bonus-dm")).toLowerCase();
+      if (bonusDM !== "0")
+        bonusDM = bonusDM !== "" ? "@{" + bonusDM + "}" : "";
+      if (bonusDM === "")
+        bonusDM = atk === "atkcac" ? "@{for}" : "";
+      attributes.set(rowId + "bonus", bonusDM);
       attributes.set(rowId + "dmtype", strval(attackRow.get("type-dm")).toLowerCase());
       attributes.set(rowId + "portee", strval(attackRow.get("portee")));
-      attributes.set(rowId + "special", description);
+      let special = [ strval(attackRow.get("special")), description ].filter(s => strval(s) !== "");
+      attributes.set(rowId + "special", special.join("\n"));
       attributes.set(rowId + "atktype", (atk === "atkcac") ? "main" : "trait");
       attributes.set(rowId + "gearid", gearId);
       if (usure && attackRow.has("usure"))
@@ -16292,13 +17725,20 @@ on(changeEvent([
       const atkmods = [];
       const options = [];
       attackRow.forEach((value, prop) => {
-        if (magicMods.includes(prop)) {
+        if (prop === "atkmods") {
+          atkmods.push(value);
+        } else if (magicMods.includes(prop)) {
           atkmods.push(prop + " " + value);
         } else {
           if (!weaponProps.includes(prop))
             options.push(`${prop}: ${value}`);
         }
       });
+      const wp = weaponTrained(strval(values.profil), equipment);
+      if (!wp.trained && !atkmods.includes("deMalus")) {
+        atkmods.push("deMalus");
+        sendChatMsg(wp.message, { whisper: "gm", template: "" });
+      }
       if (atkmods.length > 0)
         attributes.set(rowId + "atkmods", atkmods.join(","));
       if (options.length > 0)
@@ -16575,13 +18015,14 @@ on("clicked:appearance-btn clicked:description-btn", function() {
   getAttrs([
     "sheet_type",
     "character_avatar", "character_token",
-    "apparence", "pnj_desc"
+    "apparence", "pnj_desc", "desc_anonyme"
   ], function(values) {
     
-    const text = strval(values.sheet_type) === SWData.SHEET_TYPE.PC 
-    ? strval(values.apparence) 
+    const text = strval(values.sheet_type) === SWData.SHEET_TYPE.PC
+    ? strval(values.apparence)
     : strval(values.pnj_desc);
-    sendChatMsg(rollTemplate({ text }), { whisper: "" } );
+    const anonymous = boolval(values.desc_anonyme);
+    sendChatMsg(rollTemplate({ text }, { title: !anonymous }), { whisper: "" } );
     
     let avatar = strval(values.character_avatar);
     if (!avatar)
@@ -16596,6 +18037,7 @@ on("clicked:appearance-btn clicked:description-btn", function() {
  */
 on("clicked:def_config-btn", function() {
   const allConfigs = [
+    "$togm",
     "cfg_pvmax_auto",
     "cfg_pts_capas",
     "cfg_cible",
@@ -16644,6 +18086,7 @@ on("clicked:def_config-btn", function() {
     "tkmarker_pc_on",
     "$tkmarker_pc",
     "tkmarker_cond",
+    "token_tooltip_on",
     "chatsetattr",
     "$tresor_monnaie",
     "pnj_tactique_tip",
@@ -16709,11 +18152,11 @@ on("clicked:reset_all-btn", async function() {
 });
 
 /**
- * On changing all high/low fantasy options
+ * On changing all high/low fantasy & companion options
  */
-on("change:cfg_highfan change:cfg_lowfan", function (eventInfo) {
+on("change:cfg_highfan change:cfg_lowfan change:cfg_companion", function (eventInfo) {
   const { sourceAttribute } = eventInfo;
-  getAttrs([ "cfg_highfan", "cfg_lowfan" ], function (values) {
+  getAttrs([ "cfg_highfan", "cfg_lowfan", "cfg_companion" ], function (values) {
     const checked = intval(values[sourceAttribute]);
     let options;
     switch (sourceAttribute) {
@@ -16723,6 +18166,9 @@ on("change:cfg_highfan change:cfg_lowfan", function (eventInfo) {
       case "cfg_lowfan":
         options = SWData.settings.lowFan;
         break;
+      case "cfg_companion":
+        options = SWData.settings.companion;
+        break;
     }
     const subOptions = new Map(options.map(o => [ o, checked]));
     setAttrs(Object.fromEntries(subOptions));
@@ -16730,30 +18176,43 @@ on("change:cfg_highfan change:cfg_lowfan", function (eventInfo) {
 });
 
 /**
+ * Set main option for all sub-options
+ * @param {string} mainOption - attribute to set if all sub-options are on
+ * @param {string[]} options - list of sub-options attribute names
+ */
+function setAllOptions(mainOption, subOptions) {
+  getAttrs(subOptions, function (values) {
+    if (Object.values(values).every(v => boolval(v)))
+      setAttrs({ [mainOption]: 1 }, { silent: true });
+  });
+}
+
+/**
  * On changing high fantasy options
  */
-on(changeEvent(SWData.settings.highFan), function () {
-  getAttrs(SWData.settings.highFan, function (values) {
-    if (Object.values(values).every(v => boolval(v)))
-      setAttrs({ cfg_highfan: 1 }, { silent: true });
-  });
+on(changeEvent(SWData.settings.highFan), function() {
+  setAllOptions("cfg_highfan", SWData.settings.highFan)
 });
 
 /**
  * On changing low fantasy options
  */
-on(changeEvent(SWData.settings.lowFan), function () {
-  getAttrs(SWData.settings.lowFan, function (values) {
-    if (Object.values(values).every(v => boolval(v)))
-      setAttrs({ cfg_lowfan: 1 }, { silent: true });
-  });
+on(changeEvent(SWData.settings.lowFan), function() {
+  setAllOptions("cfg_lowfan", SWData.settings.lowFan)
+});
+
+/**
+ * On changing companion options
+ */
+on(changeEvent(SWData.settings.companion), function() {
+  setAllOptions("cfg_companion", SWData.settings.companion);
 });
 
 /**
  * Rebuild custom attributes 
  */
 function rebuildCustom() {
-  getAttrs([ "custom" ], function (values) {
+  getAttrs([ "custom", "devol" ], function (values) {
     const rows = strval(values.custom)
       .split("\n")
       .map(r => strval(r).trim())
@@ -16761,12 +18220,13 @@ function rebuildCustom() {
     if (rows.length === 0)
       return;
     
+    const devol = strval(values.devol);
     const updates = new Map();
     rows.forEach(row => {
       const { name, value } = parseNameValue(row);
       if (!name)
         return;
-      updates.set(name.replace(" ", "-"), replaceDevol(value));
+      updates.set(name.replace(" ", "-"), expandDEvol(replaceDevol(value), devol));
     });
 
     if (updates.size > 0)
@@ -16807,6 +18267,7 @@ function toolTipAttrs() {
     "tokenmod",
     "token_tooltip_on",
     "pense_bete",
+    "rd",
     "pnj_tactique_tip",
     "pnj_tactique",
     "pnj_notes_tip",
@@ -16815,40 +18276,46 @@ function toolTipAttrs() {
 }
 
 on("sheet:opened " + eventList("change", toolTipAttrs(), " "), function() {
-  getAttrs([ "character_name", "sheet_type", ...toolTipAttrs() ], function(values) {
+  getAttrs([ "character_id", "sheet_type", ...toolTipAttrs() ], function(values) {
     const tokenmod = boolval(values.tokenmod);
     if (!tokenmod)
       return;
+    let modProps = {
+      show_tooltip: 0,
+      gm_only_tooltip: 0,
+      tooltip: "",
+      defaulttoken: ""
+    };
     const tokenTip = boolval(values.token_tooltip_on);
-    const charName = strval(values.character_name).trim();
-    if (!tokenTip || charName === "")
-      return;
-    const sheetType = strval(values.sheet_type);
-    const npcTacticTip = boolval(values.pnj_tactique_tip);
-    const npcNotesTip = boolval(values.pnj_notes_tip);
-    if (sheetType === SWData.SHEET_TYPE.NPC)
-      if (!npcTacticTip && !npcNotesTip)
-        return;
-    let reminder = sheetType === SWData.SHEET_TYPE.PC
-    ? strval(values.pense_bete)
-    : "";
-    if (sheetType === SWData.SHEET_TYPE.NPC) {
-      reminder = [
-        npcTacticTip ? strval(values.pnj_tactique) : "",
-        npcNotesTip ? strval(values.notes) : "",
-      ].join("\n");
+    if (tokenTip) {
+      const sheetType = strval(values.sheet_type);
+      const npcTacticTip = boolval(values.pnj_tactique_tip);
+      const npcNotesTip = boolval(values.pnj_notes_tip);
+      let reminder = sheetType === SWData.SHEET_TYPE.PC
+      ? strval(values.pense_bete)
+      : "";
+      if (sheetType === SWData.SHEET_TYPE.NPC) {
+        reminder = [
+          strval(values.rd),
+          npcTacticTip ? strval(values.pnj_tactique) : "",
+          npcNotesTip ? strval(values.notes) : "",
+        ].join("\n");
+      }
+      reminder = reminder.split("\n")
+      .filter(r => strval(r).trim() !== "")
+      .map((r, ix) => `${ix + 1}) ${r}`)
+      .join(" ; ");
+      let tooltip = reminder;
+      let show_tooltip = 0;
+      if (tooltip !== "") {
+        tooltip = "\"" + tooltip + "\"";
+        show_tooltip = 1;
+      }
+      modProps = { ...modProps, show_tooltip, tooltip };
+      if (sheetType === SWData.SHEET_TYPE.NPC)
+        modProps = { ...modProps, gm_only_tooltip: show_tooltip };
     }
-    reminder = reminder.split("\n")
-    .filter(r => strval(r).trim() !== "")
-    .map((r, ix) => `${ix + 1}) ${r}`)
-    .join(" ; ");
-    let tooltip = reminder;
-     if (tooltip !== "")
-      tooltip = "\"" + tooltip + "\"";
-    let modProps = { show_tooltip: 1, tooltip, defaulttoken: "" };
-    if (sheetType === SWData.SHEET_TYPE.NPC)
-      modProps = { ...modProps, gm_only_tooltip: 1 };
-    sendChatCmd(tokenMod(charName, modProps));
+    sendChatCmd(tokenMod(strval(values.character_id), modProps));
   });
 });
 
@@ -17003,8 +18470,8 @@ on("change:debug_mode", function() {
  */
 on("clicked:helpdoc-btn", function() {
   getAttrs([ "sheet_type" ], function (values) {
-    const page = strval(values.sheet_type).toLowerCase() + "-main";
-    sendChatMsg(`[Documentation](https://stephaned68.github.io/COF2e/${page})`, { template: "" });
+    const page = `https://stephaned68.github.io/COF2e/${ strval(values.sheet_type).toLowerCase() }-main`;
+    sendChatMsg(`[Documentation](${page})`, { template: "", whisper: "gm" });
   })
 });
 
@@ -17165,7 +18632,7 @@ on("clicked:caract_menu-btn", function () {
 function conditionList(lowFantasy) {
   return SWData.PC.CONDITIONS
     .filter(condition => {
-      if (condition.name === "inconscient")
+      if ([ "inconscient", "aquatique" ].includes(condition.name))
         return;
       if (condition.lowFantasy && !lowFantasy)
         return;
@@ -17927,32 +19394,59 @@ on("change:pnjatk", function() {
  * Numbering NPC attacks
  */
 on("change:repeating_npcarmes:arme-nom clicked:renum_npcatk-btn", function(eventInfo) {
-  const renumber = (eventInfo.triggerName === "clicked:renum_npcatk-btn");
+  const rptAtk = "npcarmes";
+  const renumber = (strval(eventInfo.triggerName.split(":")[1]) === "renum_npcatk-btn");
   let atkId = "";
   if (!renumber)
     atkId = strval(eventInfo.triggerName.split("_")[2]);
-  getSectionIDsOrdered("repeating_npcarmes", function (rowIds) {
-    const labels = rowIds.map(id => rptAttr("npcarmes", "arme-label", id));
-    getAttrs([ "character_name", "max_attack_label", "scriptVersion", ...labels ], function (values) {
+  getSectionIDsOrdered("repeating_" + rptAtk, function (rowIds) {
+    const labels = rowIds.map(id => rptAttr(rptAtk, "arme-label", id));
+    const names = rowIds.map(id => rptAttr(rptAtk, "arme-nom", id));
+    getAttrs([ 
+      "character_name", "max_attack_label", "scriptVersion",
+      rptAttr(rptAtk, "arme-new"),
+      ...labels,
+      ...names
+    ], function (values) {
+      const charName = strval(values.character_name);
+      const useScript = hasMODScript(values);
       const updates = new Map();
 
       if (!renumber) {
-        // display attack options row if script detected
-        updates.set(rptAttr("npcarmes", "armeopt"), hasMODScript(values) ? 1 : 0);
+
+        // display attack options row if new row and MOD script
+        const newRow = rptAttr(rptAtk, "arme-new"),
+              isNewRow = boolval(values[newRow]);
+        if (useScript && isNewRow)
+          updates.set(rptAttr(rptAtk, "armeopt"), 1);
+        updates.set(newRow, 0);
+        
         // update roll button linked attribute
-        const atkBtn = rptAttr("npcarmes", "npcatk-btn", atkId);
-        updates.set(atkBtn, `%{${ strval(values.character_name) }|${atkBtn}}`);
+        const atkBtn = rptAttr(rptAtk, "npcatk-btn", atkId);
+        updates.set(atkBtn, `%{${charName}|${atkBtn}}`);
       }
-            
+
+      // process renumbering
+      const renumbered = [];
       const maxLabel = intval(values.max_attack_label);
       let numLabel = renumber ? 0 : maxLabel;
       labels.forEach(label => {
+        console.log(label)
         if (renumber || intval(values[label]) === 0)
           updates.set(label, ++numLabel);
-        updates.set(label.replace("label", "showlbl"), hasMODScript(values) ? 1 : 0);
+        if (renumber) {
+          const id = rptInfo(label).rowId;
+          const name = strval(values[rptAttr(rptAtk, "arme-nom", id)])
+          renumbered.push(`**${numLabel}** : ${name}`);
+        }
+        updates.set(label.replace("label", "showlbl"), useScript ? 1 : 0);
       });
       if (renumber || numLabel > maxLabel)
         updates.set("max_attack_label", numLabel);
+      if (renumber && renumbered.length > 0) {
+        sendChatMsg(`Renumérotation des attaques de **${charName}**`, { template: "", whisper: "gm" });
+        renumbered.forEach(r => sendChatMsg(r, { template: "", whisper: "gm" }));
+      }
 
       if (updates.size > 0)
         setAttrs(Object.fromEntries(updates));
@@ -17993,7 +19487,7 @@ on("clicked:repeating_npcarmes:npcatk-btn", function() {
   getAttrs([
     "cfg_1attack_roll", "cfg_cible", "cfg_lowfan",
     "cfg_crit_diff", "cfg_tbl_crit", "cfg_tbl_critdie", "cfg_tbl_fumble",
-    "character_name", "niveau", "compagnon", "pc", "pc_max",
+    "character_name", "niveau", "mook", "compagnon", "pc", "pc_max",
     "atkgroup", "nbgroup", "pnj_tact",
     "atkbase_pnj", "atkcac", "atktir", "atkmag",
     ...specials,
@@ -18002,6 +19496,7 @@ on("clicked:repeating_npcarmes:npcatk-btn", function() {
     const useOneRoll = boolval(values.cfg_1attack_roll);
     const useCritDiff = intval(values.cfg_crit_diff);
     const charName = strval(values.character_name);
+    const isMook = boolval(values.mook);
     let companionOf = strval(values.compagnon);
     companionOf = companionOf !== "" ? companionOf + "|" : "";
     const group = intval(values.atkgroup);
@@ -18109,7 +19604,7 @@ on("clicked:repeating_npcarmes:npcatk-btn", function() {
       const bonus = intval(values[`cspec${specMove}_bonus`]);
       if (bonus > 0)
         specBonus = ` + [[${bonus}]][${specName}]`;
-      specDM = replaceDevol(strval(values[`cspec${specMove}_dm`]));
+      specDM = expandDEvol(replaceDevol(strval(values[`cspec${specMove}_dm`])));
       if (specDM !== "") {
         if (isNaN(specDM)) {
           extraDM.push(` + [[${specDM}]] ${specName}`);
@@ -18127,7 +19622,7 @@ on("clicked:repeating_npcarmes:npcatk-btn", function() {
       if (specRoll === 2)
         roll = "2d20kl1";
 
-      if (specNext)
+      if (specNext || isMook)
         resetValues.set("pnj_spec", 0);
     }
 
@@ -18202,14 +19697,27 @@ on("clicked:repeating_npcarmes:npcatk-btn", function() {
     const specRolls = [];
 
     atkMods.forEach(atkMod => {
-      const matched = atkMod.match(/jet:([0-9]+)/i);
-      if (!matched)
+      let displayButton = false;
+      let matched = atkMod.match(/jet:([0-9]+)/i);
+      if (!matched) {
+        matched = atkMod.match(/btn:([0-9]+)/i);
+        if (!matched)
+          return;
+        displayButton = true;
+      }
+      const index = intval(matched.slice(1)[0]) - 1;
+      if (index < 0)
         return;
-      const index = matched.slice(1)[0];
-      if (!index)
-        return;
-      specRolls.push("%{" + charName + "|" + rptAttr("npcrolls", "npcroll", "$" + (intval(index) - 1) ) + "}");
-      special = "Spécial : @{" + rptAttr("npcrolls", "npcroll-name", "$" + (intval(index) - 1) ) + "}\n" + special;
+      let specRollName = "@{" + rptAttr("npcrolls", "npcroll-name", "$" + index) + "}";
+      let specRollAction = charName + "|" + rptAttr("npcrolls", "npcroll", "$" + index);
+      let specRoll;
+      if (displayButton) {
+        specRoll = `[${specRollName}](~${specRollAction}${menuButton()})`;
+      } else {
+        specRolls.push("%{" + specRollAction + "}");
+        specRoll = specRollName;
+      }
+      special = "Spécial : " + specRoll + "\n" + special;
     });
 
     let dmMax = 0;
@@ -18403,6 +19911,68 @@ on("clicked:repeating_npcrolls:npcroll-btn", function() {
 });
 
 /**
+ * Display favorite abilities
+ */
+
+on("change:fav_abilities " + repeatEvents("npcrolls", true), async function() {
+  const allIds = await getSectionIDsOrderedAsync("npcrolls");
+  getAttrs([
+    "fav_abilities",
+    ...allIds.map(id => rptAttr("npcrolls", "npcroll-name", id)),
+    ...allIds.map(id => rptAttr("npcrolls", "npcroll-uses", id)),
+    ...allIds.map(id => rptAttr("npcrolls", "npcroll-max", id)),
+    ...allIds.map(id => rptAttr("npcrolls", "npcroll-freq", id))
+  ], function(values) {
+    if (!boolval(values.fav_abilities))
+      return;
+
+    const favs = [];
+    allIds.forEach(id => {
+      if (strval(values[rptAttr("npcrolls", "npcroll-name", id)]).endsWith("*"))
+        favs.push(id);
+    });
+    
+    const updates = new Map();
+    seq(5).forEach(ix => {
+      updates.set(`favability${ix}`, 0);
+      updates.set(`favability${ix}_name`, "");
+      updates.set(`favability${ix}_id`, "");
+      updates.set(`favability${ix}_freq`, "");
+    });
+    
+    let abilityIds = [ ...new Set([ ...favs, ...allIds ]) ];
+    if (abilityIds.length > 0) {
+      abilityIds = abilityIds.slice(0, 5);
+      abilityIds.forEach((id, ix) => {
+        updates.set(`favability${ ix + 1 }`, 1);
+        updates.set(`favability${ ix + 1 }_name`, strval(values[rptAttr("npcrolls", "npcroll-name", id)]).replace("*", ""));
+        updates.set(`favability${ ix + 1 }_id`, id);
+        const uses = intval(values[rptAttr("npcrolls", "npcroll-uses", id)]);
+        const umax = intval(values[rptAttr("npcrolls", "npcroll-max", id)]);
+        const freq = strval(values[rptAttr("npcrolls", "npcroll-freq", id)]);
+        if (umax !== 0 && freq !== "")
+          updates.set(`favability${ ix + 1 }_freq`, ` (${uses} / ${umax} par ${freq})`);
+      });
+    }
+    setAttrs(Object.fromEntries(updates));
+  })
+});
+
+/**
+ * Click favorite ability button
+ */
+seq(5).forEach(favbtn => {
+  on(`clicked:fav_ability${favbtn}-btn`, function() {
+    const favId = `favability${favbtn}_id`;
+    getAttrs([ "character_name", favId ], function(values) {
+      const charName = strval(values.character_name);
+      const rollId = strval(values[favId]);
+      sendChatCmd(`%{${charName}|${ rptAttr("npcrolls", "npcroll-btn", rollId) }}`);
+    });
+  });
+});
+
+/**
  * Set NPC attack scores
  */
 on("change:atkbase_pnj change:atkcac_pnj change:atktir_pnj change:atkmag_pnj", function() {
@@ -18547,7 +20117,7 @@ function importNPCAttack(sbLine, npcAttrs) {
   special = strval(special);
   if (special !== "")
     special = " + " + special;
-  
+
   const rowId = rptAttr("npcarmes", "arme-", generateRowID());
   npcAttrs.set(rowId + "nom", name);
   npcAttrs.set(rowId + "roll", "1d20");
@@ -18557,6 +20127,32 @@ function importNPCAttack(sbLine, npcAttrs) {
   npcAttrs.set(rowId + "dmtype", "tranchants");
   npcAttrs.set(rowId + "dmdiv", intval(dmdiv));
   npcAttrs.set(rowId + "special", special);
+  npcAttrs.set(rowId + "atktype", "main");
+
+  if (cleanText(name).includes("attaque magique")) {
+    npcAttrs.set("atkmag_pnj", bonus);
+    npcAttrs.set("atkmag", bonus);
+    npcAttrs.set(rowId + "atktype", "sort");
+  }
+
+  if (
+    cleanText(name).includes("coup") ||
+    cleanText(name).includes("morsure") ||
+    cleanText(name).includes("griffe")
+  ) {
+    npcAttrs.set(rowId + "atktype", "naturel");
+    switch (true) {
+      case cleanText(name).includes("coup"):
+        npcAttrs.set(rowId + "dmtype", "coup");
+        break;
+      case cleanText(name).includes("morsure"):
+        npcAttrs.set(rowId + "dmtype", "morsure");
+        break;
+      case cleanText(name).includes("griffe"):
+        npcAttrs.set(rowId + "dmtype", "griffes");
+        break;
+    }
+  }
   
   return npcAttrs;
 }
@@ -19270,8 +20866,26 @@ async function migrateSheetToV1_14(sheetType, curVer = { major: 1, minor: 13, pa
     if (migration !== strval(values.migration))
       updates.set("migration", migration);
     
-    if (updates.size > 0) 
+    if (updates.size > 0)
       setAttrs(Object.fromEntries(updates));
+  });
+}
+
+/**
+ * Migrate to Version 1.15.0
+ * @param {string} sheetType - type of sheet
+ * @param {{ major: number, minor: number, patch: number }} curVer - semantic version parts
+ */
+function migrateSheetToV1_15(sheetType, curVer = { major: 1, minor: 14, patch: 0 }) {
+  if (sheetType !== SWData.SHEET_TYPE.PC)
+    return;
+
+  getAttrs([ "vitesse" ], function (values) {
+    const updates = new Map();
+
+    updates.set("vitesse_def", intval(values.vitesse));
+
+    setAttrs(Object.fromEntries(updates));
   });
 }
 
@@ -19294,6 +20908,9 @@ function migrateSheet(sheetType, curVer) {
 
   if (curVer.major === 1 && curVer.minor < 14)
     migrateSheetToV1_14(sheetType, curVer);
+
+  if (curVer.major === 1 && curVer.minor < 15)
+    migrateSheetToV1_15(sheetType, curVer);
 
   return;
 }
@@ -19433,7 +21050,7 @@ on("sheet:opened", function() {
   ], function (values) {
 
     setDebugMode(values.debug_mode);
-
+    
     const sheetType = strval(values.sheet_type);
     
     const verCOF1 = Number(values.version);
@@ -19540,6 +21157,7 @@ on("sheet:opened change:character_name", function() {
       "caract_select",
       "main_princ",
       "main_autre",
+      "deux_armes",
       ...allRanks.filter(owned => boolval(values[owned]))
     ].map(b => [ `${b}-btn`, `%{${charName}|${b}-btn}` ]));
 
@@ -19552,7 +21170,9 @@ on("sheet:opened change:character_name", function() {
  * - Update status marker for luck, if any set
  */
 on("change:pc change:tkmarker_pc_on change:tkmarker_pc", function() {
-  getAttrs([ "sheet_type", "character_name", "tokenmod", "tkmarker_pc_on", "tkmarker_pc", "pc" ], function (values) {
+  getAttrs([ 
+    "sheet_type", "character_id",
+    "tokenmod", "tkmarker_pc_on", "tkmarker_pc", "pc" ], function (values) {
     if (strval(values.sheet_type) === SWData.SHEET_TYPE.NPC)
       return;
     if (!boolval(values.tokenmod))
@@ -19562,7 +21182,7 @@ on("change:pc change:tkmarker_pc_on change:tkmarker_pc", function() {
       return;
     markerPC = (boolval(values.tkmarker_pc_on) ? "" : "-") + markerPC;
     sendChatCmd(tokenMod(
-      strval(values.character_name), 
+      strval(values.character_id), 
       { statusmarkers: `${markerPC}:${ intval(values.pc) }` }
     ));
   });
@@ -19609,13 +21229,44 @@ on("sheet:opened "
   + changeEvent(nameSeq(9, abilityInfo().pathName)), updateAbilityList);
 
 /**
+ * Update labels in gears
+ */
+async function updateLabelsInGears() {
+
+  const gearIds = await getSectionIDsAsync("equipement");
+  const atkIds = await getSectionIDsAsync("armes");
+
+  getAttrs([
+    ...gearIds.map(id => rptAttr("equipement", "equip-atkid", id)),
+    ...atkIds.map(id => rptAttr("armes", "arme-label", id))
+  ], function(values) {
+
+    const updates = new Map();
+    gearIds
+    .filter(id => strval(values[rptAttr("equipement", "equip-atkid", id)]) !== "")
+    .forEach(id => {
+      const atkId = strval(values[rptAttr("equipement", "equip-atkid", id)]).toLowerCase();
+      const label = strval(values[rptAttr("armes", "arme-label", atkId)]);
+      if (label !== "")
+        updates.set(rptAttr("equipement", "equip-atklbl", id), ":" + label);
+    });
+    if (updates.size > 0)
+      setAttrs(Object.fromEntries(updates));
+
+  });
+
+}
+
+on("sheet:opened", updateLabelsInGears);
+
+/**
  * Sync pv <=> PVIG for token bars
  */
 on("change:pv", function(eventInfo) {
   if (strval(eventInfo.sourceType) !== "player")
     return;
   
-  getAttrs([ "pv", "dr" ], function(values) {
+  getAttrs([ "scriptVersion", "pv", "dr" ], function(values) {
     const wounds = wounded(values);
     setAttrs({ 
       PVIG: intval(values.pv),
@@ -19634,7 +21285,7 @@ on("change:pvig", function(eventInfo) {
   if (strval(eventInfo.sourceType) !== "player")
     return;
 
-  getAttrs([ "PVIG", "dr" ], function(values) {
+  getAttrs([ "scriptVersion", "PVIG", "dr" ], function(values) {
     const wounds = wounded({
       pv: intval(values.PVIG),
       dr: values.dr
@@ -19673,13 +21324,16 @@ on("change:pvig_max", function(eventInfo) {
   });
 });
 
+/**
+ * Compare PV & temp DM
+ */
 on("change:pv change:temp_dm", function(eventInfo) {
   if (strval(eventInfo.sourceType) !== "player")
     return;
   getAttrs([ "character_name", "temp_dm", "pv" ], function(values) {
     const pv = intval(values.pv);
     const tempDM = intval(values.temp_dm);
-    if (tempDM < pv)
+    if (tempDM === 0 || tempDM < pv)
       return;
     const typeDM = strval(eventInfo.triggerName);
     const charName = strval(values.character_name);
@@ -19704,40 +21358,55 @@ on("change:pv change:temp_dm", function(eventInfo) {
 /**
  * On clicking token adjust buttons (TokenMod)
  */
-on("clicked:token_min-btn clicked:token_max-btn clicked:token_siz-btn clicked:token_def-btn", function(eventInfo) {
-  getAttrs([ "sheet_type", "mook", "character_name", "pm_max", "taille" ], function(values) {
+on(clickedEvent([ "min", "max", "siz", "def" ].map(b => `token_${b}-btn`)), function(eventInfo) {
+  getAttrs([
+    "sheet_type", "mook", "character_id",
+    "pm_max", "taille",
+    "scriptVersion"
+  ], function(values) {
     const bt = strval(eventInfo.triggerName.split("_")[1]);
     const resize = strval(({
       "min-btn": "0.9",
       "max-btn": "1.1",
       "siz-btn": "?{*Taille ?}",
     })[bt]);
+    const charId = strval(values.character_id);
     const isNPC = strval(values.sheet_type) === SWData.SHEET_TYPE.NPC;
     const isMook = isNPC && boolval(values.mook);
+    if (hasMODScript(values)) {
+      sendChatCmd(`!cof2-link-token --selectChar ${charId}`);
+      return;
+    }
     let props = {};
     if (resize !== "") {
       props = { scale: "*" + resize };
     } else {
       const tk = SWData.settings.tokens;
-      const type = isMook ? "MOOK" : strval(values.sheet_type) 
+      const type = isMook ? "mook" : strval(values.sheet_type);
       Object.entries(tk[type]).forEach(([k, v]) => {
-        if (v !== "pm" || intval(values.pm_max) > 0)
-          props[k] = v;
+        if (v === "pm" && intval(values.pm_max) === 0)
+          v = "";
+        props[k] = v;
       });
       if (isNPC) {
         let tokenSize;
-        const size = strval(values.taille);
+        const size = cleanText(strval(values.taille));
         if (size !== "") {
           tokenSize = ({
-            "Minuscule": tk.size * 0.5, "Très petite": tk.size * 0.5,
-            "Petite": tk.size, "Moyenne": tk.size,
-            "Grande": tk.size * 2, "Énorme": tk.size * 3, "Colossale": tk.size * 4
+            "minuscule": tk.size * 0.5,
+            "tres petite": tk.size * 0.5,
+            "petite": tk.size,
+            "moyenne": tk.size,
+            "grande": tk.size * 2,
+            "enorme": tk.size * 3,
+            "colossale": tk.size * 4,
           })[size] || 70;
         }
         props = { ...props, width: tokenSize, height: tokenSize };
       }
+      props = { ...props, defaulttoken: "" };
     }
-    sendChatCmd(tokenMod(strval(values.character_name), props));
+    sendChatCmd(tokenMod(charId, props));
   });
 
 });

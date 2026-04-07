@@ -1,4 +1,4 @@
-/* COF2e v1.14.0 */
+/* COF2e v1.15.0 */
 
 @import url('https://fonts.googleapis.com/css?family=Merriweather+Sans&display=swap');
 
@@ -120,17 +120,46 @@ summary h4 {
 }
 
 /* Redefine Roll20 repeating sections buttons */
-.charsheet .repcontrol button.repcontrol_add,
-.charsheet .repcontrol button.repcontrol_edit {
+
+.charsheet .repcontrol {
+    height: 2em;
+}
+
+.charsheet .repcontrol .btn.repcontrol_add,
+.charsheet .repcontrol .btn.repcontrol_edit {
+    color: #f5f5f5;
+    font-size: 0.1em;
+    height: 20px;
+}
+
+.charsheet .repcontrol button.btn.repcontrol_add::after {
+    font-family: "Pictos";
+    content: "&";
+    margin-left: -8px;
+    margin-right: -5px;
+    font-size: 11em;
+    color: var(--cof-dark);
+}
+
+.charsheet .repcontrol button.btn.repcontrol_edit::after {
+    font-family: "Pictos";
+    content: "(";
+    margin-left: -8px;
+    margin-right: -5px;
+    font-size: 11em;
+    color: var(--cof-dark);
+}
+
+.charsheet .repcontainer.editmode + .repcontrol button.btn.repcontrol_edit::after {
+    content: ")";
+}
+
+.charsheet .repcontrol button.btn.repcontrol_add,
+.charsheet .repcontrol button.btn.repcontrol_edit {
   border-radius: 5px;
   margin: 5px;
   padding-top: 0px;
   padding-bottom: 0px;
-}
-
-.charsheet .repcontrol button.repcontrol_add:hover,
-.charsheet .repcontrol button.repcontrol_edit:hover {
-  color: var(--cof-click);
 }
 
 button[type="roll"] {
@@ -407,9 +436,17 @@ div.path div.block-title {
   text-overflow: ellipsis;
 }
 
+/*.cofmain select[selected="pc"].is-mook + input.is-mook,*/
+.cofmain input[value="0"].has-script + div.has-script,
 .cofmain input[value="0"].has-script textarea.has-script,
+.cofmain input[value="0"].has-script span.has-script,
 .cofmain input[value="0"].has-script .weapon span.has-script,
-.cofmain input[value="0"].has-script + div.ammos {
+.cofmain input[value="0"].has-script + div.ammos,
+.cofmain input[value="0"].opt-tact + div.opt-tact,
+.cofmain input[value="0"].fav-tact + div.fav-tact,
+.cofmain input[value="0"].fav-abilities + div.fav-abilities,
+.cofmain input[value="0"].fav-ability + div.fav-ability,
+.cofmain input[value=""].immu-dm + span.immu-dm {
   display: none;
 }
 
@@ -434,7 +471,9 @@ div.path div.block-title {
 .cofmain .heading .token {
   width: 100%;
 }
-.cofmain .heading input[value="0"].token-mod ~ div.token-mod {
+.cofmain .heading input[value="0"].token-mod ~ div.token-mod,
+.cofmain .heading input[value="1"].token-script ~ button.token-script,
+.cofmain .heading input[value="0"].token-script ~ div.token-script {
   display: none;
 }
 
@@ -463,6 +502,7 @@ div.path div.block-title {
   margin: 2px;
 }
 
+input[value="pc"] ~ input.is-mook,
 input[value="npc"] ~ button[name="act_charmancer-btn"],
 input[value="npc"] ~ button[name="roll_checkup"] {
   display: none;
@@ -621,14 +661,12 @@ input.block-switch {
 }
 
 .abilities-view,
-.block-switch:checked ~ .abilities-edit,
-input[value="1"].show-script ~ div.show-script {
+.block-switch:checked ~ .abilities-edit {
   display: block;
 }
 
 .abilities-edit,
-.block-switch:checked ~ .abilities-view,
-input[value="0"].show-script ~ div.show-script {
+.block-switch:checked ~ .abilities-view {
   display: none;
 }
 
@@ -947,7 +985,8 @@ input[type="hidden"][value="1"].has-buff + .has-buff {
   grid-template-columns: 25px 1fr 1fr;
 }
 
-.pc-hands input[value="0"].pc-hand ~ button {
+.pc-hands input[value="0"].pc-hand ~ button,
+input[value="0"].pc-dual + .pc-dual {
   display: none;
 }
 
@@ -1026,6 +1065,7 @@ button.spell-concentration span {
   text-decoration: overline;
 }
 
+.post-it textarea.post-it,
 .weapon textarea.one-row,
 .weapon-opt textarea.one-row,
 .abilities .path textarea.one-row,
@@ -1077,6 +1117,15 @@ button.spell-concentration span {
 .npc-actions textarea.one-row:focus,
 .resources textarea.one-row:focus {
   height: 6rem;
+}
+
+.post-it textarea.post-it:focus {
+  height: 4rem;
+}
+
+.post-it input:not([value=""]).post-it + textarea.post-it {
+  border: 2px dotted var(--cof-dark);
+  background-color: papayawhip;
 }
 
 input[value="0"].show-paths-4to9 ~ div.abilities,
@@ -1262,7 +1311,7 @@ input[value="0"].ability-uses + div.ability-uses {
 
 .npc-attacks .weapon {
   display: grid;
-  grid-template-columns: 25px 4.5fr 3fr 1fr 3fr 1fr;
+  grid-template-columns: 25px 4fr 3.5fr 1fr 3fr 1fr;
   gap: 2px;
   margin-bottom: 2px;
 }
