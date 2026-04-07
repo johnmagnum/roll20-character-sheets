@@ -10355,7 +10355,20 @@ Uses (Lvl/Total) <span name='attr_traps_usecount'></span> / <span name='attr_tra
           <select name="attr_option_allownoprepovercast" class="fancyselect">
             <option value="no">No</option>
             <option value="yes">Yes</option>
-          </select>
+          </select><br>
+      Zero Power Development ranks bonus:  
+        (<span style="font-family: monospace;">option_ppzerorankbonus</span>):
+          <select name="attr_option_ppzerorankbonus" class="fancyselect">
+            <option value="-25">-25 (Default)</option>
+            <option value="0">0 (Arcane)</option>
+          </select><br>
+      Hybrid/Arcane Realm Stat: 
+       (<span style="font-family: monospace;">option_averagerealmstats</span>):
+          <select name="attr_option_averagerealmstats" class="fancyselect">
+            <option value="default">Worst (Core)</option>
+            <option value="average">Average (Arcane)</option>
+          </select><br>
+
 
     <h3>Recalculate</h3>
 
@@ -10389,11 +10402,11 @@ bleed and penalties you need side and  location.  A Z ends the list.<p>
 
 <h3>Tokens</h3>
 
-<p>Active Token ID: <input type="text" name="attr_activetokenid"> |
-Target Character ID: <input type="text" name="attr_target_characterid"> |
-Target Listeners: <input type="text" name="attr_target_listeners"> |
-Tracker <span name='attr_trackerid'></span>
-Tracker Prefix <span name='attr_trackerprefix'></span>
+<p>Active Token ID: <input type="text" name="attr_activetokenid"><br>
+Target Character ID: <input type="text" name="attr_target_characterid"><br>
+Target Listeners: <input type="text" name="attr_target_listeners"><br>
+Tracker <span name='attr_trackerid'></span><br>
+Tracker Prefix <span name='attr_trackerprefix'></span><br>
 </p>
 
 <hr>
@@ -10503,7 +10516,7 @@ Sheet Version: <span name='attr_version'></span>
 
 <br>
 
-Revision 073b3ea014cb7b7ec3de3c495dddd914428ba68f
+Revision 9d08056b46a6bd1f12e28f586aa7872d8458dc45
 
 
 <hr>
@@ -11984,7 +11997,8 @@ function addPendingFunction(name, func) {
   }
   const item = {
       name: name,
-      cb: func
+      cb: func,
+      caller: getActiveCharacterId(),
   };
   pendingList.push(item);
 }
@@ -11998,7 +12012,8 @@ function addPendingFunctionNext(name, func) {
   }
   const item = {
       name: name,
-      cb: func
+      cb: func,
+      caller: getActiveCharacterId(),
   };
   pendingList.unshift(item);
 }
@@ -12033,7 +12048,13 @@ function checkPending() {
 
     console.log(`>> Calling pending ${item.name}`, item);
     try {
-      item.cb();
+      if (item.caller != getActiveCharacterId()) {
+	console.log("#### Pending system with incompatible character ids",
+	    item.caller, getActiveCharacterId());
+	asCharacter(item.caller, item.cb)
+      } else {
+	item.cb();
+      }
     } catch (e) {
       rmuerror("Exception from ", item.name, e);
       console.log(`Async stat: ${rmuasync}`);
@@ -12891,7 +12912,11 @@ function lookupSkillResult(skill, skillinfo, umroll, total) {
 
     function updateSkill(skill, catbonus, catlog) {
       const aname = skill.aname;
-      getAttrs([aname + "_ranks_misc", aname + "_pbonus", aname + "_misc", aname + "_ranks"], (attrs) => {
+      const toget = [aname + "_ranks_misc", aname + "_pbonus", aname + "_misc", aname + "_ranks"];
+      if (skill.aname === 'powerdevelopment') {
+	toget.push("option_ppzerorankbonus");
+      }
+      getAttrs(toget, (attrs) => {
 	updates = {};
 	let bonus = 0;
 	let log = skill.display + ":\n";
@@ -12919,8 +12944,14 @@ function lookupSkillResult(skill, skillinfo, umroll, total) {
 	} else if (skill.dynamicspecializations) {
 	  addPendingFunction("Update Dynamic", () => { updateDynamicSpecializations(skill, pbonus, bonus, log); });
 	} else {
+	  let expertise = skill.expertise || false;
+	  if (skill.aname === "powerdevelopment") {
+	    if (attrs.option_ppzerorankbonus == 0) {
+	      expertise = true
+	    }
+	  }
 	  const bonuses = RMUSkills.getSkillRanksBonus(attrs[aname + '_ranks_misc'],
-		      pbonus, skill.expertise || false);
+		      pbonus, expertise);
 	  log += bonuses.log;
 
 	  if (bonuses.ranks != 0) {
@@ -17235,7 +17266,16 @@ function createWeaponsFinalize(profession, p, s, t, q) {
 
 function knackupdatetotals() {
     const cmdata = getCharmancerData();
-    const values = cmdata.knacks.values;
+    const values = cmdata?.knacks?.values;
+    if (!values) {
+      // Obviously 0 so far:
+      showChoices(["knacknosave"]);
+      hideChoices(["knacksave"]);
+      setCharmancerText({create_knack_total: 0,
+	    create_pbonus_total: 0});
+      return;
+    }
+
     let knackvalue = 0;
     let pbonuscount = 0;
     for (let i = 0 ; i < 15 ; i ++) {
@@ -24125,6 +24165,13 @@ function doVersionCheck(version, sheettype) {
     // Just do diredtly as it doesn't matter
     frontpage.updateHeight();
     version = 18;
+  }
+
+  if (version == 18) {
+    addPendingFunction("Upgrade to V19: Add Arcane options for 0 PP and average realm stats", () => {
+      setAttrs({option_averagerealmstats: "default", option_ppzerorankbonus: -25 });
+    });
+    version = 19
   }
 
   if (oldversion != version) {
