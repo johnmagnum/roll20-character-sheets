@@ -1,3 +1,12 @@
+# 2026-04-06
+
+- Fix error during creation on the knacks page
+- Add support for 0 ranks PP development (Arcane)
+- Translation: Insert skills as themselves to avoid translation warnings.
+- Logging to detect pending reentrancy bugs
+   - Confirmed it happens
+   - Fix to force correct character.
+
 # 2026-03-19
 
 - Fix some typos in skills
@@ -7,10 +16,9 @@
     - Add End of Phase marker
     - Little explosion when it's your turn.
     - Send a message on your turn
-- PC Tracker:
-    - Only show the rest of the phase
 - Make the main page viewable in dark mode.
     - Happy to take improvements to the colours
+- Sort names of creature weapon attacks (so they don't change every release)
 
 # 2026-02-05
 
