@@ -18,7 +18,7 @@
     "calling": "Vocation",
     "traits": "Traits",
     "skills": "Compétences",
-    "skills_list": "alchemy,animalia,crafts,arts,knavery,charm,fight,focus,drive,disguise,sneak,empathy,academia,impress,interface,intrusion,melee,observe,perform,pilot,sleight_of_hand,tech_redemption,remedy,survival,shoot,vigor",
+    "skills_list": "alchemy,animalia,crafts,arts,charm,drive,fight,disguise,sneak,empathy,academia,sleight_of_hand,knavery,focus,interface,intrusion,melee,observe,pilot,impress,tech_redemption,remedy,perform,survival,shoot,vigor",
     "academia": "Érudition",
     "alchemy": "Alchimie",
     "animalia": "Animalia",
