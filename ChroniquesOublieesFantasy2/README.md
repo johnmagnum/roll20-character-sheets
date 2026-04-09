@@ -6,11 +6,11 @@ Consultez la [documentation](https://stephaned68.github.io/COF2e/)
 
 ## Version courante
 
-v1.15.0 [Screenshot](cof2e.png)
+v1.15.1 [Screenshot](cof2e.png)
 
 ## Notes de version
 
-### Version _1.15.0_ (2026-04-06)
+### Version _1.15.1_ (2026-04-06)
 
 - Fiche de PJ:
   - Affichage optionnel des options tactiques favorites sur le sous-onglet Attaques
