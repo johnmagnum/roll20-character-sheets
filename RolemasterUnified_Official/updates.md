@@ -1,10 +1,25 @@
-# 2026-04-06
+# 2026-04-09
 
-- Fix error during creation on the knacks page
-- Add support for 0 ranks PP development (Arcane)
+- Add _Improved Parry_ and simplify it and restricted parry
+- Remove some silly parry messages.
+- Staggered only applies to skill rolls for single AP phases.
+- Remove -300 penalty for staggered.
+- Show a message when ignoring stun.
+- In Charactermancer, fix baselist back to go realm (not profession).
+- Full support for power levels:
+  - Correct number of stat options.
+  - Raise temp/pot to correct value.
+  - Show temp/pot on the stats page in create.
+- Add initiative_misc field (needs to be edited).
+- (Partial work on custom cultures - disabled for now as it is not yet complete)
+
+# 2026-04-07
+
+- Fix error during creation on the knacks page.
+- Add support for 0 ranks PP development (Arcane).
 - Translation: Insert skills as themselves to avoid translation warnings.
-- Logging to detect pending reentrancy bugs
-   - Confirmed it happens
+- Logging to detect pending reentrancy bugs.
+   - Confirmed it happens.
    - Fix to force correct character.
 
 # 2026-03-19

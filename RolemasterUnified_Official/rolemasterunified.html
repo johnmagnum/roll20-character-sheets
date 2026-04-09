@@ -401,6 +401,7 @@ in the game in "Superior".</p>
 
     <select name='comp_culture' required='required'>
       <option value>Select...</option>
+    <!--  <option value='custom~custom'>Custom</option> -->
     </select>
 
     <hr>
@@ -418,6 +419,7 @@ in the game in "Superior".</p>
   </div>
 
   <div class='choice custom-race-upload'>
+    <h2>Custom Race Upload</h2>
     <textarea name='comp_customraceuploaddata'></textarea>
     <button type='action' name='act_uploadrace' class='fancybutton'>Upload</button>
     Message: <span class='uploadracemessage'></span>
@@ -428,9 +430,20 @@ in the game in "Superior".</p>
     </p>
   </div>
 
-  <div style='display:none'>
-    <input type='text' name='comp_customrace'>
+<div class='choice custom-culture-upload'>
+    <h2>Custom Culture Upload</h2>
+    <textarea name='comp_customcultureuploaddata'></textarea>
+    <button type='action' name='act_uploadculture' class='fancybutton'>Upload</button>
+    Message: <span class='uploadculturemessage'></span>
+
+    <p>Format for custom cultures is a JSON file, as documented 
+      <a href='https://github.com/nashidau/RMU-Interchange/blob/main/Culture.md'
+	target='_blank'>https://github.com/nashidau/RMU-Interchange/blob/main/Culture.md</a>
+    </p>
   </div>
+
+  <div style='display:none'> <input type='text' name='comp_customrace'> </div>
+  <div style='display:none'> <input type='text' name='comp_customculture'> </div>
 
 </div>
 
@@ -540,7 +553,7 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
   
 
 
-<button class="fancybutton" type="back" value="profession">Back (Profession)</button>
+<button class="fancybutton" type="back" value="realm">Back (Realm)</button>
 <span class="choice baselistnosave">
   <button class="fancybutton disabled " type="action" value="noaction">Next (Stats)</button>
 </span>
@@ -605,18 +618,20 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
 
 </div>
 <div>
+  <p><span class='stats_powerlevel_average_stat'></span></p>
+    <div class='choice stats_boost_show1'>
+    <h3>Option 1</h3>
+      <select name='comp_cmstatoption_1' class='smallselect fancyselect' required>
+	<option value=''>Select...</option>
+	<option value='raiseaverage'>Raise to Average</option>
+	<option value='raise90'>Raise to 90</option>
+	<option value='raise85'>Raise to 85</option>
+	<option value='statgain'>Two stat gain rolls</option>
+      </select>
 
-<h3>Option 1</h3>
-  <select name='comp_cmstatoption_1' class='smallselect' required>
-    <option value=''>Select...</option>
-    <option value='raiseaverage'>Raise to Average</option>
-    <option value='raise90'>Raise to 90</option>
-    <option value='raise85'>Raise to 85</option>
-    <option value='statgain'>Two stat gain rolls</option>
-  </select>
-
-  <div class='choice stats_option_raiseaverage_1'>
-    Raise <select name='comp_statraise1' class='smallselect' required><option value=''>Select...</option>
+      <div class='choice stats_option_raiseaverage_1'>
+      Raise
+      <select name='comp_statraise1' class='smallselect' required><option value=''>Select...</option>
 <option value='Agility~agility'>Agility</option>
 <option value='Constitution~constitution'>Constitution</option>
 <option value='Empathy~empathy'>Empathy</option>
@@ -628,34 +643,32 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
 <option value='Self Discipline~selfdiscipline'>Self Discipline</option>
 <option value='Strength~strength'>Strength</option>
 </select>
- to average
-  </div>
- <div class='choice stats_option_raise90_1'>
-      <div class='choice stats_option_raise90_single'>
-	Set
-	<span class='stats_option_raise90_statname'></span> to 90
       </div>
-      <div class='choice stats_option_raise90_many'>
-	Set
-	<select name='comp_stats_raise90_many_list_1'
-	    class='stats_option_raise90_many_list smallselect'></select>
-	to 90
+     <div class='choice stats_option_raise90_1'>
+	  <div class='choice stats_option_raise90_single'>
+	    Set
+	    <span class='stats_option_raise90_statname'></span> to 90
+	  </div>
+	  <div class='choice stats_option_raise90_many'>
+	    Set
+	    <select name='comp_stats_raise90_many_list_1'
+		class='stats_option_raise90_many_list smallselect'></select>
+	    to 90
+	  </div>
       </div>
-  </div>
- <div class='choice stats_option_raise85_1'>
-      <div class='choice stats_option_raise85_single'>
-	Set <span class='stats_option_raise85_statname'></span> to 85.
+     <div class='choice stats_option_raise85_1'>
+	  <div class='choice stats_option_raise85_single'>
+	    Set <span class='stats_option_raise85_statname'></span> to 85.
+	  </div>
+	  <div class='choice stats_option_raise85_many'>
+	    Set
+	    <select name='comp_stats_raise85_many_list_1'
+		class='stats_option_raise85_many_list smallselect'></select>
+	    to 85.
+	  </div>
       </div>
-      <div class='choice stats_option_raise85_many'>
-	Set
-	<select name='comp_stats_raise85_many_list_1'
-	    class='stats_option_raise85_many_list smallselect'></select>
-	to 85.
-      </div>
-  </div>
- <div class='choice stats_option_statgain_1'>
-    Two statgains.
-
+     <div class='choice stats_option_statgain_1'>
+	Two statgains.
       <select name='comp_statgain1a' class='smallselect' required><option value=''>Select...</option>
 <option value='Agility~agility'>Agility</option>
 <option value='Constitution~constitution'>Constitution</option>
@@ -668,9 +681,7 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
 <option value='Self Discipline~selfdiscipline'>Self Discipline</option>
 <option value='Strength~strength'>Strength</option>
 </select>
-
-
-      <select name='comp_statgain1b' class='smallselect' required><option value=''>Select...</option>
+<select name='comp_statgain1b' class='smallselect' required><option value=''>Select...</option>
 <option value='Agility~agility'>Agility</option>
 <option value='Constitution~constitution'>Constitution</option>
 <option value='Empathy~empathy'>Empathy</option>
@@ -682,23 +693,19 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
 <option value='Self Discipline~selfdiscipline'>Self Discipline</option>
 <option value='Strength~strength'>Strength</option>
 </select>
+ </div>  </div>     <div class='choice stats_boost_show2'>
+    <h3>Option 2</h3>
+      <select name='comp_cmstatoption_2' class='smallselect fancyselect' required>
+	<option value=''>Select...</option>
+	<option value='raiseaverage'>Raise to Average</option>
+	<option value='raise90'>Raise to 90</option>
+	<option value='raise85'>Raise to 85</option>
+	<option value='statgain'>Two stat gain rolls</option>
+      </select>
 
-  </div>
-
-
-<h3>Option 2</h3>
-  <select name='comp_cmstatoption_2' class='smallselect' required>
-    <option value=''>Select...</option>
-    <option value='raiseaverage'>Raise to Average</option>
-    <option value='raise90'>Raise to 90</option>
-    <option value='raise85'>Raise to 85</option>
-    <option value='statgain'>Two stat gain rolls</option>
-  </select>
-
-
-
-  <div class='choice stats_option_raiseaverage_2'>
-    Raise <select name='comp_statraise2' class='smallselect' required><option value=''>Select...</option>
+      <div class='choice stats_option_raiseaverage_2'>
+      Raise
+      <select name='comp_statraise2' class='smallselect' required><option value=''>Select...</option>
 <option value='Agility~agility'>Agility</option>
 <option value='Constitution~constitution'>Constitution</option>
 <option value='Empathy~empathy'>Empathy</option>
@@ -710,28 +717,32 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
 <option value='Self Discipline~selfdiscipline'>Self Discipline</option>
 <option value='Strength~strength'>Strength</option>
 </select>
- to average
-  </div>
- <div class='choice stats_option_raise90_2'>
-      <div class='choice stats_option_raise90_single'>
-	Set <span class='stats_option_raise90_statname'></span> to 90
       </div>
-      <div class='choice stats_option_raise90_many'>
-	Set <select name='comp_stats_raise90_many_list_2' required
-	  class='stats_option_raise90_many_list smallselect'></select> to 90
+     <div class='choice stats_option_raise90_2'>
+	  <div class='choice stats_option_raise90_single'>
+	    Set
+	    <span class='stats_option_raise90_statname'></span> to 90
+	  </div>
+	  <div class='choice stats_option_raise90_many'>
+	    Set
+	    <select name='comp_stats_raise90_many_list_2'
+		class='stats_option_raise90_many_list smallselect'></select>
+	    to 90
+	  </div>
       </div>
-  </div>
- <div class='choice stats_option_raise85_2'>
-      <div class='choice stats_option_raise85_single'>
-	Set <span class='stats_option_raise85_statname'></span> to 85
+     <div class='choice stats_option_raise85_2'>
+	  <div class='choice stats_option_raise85_single'>
+	    Set <span class='stats_option_raise85_statname'></span> to 85.
+	  </div>
+	  <div class='choice stats_option_raise85_many'>
+	    Set
+	    <select name='comp_stats_raise85_many_list_2'
+		class='stats_option_raise85_many_list smallselect'></select>
+	    to 85.
+	  </div>
       </div>
-      <div class='choice stats_option_raise85_many'>
-	Set <select name='comp_stats_raise85_many_list_2' required
-	class='stats_option_raise85_many_list smallselect'></select> to 85
-      </div>
-  </div>
- <div class='choice stats_option_statgain_2'>
-    Two statgains.
+     <div class='choice stats_option_statgain_2'>
+	Two statgains.
       <select name='comp_statgain2a' class='smallselect' required><option value=''>Select...</option>
 <option value='Agility~agility'>Agility</option>
 <option value='Constitution~constitution'>Constitution</option>
@@ -744,8 +755,7 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
 <option value='Self Discipline~selfdiscipline'>Self Discipline</option>
 <option value='Strength~strength'>Strength</option>
 </select>
-
-      <select name='comp_statgain2b' class='smallselect' required><option value=''>Select...</option>
+<select name='comp_statgain2b' class='smallselect' required><option value=''>Select...</option>
 <option value='Agility~agility'>Agility</option>
 <option value='Constitution~constitution'>Constitution</option>
 <option value='Empathy~empathy'>Empathy</option>
@@ -757,8 +767,229 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
 <option value='Self Discipline~selfdiscipline'>Self Discipline</option>
 <option value='Strength~strength'>Strength</option>
 </select>
+ </div>  </div>     <div class='choice stats_boost_show3'>
+    <h3>Option 3</h3>
+      <select name='comp_cmstatoption_3' class='smallselect fancyselect' required>
+	<option value=''>Select...</option>
+	<option value='raiseaverage'>Raise to Average</option>
+	<option value='raise90'>Raise to 90</option>
+	<option value='raise85'>Raise to 85</option>
+	<option value='statgain'>Two stat gain rolls</option>
+      </select>
 
-  </div>
+      <div class='choice stats_option_raiseaverage_3'>
+      Raise
+      <select name='comp_statraise3' class='smallselect' required><option value=''>Select...</option>
+<option value='Agility~agility'>Agility</option>
+<option value='Constitution~constitution'>Constitution</option>
+<option value='Empathy~empathy'>Empathy</option>
+<option value='Intuition~intuition'>Intuition</option>
+<option value='Memory~memory'>Memory</option>
+<option value='Presence~presence'>Presence</option>
+<option value='Quickness~quickness'>Quickness</option>
+<option value='Reasoning~reasoning'>Reasoning</option>
+<option value='Self Discipline~selfdiscipline'>Self Discipline</option>
+<option value='Strength~strength'>Strength</option>
+</select>
+      </div>
+     <div class='choice stats_option_raise90_3'>
+	  <div class='choice stats_option_raise90_single'>
+	    Set
+	    <span class='stats_option_raise90_statname'></span> to 90
+	  </div>
+	  <div class='choice stats_option_raise90_many'>
+	    Set
+	    <select name='comp_stats_raise90_many_list_3'
+		class='stats_option_raise90_many_list smallselect'></select>
+	    to 90
+	  </div>
+      </div>
+     <div class='choice stats_option_raise85_3'>
+	  <div class='choice stats_option_raise85_single'>
+	    Set <span class='stats_option_raise85_statname'></span> to 85.
+	  </div>
+	  <div class='choice stats_option_raise85_many'>
+	    Set
+	    <select name='comp_stats_raise85_many_list_3'
+		class='stats_option_raise85_many_list smallselect'></select>
+	    to 85.
+	  </div>
+      </div>
+     <div class='choice stats_option_statgain_3'>
+	Two statgains.
+      <select name='comp_statgain3a' class='smallselect' required><option value=''>Select...</option>
+<option value='Agility~agility'>Agility</option>
+<option value='Constitution~constitution'>Constitution</option>
+<option value='Empathy~empathy'>Empathy</option>
+<option value='Intuition~intuition'>Intuition</option>
+<option value='Memory~memory'>Memory</option>
+<option value='Presence~presence'>Presence</option>
+<option value='Quickness~quickness'>Quickness</option>
+<option value='Reasoning~reasoning'>Reasoning</option>
+<option value='Self Discipline~selfdiscipline'>Self Discipline</option>
+<option value='Strength~strength'>Strength</option>
+</select>
+<select name='comp_statgain3b' class='smallselect' required><option value=''>Select...</option>
+<option value='Agility~agility'>Agility</option>
+<option value='Constitution~constitution'>Constitution</option>
+<option value='Empathy~empathy'>Empathy</option>
+<option value='Intuition~intuition'>Intuition</option>
+<option value='Memory~memory'>Memory</option>
+<option value='Presence~presence'>Presence</option>
+<option value='Quickness~quickness'>Quickness</option>
+<option value='Reasoning~reasoning'>Reasoning</option>
+<option value='Self Discipline~selfdiscipline'>Self Discipline</option>
+<option value='Strength~strength'>Strength</option>
+</select>
+ </div>  </div>     <div class='choice stats_boost_show4'>
+    <h3>Option 4</h3>
+      <select name='comp_cmstatoption_4' class='smallselect fancyselect' required>
+	<option value=''>Select...</option>
+	<option value='raiseaverage'>Raise to Average</option>
+	<option value='raise90'>Raise to 90</option>
+	<option value='raise85'>Raise to 85</option>
+	<option value='statgain'>Two stat gain rolls</option>
+      </select>
+
+      <div class='choice stats_option_raiseaverage_4'>
+      Raise
+      <select name='comp_statraise4' class='smallselect' required><option value=''>Select...</option>
+<option value='Agility~agility'>Agility</option>
+<option value='Constitution~constitution'>Constitution</option>
+<option value='Empathy~empathy'>Empathy</option>
+<option value='Intuition~intuition'>Intuition</option>
+<option value='Memory~memory'>Memory</option>
+<option value='Presence~presence'>Presence</option>
+<option value='Quickness~quickness'>Quickness</option>
+<option value='Reasoning~reasoning'>Reasoning</option>
+<option value='Self Discipline~selfdiscipline'>Self Discipline</option>
+<option value='Strength~strength'>Strength</option>
+</select>
+      </div>
+     <div class='choice stats_option_raise90_4'>
+	  <div class='choice stats_option_raise90_single'>
+	    Set
+	    <span class='stats_option_raise90_statname'></span> to 90
+	  </div>
+	  <div class='choice stats_option_raise90_many'>
+	    Set
+	    <select name='comp_stats_raise90_many_list_4'
+		class='stats_option_raise90_many_list smallselect'></select>
+	    to 90
+	  </div>
+      </div>
+     <div class='choice stats_option_raise85_4'>
+	  <div class='choice stats_option_raise85_single'>
+	    Set <span class='stats_option_raise85_statname'></span> to 85.
+	  </div>
+	  <div class='choice stats_option_raise85_many'>
+	    Set
+	    <select name='comp_stats_raise85_many_list_4'
+		class='stats_option_raise85_many_list smallselect'></select>
+	    to 85.
+	  </div>
+      </div>
+     <div class='choice stats_option_statgain_4'>
+	Two statgains.
+      <select name='comp_statgain4a' class='smallselect' required><option value=''>Select...</option>
+<option value='Agility~agility'>Agility</option>
+<option value='Constitution~constitution'>Constitution</option>
+<option value='Empathy~empathy'>Empathy</option>
+<option value='Intuition~intuition'>Intuition</option>
+<option value='Memory~memory'>Memory</option>
+<option value='Presence~presence'>Presence</option>
+<option value='Quickness~quickness'>Quickness</option>
+<option value='Reasoning~reasoning'>Reasoning</option>
+<option value='Self Discipline~selfdiscipline'>Self Discipline</option>
+<option value='Strength~strength'>Strength</option>
+</select>
+<select name='comp_statgain4b' class='smallselect' required><option value=''>Select...</option>
+<option value='Agility~agility'>Agility</option>
+<option value='Constitution~constitution'>Constitution</option>
+<option value='Empathy~empathy'>Empathy</option>
+<option value='Intuition~intuition'>Intuition</option>
+<option value='Memory~memory'>Memory</option>
+<option value='Presence~presence'>Presence</option>
+<option value='Quickness~quickness'>Quickness</option>
+<option value='Reasoning~reasoning'>Reasoning</option>
+<option value='Self Discipline~selfdiscipline'>Self Discipline</option>
+<option value='Strength~strength'>Strength</option>
+</select>
+ </div>  </div>     <div class='choice stats_boost_show5'>
+    <h3>Option 5</h3>
+      <select name='comp_cmstatoption_5' class='smallselect fancyselect' required>
+	<option value=''>Select...</option>
+	<option value='raiseaverage'>Raise to Average</option>
+	<option value='raise90'>Raise to 90</option>
+	<option value='raise85'>Raise to 85</option>
+	<option value='statgain'>Two stat gain rolls</option>
+      </select>
+
+      <div class='choice stats_option_raiseaverage_5'>
+      Raise
+      <select name='comp_statraise5' class='smallselect' required><option value=''>Select...</option>
+<option value='Agility~agility'>Agility</option>
+<option value='Constitution~constitution'>Constitution</option>
+<option value='Empathy~empathy'>Empathy</option>
+<option value='Intuition~intuition'>Intuition</option>
+<option value='Memory~memory'>Memory</option>
+<option value='Presence~presence'>Presence</option>
+<option value='Quickness~quickness'>Quickness</option>
+<option value='Reasoning~reasoning'>Reasoning</option>
+<option value='Self Discipline~selfdiscipline'>Self Discipline</option>
+<option value='Strength~strength'>Strength</option>
+</select>
+      </div>
+     <div class='choice stats_option_raise90_5'>
+	  <div class='choice stats_option_raise90_single'>
+	    Set
+	    <span class='stats_option_raise90_statname'></span> to 90
+	  </div>
+	  <div class='choice stats_option_raise90_many'>
+	    Set
+	    <select name='comp_stats_raise90_many_list_5'
+		class='stats_option_raise90_many_list smallselect'></select>
+	    to 90
+	  </div>
+      </div>
+     <div class='choice stats_option_raise85_5'>
+	  <div class='choice stats_option_raise85_single'>
+	    Set <span class='stats_option_raise85_statname'></span> to 85.
+	  </div>
+	  <div class='choice stats_option_raise85_many'>
+	    Set
+	    <select name='comp_stats_raise85_many_list_5'
+		class='stats_option_raise85_many_list smallselect'></select>
+	    to 85.
+	  </div>
+      </div>
+     <div class='choice stats_option_statgain_5'>
+	Two statgains.
+      <select name='comp_statgain5a' class='smallselect' required><option value=''>Select...</option>
+<option value='Agility~agility'>Agility</option>
+<option value='Constitution~constitution'>Constitution</option>
+<option value='Empathy~empathy'>Empathy</option>
+<option value='Intuition~intuition'>Intuition</option>
+<option value='Memory~memory'>Memory</option>
+<option value='Presence~presence'>Presence</option>
+<option value='Quickness~quickness'>Quickness</option>
+<option value='Reasoning~reasoning'>Reasoning</option>
+<option value='Self Discipline~selfdiscipline'>Self Discipline</option>
+<option value='Strength~strength'>Strength</option>
+</select>
+<select name='comp_statgain5b' class='smallselect' required><option value=''>Select...</option>
+<option value='Agility~agility'>Agility</option>
+<option value='Constitution~constitution'>Constitution</option>
+<option value='Empathy~empathy'>Empathy</option>
+<option value='Intuition~intuition'>Intuition</option>
+<option value='Memory~memory'>Memory</option>
+<option value='Presence~presence'>Presence</option>
+<option value='Quickness~quickness'>Quickness</option>
+<option value='Reasoning~reasoning'>Reasoning</option>
+<option value='Self Discipline~selfdiscipline'>Self Discipline</option>
+<option value='Strength~strength'>Strength</option>
+</select>
+ </div>  </div> 
 
 <h3>Swap Stats</h3>
 
@@ -7695,8 +7926,13 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
     <div class='smallattrs'>
       <span>Parry</span>
         <span><input type='number' name='attr_parrymod' min="0" step="1"></span>
-      <span class='span2'><label for='restrictedparrytoggle' class='plainlabel'>Restricted?</label>
-        <input type='checkbox' name='attr_restrictedparry' id='restrictedparrytoggle'>
+      <span class='span2'>
+        <select name='attr_parrytype' class='fancyselect'>
+          <option value='normal'>Normal</option>
+          <option value='restricted'>Restricted</option>
+          <option value='improved'>Improved</option>
+        </select>
+
       </span>
       <span>Attack Mod</span>
         <span><input type='number' name='attr_othermod' step='1'></span>
@@ -10516,7 +10752,7 @@ Sheet Version: <span name='attr_version'></span>
 
 <br>
 
-Revision 9d08056b46a6bd1f12e28f586aa7872d8458dc45
+Revision 46527f9ba3c2a9b3feef533245f18f3b1f7e448f
 
 
 <hr>
@@ -13225,7 +13461,7 @@ RMUSkills.startSkillRoll = function(prefix, usemod = false) {
   getAttrs([
 	  prefix + '_name', prefix + '_favskill', prefix + '_bonus',
 	  'character_name', 'statuspenalty',
-	  'statuseffect'],
+	  'statuseffect', 'actionapperphase'],
       (cdata) => {
 	    const simplified = {};
 	    simplified.aname = prefix;
@@ -13259,7 +13495,7 @@ RMUSkills.startSkillRoll = function(prefix, usemod = false) {
 
 
 RMUSkills.handleSkillRoll = function(cdata, usemod) {
-  if (cdata.statuseffect && cdata.statuseffect == 'staggered') {
+  if (cdata.actionapperphase == '1' && cdata.statuseffect && cdata.statuseffect == 'staggered') {
     sendMessage(`${cdata.character_name} is staggered, cannot act`);
     return;
   }
@@ -16272,7 +16508,12 @@ RMUStats.createStatsFinalize = function(cmdata) {
     svals[stname] = obj;
   }
 
-  for (let suffix = 1  ; suffix < 3 ; suffix ++) {
+  const nstatoptions = getNumberOfStatOptions(cmdata);
+  console.log("Saving stats", nstatoptions, cmdata.powerlevel.values.powerlevel);
+  const averagetemp = getPowerLevelAverageTemp(cmdata);
+  const averagepot = getPowerLevelAverageTemp(cmdata);
+
+  for (let suffix = 1  ; suffix <= nstatoptions ; suffix ++) {
     const opt = statsdata[`cmstatoption_${suffix}`];
     console.log(`${suffix} is ${opt}`);
     switch (opt){
@@ -16280,8 +16521,8 @@ RMUStats.createStatsFinalize = function(cmdata) {
 	console.log("raise average", statsdata);
         const str = optionDecode(statsdata[`statraise${suffix}`]);
 	let st = svals[str];
-	st.temp = 56;
-	st.pot = 78;
+	st.temp = averagetemp;
+	st.pot = averagepot;
 	miscRawSetAbsolute(st.misc, `Raise to average (Pot ${st.pot})`, st.temp);
 	break;
       }
@@ -16624,11 +16865,11 @@ let knack_total = 0;
 let pbonus_total = 0;
 
 const powerlevels = {
-  Average:  { kancks: 0,  reroll: 0,  temp: 51, pot: 76 },
-  Superior: { knacks: 10, reroll: 11, temp: 56, pot: 78 },
-  Heroic: { knacks: 20, reroll: 21,  temp: 61, pot: 81 },
-  Legendary: { knacks: 30, reroll: 31, temp: 66, pot: 83 },
-  Epic: { knacks: 40, reroll: 41,  temp: 71, pot: 86 },
+  Average:   { kancks:  0, reroll:  0, temp: 51, pot: 76, statoptions: 1 },
+  Superior:  { knacks: 10, reroll: 11, temp: 56, pot: 78, statoptions: 2 },
+  Heroic:    { knacks: 20, reroll: 21, temp: 61, pot: 81, statoptions: 3 },
+  Legendary: { knacks: 30, reroll: 31, temp: 66, pot: 83, statoptions: 4 },
+  Epic:      { knacks: 40, reroll: 41, temp: 71, pot: 86, statoptions: 5 },
 };
 
 /**
@@ -16728,7 +16969,8 @@ onCheck("mancerchange:race", (ev) => {
     if (!ev.newValue) {
       // Someone selected 'select...'.  Sigh
       showChoices(['race-no-save']);
-      hideChoices(['race-no-save']);
+      hideChoices(['race-save', 'custom-race-upload']);
+      return;
     }
 
     if (ev.newValue == 'custom~custom') {
@@ -16746,18 +16988,35 @@ onCheck("mancerchange:race", (ev) => {
     validateRaceProgress();
 
 });
+
 onCheck("mancerchange:culture", (ev) => {
+    if (!ev.newValue) {
+      // Someone selected 'select...'.  Sigh
+      showChoices(['race-no-save']);
+      hideChoices(['custom-culture-upload']);
+      return;
+    }
+
+    if (ev.newValue == 'custom~custom') {
+      showChoices(['custom-culture-upload']);
+      validateRaceProgress();
+      return;
+    }
+
+    hideChoices(['custom-culture-upload']);
+
     // Get compendium page so it gets saved for later
     getCompendiumPage(ev.newValue, (pdata) => { } );
-    changeCompendiumPage('race-info', ev.newValue);
+    changeCompendiumPage('culture-info', ev.newValue);
     validateRaceProgress();
 });
+
 onCheck("mancerchange:gender", () => {
     validateRaceProgress(); 
 });
 
 
-// Validate if the 
+// Validate if the page is ready to be saved
 function validateRaceProgress() {
   const cmdata = getCharmancerData();
   console.log(cmdata);
@@ -16779,6 +17038,10 @@ function validateRaceProgress() {
   // How about culture
   if (!racepage.culture) {
     canProgress = false;
+  } else if (racepage.culture == 'custom~custom') {
+    if (!racepage.customculture) {
+      canProgress = false;
+    }
   }
 
   // So we need a race or a custom rave
@@ -16798,6 +17061,40 @@ function validateRaceProgress() {
     hideChoices(["race-save"]);
   }
 }
+
+onCheck("clicked:uploadculture", () => {
+  'use strict';
+  const cmdata = getCharmancerData();
+  const str = cmdata.race.values.customcultureuploaddata;
+  cmdata.race.data.customculture = false;
+  let culture = {};
+  try {
+    culture = JSON.parse(str);
+  } catch (e) {
+    setCharmancerText({"uploadculturemessage": `Error parsing json string: ${e.message}`});
+    rmuerror(`Error parsing json string: ${e.message} during culture upload`);
+    return;
+  }
+
+  // So check for the fields we need
+  let result = validateculture(culture)
+  console.log("parse culture", result);
+  if (result.valid !== true) {
+    setCharmancerText({"uploadculturemessage": result.message});
+    return;
+  }
+
+  setCharmancerText({"uploadculturemessage": `${culture.name} updated successfully`});
+
+  // Save a copy as the string
+  setAttrs({customculture: str});
+
+  setCharmancerText({"uploadculturemessage": "Upload successful" });
+
+  validateRaceProgress();
+      
+  return;
+});
 
 onCheck("clicked:uploadrace", () => {
   const cmdata = getCharmancerData();
@@ -16876,7 +17173,7 @@ function validaterace(prof) {
       block = prof[test.group];
     }
     if (block[test.name] != null) {
-      // It's here... chaeck type
+      // It's here... check type
       if (typeof(block[test.name]) == test.type) {
 	// Great
       } else {
@@ -16892,6 +17189,40 @@ function validaterace(prof) {
   return { valid: true };
 }
 
+function validateculture(culture) {
+  'use strict';
+  const emsg = function(msg) { return { valid: false, message: msg };  };
+
+  if (!culture) return emsg("Missing Culture");
+
+  if (!culture.Name || typeof(culture.Name) !== 'string' || culture.Name.length < 1) {
+    return emsg("Invalid Name");
+  }
+
+  if (!culture.content || typeof(culture.content) !== 'string' || culture.content.length < 1) {
+    return emsg("Invalid Culture");
+  }
+
+  if (!culture['data-skills']) {
+    return emsg("Missing skills for culture");
+  }
+
+  const skills = culture['data-skills'];
+  for (let skill of skills) {
+    if (!skill.skill || typeof(skill.skill) !== 'string') {
+      return emsg("Missing a 'skill' field in the skills array");
+    }
+    if (!skill.ranks || typeof(skill.ranks) !== 'number') {
+      return emsg(`Missing a 'ranks' field in the skills array ${skill.skill}`);
+    }
+    if (!RMUCultures.selectedSkillInfo[skill.skill]) {
+      return emsg(`Unknown Culture skill ${skill.skill}`)
+    }
+  }
+
+  return { valid: true };
+}
+
 
 onCheck("page:profession", () => {
   const cmdata = getCharmancerData();
@@ -16902,7 +17233,6 @@ onCheck("page:profession", () => {
 });
 
 onCheck("mancerchange:profession", (ev) => {
-
     if (!ev.newValue) {
       // Selected "select..."; pick something
       showChoices(["profession-no-save"])
@@ -16924,8 +17254,6 @@ onCheck("mancerchange:profession", (ev) => {
 
 
 function validateprofession(prof) {
- 
-
   return true;
 }
 
@@ -16941,6 +17269,15 @@ function cmProfessionGet(cmdata) {
     return JSON.parse(str);
   } else {
     return cmdata.profession.data.profession;
+  }
+}
+
+function cmCultureGet(cmdata) {
+  const culturename = cmdata.race.values.culture;
+  if (culturename === "custom~custom") {
+    return JSON.parse(data.race.values.customculture);
+  } else { 
+    return data.race.data.culture;
   }
 }
 
@@ -17100,13 +17437,48 @@ function createSaveBaseLists() {
   setAttrsPending(updates);
 }
 
+function getNumberOfStatOptions(cmdata) {
+  'use strict';
+  // FIXME: Should log an error
+  return    powerlevels[cmdata.powerlevel.values.powerlevel].statoptions || 2;
+}
+
+function getPowerLevelAverageTemp(cmdata) {
+  return powerlevels[cmdata.powerlevel.values.powerlevel].temp || 56;
+}
+
+function getPowerLevelAveragePot(cmdata) {
+  return powerlevels[cmdata.powerlevel.values.powerlevel].pot || 78;
+}
+
+
 onCheck("page:stats", () => {
+  'use strict';
   const cmdata = getCharmancerData();
-  console.log("stats page");
-  console.log(cmdata);
+  console.log("stats page", cmdata);
+
+  let statoptiontochoose = getNumberOfStatOptions(cmdata);
+
+  const show = [];
+  const hide = [];
+  for (let i = 1 ; i <= 5 ; i ++) {
+    if (i <= statoptiontochoose) {
+      show.push(`stats_boost_show${i}`);
+    } else {
+      hide.push(`stats_boost_show${i}`);
+    }
+  }
+  if (show.length > 0) { showChoices(show); }
+  if (hide.length > 0) { hideChoices(hide); }
 
   if (cmdata?.stats?.values?.stat_agility) {
     updateStatOptions();
+  }
+
+  {
+    const tmp = getPowerLevelAverageTemp(cmdata);
+    const pot = getPowerLevelAveragePot(cmdata);
+    setCharmancerText({stats_powerlevel_average_stat: `Average is a temporary of ${tmp} and a potential of ${pot}`})
   }
 });
 
@@ -17192,7 +17564,9 @@ function rollStatsIncrement(cmdata) {
 }
 
 
-onCheck("mancerchange:cmstatoption_1 mancerchange:cmstatoption_2", (ev) => {
+onCheck("mancerchange:cmstatoption_1 mancerchange:cmstatoption_2 " + 
+	"mancerchange:cmstatoption_3 mancerchange:cmstatoption_4 " + 
+	"mancerchange:cmstatoption_5", (ev) => {
     const sel = ev.newValue;
     const source = ev.sourceAttribute;
     const index = source.match(/\d/);
@@ -17663,7 +18037,9 @@ onCheck("mancerfinish:newcharacter", (ev) => {
 	    case "ose2k" : startxp = 1; break;
 	    }
 	  }
-	  setAttrsPending({profession: profname,
+	  setAttrsPending({
+	      critreduction: 0,
+	      profession: profname,
 	      realm: realm,
 	      powerlevel: data.powerlevel.values.powerlevel,
 	      xp: startxp,
@@ -17678,7 +18054,7 @@ onCheck("mancerfinish:newcharacter", (ev) => {
 	console.log(data.race.values.customrace);
 	const racedata = JSON.parse(data.race.values.customrace);
 	console.log("parsed", racedata);
-	setAttrs({race: racedata.Name + " (Custom)", critreduction: 0});
+	setAttrs({race: racedata.Name + " (Custom)"});
 	RMURaces.raceSet(racedata.Name, racedata);
       } else { 
        const racename = cleanCompendiumName(data.race.values.race)
@@ -17696,9 +18072,15 @@ onCheck("mancerfinish:newcharacter", (ev) => {
     // Culture
     addPendingFunction("CMFinish: Culture data", () =>{
 	showChoices(["message-save-culture"]);
-	const culture = cleanCompendiumName(data.race.values.culture);
+	if (data.race.values.culture == 'custom~custom') { 
+	  console.log(data.race.values.customculture);
+	  const culture = JSON.parse(data.race.values.customculture);
+	  setAttrs({culture: culture.Name + " (Custom)"});
 
-	setAttrsPending({culture: culture});
+	} else {
+	  const culture = cleanCompendiumName(data.race.values.culture);
+	  setAttrsPending({culture: culture});
+	}
     });
 
     // Stats
@@ -17891,8 +18273,15 @@ onCheck("page:culture", (ev) => {
     const data = getCharmancerData(); 
 
     // get the culture
-    const culture = data.race.data.culture['data-skills'];
-    console.log("The culture ranks", culture);
+    let culture = {}
+    if (data.race.values.culture == 'custom~custom') { 
+      console.log(data.race.values.customculture);
+      culture = JSON.parse(data.race.values.customculture);
+      culture = culture['data-skills'];
+    } else {
+      culture = data.race.data.culture['data-skills'];
+      console.log("The culture ranks", culture);
+    }
 
     // Build a named index
     let skills = {}
@@ -18031,10 +18420,10 @@ RMUCultures.handleSelect = function(culturename, name, selected, specialisation,
 onCheck("page:languages", (_) => {
     const cmdata = getCharmancerData();
 
-    const culture = cmdata.race.data.culture['data-skills'];
+    const culture = cmCultureGet(cmdata);
     // Find languages
     let ranks = 0;
-    culture.forEach((sk) => {
+    culture['data-skills'].forEach((sk) => {
 	if (sk.skill == 'languages')  {
 	  ranks = parseInt(sk.ranks);
 	}
@@ -18052,7 +18441,7 @@ onCheck("page:languages", (_) => {
 RMUCultures.createCultureFinalize = function (culturename, cmdata) {
   console.log("Saving culture ranks");
   console.log("Culture is ", culturename);
-  const culture = cmdata.race.data.culture['data-skills'];
+  const culture = cmCultureGet(cmdata)['data-skills'];
   // Build a named index
   let skills = {}
   culture.forEach((sk) => {
@@ -18230,8 +18619,10 @@ frontpage.updateHeight = function() {
 frontpage.updateInit = function () { 
   // FIXME: Not taking into accoutn MM penalty
   // Initiative is 2d10 + Qu - 1/10 penalty
-  getAttrsPending(["qu"], (ev) => {
-      setAttrsPending({initiative: ev.qu});
+  getAttrsPending(["qu", "initiative_misc"], (ev) => {
+      let [total, mlog] = miscBonusTotal(ev.initiative_misc, "");
+      total += parseIntDefault(ev.qu, 0);
+      setAttrsPending({initiative: total});
   });
 }
 onCheck("change:qu", frontpage.updateInit);
@@ -20430,7 +20821,6 @@ function sizeFromNumeric(value) {
 	return scale;
     }
 
-    //      - cdata.restrictedparry = true || falsey
     attacks.startAttack = function(cdata) {
 	let attackmoddescription = '';
 	let attackmod = 0;
@@ -20509,12 +20899,7 @@ function sizeFromNumeric(value) {
 	    attackmod += cdata.statuseffect;
 	}
 
-	if (cdata.restrictedparry && cdata.parrymod > 0) {
-	    const hparry = Math.floor(parseIntDefault(cdata.parrymod, 0) / 2)
-	    attackmoddescription += ` -${hparry}&nbsp;` +
-			`[Parry (Restricted: ${cdata.parrymod} / 2)]`;
-	    attackmod -= hparry;
-	} else if (cdata.parrymod > 0) {
+	if (cdata.parrymod) {
 	    attackmoddescription += ` -${cdata.parrymod}&nbsp;[Parry]`;
 	    attackmod -= cdata.parrymod;
 	}
@@ -20604,7 +20989,7 @@ function sizeFromNumeric(value) {
 			'statuspenalty', 'statuseffect',
 			'target_name', 'target_db', 'target_at',
 			'target_size', 'target_crit',
-			'parrymod', 'othermod', 'restrictedparry',
+			'parrymod', 'othermod',
 			// Ranged Penalty from armor
 			'ranged_penalty',
 			// Used depending on type: So get melee, missile and spell
@@ -20650,7 +21035,6 @@ function sizeFromNumeric(value) {
 		cdata.apused = parseIntDefault(values.aptrack, 0);
 		cdata.ranged_penalty = parseIntDefault(values.ranged_penalty, 0);
 		cdata.actionselect = values.actionselect || 'nothing';
-		cdata.restrictedparry = values.restrictedparry == 'on' ? true : false;
 		attacks.startAttack(cdata);
 	});
     }
@@ -21671,7 +22055,6 @@ function actionsUpdateStatus() {
 	if (statusstagger) {
 	  updates.statuseffect = 'staggered'
 	  updates.statusmessge = 'Staggered'
-	  updates.allpenalties =  -300;
 	} else if (statusstun75) {
 	  updates.statuseffect = -75;
 	  updates.statusmessage = 'Stun -75'
@@ -21825,13 +22208,13 @@ function updateCurrentDefenseMode() {
       'db_fulldodge', 'db_fulldodgemissile', 'db_fullblock'], (ev) => {
 	  const update = {};
 	  if (!ev.parrytype) {
-	    ev.parrytype = 'parrynormal'
+	    ev.parrytype = 'normal';
 	  }
 
 	  let db = parseIntDefault(ev.parrymod, 0);
-	  if (ev.parrytype == 'parryenhanced' && db > 1) {
+	  if (ev.parrytype == 'improved' && db >= 1) {
 	    db = Math.floor(db * 1.5);
-	  } else if (ev.parrytype == 'parryrestrict' && db > 1) {
+	  } else if (ev.parrytype == 'restricted' && db >= 1) {
 	    db = Math.floor(db / 2);
 	  }
 
@@ -23437,8 +23820,6 @@ function doNpcGeneate() {
 
 //
 
-
-
 const injury = {}
 
 // Maps the critical table to the critical encoding.
@@ -23570,7 +23951,7 @@ injury.parseInjuryString = function (str) {
 		"statusstagger", "statusstun75", "statusstun50", "statusstun25",
 		"critresist", "critimmune", "grapplestatus",
 		"option_usefx",
-		"activetokenid", // Maagic hackery
+		"activetokenid", // Magic hackery
 		], (cdata) => {
 	console.log("data for creature", cdata);
 	// Pull the fields out.  If we modify save to updates
@@ -23611,6 +23992,7 @@ injury.parseInjuryString = function (str) {
 	let bl = cdata.bleedlist ? JSON.parse(cdata.bleedlist) : [];
 
 	let fxhavebleed = 0;
+	let stunignored = false;
 
 	for (let subinjury of injuryarray) {
 	    if (subinjury == "") {
@@ -23688,6 +24070,7 @@ injury.parseInjuryString = function (str) {
 			    statusstun25 = 4;
 			    updates.statusstun25 = statusstun25;
 			    updates.statusstun25info = roundString(statusstun25);
+			    stunignored = true;
 			} else {
 			    statusstun25 += 4 * value;
 			    updates.statusstun25 = statusstun25;
@@ -23700,6 +24083,7 @@ injury.parseInjuryString = function (str) {
 			    statusstun25 = 4;
 			    updates.statusstun25 = statusstun25;
 			    updates.statusstun25info = roundString(statusstun25);
+			    stunignored = true;
 			} else {
 			    statusstun50 += 4 * value;
 			    updates.statusstun50 = statusstun50;
@@ -23712,6 +24096,7 @@ injury.parseInjuryString = function (str) {
 			    statusstun25 = 4;
 			    updates.statusstun25 = statusstun25;
 			    updates.statusstun25info = roundString(statusstun25);
+			    stunignored = true;
 			} else {
 			    statusstun75 += 4 * value;
 			    updates.statusstun75 = statusstun75;
@@ -23747,6 +24132,10 @@ injury.parseInjuryString = function (str) {
 			break;
 		}
 	    }
+	}
+
+	if (stunignored) {
+	    sendMessage(`${cdata.character_name} shrugs off the stun`);
 	}
 
 	if (fatigue < -50) {
