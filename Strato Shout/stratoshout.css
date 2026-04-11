@@ -250,7 +250,7 @@ fieldset {margin:0; padding:0; border:none;}
 .sheet-rolltemplate-StratoDiceContent .sheet-stratioDice-wrap .sheet-title span {display:block; position:absolute; top:7px; bottom:4px; right:0; background:#000; color:#fff; line-height:18px; padding:0 10px; font-size:12px;}
 .sheet-rolltemplate-StratoDiceContent .sheet-stratioDice-wrap .sheet-title span:before {content:""; display:block; position:absolute; top:0; left:-18px; width:0; height:0; border:18px solid transparent; border-right-width:0; border-top-width:0; border-bottom-color:#000;}
 .sheet-rolltemplate-StratoDiceContent .sheet-stratioDice-wrap .sheet-dice {display:block; position:relative; background:#fff; text-align:center; padding:15px 0; font-size:22px; color:#000; font-weight:800; z-index:1; margin:0 1px;}
-.sheet-rolltemplate-StratoDiceContent .sheet-stratioDice-wrap .sheet-dice .fullcrit,.sheet-rolltemplate-StratoDiceContent .sheet-stratioDice-wrap .sheet-dice .fullfail {border:none !important;}
+.sheet-rolltemplate-StratoDiceContent .sheet-stratioDice-wrap .sheet-dice .fullcrit,.sheet-rolltemplate-StratoDiceContent .sheet-stratioDice-wrap .sheet-dice .fullfail,.sheet-rolltemplate-StratoDiceContent .sheet-stratioDice-wrap .sheet-dice .fullfail {border:none !important;}
 .sheet-rolltemplate-StratoDiceContent .sheet-stratioDice-wrap .sheet-subject {display: block; position: relative; background: #ffffff; text-align: center; padding-bottom: 10px;}
 .sheet-rolltemplate-StratoDiceContent .sheet-stratioDice-wrap .sheet-subject strong {display:block; position:relative; padding:5px; background:#111; color:#fff; text-align:center; font-size:14px; font-weight:600;}
 .sheet-rolltemplate-StratoDiceContent .sheet-stratioDice-wrap .sheet-subject strong > span {font-size:12px; font-weight:400; padding-left:5px;}
@@ -271,7 +271,7 @@ fieldset {margin:0; padding:0; border:none;}
 .sheet-rolltemplate-StratoDice .sheet-stratioDice-wrap .sheet-title span {display:block; position:absolute; top:7px; bottom:4px; right:0; background:#000; color:#fff; line-height:18px; padding:0 10px; font-size:12px;}
 .sheet-rolltemplate-StratoDice .sheet-stratioDice-wrap .sheet-title span:before {content:""; display:block; position:absolute; top:0; left:-18px; width:0; height:0; border:18px solid transparent; border-right-width:0; border-top-width:0; border-bottom-color:#000;}
 .sheet-rolltemplate-StratoDice .sheet-stratioDice-wrap .sheet-dice {display:block; position:relative; background:#fff; text-align:center; padding:15px 0; font-size:22px; color:#000; font-weight:800; z-index:1; margin:0 1px;}
-.sheet-rolltemplate-StratoDice .sheet-stratioDice-wrap .sheet-dice .fullcrit,.sheet-rolltemplate-StratoDice .sheet-stratioDice-wrap .sheet-dice .fullfail {border:none !important;}
+.sheet-rolltemplate-StratoDice .sheet-stratioDice-wrap .sheet-dice .fullcrit,.sheet-rolltemplate-StratoDice .sheet-stratioDice-wrap .sheet-dice .importantroll,.sheet-rolltemplate-StratoDice .sheet-stratioDice-wrap .sheet-dice .fullfail {border:none !important;}
 .sheet-rolltemplate-StratoDice .sheet-stratioDice-wrap .sheet-subject {display: block; position: relative; color: #fff !important; background: #111; text-align: center; padding-bottom: 10px;}
 .sheet-rolltemplate-StratoDice .sheet-stratioDice-wrap .sheet-subject strong {display:block; position:relative; padding:5px; background:#111; color:#fff; text-align:center; font-size:14px; font-weight:600;}
 .sheet-rolltemplate-StratoDice .sheet-stratioDice-wrap .sheet-subject strong > span {font-size:12px; font-weight:400; padding-left:5px;}
@@ -312,7 +312,7 @@ fieldset {margin:0; padding:0; border:none;}
 .sheet-rolltemplate-StratoSkillDice .sheet-stratioDice-wrap .sheet-title span:before {content:""; display:block; position:absolute; top:0; left:-18px; width:0; height:0; border:18px solid transparent; border-right-width:0; border-top-width:0; border-bottom-color:#000;}
 .sheet-rolltemplate-StratoSkillDice .sheet-stratioDice-wrap .sheet-title-skill {display:block; position:relative; background:#fff; text-align:center; padding:15px 0 0; font-size:15px; color:#000; font-weight:800; z-index:1; margin:0 1px;}
 .sheet-rolltemplate-StratoSkillDice .sheet-stratioDice-wrap .sheet-dice {display:block; position:relative; background:#fff; text-align:center; padding:15px 0; font-size:22px; color:#000; font-weight:800; z-index:1; margin:0 1px;}
-.sheet-rolltemplate-StratoSkillDice .sheet-stratioDice-wrap .sheet-dice .fullcrit,.sheet-rolltemplate-StratoSkillDice .sheet-stratioDice-wrap .sheet-dice .fullfail {border:none !important;}
+.sheet-rolltemplate-StratoSkillDice .sheet-stratioDice-wrap .sheet-dice .fullcrit,.sheet-rolltemplate-StratoSkillDice .sheet-stratioDice-wrap .sheet-dice .importantroll,.sheet-rolltemplate-StratoSkillDice .sheet-stratioDice-wrap .sheet-dice .fullfail {border:none !important;}
 .sheet-rolltemplate-StratoSkillDice .sheet-stratioDice-wrap .sheet-subject {display:block; position:relative; text-align:center; padding-bottom:10px;}
 .sheet-rolltemplate-StratoSkillDice .sheet-stratioDice-wrap .sheet-subject strong {display:block; position:relative; padding:5px; background:#111; color:#fff; text-align:center; font-size:14px; font-weight:600;}
 .sheet-rolltemplate-StratoSkillDice .sheet-stratioDice-wrap .sheet-subject strong > span {font-size:12px; font-weight:400; padding-left:5px;}
@@ -343,7 +343,7 @@ fieldset {margin:0; padding:0; border:none;}
 .sheet-rolltemplate-StratoPhrase .sheet-stratioDice-wrap .sheet-title span:before {content:""; display:block; position:absolute; top:0; left:-18px; width:0; height:0; border:18px solid transparent; border-right-width:0; border-top-width:0; border-bottom-color:#000;}
 .sheet-rolltemplate-StratoPhrase .sheet-stratioDice-wrap .sheet-title-skill {display:block; position:relative; background:#fff; text-align:center; padding:15px 0 0; font-size:15px; color:#000; font-weight:800; z-index:1; margin:0 1px;}
 .sheet-rolltemplate-StratoPhrase .sheet-stratioDice-wrap .sheet-dice {display:block; position:relative; background:#fff; text-align:center; padding:15px 0; font-size:22px; color:#000; font-weight:800; z-index:1; border:1px solid #000; border-top-width:0; border-bottom-width:0;}
-.sheet-rolltemplate-StratoPhrase .sheet-stratioDice-wrap .sheet-dice .fullcrit,.sheet-rolltemplate-StratoPhrase .sheet-stratioDice-wrap .sheet-dice .fullfail {border:none !important;}
+.sheet-rolltemplate-StratoPhrase .sheet-stratioDice-wrap .sheet-dice .fullcrit,.sheet-rolltemplate-StratoPhrase .sheet-stratioDice-wrap .sheet-dice .importantroll,.sheet-rolltemplate-StratoPhrase .sheet-stratioDice-wrap .sheet-dice .fullfail {border:none !important;}
 .sheet-rolltemplate-StratoPhrase .sheet-stratioDice-wrap .sheet-subject {display:block; position:relative; text-align:center; padding-bottom:10px;}
 .sheet-rolltemplate-StratoPhrase .sheet-stratioDice-wrap .sheet-subject strong {display:block; position:relative; padding:5px; background:#111; color:#fff; text-align:center; font-size:14px; font-weight:600;}
 .sheet-rolltemplate-StratoPhrase .sheet-stratioDice-wrap .sheet-subject strong > span {font-size:12px; font-weight:400; padding-left:5px;}
@@ -388,7 +388,7 @@ fieldset {margin:0; padding:0; border:none;}
 .sheet-rolltemplate-StratoBustPhrase .sheet-stratioDice-wrap .sheet-title span {display:block; position:absolute; top:7px; bottom:4px; right:0; background:#000; color:#fff; line-height:18px; padding:0 10px; font-size:12px;}
 .sheet-rolltemplate-StratoBustPhrase .sheet-stratioDice-wrap .sheet-title span:before {content:""; display:block; position:absolute; top:0; left:-18px; width:0; height:0; border:18px solid transparent; border-right-width:0; border-top-width:0; border-bottom-color:#000;}
 .sheet-rolltemplate-StratoBustPhrase .sheet-stratioDice-wrap .sheet-dice {display:block; position:relative; background:#222; text-align:center; padding:15px 0; font-size:22px; color:#fff; font-weight:800; z-index:1; border:1px solid #000; border-top-width:0; border-bottom-width:0;}
-.sheet-rolltemplate-StratoBustPhrase .sheet-stratioDice-wrap .sheet-dice .fullcrit,.sheet-rolltemplate-StratoBustPhrase .sheet-stratioDice-wrap .sheet-dice .fullfail {border:none !important;}
+.sheet-rolltemplate-StratoBustPhrase .sheet-stratioDice-wrap .sheet-dice .fullcrit,.sheet-rolltemplate-StratoBustPhrase .sheet-stratioDice-wrap .sheet-dice .importantroll,.sheet-rolltemplate-StratoBustPhrase .sheet-stratioDice-wrap .sheet-dice .fullfail {border:none !important;}
 .sheet-rolltemplate-StratoBustPhrase .sheet-stratioDice-wrap .sheet-dice .inlinerollresult {color:#fff !important;}
 .sheet-rolltemplate-StratoBustPhrase .sheet-stratioDice-wrap .sheet-subject {display:block; position:relative; text-align:center;}
 .sheet-rolltemplate-StratoBustPhrase .sheet-stratioDice-wrap .sheet-subject strong {display:block; position:relative; padding:5px; background:#111; color:#fff; text-align:center; font-size:14px; font-weight:600;}
@@ -433,7 +433,7 @@ fieldset {margin:0; padding:0; border:none;}
 .sheet-rolltemplate-StratoDamage .sheet-stratioDice-wrap .sheet-title span {display:block; position:absolute; top:7px; bottom:4px; right:0; background:#000; color:#fff; line-height:18px; padding:0 10px; font-size:12px;}
 .sheet-rolltemplate-StratoDamage .sheet-stratioDice-wrap .sheet-title span:before {content:""; display:block; position:absolute; top:0; left:-18px; width:0; height:0; border:18px solid transparent; border-right-width:0; border-top-width:0; border-bottom-color:#000;}
 .sheet-rolltemplate-StratoDamage .sheet-stratioDice-wrap .sheet-dice {display:block; position:relative; background:#fff; text-align:center; padding:15px 0; font-size:22px; color:#000; font-weight:800; z-index:1; margin:0 1px;}
-.sheet-rolltemplate-StratoDamage .sheet-stratioDice-wrap .sheet-dice .fullcrit,.sheet-rolltemplate-StratoDamage .sheet-stratioDice-wrap .sheet-dice .fullfail {border:none !important;}
+.sheet-rolltemplate-StratoDamage .sheet-stratioDice-wrap .sheet-dice .fullcrit,.sheet-rolltemplate-StratoDamage .sheet-stratioDice-wrap .sheet-dice .importantroll,.sheet-rolltemplate-StratoDamage .sheet-stratioDice-wrap .sheet-dice .fullfail {border:none !important;}
 .sheet-rolltemplate-StratoDamage .inlinerollresult {background:none !important; padding:0 !important; border:none !important; color:#000 !important;}
 
 .sheet-addDamage-point {display:block; text-align:right; background:#000; color:#fff; padding:10px;}
