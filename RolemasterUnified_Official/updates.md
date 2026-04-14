@@ -1,3 +1,15 @@
+# 2026-04-13
+
+- Custom Cultures
+- Directed Spell -> Directed Spells
+- Creature movement changes:
+  - Now use fixed fields
+  - update to version 20 brings it in
+  - Hide useless fields.
+- Update BMR: Don't touch creatures for now.
+- Tracker: Fetch BMR for creatures (and PCs)
+- Training Packages: Some refactoring; test smaller parts.
+
 # 2026-04-09
 
 - Add _Improved Parry_ and simplify it and restricted parry
