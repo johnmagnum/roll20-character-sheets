@@ -187,7 +187,7 @@
             <td><input type="text" class="sheet-number sheet-health-formula" name="attr_basetext-cold_resistance" value="EN" readonly /></td>
         </tr>
         <tr>
-            <td>Fire/Heat Resistance</td>
+            <td>Fire / Heat Resistance</td>
             <td><input type="number" class="sheet-number" name="attr_fire_resistance" value='(@{bonus-fire_resistance} + @{base-fire_resistance})' disabled="true"/></td>
             <td><input type="number" class="sheet-number" name="attr_bonus-fire_resistance" value="0" /></td>
             <td><input type="number" class="sheet-number" name="attr_base-fire_resistance" value="@{endurance}" disabled="true" /></td>
@@ -198,7 +198,7 @@
             <td><input type="number" class="sheet-number" name="attr_electricity_resistance" value='(@{bonus-electricity_resistance} + @{base-electricity_resistance})' disabled="true"/></td>
             <td><input type="number" class="sheet-number" name="attr_bonus-electricity_resistance" value="0" /></td>
             <td><input type="number" class="sheet-number" name="attr_base-electricity_resistance" value="(ceil((@{endurance} + @{intelligence})/2))" disabled="true" /></td>
-            <td><input type="text" class="sheet-number sheet-health-formula" name="attr_basetext-electricity_resistance" value="((EN + IN) / 2, round up" readonly /></td>
+            <td><input type="text" class="sheet-number sheet-health-formula" name="attr_basetext-electricity_resistance" value="((EN + IN) / 2, round up)" readonly /></td>
         </tr>
         <tr>
             <td>Gas Resistance</td>
@@ -254,7 +254,7 @@
             <td><input type="number" class="sheet-number" name="attr_running_rate" value='(@{bonus-running_rate} + @{base-running_rate})' disabled="true"/></td>
             <td><input type="number" class="sheet-number" name="attr_bonus-running_rate" value="0" /></td>
             <td><input type="number" class="sheet-number" name="attr_base-running_rate" value='(@{bonus-walking_rate} + @{base-walking_rate}) + (ceil(@{strength}/2))' disabled="true" /></td>
-            <td><input type="text" class="sheet-number sheet-health-formula" name="attr_basetext-running_rate" value="(Walking Rate + (ST/2)) meters, round up" readonly /></td>
+            <td><input type="text" class="sheet-number sheet-health-formula" name="attr_basetext-running_rate" value="(Walking Rate + (ST / 2)) meters, round up" readonly /></td>
         </tr>
         <tr>
             <td colspan="5" style="white-space: nowrap; text-align: left; padding-top: 10px;">Sprint Rate: +1d4 meters if successful at (1d10 + EN + Running) test.</td>
@@ -1173,20 +1173,22 @@
           <td><input type="number" class="sheet-number" name="attr_minimum1" value="0" /></td>
         </tr>
       </table>
-      <table class="sheet-center sheet-healthblock">
-        <tr>
-          <td>Ammo Type</td>
-          <td colspan="9"><input type="text" class="sheet-number sheet-ammo-type" name="attr_ammo_type1" /></td>
-        </tr>
-        <tr>
-          <td>Weight</td>
-          <td><input type="number" step="any" class="sheet-number" name="attr_weight1" placeholder="0 lb" /></td>
-          <td>Fire Mode</td>
-          <td><input type="text" class="sheet-number" name="attr_fire_mod1" /></td>
-          <td>Magazine Size</td>
-          <td><input type="number" class="sheet-number" name="attr_mag_size1" /></td>
-        </tr>
-      </table>
+      <table class="sheet-center sheet-healthblock sheet-weapon-meta">
+		  <tr>
+			<td>Ammo Type</td>
+			<td colspan="7"><input type="text" class="sheet-number sheet-ammo-type" name="attr_ammo_type1" /></td>
+		  </tr>
+		  <tr>
+			<td>Weight</td>
+			<td><input type="number" step="any" class="sheet-number" name="attr_weight1" placeholder="0 lb" /></td>
+			<td>Fire Mode</td>
+			<td><input type="text" class="sheet-number sheet-firemode" name="attr_fire_mod1" /></td>
+			<td>Magazine Size</td>
+			<td><input type="number" class="sheet-number" name="attr_mag_size1" /></td>
+			<td>Condition</td>
+			<td><input type="number" class="sheet-number sheet-weapon-condition" name="attr_weapon_condition1" placeholder="100%" /></td>
+		  </tr>
+	  </table>
       <table class="sheet-center sheet-healthblock sheet-weapon-ammo">
         <tr>
           <td>Short Range (0)</td>
@@ -1227,20 +1229,22 @@
           <td><input type="number" class="sheet-number" name="attr_minimum2" value="0" /></td>
         </tr>
       </table>
-      <table class="sheet-center sheet-healthblock">
-        <tr>
-          <td>Ammo Type</td>
-          <td colspan="9"><input type="text" class="sheet-number sheet-ammo-type" name="attr_ammo_type2" /></td>
-        </tr>
-        <tr>
-          <td>Weight</td>
-          <td><input type="number" step="any" class="sheet-number" name="attr_weight2" placeholder="0 lb" /></td>
-          <td>Fire Mode</td>
-          <td><input type="text" class="sheet-number" name="attr_fire_mod2" /></td>
-          <td>Magazine Size</td>
-          <td><input type="number" class="sheet-number" name="attr_mag_size2" /></td>
-        </tr>
-      </table>
+      <table class="sheet-center sheet-healthblock sheet-weapon-meta">
+		  <tr>
+			<td>Ammo Type</td>
+			<td colspan="7"><input type="text" class="sheet-number sheet-ammo-type" name="attr_ammo_type2" /></td>
+		  </tr>
+		  <tr>
+			<td>Weight</td>
+			<td><input type="number" step="any" class="sheet-number" name="attr_weight2" placeholder="0 lb" /></td>
+			<td>Fire Mode</td>
+			<td><input type="text" class="sheet-number sheet-firemode" name="attr_fire_mod2" /></td>
+			<td>Magazine Size</td>
+			<td><input type="number" class="sheet-number" name="attr_mag_size2" /></td>
+			<td>Condition</td>
+			<td><input type="number" class="sheet-number sheet-weapon-condition" name="attr_weapon_condition2" placeholder="100%" /></td>
+		  </tr>
+	  </table>
       <table class="sheet-center sheet-healthblock sheet-weapon-ammo">
         <tr>
           <td>Short Range (0)</td>
@@ -1281,20 +1285,22 @@
           <td><input type="number" class="sheet-number" name="attr_minimum3" value="0" /></td>
         </tr>
       </table>
-      <table class="sheet-center sheet-healthblock">
-        <tr>
-          <td>Ammo Type</td>
-          <td colspan="9"><input type="text" class="sheet-number sheet-ammo-type" name="attr_ammo_type3" /></td>
-        </tr>
-        <tr>
-          <td>Weight</td>
-          <td><input type="number" step="any" class="sheet-number" name="attr_weight3" placeholder="0 lb" /></td>
-          <td>Fire Mode</td>
-          <td><input type="text" class="sheet-number" name="attr_fire_mod3" /></td>
-          <td>Magazine Size</td>
-          <td><input type="number" class="sheet-number" name="attr_mag_size3" /></td>
-        </tr>
-      </table>
+      <table class="sheet-center sheet-healthblock sheet-weapon-meta">
+		  <tr>
+			<td>Ammo Type</td>
+			<td colspan="7"><input type="text" class="sheet-number sheet-ammo-type" name="attr_ammo_type3" /></td>
+		  </tr>
+		  <tr>
+			<td>Weight</td>
+			<td><input type="number" step="any" class="sheet-number" name="attr_weight3" placeholder="0 lb" /></td>
+			<td>Fire Mode</td>
+			<td><input type="text" class="sheet-number sheet-firemode" name="attr_fire_mod3" /></td>
+			<td>Magazine Size</td>
+			<td><input type="number" class="sheet-number" name="attr_mag_size3" /></td>
+			<td>Condition</td>
+			<td><input type="number" class="sheet-number sheet-weapon-condition" name="attr_weapon_condition3" placeholder="100%" /></td>
+		  </tr>
+	  </table>
       <table class="sheet-center sheet-healthblock sheet-weapon-ammo">
         <tr>
           <td>Short Range (0)</td>
