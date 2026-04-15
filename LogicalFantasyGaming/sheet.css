@@ -10916,3 +10916,25 @@ input[name="attr_Gold"]{
 .core-stats-card .corestat-row.hr-row .corestat-label{
   color: #1e4db7;
 }
+
+/* sheet410: test roll button styling for Acrobatics skill label */
+.skill-roll-btn{
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: auto !important;
+  min-width: 0 !important;
+  text-align: left !important;
+  font: inherit !important;
+  color: inherit !important;
+  cursor: pointer;
+}
+.skill-roll-btn:hover{
+  text-decoration: underline;
+}
+
+/* sheet411: remove Roll20 d20 icon from skill roll buttons to save horizontal space */
+button[type="roll"].skill-roll-btn::before{
+  display: none;
+}

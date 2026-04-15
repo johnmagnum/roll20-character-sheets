@@ -627,31 +627,42 @@ h2 {
     box-sizing: border-box;
 }
 
-/* Weapon ammo info row: keep labels horizontal and aligned */
-.sheet-weapon-block > table:nth-of-type(2) {
-    table-layout: auto;
+/* Weapon meta table: class-based so layout stays stable when fields are added */
+.sheet-weapon-meta {
+    table-layout: fixed;
 }
 
-.sheet-weapon-block > table:nth-of-type(2) td,
-.sheet-weapon-block > table:nth-of-type(2) th {
+.sheet-weapon-meta td,
+.sheet-weapon-meta th {
     white-space: nowrap;
     word-break: normal;
     word-wrap: normal;
     vertical-align: middle;
 }
 
-.sheet-weapon-block > table:nth-of-type(2) input.sheet-number:not(.sheet-ammo-type) {
+.sheet-weapon-meta input.sheet-number:not(.sheet-ammo-type):not(.sheet-firemode) {
     width: 58px;
     max-width: 58px;
     box-sizing: border-box;
 }
 
-.sheet-weapon-block > table:nth-of-type(2) td[colspan="9"] input.sheet-ammo-type {
-    width: 72%;
+.sheet-weapon-meta .sheet-ammo-type {
+    width: 100%;
     max-width: none;
-    margin-left: 0;
-    margin-right: auto;
+    margin: 0;
     display: block;
+    box-sizing: border-box;
+}
+
+.sheet-weapon-meta .sheet-firemode {
+    width: 90px;
+    max-width: 90px;
+    box-sizing: border-box;
+}
+
+.sheet-weapon-meta .sheet-weapon-condition {
+    width: 58px;
+    max-width: 58px;
     box-sizing: border-box;
 }
 
@@ -687,7 +698,8 @@ h2 {
 
 /* Fixed width for Fire Mode input box */
 .sheet-firemode {
-    width: 100px;
+    width: 90px;
+    max-width: 90px;
 }
 
 /* Short/Medium/Long/Extreme Range field sizing */
