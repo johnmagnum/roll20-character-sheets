@@ -401,7 +401,7 @@ in the game in "Superior".</p>
 
     <select name='comp_culture' required='required'>
       <option value>Select...</option>
-    <!--  <option value='custom~custom'>Custom</option> -->
+      <option value='custom~custom'>Custom</option>
     </select>
 
     <hr>
@@ -2863,13 +2863,11 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
 </div>
 
 <div class='creaturemove pcframebox'>
-  <span class='creatureheading'>Movement</span>
+  <span class='creatureheading'>Movement</span><br>
 
-  <fieldset class='repeating_creaturemove'>
-    <span name='attr_type'></span>
-    (Max <span name='attr_pace'></span>)
-    <span><span name='attr_bmr'></span>'/rnd</span>
- </fieldset>
+  <span>Walk (<span name='attr_bmr_maxpace'></span>) <span name='attr_bmr'></span>'/rnd</span> <br>
+
+  <input type='checkbox' name='attr_bmr_swim_show' class='toggle'><span class='toggler'>Swim (<span name='attr_bmr_swim_maxpace'></span>) <span name='attr_bmr_swim'></span>'/rnd (<span name='attr_bmr_swim_note'></span>) <br> </span><input type='checkbox' name='attr_bmr_fly_show' class='toggle'><span class='toggler'>Fly (<span name='attr_bmr_fly_maxpace'></span>) <span name='attr_bmr_fly'></span>'/rnd (<span name='attr_bmr_fly_note'></span>) <br> </span><input type='checkbox' name='attr_bmr_climb_show' class='toggle'><span class='toggler'>Climb (<span name='attr_bmr_climb_maxpace'></span>) <span name='attr_bmr_climb'></span>'/rnd (<span name='attr_bmr_climb_note'></span>) <br> </span><input type='checkbox' name='attr_bmr_burrow_show' class='toggle'><span class='toggler'>Burrow (<span name='attr_bmr_burrow_maxpace'></span>) <span name='attr_bmr_burrow'></span>'/rnd (<span name='attr_bmr_burrow_note'></span>) <br> </span><input type='checkbox' name='attr_bmr_leap_show' class='toggle'><span class='toggler'>Leap (<span name='attr_bmr_leap_maxpace'></span>) <span name='attr_bmr_leap'></span>'/rnd (<span name='attr_bmr_leap_note'></span>) <br> </span>
 
 </div>
 
@@ -3267,12 +3265,27 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
               <div class="bar-track"> <div class="bar-progress"></div> </div>
             </div>
             -->
-
-          </div>
-        </div>
-
-        
-        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
+      <br>Walk: <span name='attr_tvrow1_bmr'></span>            <input type='checkbox' name='attr_tvrow1_bmr_swim_show' class='toggle'>
+              <span class='toggler'>
+                Swim <span name="attr_tvrow1_bmr_swim"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow1_bmr_fly_show' class='toggle'>
+              <span class='toggler'>
+                Fly <span name="attr_tvrow1_bmr_fly"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow1_bmr_climb_show' class='toggle'>
+              <span class='toggler'>
+                Climb <span name="attr_tvrow1_bmr_climb"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow1_bmr_burrow_show' class='toggle'>
+              <span class='toggler'>
+                Burrow <span name="attr_tvrow1_bmr_burrow"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow1_bmr_leap_show' class='toggle'>
+              <span class='toggler'>
+                Leap <span name="attr_tvrow1_bmr_leap"></span>
+              </span>
+        </div></div>        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
         <span class='trackersubbox threecolumnsubbox'>
            <span>Arcane</span> <span name='attr_tvrow1_rr_arcane_bonus'></span> <span class='diced10'>0</span>
 
@@ -3455,12 +3468,27 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
               <div class="bar-track"> <div class="bar-progress"></div> </div>
             </div>
             -->
-
-          </div>
-        </div>
-
-        
-        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
+      <br>Walk: <span name='attr_tvrow2_bmr'></span>            <input type='checkbox' name='attr_tvrow2_bmr_swim_show' class='toggle'>
+              <span class='toggler'>
+                Swim <span name="attr_tvrow2_bmr_swim"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow2_bmr_fly_show' class='toggle'>
+              <span class='toggler'>
+                Fly <span name="attr_tvrow2_bmr_fly"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow2_bmr_climb_show' class='toggle'>
+              <span class='toggler'>
+                Climb <span name="attr_tvrow2_bmr_climb"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow2_bmr_burrow_show' class='toggle'>
+              <span class='toggler'>
+                Burrow <span name="attr_tvrow2_bmr_burrow"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow2_bmr_leap_show' class='toggle'>
+              <span class='toggler'>
+                Leap <span name="attr_tvrow2_bmr_leap"></span>
+              </span>
+        </div></div>        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
         <span class='trackersubbox threecolumnsubbox'>
            <span>Arcane</span> <span name='attr_tvrow2_rr_arcane_bonus'></span> <span class='diced10'>0</span>
 
@@ -3643,12 +3671,27 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
               <div class="bar-track"> <div class="bar-progress"></div> </div>
             </div>
             -->
-
-          </div>
-        </div>
-
-        
-        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
+      <br>Walk: <span name='attr_tvrow3_bmr'></span>            <input type='checkbox' name='attr_tvrow3_bmr_swim_show' class='toggle'>
+              <span class='toggler'>
+                Swim <span name="attr_tvrow3_bmr_swim"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow3_bmr_fly_show' class='toggle'>
+              <span class='toggler'>
+                Fly <span name="attr_tvrow3_bmr_fly"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow3_bmr_climb_show' class='toggle'>
+              <span class='toggler'>
+                Climb <span name="attr_tvrow3_bmr_climb"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow3_bmr_burrow_show' class='toggle'>
+              <span class='toggler'>
+                Burrow <span name="attr_tvrow3_bmr_burrow"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow3_bmr_leap_show' class='toggle'>
+              <span class='toggler'>
+                Leap <span name="attr_tvrow3_bmr_leap"></span>
+              </span>
+        </div></div>        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
         <span class='trackersubbox threecolumnsubbox'>
            <span>Arcane</span> <span name='attr_tvrow3_rr_arcane_bonus'></span> <span class='diced10'>0</span>
 
@@ -3831,12 +3874,27 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
               <div class="bar-track"> <div class="bar-progress"></div> </div>
             </div>
             -->
-
-          </div>
-        </div>
-
-        
-        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
+      <br>Walk: <span name='attr_tvrow4_bmr'></span>            <input type='checkbox' name='attr_tvrow4_bmr_swim_show' class='toggle'>
+              <span class='toggler'>
+                Swim <span name="attr_tvrow4_bmr_swim"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow4_bmr_fly_show' class='toggle'>
+              <span class='toggler'>
+                Fly <span name="attr_tvrow4_bmr_fly"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow4_bmr_climb_show' class='toggle'>
+              <span class='toggler'>
+                Climb <span name="attr_tvrow4_bmr_climb"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow4_bmr_burrow_show' class='toggle'>
+              <span class='toggler'>
+                Burrow <span name="attr_tvrow4_bmr_burrow"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow4_bmr_leap_show' class='toggle'>
+              <span class='toggler'>
+                Leap <span name="attr_tvrow4_bmr_leap"></span>
+              </span>
+        </div></div>        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
         <span class='trackersubbox threecolumnsubbox'>
            <span>Arcane</span> <span name='attr_tvrow4_rr_arcane_bonus'></span> <span class='diced10'>0</span>
 
@@ -4019,12 +4077,27 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
               <div class="bar-track"> <div class="bar-progress"></div> </div>
             </div>
             -->
-
-          </div>
-        </div>
-
-        
-        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
+      <br>Walk: <span name='attr_tvrow5_bmr'></span>            <input type='checkbox' name='attr_tvrow5_bmr_swim_show' class='toggle'>
+              <span class='toggler'>
+                Swim <span name="attr_tvrow5_bmr_swim"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow5_bmr_fly_show' class='toggle'>
+              <span class='toggler'>
+                Fly <span name="attr_tvrow5_bmr_fly"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow5_bmr_climb_show' class='toggle'>
+              <span class='toggler'>
+                Climb <span name="attr_tvrow5_bmr_climb"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow5_bmr_burrow_show' class='toggle'>
+              <span class='toggler'>
+                Burrow <span name="attr_tvrow5_bmr_burrow"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow5_bmr_leap_show' class='toggle'>
+              <span class='toggler'>
+                Leap <span name="attr_tvrow5_bmr_leap"></span>
+              </span>
+        </div></div>        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
         <span class='trackersubbox threecolumnsubbox'>
            <span>Arcane</span> <span name='attr_tvrow5_rr_arcane_bonus'></span> <span class='diced10'>0</span>
 
@@ -4207,12 +4280,27 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
               <div class="bar-track"> <div class="bar-progress"></div> </div>
             </div>
             -->
-
-          </div>
-        </div>
-
-        
-        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
+      <br>Walk: <span name='attr_tvrow6_bmr'></span>            <input type='checkbox' name='attr_tvrow6_bmr_swim_show' class='toggle'>
+              <span class='toggler'>
+                Swim <span name="attr_tvrow6_bmr_swim"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow6_bmr_fly_show' class='toggle'>
+              <span class='toggler'>
+                Fly <span name="attr_tvrow6_bmr_fly"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow6_bmr_climb_show' class='toggle'>
+              <span class='toggler'>
+                Climb <span name="attr_tvrow6_bmr_climb"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow6_bmr_burrow_show' class='toggle'>
+              <span class='toggler'>
+                Burrow <span name="attr_tvrow6_bmr_burrow"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow6_bmr_leap_show' class='toggle'>
+              <span class='toggler'>
+                Leap <span name="attr_tvrow6_bmr_leap"></span>
+              </span>
+        </div></div>        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
         <span class='trackersubbox threecolumnsubbox'>
            <span>Arcane</span> <span name='attr_tvrow6_rr_arcane_bonus'></span> <span class='diced10'>0</span>
 
@@ -4395,12 +4483,27 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
               <div class="bar-track"> <div class="bar-progress"></div> </div>
             </div>
             -->
-
-          </div>
-        </div>
-
-        
-        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
+      <br>Walk: <span name='attr_tvrow7_bmr'></span>            <input type='checkbox' name='attr_tvrow7_bmr_swim_show' class='toggle'>
+              <span class='toggler'>
+                Swim <span name="attr_tvrow7_bmr_swim"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow7_bmr_fly_show' class='toggle'>
+              <span class='toggler'>
+                Fly <span name="attr_tvrow7_bmr_fly"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow7_bmr_climb_show' class='toggle'>
+              <span class='toggler'>
+                Climb <span name="attr_tvrow7_bmr_climb"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow7_bmr_burrow_show' class='toggle'>
+              <span class='toggler'>
+                Burrow <span name="attr_tvrow7_bmr_burrow"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow7_bmr_leap_show' class='toggle'>
+              <span class='toggler'>
+                Leap <span name="attr_tvrow7_bmr_leap"></span>
+              </span>
+        </div></div>        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
         <span class='trackersubbox threecolumnsubbox'>
            <span>Arcane</span> <span name='attr_tvrow7_rr_arcane_bonus'></span> <span class='diced10'>0</span>
 
@@ -4583,12 +4686,27 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
               <div class="bar-track"> <div class="bar-progress"></div> </div>
             </div>
             -->
-
-          </div>
-        </div>
-
-        
-        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
+      <br>Walk: <span name='attr_tvrow8_bmr'></span>            <input type='checkbox' name='attr_tvrow8_bmr_swim_show' class='toggle'>
+              <span class='toggler'>
+                Swim <span name="attr_tvrow8_bmr_swim"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow8_bmr_fly_show' class='toggle'>
+              <span class='toggler'>
+                Fly <span name="attr_tvrow8_bmr_fly"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow8_bmr_climb_show' class='toggle'>
+              <span class='toggler'>
+                Climb <span name="attr_tvrow8_bmr_climb"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow8_bmr_burrow_show' class='toggle'>
+              <span class='toggler'>
+                Burrow <span name="attr_tvrow8_bmr_burrow"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow8_bmr_leap_show' class='toggle'>
+              <span class='toggler'>
+                Leap <span name="attr_tvrow8_bmr_leap"></span>
+              </span>
+        </div></div>        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
         <span class='trackersubbox threecolumnsubbox'>
            <span>Arcane</span> <span name='attr_tvrow8_rr_arcane_bonus'></span> <span class='diced10'>0</span>
 
@@ -4771,12 +4889,27 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
               <div class="bar-track"> <div class="bar-progress"></div> </div>
             </div>
             -->
-
-          </div>
-        </div>
-
-        
-        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
+      <br>Walk: <span name='attr_tvrow9_bmr'></span>            <input type='checkbox' name='attr_tvrow9_bmr_swim_show' class='toggle'>
+              <span class='toggler'>
+                Swim <span name="attr_tvrow9_bmr_swim"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow9_bmr_fly_show' class='toggle'>
+              <span class='toggler'>
+                Fly <span name="attr_tvrow9_bmr_fly"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow9_bmr_climb_show' class='toggle'>
+              <span class='toggler'>
+                Climb <span name="attr_tvrow9_bmr_climb"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow9_bmr_burrow_show' class='toggle'>
+              <span class='toggler'>
+                Burrow <span name="attr_tvrow9_bmr_burrow"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow9_bmr_leap_show' class='toggle'>
+              <span class='toggler'>
+                Leap <span name="attr_tvrow9_bmr_leap"></span>
+              </span>
+        </div></div>        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
         <span class='trackersubbox threecolumnsubbox'>
            <span>Arcane</span> <span name='attr_tvrow9_rr_arcane_bonus'></span> <span class='diced10'>0</span>
 
@@ -4959,12 +5092,27 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
               <div class="bar-track"> <div class="bar-progress"></div> </div>
             </div>
             -->
-
-          </div>
-        </div>
-
-        
-        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
+      <br>Walk: <span name='attr_tvrow10_bmr'></span>            <input type='checkbox' name='attr_tvrow10_bmr_swim_show' class='toggle'>
+              <span class='toggler'>
+                Swim <span name="attr_tvrow10_bmr_swim"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow10_bmr_fly_show' class='toggle'>
+              <span class='toggler'>
+                Fly <span name="attr_tvrow10_bmr_fly"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow10_bmr_climb_show' class='toggle'>
+              <span class='toggler'>
+                Climb <span name="attr_tvrow10_bmr_climb"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow10_bmr_burrow_show' class='toggle'>
+              <span class='toggler'>
+                Burrow <span name="attr_tvrow10_bmr_burrow"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow10_bmr_leap_show' class='toggle'>
+              <span class='toggler'>
+                Leap <span name="attr_tvrow10_bmr_leap"></span>
+              </span>
+        </div></div>        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
         <span class='trackersubbox threecolumnsubbox'>
            <span>Arcane</span> <span name='attr_tvrow10_rr_arcane_bonus'></span> <span class='diced10'>0</span>
 
@@ -5147,12 +5295,27 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
               <div class="bar-track"> <div class="bar-progress"></div> </div>
             </div>
             -->
-
-          </div>
-        </div>
-
-        
-        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
+      <br>Walk: <span name='attr_tvrow11_bmr'></span>            <input type='checkbox' name='attr_tvrow11_bmr_swim_show' class='toggle'>
+              <span class='toggler'>
+                Swim <span name="attr_tvrow11_bmr_swim"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow11_bmr_fly_show' class='toggle'>
+              <span class='toggler'>
+                Fly <span name="attr_tvrow11_bmr_fly"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow11_bmr_climb_show' class='toggle'>
+              <span class='toggler'>
+                Climb <span name="attr_tvrow11_bmr_climb"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow11_bmr_burrow_show' class='toggle'>
+              <span class='toggler'>
+                Burrow <span name="attr_tvrow11_bmr_burrow"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow11_bmr_leap_show' class='toggle'>
+              <span class='toggler'>
+                Leap <span name="attr_tvrow11_bmr_leap"></span>
+              </span>
+        </div></div>        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
         <span class='trackersubbox threecolumnsubbox'>
            <span>Arcane</span> <span name='attr_tvrow11_rr_arcane_bonus'></span> <span class='diced10'>0</span>
 
@@ -5335,12 +5498,27 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
               <div class="bar-track"> <div class="bar-progress"></div> </div>
             </div>
             -->
-
-          </div>
-        </div>
-
-        
-        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
+      <br>Walk: <span name='attr_tvrow12_bmr'></span>            <input type='checkbox' name='attr_tvrow12_bmr_swim_show' class='toggle'>
+              <span class='toggler'>
+                Swim <span name="attr_tvrow12_bmr_swim"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow12_bmr_fly_show' class='toggle'>
+              <span class='toggler'>
+                Fly <span name="attr_tvrow12_bmr_fly"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow12_bmr_climb_show' class='toggle'>
+              <span class='toggler'>
+                Climb <span name="attr_tvrow12_bmr_climb"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow12_bmr_burrow_show' class='toggle'>
+              <span class='toggler'>
+                Burrow <span name="attr_tvrow12_bmr_burrow"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow12_bmr_leap_show' class='toggle'>
+              <span class='toggler'>
+                Leap <span name="attr_tvrow12_bmr_leap"></span>
+              </span>
+        </div></div>        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
         <span class='trackersubbox threecolumnsubbox'>
            <span>Arcane</span> <span name='attr_tvrow12_rr_arcane_bonus'></span> <span class='diced10'>0</span>
 
@@ -5523,12 +5701,27 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
               <div class="bar-track"> <div class="bar-progress"></div> </div>
             </div>
             -->
-
-          </div>
-        </div>
-
-        
-        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
+      <br>Walk: <span name='attr_tvrow13_bmr'></span>            <input type='checkbox' name='attr_tvrow13_bmr_swim_show' class='toggle'>
+              <span class='toggler'>
+                Swim <span name="attr_tvrow13_bmr_swim"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow13_bmr_fly_show' class='toggle'>
+              <span class='toggler'>
+                Fly <span name="attr_tvrow13_bmr_fly"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow13_bmr_climb_show' class='toggle'>
+              <span class='toggler'>
+                Climb <span name="attr_tvrow13_bmr_climb"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow13_bmr_burrow_show' class='toggle'>
+              <span class='toggler'>
+                Burrow <span name="attr_tvrow13_bmr_burrow"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow13_bmr_leap_show' class='toggle'>
+              <span class='toggler'>
+                Leap <span name="attr_tvrow13_bmr_leap"></span>
+              </span>
+        </div></div>        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
         <span class='trackersubbox threecolumnsubbox'>
            <span>Arcane</span> <span name='attr_tvrow13_rr_arcane_bonus'></span> <span class='diced10'>0</span>
 
@@ -5711,12 +5904,27 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
               <div class="bar-track"> <div class="bar-progress"></div> </div>
             </div>
             -->
-
-          </div>
-        </div>
-
-        
-        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
+      <br>Walk: <span name='attr_tvrow14_bmr'></span>            <input type='checkbox' name='attr_tvrow14_bmr_swim_show' class='toggle'>
+              <span class='toggler'>
+                Swim <span name="attr_tvrow14_bmr_swim"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow14_bmr_fly_show' class='toggle'>
+              <span class='toggler'>
+                Fly <span name="attr_tvrow14_bmr_fly"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow14_bmr_climb_show' class='toggle'>
+              <span class='toggler'>
+                Climb <span name="attr_tvrow14_bmr_climb"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow14_bmr_burrow_show' class='toggle'>
+              <span class='toggler'>
+                Burrow <span name="attr_tvrow14_bmr_burrow"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow14_bmr_leap_show' class='toggle'>
+              <span class='toggler'>
+                Leap <span name="attr_tvrow14_bmr_leap"></span>
+              </span>
+        </div></div>        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
         <span class='trackersubbox threecolumnsubbox'>
            <span>Arcane</span> <span name='attr_tvrow14_rr_arcane_bonus'></span> <span class='diced10'>0</span>
 
@@ -5899,12 +6107,27 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
               <div class="bar-track"> <div class="bar-progress"></div> </div>
             </div>
             -->
-
-          </div>
-        </div>
-
-        
-        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
+      <br>Walk: <span name='attr_tvrow15_bmr'></span>            <input type='checkbox' name='attr_tvrow15_bmr_swim_show' class='toggle'>
+              <span class='toggler'>
+                Swim <span name="attr_tvrow15_bmr_swim"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow15_bmr_fly_show' class='toggle'>
+              <span class='toggler'>
+                Fly <span name="attr_tvrow15_bmr_fly"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow15_bmr_climb_show' class='toggle'>
+              <span class='toggler'>
+                Climb <span name="attr_tvrow15_bmr_climb"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow15_bmr_burrow_show' class='toggle'>
+              <span class='toggler'>
+                Burrow <span name="attr_tvrow15_bmr_burrow"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow15_bmr_leap_show' class='toggle'>
+              <span class='toggler'>
+                Leap <span name="attr_tvrow15_bmr_leap"></span>
+              </span>
+        </div></div>        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
         <span class='trackersubbox threecolumnsubbox'>
            <span>Arcane</span> <span name='attr_tvrow15_rr_arcane_bonus'></span> <span class='diced10'>0</span>
 
@@ -6087,12 +6310,27 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
               <div class="bar-track"> <div class="bar-progress"></div> </div>
             </div>
             -->
-
-          </div>
-        </div>
-
-        
-        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
+      <br>Walk: <span name='attr_tvrow16_bmr'></span>            <input type='checkbox' name='attr_tvrow16_bmr_swim_show' class='toggle'>
+              <span class='toggler'>
+                Swim <span name="attr_tvrow16_bmr_swim"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow16_bmr_fly_show' class='toggle'>
+              <span class='toggler'>
+                Fly <span name="attr_tvrow16_bmr_fly"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow16_bmr_climb_show' class='toggle'>
+              <span class='toggler'>
+                Climb <span name="attr_tvrow16_bmr_climb"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow16_bmr_burrow_show' class='toggle'>
+              <span class='toggler'>
+                Burrow <span name="attr_tvrow16_bmr_burrow"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow16_bmr_leap_show' class='toggle'>
+              <span class='toggler'>
+                Leap <span name="attr_tvrow16_bmr_leap"></span>
+              </span>
+        </div></div>        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
         <span class='trackersubbox threecolumnsubbox'>
            <span>Arcane</span> <span name='attr_tvrow16_rr_arcane_bonus'></span> <span class='diced10'>0</span>
 
@@ -6275,12 +6513,27 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
               <div class="bar-track"> <div class="bar-progress"></div> </div>
             </div>
             -->
-
-          </div>
-        </div>
-
-        
-        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
+      <br>Walk: <span name='attr_tvrow17_bmr'></span>            <input type='checkbox' name='attr_tvrow17_bmr_swim_show' class='toggle'>
+              <span class='toggler'>
+                Swim <span name="attr_tvrow17_bmr_swim"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow17_bmr_fly_show' class='toggle'>
+              <span class='toggler'>
+                Fly <span name="attr_tvrow17_bmr_fly"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow17_bmr_climb_show' class='toggle'>
+              <span class='toggler'>
+                Climb <span name="attr_tvrow17_bmr_climb"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow17_bmr_burrow_show' class='toggle'>
+              <span class='toggler'>
+                Burrow <span name="attr_tvrow17_bmr_burrow"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow17_bmr_leap_show' class='toggle'>
+              <span class='toggler'>
+                Leap <span name="attr_tvrow17_bmr_leap"></span>
+              </span>
+        </div></div>        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
         <span class='trackersubbox threecolumnsubbox'>
            <span>Arcane</span> <span name='attr_tvrow17_rr_arcane_bonus'></span> <span class='diced10'>0</span>
 
@@ -6463,12 +6716,27 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
               <div class="bar-track"> <div class="bar-progress"></div> </div>
             </div>
             -->
-
-          </div>
-        </div>
-
-        
-        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
+      <br>Walk: <span name='attr_tvrow18_bmr'></span>            <input type='checkbox' name='attr_tvrow18_bmr_swim_show' class='toggle'>
+              <span class='toggler'>
+                Swim <span name="attr_tvrow18_bmr_swim"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow18_bmr_fly_show' class='toggle'>
+              <span class='toggler'>
+                Fly <span name="attr_tvrow18_bmr_fly"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow18_bmr_climb_show' class='toggle'>
+              <span class='toggler'>
+                Climb <span name="attr_tvrow18_bmr_climb"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow18_bmr_burrow_show' class='toggle'>
+              <span class='toggler'>
+                Burrow <span name="attr_tvrow18_bmr_burrow"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow18_bmr_leap_show' class='toggle'>
+              <span class='toggler'>
+                Leap <span name="attr_tvrow18_bmr_leap"></span>
+              </span>
+        </div></div>        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
         <span class='trackersubbox threecolumnsubbox'>
            <span>Arcane</span> <span name='attr_tvrow18_rr_arcane_bonus'></span> <span class='diced10'>0</span>
 
@@ -6651,12 +6919,27 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
               <div class="bar-track"> <div class="bar-progress"></div> </div>
             </div>
             -->
-
-          </div>
-        </div>
-
-        
-        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
+      <br>Walk: <span name='attr_tvrow19_bmr'></span>            <input type='checkbox' name='attr_tvrow19_bmr_swim_show' class='toggle'>
+              <span class='toggler'>
+                Swim <span name="attr_tvrow19_bmr_swim"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow19_bmr_fly_show' class='toggle'>
+              <span class='toggler'>
+                Fly <span name="attr_tvrow19_bmr_fly"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow19_bmr_climb_show' class='toggle'>
+              <span class='toggler'>
+                Climb <span name="attr_tvrow19_bmr_climb"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow19_bmr_burrow_show' class='toggle'>
+              <span class='toggler'>
+                Burrow <span name="attr_tvrow19_bmr_burrow"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow19_bmr_leap_show' class='toggle'>
+              <span class='toggler'>
+                Leap <span name="attr_tvrow19_bmr_leap"></span>
+              </span>
+        </div></div>        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
         <span class='trackersubbox threecolumnsubbox'>
            <span>Arcane</span> <span name='attr_tvrow19_rr_arcane_bonus'></span> <span class='diced10'>0</span>
 
@@ -6839,12 +7122,27 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
               <div class="bar-track"> <div class="bar-progress"></div> </div>
             </div>
             -->
-
-          </div>
-        </div>
-
-        
-        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
+      <br>Walk: <span name='attr_tvrow20_bmr'></span>            <input type='checkbox' name='attr_tvrow20_bmr_swim_show' class='toggle'>
+              <span class='toggler'>
+                Swim <span name="attr_tvrow20_bmr_swim"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow20_bmr_fly_show' class='toggle'>
+              <span class='toggler'>
+                Fly <span name="attr_tvrow20_bmr_fly"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow20_bmr_climb_show' class='toggle'>
+              <span class='toggler'>
+                Climb <span name="attr_tvrow20_bmr_climb"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow20_bmr_burrow_show' class='toggle'>
+              <span class='toggler'>
+                Burrow <span name="attr_tvrow20_bmr_burrow"></span>
+              </span>
+                   <input type='checkbox' name='attr_tvrow20_bmr_leap_show' class='toggle'>
+              <span class='toggler'>
+                Leap <span name="attr_tvrow20_bmr_leap"></span>
+              </span>
+        </div></div>        <input class='trackerboxtoggle trackerboxrr' type='checkbox' style='order:11'>
         <span class='trackersubbox threecolumnsubbox'>
            <span>Arcane</span> <span name='attr_tvrow20_rr_arcane_bonus'></span> <span class='diced10'>0</span>
 
@@ -7570,7 +7868,7 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
         </span>
       <span class='prop_prop_plain'>Weight</span><span class='prop_valuef'><input type='checkbox' class='edittoggle'><span class='edittext' name='attr_weight'></span><input class='editactive' type='text' style='flex:1;min-width:100px;' name='attr_weight'></span><span class='iconwrap'><span class='prop_prop_plain'><span class="icon" style="font-family: 'Pictos Custom'; color: rgb(150,150,150);">y</span><span class='skill_info' name='attr_weightallowance_info'></span>Weight allowance</span></span>
 <span class='prop_value' name='attr_weightallowance'></span><span class='prop_prop_plain'>Carried</span><span class='prop_value' name='attr_total_weight'></span><span class='prop_prop_plain'>Load (%)</span><span class='prop_value' name='attr_load'></span><span class='prop_prop_plain'>Enc Penalty</span><span class='prop_value' name='attr_encumberance_penalty'></span><span class='iconwrap'><span class='prop_prop_plain'><span class="icon" style="font-family: 'Pictos Custom'; color: rgb(150,150,150);">y</span><span class='skill_info' name='attr_bmr_info'></span>Base Move (BMR)</span></span>
-<span class='prop_value' name='attr_bmr'></span><span class='prop_prop_plain'>Crawl Pace</span><span class='prop_value' name='attr_bmr_crawl'></span><span class='prop_prop_plain'>Max Pace</span><span class='prop_value' name='attr_maxpace'></span><span class='prop_prop_plain'>Size</span><span class='prop_value' name='attr_size'></span><span class='prop_prop_plain'>Recovery Multiplier</span><span class='prop_value' name='attr_recovery_multiplier'></span><span class='prop_pair_heading'>Feats of Strength</span><span class='prop_prop_plain'>Routine</span><span class='prop_value' name='attr_strfeat_routine'></span><span class='prop_prop_plain'>Easy</span><span class='prop_value' name='attr_strfeat_easy'></span><span class='prop_prop_plain'>Light</span><span class='prop_value' name='attr_strfeat_light'></span><span class='prop_prop_plain'>Medium</span><span class='prop_value' name='attr_strfeat_medium'></span><span class='prop_prop_plain'>Hard</span><span class='prop_value' name='attr_strfeat_hard'></span><span class='prop_prop_plain'>Very Hard</span><span class='prop_value' name='attr_strfeat_veryhard'></span><span class='prop_prop_plain'>Ext. Hard</span><span class='prop_value' name='attr_strfeat_exthard'></span><span class='prop_prop_plain'>Sheer Folly</span><span class='prop_value' name='attr_strfeat_sheerfolly'></span><span class='prop_prop_plain'>Absurd</span><span class='prop_value' name='attr_strfeat_absurd'></span><span class='prop_prop_plain'>Nigh Impossible</span><span class='prop_value' name='attr_strfeat_nighimpossible'></span>
+<span class='prop_value' name='attr_bmr'></span><span class='prop_prop_plain'>Crawl Pace</span><span class='prop_value' name='attr_bmr_crawl'></span><span class='prop_prop_plain'>Max Pace</span><span class='prop_value' name='attr_maxpace'></span><span class='prop_prop_plain'>Move (Swim)</span><span class='prop_value' name='attr_bmr_swim'></span><span class='prop_prop_plain'>Move (Fly)</span><span class='prop_value' name='attr_bmr_fly'></span><span class='prop_prop_plain'>Move (Climb)</span><span class='prop_value' name='attr_bmr_climb'></span><span class='prop_prop_plain'>Move (Burrow)</span><span class='prop_value' name='attr_bmr_burrow'></span><span class='prop_prop_plain'>Size</span><span class='prop_value' name='attr_size'></span><span class='prop_prop_plain'>Recovery Multiplier</span><span class='prop_value' name='attr_recovery_multiplier'></span><span class='prop_pair_heading'>Feats of Strength</span><span class='prop_prop_plain'>Routine</span><span class='prop_value' name='attr_strfeat_routine'></span><span class='prop_prop_plain'>Easy</span><span class='prop_value' name='attr_strfeat_easy'></span><span class='prop_prop_plain'>Light</span><span class='prop_value' name='attr_strfeat_light'></span><span class='prop_prop_plain'>Medium</span><span class='prop_value' name='attr_strfeat_medium'></span><span class='prop_prop_plain'>Hard</span><span class='prop_value' name='attr_strfeat_hard'></span><span class='prop_prop_plain'>Very Hard</span><span class='prop_value' name='attr_strfeat_veryhard'></span><span class='prop_prop_plain'>Ext. Hard</span><span class='prop_value' name='attr_strfeat_exthard'></span><span class='prop_prop_plain'>Sheer Folly</span><span class='prop_value' name='attr_strfeat_sheerfolly'></span><span class='prop_prop_plain'>Absurd</span><span class='prop_value' name='attr_strfeat_absurd'></span><span class='prop_prop_plain'>Nigh Impossible</span><span class='prop_value' name='attr_strfeat_nighimpossible'></span>
     </div> <!-- pcframebox zindex 698 -->
 
     </div>
@@ -9318,7 +9616,7 @@ Uses (Lvl/Total) <span name='attr_channeling_usecount'></span> / <span name='att
 <button type='action' data-skill='channeling' class='editbutton rollbutton ' name='act_rollskilldirectmod'><span class='diced10'>0</span></button></div>
 <fieldset class='repeating_channelingsubskill'><div class='skill_subskill'><span><span class="icon" style="font-family: 'Pictos Custom'; color: rgb(150,150,150);">y</span><span class='skill_info' name='attr_info'></span><span class='subskill_name' name='attr_name'></span></span><div class='skill_bonus subskill_bonus'><span name='attr_bonus'></span></div></div></fieldset>
 <div class='skill'><span><span class='iconwrap'><span class="icon" style="font-family: 'Pictos Custom'; color: rgb(150,150,150);">y</span><span class='skill_info' name='attr_directedspell_info'></span></span>
-      <span class='skillname'>Directed Spell<input type='hidden' name='attr_directedspell_pbonus' class='hidenext'><span>&nbsp;&bull;</span></span><span class='skill_stat' data-i18n='ag'>ag</span></span>
+      <span class='skillname'>Directed Spells<input type='hidden' name='attr_directedspell_pbonus' class='hidenext'><span>&nbsp;&bull;</span></span><span class='skill_stat' data-i18n='ag'>ag</span></span>
 <div class='skill_ranks'><span name='attr_directedspell_ranks'></span></div>
 <div class='skill_bonus'><button type='action' data-skill='directedspell' class='editbutton rollbutton skill_bonus_specialization' name='act_rollskilldirect'><span name='attr_directedspell_bonus'></span></button></div>
 </div>
@@ -10752,7 +11050,7 @@ Sheet Version: <span name='attr_version'></span>
 
 <br>
 
-Revision 46527f9ba3c2a9b3feef533245f18f3b1f7e448f
+Revision 17008f2a176f51f73ce925bee90a5e89d9ef37eb
 
 
 <hr>
@@ -11509,18 +11807,18 @@ const categories = [
         category: 'powermanipulation',
         stat: 'sd',
       },
-      { display: 'Directed Spell',
+      { display: 'Directed Spells',
         aname: 'directedspell',
         category: 'powermanipulation',
         stat: 'ag',
 		specializations: [
-		  { display: 'Elemental Bolts', aname: 'elementalbolts', fulldisplay: 'Directed Spell: Elemental Bolts' , category: 'powermanipulation' 
+		  { display: 'Elemental Bolts', aname: 'elementalbolts', fulldisplay: 'Directed Spells: Elemental Bolts' , category: 'powermanipulation' 
 , specializationof: 'directedspell'
 },
-		  { display: 'Illusionary Attacks', aname: 'illusionaryattacks', fulldisplay: 'Directed Spell: Illusionary Attacks' , category: 'powermanipulation' 
+		  { display: 'Illusionary Attacks', aname: 'illusionaryattacks', fulldisplay: 'Directed Spells: Illusionary Attacks' , category: 'powermanipulation' 
 , specializationof: 'directedspell'
 },
-		  { display: 'Hurling', aname: 'hurling', fulldisplay: 'Directed Spell: Hurling' , category: 'powermanipulation' 
+		  { display: 'Hurling', aname: 'hurling', fulldisplay: 'Directed Spells: Hurling' , category: 'powermanipulation' 
 , specializationof: 'directedspell'
 },
 		],
@@ -15052,19 +15350,14 @@ onCheck("clicked:showlevelup", (ev) => {
 
 /**/
 onCheck("clicked:removesaved", () => {
-  console.log("request cleaR");
   startRoll("!{\{template:default}}{\{ask=![[?{Are You Want to Clear All Data?|No,0|Yes,1}]]}}",
       question => {
 	const query = question.results.ask.result;
 	if (query) {
-	  console.log("About to clear");
 	  // This is an amazing sequence
 	  changeCharmancerPage('leveluprefesh', () => {
-	    console.log("Moved to refresh page");
 	    deleteCharmancerData(['levelup'], () => {
-	      console.log("levelup data cleared");
 	      changeCharmancerPage('levelup', () => {
-		console.log("Back to levelup");
 	      });
 	    });
 	  });
@@ -16200,12 +16493,15 @@ function getLevelUpSummary(cmdata) {
   return result
 }
 
+
 // Returns and object with:
 //  name: Name of the TP
 //  fulfilled: N (where N is the number fulfilled
 //  percent: X (N/M %)
+//  Each skill matches one 'requirement'
 //  skills: [ { skill: X, ranks: N, fulfilled: true/false } ]
 function getTPreport(levelupsummary, tp) {
+  'use strict';
   const report = {};
   report.skills = [];
 
@@ -16214,7 +16510,7 @@ function getTPreport(levelupsummary, tp) {
   let total = 0
 
   report.name = tp.name;
-  for (req of tp.requires) {
+  for (let req of tp.requires) {
     const skillreport = {}
     report.skills.push(skillreport)
     skillreport.skill = req.skill;
@@ -16225,30 +16521,25 @@ function getTPreport(levelupsummary, tp) {
 
     console.log("Requirement", req);
     total ++;
-    if (req.category) {
-      let filter = false;
-      if (req.skill && req.skill.startsWith("!")) {
-	filter = req.skill.substring(1,999);
-      }
-      // Category match
-      const cat = RMUSkills.getCatByDisplayName(req.category);
-      if (!cat) { continue; }
-      skillreport.note = `${cat.display} not ${filter}`;
-      for (skill of cat.skills) {
-	if (developed[skill.aname] && developed[skill.aname].ranks >= req.ranks) {
-	  // We may have a +negative+ filter in the skill field
-	  if (filter && skill.display == filter) {
-	    console.log("Skipping filtered skill");
-	    continue;
-	  }
-	  fulfilled ++;
-	  skillreport.skill = skill.aname
-	  skillreport.display = skill.display
-	  skillreport.fulfilled = true;
-	  break;
+    console.log("req.alternatives", req.alternatives)
+    if (req.alternatives) {
+      console.log("Alternatives");
+      for (let alt in req.alternatives) {
+	console.log("alt", alt)
+	if (alt.category) {
+	  let f = tpRequirementCategory(alt.category, developed, skillreport);
+	  console.log("got ", f, alt)
+	  fulfilled += f;
 	}
       }
-    } else {
+    } else if (req.category) {
+      let n = tpRanksInCategory(req.category, developed, req.notskill);
+      skillreport.ranks = n;
+      if (n > req.ranks) {
+	skillreport.fulfilled = true;
+      }
+    } else if (req.skill) {
+
       console.log(req.skill, developed[req.skill])
       if (developed[req.skill]) {
 	const ds = developed[req.skill];
@@ -16258,6 +16549,8 @@ function getTPreport(levelupsummary, tp) {
 	  skillreport.fulfilled = true
 	}
       }
+    } else {
+      rmuerror("Unknown requirement for TP");
     }
   }
 
@@ -16265,6 +16558,53 @@ function getTPreport(levelupsummary, tp) {
   report.percent = Math.floor((fulfilled / total) * 100);
 
   return report;
+}
+
+// Category is the name of the category (string)
+// Developed is the object with keys being the names
+function tpRanksInCategory(category, developed, excludes) {
+  'use strict'
+  const cat = RMUSkills.getCatByDisplayName(category);
+  if (!cat) return undefined;
+
+  let total = 0;
+  for (let skill of cat.skills) {
+    if (excludes) {
+      if (skill.aname == excludes) {
+	continue;
+      }
+    }
+   // console.log(developed[skill.aname].ranks.ranks)
+    if (developed[skill.aname]) {
+      // Non-specalised skill
+      if (developed[skill.aname].ranks) {
+	total += developed[skill.aname].ranks;
+      } else if (developed[skill.aname].specialisations) {
+	for (let subskill of developed[skill.aname].specialisations) {
+	  total += subskill.ranks;
+	}
+      }
+    }
+  }
+
+  return total;
+}
+
+function tpRequirementCategory(category, targetranks, developed) {
+  'use strict';
+  let fulfilled = false;
+  let filter = false;
+  if (category && category.startsWith("!")) {
+    filter = category.substring(1,999);
+  }
+
+  let ranksdveloped = tpRequirementCategory(category, developed);
+  if (ranks >= targetranks) {
+      skillreport.skill = skill.aname;
+      skillreport.display = skill.display;
+      skillreport.fulfilled = true;
+    }
+  return fulfilled;
 }
 
 
@@ -17273,11 +17613,12 @@ function cmProfessionGet(cmdata) {
 }
 
 function cmCultureGet(cmdata) {
+  'use strict';
   const culturename = cmdata.race.values.culture;
   if (culturename === "custom~custom") {
-    return JSON.parse(data.race.values.customculture);
+    return JSON.parse(cmdata.race.values.customculture);
   } else { 
-    return data.race.data.culture;
+    return cmdata.race.data.culture;
   }
 }
 
@@ -18441,7 +18782,11 @@ onCheck("page:languages", (_) => {
 RMUCultures.createCultureFinalize = function (culturename, cmdata) {
   console.log("Saving culture ranks");
   console.log("Culture is ", culturename);
-  const culture = cmCultureGet(cmdata)['data-skills'];
+  const culturedata = cmCultureGet(cmdata);
+  if (culturedata.Name) {
+    culturename = culturedata.Name;
+  }
+  const culture = culturedata['data-skills'];
   // Build a named index
   let skills = {}
   culture.forEach((sk) => {
@@ -18512,9 +18857,9 @@ RMUCultures.createCultureFinalize = function (culturename, cmdata) {
       }
     } else if (selectedInfo == 'languages')   {
       // languages
-      console.log("WARNING: Did not save ", name,culturename);
+      rmuerror("WARNING: Did not save ", name,culturename);
     } else {
-      console.log("WARNING: Did not save ", name, culturename);
+      rmuerror("WARNING: Did not save ", name, culturename);
     }
   });
 
@@ -18554,7 +18899,6 @@ console.log("done cultures");
 	    { "Max Pace", "maxpace" }, -- table 5-3
 	    { "Maneuver Penalty", "manpenalty" }, -- enc penglty = armor penlty
 	    -- More misc stuff
-	    { "Base Move (BMR)", "bmr" },   20'round + ceil(Qu/2) + race.stride
 	    { "Initiative", "initiative" },
 	    { "Power", "pp" },	PP 
 	    { "Size", "size" }, Race
@@ -18588,8 +18932,13 @@ onCheck("change:st change:weight", frontpage.updateWeightAllowance);
 
 frontpage.updateMaxPace = function () { console.log("update Max pace Not Implemented") }
 frontpage.updateBMR = function () {
+  'use strict';
   console.log("Update BMR");
-  getAttrsPending(["bmr_misc", "qu"], (ev) => {
+  getAttrsPending(["bmr_misc", "qu", "sheetselect"], (ev) => {
+    // FIXME: These should all be the same
+    if (ev.sheetselect == 'creaturesheet') {
+      return;
+    }
     let log = F(20) + " Starting movement\n";
     let [total, mlog] = miscBonusTotal(ev.bmr_misc, "");
     log += mlog;
@@ -18598,7 +18947,16 @@ frontpage.updateBMR = function () {
     log += `${F(qb)}  Quickness / 2\n`
     log += `${T(total)} Total Movement`
     let bmr_crawl = Math.round((total / 8 * 10)) / 10;
-    setAttrsPending({bmr: total, bmr_info: log, bmr_crawl: bmr_crawl});
+
+    // Swim is 1/4 of BMR normally
+    let bmr_swim = Math.round((total / 4 * 10)) / 10;
+    let bmr_fly = 0;
+    let bmr_climb = Math.round((total / 4 * 10)) / 10;
+    let bmr_tunnel = 0;
+
+    setAttrsPending({bmr: total, bmr_info: log, bmr_crawl: bmr_crawl,
+	  bmr_swim: bmr_swim, bmr_fly: bmr_fly, bmr_climb: bmr_climb,
+	  bmr_tunnel: bmr_tunnel});
   });
 }
 
@@ -23287,6 +23645,66 @@ onCheck("change:creaturedefense change:db_base", () => {
 });
 
 /**/
+creature.convertmovement = function(description, pace, move, output) {
+  const out = output || {}
+  const words = description.split(/,\s*/)
+
+  let base = '';
+  switch (words[0]) {
+    case 'Burrowing': base = '_burrow'; break;
+    case 'Climbing': base = '_climb'; break;
+    case 'Swimming': base = '_swim'; break;
+    case 'Walk': case 'Walking': base = ''; break;
+    case 'Wings':
+      base = '_fly';
+      if (words[1] == 'Flying') {
+        words[1] = "Wings";
+      } else if (words[1] == 'Gliding') {
+        words[1] = "Wings, Gliding";
+      }
+      break;
+    case 'Rooted': base = ''; break;
+    case 'Leaping': base = '_leap'; break;
+    case 'Shard Speed':
+      base = '';
+      words[1] = words[0];
+      break;
+    default:
+        rmuerror("Unknown pace ", description, pace, move);
+        return output; // return what was passed
+  }
+
+  out[`bmr${base}`] = move;
+  out[`bmr${base}_maxpace`] = pace;
+  out[`bmr${base}_show`] = 'on';
+  if (words[1]) {
+    out[`bmr${base}_note`] = words[1];
+  }
+  
+
+  return out;
+}
+
+// This upgrades an old creature to a new creatures movement.  Version 19 to 20
+// basically
+creature.convertoldtonew20 = function() {
+  'use strict';
+  getSectionIDs("repeating_creaturemove", (ids) => {
+    for (let origid of ids) {
+      let id = origid;
+      getAttrs([ `repeating_creaturemove_${id}_type`, `repeating_creaturemove_${id}_pace`,
+      `repeating_creaturemove_${id}_bmr`], (data) => {
+        setAttrs(creature.convertmovement(
+            data[`repeating_creaturemove_${id}_type`], 
+            data[`repeating_creaturemove_${id}_pace`],
+            data[`repeating_creaturemove_${id}_bmr`]));
+      });
+    }
+  });
+}
+
+
+/**/
 creature.newCreature = function(name, jdata) {
   console.log("new creatures", name, jdata, typeof(jdata));
   let cdata = jdata;
@@ -23368,16 +23786,9 @@ creature.newCreature = function(name, jdata) {
 
   {
     const moves = creature.parseJSONMaybe(cdata['data-move'], []);
-    const movecompressed = [];
     for (const { type, pace, bmr } of moves) {
-      const rowid = generateRowID();
-      const prefix = `repeating_creaturemove_${rowid}`;
-      updates[`${prefix}_type`] = type;
-      updates[`${prefix}_pace`] = pace;
-      updates[`${prefix}_bmr`] = bmr;
-      movecompressed.push(`${type}(${pace})${bmr}`)
+      updates = creature.convertmovement(type, pace, bmr, updates);
     }
-    updates.movestring = movecompressed.join(';');
   }
 
   // "data-skills": [ { "skill": "Running", "bonus": 43 } ],
@@ -23429,11 +23840,13 @@ creature.newCreature = function(name, jdata) {
   }
 
   updates.togglenpcupload = 0;
+  updates.version = 'latest';
 
   updates.statuspenalty = 0;
   updates.statusmessage = "Okay";
   //updates.description = creature.content || creature['data-description'];
 
+  console.log("**** Setting Attributes for creature");
   VrmuSetAttrs(updates);
 
   creature.parseDefenses(updates.defenses)
@@ -24452,7 +24865,7 @@ function doVersionCheck(version, sheettype) {
   const oldversion = version;
   if (version == 'latest') {
     // New character... we are done
-    version = 18;
+    version = 20;
   }
 
   if (version == 1) {
@@ -24561,6 +24974,14 @@ function doVersionCheck(version, sheettype) {
       setAttrs({option_averagerealmstats: "default", option_ppzerorankbonus: -25 });
     });
     version = 19
+  }
+
+  if (version == 19) {
+    // Update movements for creatures 
+    if (sheettype == 'creaturesheet') {
+      creature.convertoldtonew20(); 
+    }
+    version = 20;
   }
 
   if (oldversion != version) {
@@ -24822,7 +25243,10 @@ tracker.allAttributes = [
   "dbmod",
   "activedb",
   "activedefense",
-  "at"
+  "at",
+
+  "bmr", "bmr_swim", "bmr_fly", "bmr_climb", "bmr_burrow", "bmr_leap",
+  "bmr_swim_show", "bmr_fly_show", "bmr_climb_show", "bmr_burrow_show", "bmr_leap_show",
 ]
 
 tracker.mirroredAttributes = [
@@ -24936,6 +25360,7 @@ tracker.addTarget = function(name, characterid, tokenid) {
           data.character_token = tracker.DEFAULTTOKEN;
         }
         // this call back is in the context of the character.
+        console.log("New character fetched", data);
         rmuSetAttrsRemote(trackerid, tracker.appendPrefix(prefix, data));
         });
 
