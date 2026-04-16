@@ -4,6 +4,7 @@
 <input type="hidden" name="attr_op_animation" value="on">
 <input type="hidden" name="attr_op_bleach" value="0">
 <input type="hidden" name="attr_op_npc" value="0">
+<input type="hidden" name="attr_banner_powers_dismissed" value="0">
 
 <div class="option_menu">
   <label class="chk_toggle"><input type="checkbox" name="attr_op_gmRoll" value="/w gm"><span data-i18n="gm_roll">GM Roll</span></label>
@@ -59,6 +60,20 @@
   </div>
 </div>
 <!-- End Importer -->
+<!-- Upcoming Powers Update Banner -->
+<aside class="banner_powers">
+  <button type="action" name="act_dismiss_banner" class="btn_dismiss_banner" aria-label="Dismiss">&times;</button>
+  <h2 class="banner_title">Powers Overhaul Incoming!</h2>
+  <ul class="banner_bullets">
+    <li>Visual Power &rarr; Effect &rarr; Extra/Flaw editor</li>
+    <li>Auto-calculated costs from rank + modifiers</li>
+    <li>Support for arrays including shared budgets</li>
+    <li>Per-rank and flat modifier support</li>
+    <li>Built-in Device & Removable discounts</li>
+    <li>Inline Affliction degree editor</li>
+  </ul>
+</aside>
+<!-- End Banner -->
 <!-- NPC Sheet -->
 <div class="wrapper npcSheet">
   <div class="npcDetails">
@@ -3639,13 +3654,30 @@
     gear:(statArray,obj,powerNames)=>parseGear(statArray,obj,powerNames),
     attacks:(statArray,obj,powerNames)=>parseAttacks(statArray,obj,powerNames)
   };
+  // Session-scoped flag. Survives across sheet:opened events within one
+  // Roll20 session because sheet workers share a single persistent sandbox.
+  let sessionDismissed = false;
+  const dismissBannerPowers = function(){
+    sessionDismissed = true;
+    setAttrs({banner_powers_dismissed:'1'});
+  };
+  const syncBannerPowers = function(){
+    if(!sessionDismissed) return;
+    getAttrs(['banner_powers_dismissed'],(v)=>{
+      if(v.banner_powers_dismissed !== '1'){
+        setAttrs({banner_powers_dismissed:'1'});
+      }
+    });
+  };
   //Stores all the event listeners
   const registerEventHandlers = function(){
     on('sheet:opened',updateSheet);
+    on('sheet:opened',syncBannerPowers);
     toMonitor.forEach((m)=>{
       on(`change:${m}`,accessSheet);
     });
     on('clicked:import',importHeroLab);
+    on('clicked:dismiss_banner',dismissBannerPowers);
   };
   registerEventHandlers();
   log(`Sheet Loaded`);
