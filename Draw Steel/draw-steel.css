@@ -1225,7 +1225,8 @@ label[for*='minimize']::before {
 	display: block;
 }
 
-.charsheet .npc-abilities-panel:not(:has(input[name="attr_villain_action_show"][value="1"])) .sheet-villainaction {
+.charsheet .npc-abilities-panel:not(:has(input[name="attr_villain_action_show"][value="1"])) .sheet-villainaction,
+.charsheet .npc-abilities-panel:not(:has(input[name="attr_malice_action_show"][value="1"])) .sheet-malice {
 	display: none;
 }
 
@@ -1241,9 +1242,12 @@ label[for*='minimize']::before {
 	border-color: var(--color-button-hover-border);
 }
 
-.charsheet .npc-abilities-panel:not(:has(input[name="attr_villain_action_show"][value="1"])) .abilities-buttons .sheet-button-villainaction {
+.charsheet .npc-abilities-panel:not(:has(input[name="attr_villain_action_show"][value="1"])) .abilities-buttons .sheet-button-villainaction,
+.charsheet .npc-abilities-panel:not(:has(input[name="attr_malice_action_show"][value="1"])) .abilities-buttons .sheet-button-malice,
+.charsheet .npc-abilities-panel:not(:has(input[name="attr_ability_tab_show"][value="1"])) .abilities-buttons {
 	display: none;
 }
+
 
 .power-roll label.sublabel {
 	background-color: var(--color-bg-subsection);
@@ -1664,20 +1668,6 @@ input.name-input {
 	font-family: Menlo, Monaco, Consolas;
 }
 
-/* NPC Sheet */
-.npc-sheet-body {
-	min-width: 566px;
-}
-
-.npc-panel {
-	display: grid;
-	background: var(--color-bg-section);
-	padding: var(--sheet-padding);
-	border-bottom: var(--border-section);
-	border-left: var(--border-main);
-	border-right: var(--border-main);
-}
-
 /*Director screen styling */
 
 #director-screen-toggle:not([value="1"]) ~ .director-screen-panel {
@@ -1695,23 +1685,19 @@ input.name-input {
 	margin-left: -15px;
 }
 
-
-/* Container for the specific rules */
 .director-rules-container {
     display: flex;
     flex-direction: column;
     gap: 0.5em;
 }
 
-/* Individual Rule Item */
 .director-rule-item {
-    display: block; /* Stacked for better mobile/small panel flow */
+    display: block;
     border-bottom: var(--border-main);
     padding-bottom: 4px;
 	padding-left: 15px;
 }
 
-/* The Label (e.g., "Bleeding") */
 .director-rule-name {
     display: inline-block;
     font-weight: bold;
@@ -1722,12 +1708,26 @@ input.name-input {
 	text-decoration: underline;
 }
 
-/* The Description */
 .director-rule-desc, 
 .director-section-text {
     font-size: 0.85em;
     line-height: 1.2;
     color: var(--color-text-body);
+}
+
+/* NPC Sheet */
+.npc-sheet-body {
+	min-width: 566px;
+	margin-top: 6px;
+}
+
+.npc-panel {
+	display: grid;
+	background: var(--color-bg-section);
+	padding: var(--sheet-padding);
+	border-bottom: var(--border-section);
+	border-left: var(--border-main);
+	border-right: var(--border-main);
 }
 
 /* NPC edit styling */
@@ -1745,38 +1745,57 @@ input.name-input {
 	color: var(--color-accent-steel);
 }
 
+.charsheet .npc-sheet-body:has(#npc-edit-toggle:checked) > .npc-edit-icon::before { 
+  color: var(--color-accent-steel);
+  content: '*';
+}
+
+.charsheet .npc-sheet-body .npc-edit-icon::before { 
+  content: 'p';
+}
+
 input.npc-edit-toggle {
 	display: none;
 }
 
-input.npc-edit-toggle:not(:checked) ~ div.npc-edit {
+.charsheet .npc-panel:has(.npc-edit-icon:checked) > .npc-edit-icon::before { 
+  color: var(--color-accent-steel);
+  content: '*';
+}
+
+input.npc-edit-toggle:not(:checked) ~ div.npc-edit,
+input.npc-edit-toggle:checked ~ div.npc-display {
     display: none;
 } 
 
 .npc-edit {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 1em;
-	align-items: baseline;
-	justify-items: start;
 	font-size: 0.8em;
-	width: 400px;
 	margin-bottom: 10px;
-}
-
-.npc-edit-group {
-	display: grid;
-	gap: 3px;
-}
-
-.npc-edit-stats {
-	grid-template-columns: 1fr 1fr;
 }
 
 .npc-edit .npc-edit-stats > input[type="text"],
 .npc-edit .npc-edit-stats > input[type="number"] {
 	width: 4.5em;
 }
+
+.npc-edit .npc-header-panel {
+	padding-top: 27px;
+}
+
+.npc-edit .npc-header-panel,
+.npc-edit .npc-skills-panel {
+	gap: 0.5em;
+}
+
+.npc-edit .npc-skills-panel div:nth-child(even) {
+	justify-self: end;
+}
+
+.npc-edit .npc-header-panel .npc-level #attr_level,
+.npc-edit .npc-stats-panel .npc-stat #attr_size {
+	width: 3.5em;
+}
+
 
 .npc-edit-text {
 	grid-template-columns: auto 1fr;
@@ -1790,9 +1809,9 @@ input.npc-edit-toggle:not(:checked) ~ div.npc-edit {
 	border-radius: 20px 20px 0px 0px;
 	border-top: var(--border-main);
 }
-*/
+
 .npc-header-panel div:nth-child(even) {
-	justify-self: right;
+	justify-self: end;
 }
 
 .npc-name {
@@ -1826,6 +1845,10 @@ input.npc-edit-toggle:not(:checked) ~ div.npc-edit {
 .npc-skills-panel {
 	grid-template-columns: 1fr auto;
 	border-bottom: none;
+}
+
+.npc-skills-panel #attr_npc_with_captain[value=""] + div {
+	display: none;
 }
 
 .npc-marip-panel {

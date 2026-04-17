@@ -75,6 +75,10 @@
 					<label for="npc-checkbox" data-i18n="npc-toggle"></label>
 				</div>
 				<div>
+					<input id="npc-has-malice-actions" name="attr_malice_action_show" class="npc-checkbox" type="checkbox" value="1" />
+					<label for="npc-has-malice-actions" data-i18n="has-malice-actions"></label>
+				</div>
+				<div>
 					<input id="npc-has-villain-actions" name="attr_villain_action_show" class="npc-checkbox" type="checkbox" value="1" />
 					<label for="npc-has-villain-actions" data-i18n="has-villain-actions"></label>
 				</div>
@@ -2861,60 +2865,91 @@
 </div>
 <!-- NPC Sheet View -->
 <div class="npc-sheet-body">
-	<label class="npc-edit-icon" for="npc-edit-toggle">p</label><input class="npc-edit-toggle" type="checkbox" id="npc-edit-toggle" />
+	<label class="npc-edit-icon" for="npc-edit-toggle"></label><input class="npc-edit-toggle" type="checkbox" id="npc-edit-toggle" />
 	<!-- NPC Edit Form -->
 	<div class="npc-edit">
-		<div class="npc-edit-group npc-edit-text">
-			<label data-i18n="character-name" for="attr_character_name"></label>
-			<input type="text" id="attr_character_name" name="attr_character_name" />
-			<label data-i18n="level" for="attr_level"></label>
-			<input type="text" id="attr_level" name="attr_level" />
-			<label data-i18n="npc-role" for="attr_npc_role"></label>
-			<input type="text" id="attr_npc_role" name="attr_npc_role" />
-			<label data-i18n="keywords" for="attr_npc_keywords"></label>
-			<input type="text" id="attr_npc_keywords" name="attr_npc_keywords" />
-			<label data-i18n="encounter-value-abbr" for="attr_npc_EV"></label>
-			<input type="text" id="attr_npc_EV" name="attr_npc_EV" />
+		<div class="npc-header-panel npc-panel">
+			<div>
+				<label data-i18n="character-name" for="attr_character_name"></label>
+				<input type="text" id="attr_character_name" name="attr_character_name" />
+			</div>
+			<div class="npc-level">
+				<label data-i18n="level" for="attr_level"></label>
+				<input type="text" id="attr_level" name="attr_level" />
+				<label data-i18n="npc-role" for="attr_npc_role"></label>
+				<input type="text" id="attr_npc_role" name="attr_npc_role" />
+			</div>
+			<div>
+				<label data-i18n="keywords" for="attr_npc_keywords"></label>
+				<input type="text" id="attr_npc_keywords" name="attr_npc_keywords" />
+			</div>
+			<div>
+				<label data-i18n="encounter-value-abbr" for="attr_npc_EV"></label>
+				<input type="text" id="attr_npc_EV" name="attr_npc_EV" /></span>
+			</div>
 		</div>
-		<div class="npc-edit-group npc-edit-stats">
-			<label data-i18n="size" for="attr_size"></label>
-			<input type="text" id="attr_size" name="attr_size" />
-			<label data-i18n="speed" for="attr_speed"></label>
-			<input type="number" id="attr_speed" name="attr_speed" />
-			<label data-i18n="stamina" for="attr_stamina"></label>
-			<input type="number" id="attr_stamina" name="attr_stamina" />
-			<label data-i18n="stability" for="attr_stability"></label>
-			<input type="number" id="attr_stability" name="attr_stability" />
-			<label data-i18n="free-strike" for="attr_npc_freestrike"></label>
-			<input type="number" id="attr_npc_freestrike" name="attr_npc_freestrike" />
+		<div class="npc-stats-panel npc-panel">
+			<div class="npc-stat">
+				<input type="text" id="attr_size" name="attr_size" />
+				<label class="sublabel" for="attr_size" data-i18n="size"></label>
+			</div>
+			<div class="npc-stat">
+				<input type="number" id="attr_speed" name="attr_speed" />
+				<label class="sublabel" for="attr_speed" data-i18n="speed"></label>
+			</div>
+			<div class="npc-stat">
+				<input type="number" id="attr_stamina" name="attr_stamina" />
+				<label class="sublabel" for="attr_stamina" data-i18n="stamina"></label>
+			</div>
+			<div class="npc-stat">
+				<input type="number" id="attr_stability" name="attr_stability" />
+				<label class="sublabel" for="attr_stability" data-i18n="stability"></label>
+			</div>
+			<div class="npc-stat">
+				<input type="number" id="attr_npc_freestrike" name="attr_npc_freestrike" />
+				<label class="sublabel" for="attr_npc_freestrike" data-i18n="free-strike"></label>
+			</div>
 		</div>
-		<div class="npc-edit-group npc-edit-text">
-			<label data-i18n="immunity" for="attr_immunity"></label>
-			<input type="text" id="attr_immunity" name="attr_immunity" />
-			<label data-i18n="weakness" for="attr_weakness"></label>
-			<input type="text" id="attr_weakness" name="attr_weakness" />
-			<label data-i18n="movement" for="attr_npc_movement"></label>
-			<input type="text" id="attr_npc_movement" name="attr_npc_movement" />
-			<label data-i18n="with-captain" for="attr_npc_with_captain"></label>
-			<input type="text" id="attr_npc_with_captain" name="attr_npc_with_captain" />
+		<div class="npc-skills-panel npc-panel" >
+			<div>
+				<label data-i18n="immunity" for="attr_immunity"></label>:
+				<input type="text" id="attr_immunity" name="attr_immunity" />
+			</div>
+			<div>
+				<label data-i18n="weakness" for="attr_weakness"></label>:
+				<input type="text" id="attr_weakness" name="attr_weakness" />
+			</div>
+			<div>
+				<label data-i18n="movement" for="attr_npc_movement"></label>:
+				<input type="text" id="attr_npc_movement" name="attr_npc_movement" />
+			</div>
+			<div class="npc-with-captain">
+				<label data-i18n="with-captain" for="attr_npc_with_captain"></label>:
+				<input type="text" id="attr_npc_with_captain" name="attr_npc_with_captain" />
+			</div>
 		</div>
-		<div class="npc-edit-group npc-edit-stats">
-			<label data-i18n="might" for="attr_might"></label>
-			<input type="number" id="attr_might" name="attr_might" />
-			<label data-i18n="agility" for="attr_agility"></label>
-			<input type="number" id="attr_agility" name="attr_agility" />
-			<label data-i18n="reason" for="attr_reason"></label>
-			<input type="number" id="attr_reason" name="attr_reason" />
-			<label data-i18n="intuition" for="attr_intuition"></label>
-			<input type="number" id="attr_intuition" name="attr_intuition" />
-			<label data-i18n="presence" for="attr_presence"></label>
-			<input type="number" id="attr_presence" name="attr_presence" />
+		<div class="npc-marip-panel npc-panel">
+			<div class="npc-characteristic-input-group">
+				<label data-i18n="might" for="attr_might"></label>
+				<input type="number" id="attr_might" name="attr_might" />
+			</div>
+			<div class="npc-characteristic-input-group">
+				<label data-i18n="agility" for="attr_agility"></label>
+				<input type="number" id="attr_agility" name="attr_agility" />
+			</div>
+			<div class="npc-characteristic-input-group">
+				<label data-i18n="reason" for="attr_reason"></label>
+				<input type="number" id="attr_reason" name="attr_reason" />
+			</div>
+			<div class="npc-characteristic-input-group">
+				<label data-i18n="intuition" for="attr_intuition"></label>
+				<input type="number" id="attr_intuition" name="attr_intuition" />
+			</div>
+			<div class="npc-characteristic-input-group">
+				<label data-i18n="presence" for="attr_presence"></label>
+				<input type="number" id="attr_presence" name="attr_presence" />
+			</div>
 		</div>
-		<div class="npc-edit-group npc-edit-text">
-			<label data-i18n="villain-toggle" for="attr_villain_action_show"></label>
-			<input type="checkbox" id="attr_villain_action_show" name="attr_villain_action_show" value="1"	/>
-		</div>
-		
 	</div>
 	<!-- NPC Display -->
 	<div class="npc-display">
@@ -2959,6 +2994,7 @@
 					<label data-i18n="movement"></label>:
 					<span name="attr_npc_movement"></span>
 				</div>
+				<input type="hidden" id="attr_npc_with_captain" name="attr_npc_with_captain" value=""/>
 				<div>
 					<label data-i18n="with-captain"></label>:
 					<span name="attr_npc_with_captain"></span>
@@ -3011,10 +3047,17 @@
 			<label data-i18n="d6-level"></label><button type="roll" value="@{wtype} &amp;{template:simpleroll} {{rolltitle=1d6+@{level}}} {{roll=[[1d6[1d6] + @{level}[level]]]}} {{name=Bleeding or Dying}} {{charactername=@{character_name}}}" data-i18n-title="bleeding-dying-title" class="btn ui-draggable"></button>
 		</div>
 	</div>
+	<input type="hidden" name="attr_is_companion_show" value = "0" />
+	<div class="npc-companion-panel">
+		
+	</div>
 	<!-- NPC Abilities -->
 	<div class="npc-abilities-panel">
 		<!-- NPC Ability Type Tabs -->
 		<input type="hidden" class="sheet-tabstoggle" name="attr_npcabilitiesTab" value="npcabilities" />
+		<input type="hidden" name="attr_malice_action_show" value="0" />
+		<input type="hidden" name="attr_villain_action_show" value="0" />
+		<input type="hidden" name="attr_ability_tab_show" value="0" />
 		<div class="abilities-buttons">
 		    <button type="action" name="act_npcabilities" class="sheet-button-npcabilities" data-i18n="npc-abilities"></button>
 		    <button type="action" name="act_malice" class="sheet-button-malice" data-i18n="faction-malice"></button>
@@ -3396,7 +3439,6 @@
 				</div>
 			</div>
 		</div>
-		<input type="hidden" name="attr_villain_action_show" value = "0" />
 		<div class="sheet-villainaction">
 			<h2 data-i18n="villain-action"></h2>
 			<fieldset class="repeating_villainaction">
@@ -3548,18 +3590,20 @@
 				</div>
 			</fieldset>
 		</div>
-		<!-- Standard NPC Ability Type Tabs -->
-                <h5 class="panel-title" data-i18n="standard-abilities"></h5>
+	</div>
+	<!-- Standard NPC Ability Type Tabs -->
+	<div class="sheet-panel">
+		<h5 class="panel-title" data-i18n="standard-abilities"></h5>
 		<input type="hidden" class="sheet-tabstoggle" name="attr_abilitiesTab" value="action" />
 		<div class="abilities-buttons">
-		    <button type="action" name="act_action" class="sheet-button-action" data-i18n="main-action"></button>
-		    <button type="action" name="act_maneuver" class="sheet-button-maneuver" data-i18n="maneuver"></button>
-		    <button type="action" name="act_triggered" class="sheet-button-triggered" data-i18n="triggered-action"></button>
-		    <button type="action" name="act_noaction" class="sheet-button-noaction" data-i18n="no-action-trait"></button>
-		    <button type="action" name="act_move" class="sheet-button-move" data-i18n="move-action"></button>
+			<button type="action" name="act_action" class="sheet-button-action" data-i18n="main-action"></button>
+			<button type="action" name="act_maneuver" class="sheet-button-maneuver" data-i18n="maneuver"></button>
+			<button type="action" name="act_triggered" class="sheet-button-triggered" data-i18n="triggered-action"></button>
+			<button type="action" name="act_noaction" class="sheet-button-noaction" data-i18n="no-action-trait"></button>
+			<button type="action" name="act_move" class="sheet-button-move" data-i18n="move-action"></button>
 		</div>
 		<div class="sheet-action">
-		    <h2 data-i18n="standard-main-actions"></h2>
+			<h2 data-i18n="standard-main-actions"></h2>
 			<!-- Standard Abilities -->
 			<div class="standard-abilities">
 				<!-- Free Strike Main Action -->
@@ -4106,8 +4150,9 @@
 				</div>
 			</div>
 		</div>
+		<!-- Triggered Abilities -->
 		<div class="sheet-triggered">
-		    <h2 data-i18n="standard-triggers"></h2>
+			<h2 data-i18n="standard-triggers"></h2>
 			<!-- Standard Triggers -->
 			<div class="standard-abilities">
 				<!-- Opportunity Attack -->
@@ -4142,8 +4187,9 @@
 				</div>
 			</div>
 		</div>
+		<!-- No-Action Abilities -->
 		<div class="sheet-noaction">
-		    <h2 data-i18n="standard-noaction-trait"></h2>
+			<h2 data-i18n="standard-noaction-trait"></h2>
 			<!-- Standard Abilities -->
 			<div class="standard-abilities">
 				<!-- Climb Creature Maneuver -->
@@ -4207,8 +4253,9 @@
 				</div>
 			</div>
 		</div>
+		<!-- Move Abilities -->
 		<div class="sheet-move">
-		    <h2 data-i18n="standard-move-actions"></h2>
+			<h2 data-i18n="standard-move-actions"></h2>
 			<!-- Standard Moves -->
 			<div class="standard-abilities">
 				<!-- Advance Move Action -->
@@ -4217,7 +4264,7 @@
 					<div class="ability-card card-edit">
 						<textarea class="ability-effect grid-span-full" data-i18n-placeholder="advance" name="attr_advance_name" data-i18n="advance" spellcheck="false"></textarea>
 						<input type="hidden" class="ability-keywords" data-i18n-placeholder="advance-keywords" name="attr_advance_keywords" value="" />
-						<input type="hidden" name="attr_advance_type" value="maneuver" />
+						<input type="hidden" name="attr_advance_type" value="move-action" />
 						<textarea class="ability-effect grid-span-full" data-i18n-placeholder="distance" name="attr_advance_distance" data-i18n="self" spellcheck="false"></textarea>
 						<textarea class="ability-effect grid-span-full" data-i18n-placeholder="target" name="attr_advance_target" data-i18n="self" spellcheck="false"></textarea>
 						<textarea class="ability-effect grid-span-full" data-i18n="advance-effect" name="attr_advance_effect" spellcheck="false"></textarea>
@@ -4275,7 +4322,7 @@
 					<div class="ability-card card-edit">
 						<textarea class="ability-effect grid-span-full" data-i18n-placeholder="ride" name="attr_ride_name" data-i18n="ride" spellcheck="false"></textarea>
 						<input type="hidden" class="ability-keywords" data-i18n-placeholder="ride-keywords" name="attr_ride_keywords" value="" />
-						<input type="hidden" name="attr_ride_type" value="maneuver" />
+						<input type="hidden" name="attr_ride_type" value="move-action" />
 						<textarea class="ability-effect grid-span-full" data-i18n-placeholder="distance" name="attr_ride_distance" data-i18n="self" spellcheck="false"></textarea>
 						<textarea class="ability-effect grid-span-full" data-i18n-placeholder="target" name="attr_ride_target" data-i18n="self" spellcheck="false"></textarea>
 						<textarea class="ability-effect grid-span-full" data-i18n="ride-effect" name="attr_ride_effect" spellcheck="false"></textarea>
@@ -4706,7 +4753,7 @@
 <!-- Sheet Workers -->
 <script type="text/worker">
 	// Sheet version used to deal with major changes
-	const version = "1.4"; 
+	const version = "1.5"; 
 
 /**
  ** Sheet Utilities
@@ -4806,29 +4853,6 @@
 		});
 	}
 
-
-	/**
-	**Tab switching in Ability Panel
-	**/
-	// Tab Button list and event listener
-    const buttonlist = ["action", "maneuver", "triggered","noaction","move"];
-    buttonlist.forEach(button => {
-        on(`clicked:${button}`, function() {
-            setAttrs({
-                abilitiesTab: button
-            });
-        });
-    });
-	
-	// NPC tab button list and event listener
-    const npcbuttonlist = ["npcabilities", "malice", "villainaction"];
-    npcbuttonlist.forEach(button => {
-        on(`clicked:${button}`, function() {
-            setAttrs({
-                npcabilitiesTab: button
-            });
-        });
-    });
 
 /**
  ** Roll Template Functions
@@ -5431,6 +5455,29 @@
 		});
 	}
     
+	/**
+	**Tab switching in Ability Panels
+	**/
+	// Tab Button list and event listener
+    const buttonlist = ["action", "maneuver", "triggered","noaction","move"];
+    buttonlist.forEach(button => {
+        on(`clicked:${button}`, function() {
+            setAttrs({
+                abilitiesTab: button
+            });
+        });
+    });
+	
+	// NPC tab button list and event listener
+    const npcbuttonlist = ["npcabilities", "malice", "villainaction"];
+    npcbuttonlist.forEach(button => {
+        on(`clicked:${button}`, function() {
+            setAttrs({
+                npcabilitiesTab: button
+            });
+        });
+    });
+
 	// NPC Characteristic Power Rolls
 	$20('.npc-characteristic-input-group > label').on('click', (e) => {
 		const characteristic = e.htmlAttributes['data-characteristic'];
@@ -5500,6 +5547,10 @@
 
 	on("change:growing_resource_type change:stormwight_growing_resource_type", () => {
 		updateGrowingResource();
+	});
+	
+	on("change:villain_action_show change:malice_action_show", () => {
+		checkAbilityTabs();
 	});
 	
 	// Configuration map for feature sharing
@@ -5740,6 +5791,24 @@
 
 		setAttrs(updateObj);
 	}
+	
+	// Checks whether the ability tab buttons should be displayed on the Monster sheet
+	async function checkAbilityTabs() {
+		console.log('~~~ checkAbilityTabs ~~~');
+
+		// Get current selector values
+		const attrs = await getAttrsAsync(['malice_action_show', 'villain_action_show']);
+		const updateObj = {};
+		if (Object.values(attrs).includes('1')) {
+			updateObj['ability_tab_show'] = '1';
+		} else {
+			updateObj['ability_tab_show'] = '0';
+			updateObj['npcabilitiesTab'] = 'npcabilities';
+		}
+
+		setAttrs(updateObj);
+	}
+	
 
 /**
 ** Import from Forge Steel Start
@@ -6869,6 +6938,7 @@
 			let newOptions = {
 				options_calculate_damage: '1',
 				options_sticky_characteristics: '1',
+				malice_action_show: '1',
 			}
 			
 			setAttrs(newOptions);
@@ -6899,6 +6969,7 @@
 			}	
 		});
 		// sheet calculations
+		checkAbilityTabs();
 		calculateWinded();
 		calculateSurgePotency();
 	});
