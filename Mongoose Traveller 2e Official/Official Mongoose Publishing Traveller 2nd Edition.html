@@ -10631,8 +10631,8 @@
                 <button class="sheet-laf-initbutton btn ui-draggable sheet-wide-button"
                         style="background-color: lightcyan;"
                         type="roll" name="roll_initiative"
-                        value="@{whispertoggle} &amp;{template:skill-general-alt} {{skill=^{initiative-u}}} {{character= @{character_name} }} @{ro_default_rolltype_nodiff}+@{shipthrust}+@{ship_pilotmod}+@{initiative_effect}+@{ship_pilotcustom}+@{ship_pilotpenalty} @{ro_default_mod} &amp;{tracker}]]}}">
-                    Roll Initiative (Uses Max Thrust + Pilot Skill + Ship DM + Temp DM)
+                        value="@{whispertoggle} &amp;{template:skill-general-alt} {{skill=^{initiative-u}}} {{character= @{character_name} }} @{ro_default_rolltype_nodiff}+@{shipthrust}+@{ship_pilotmod}+@{initiative_effect}+@{ship_pilotdex}+@{ship_pilotcustom}+@{ship_pilotpenalty} @{ro_default_mod} &amp;{tracker}]]}}">
+                    Roll Initiative (Uses Thrust + Pilot Skill + Charac. Mod + Ship DM + Temp DM)
                 </button>
             </div>
             <br>
@@ -10641,7 +10641,7 @@
                 <!-- Default Skills  -->
                 <div class="sheet-laf-centredgrid sheet-laf-ship-combat-skills">
                     <h4>Pilot Skill</h4>
-                    <span data-i18n="dexmod-u">DEX Mod</span>
+                    <span data-i18n="characteristicmod-u">Characteristic Mod</span>
                     <span>Ship DM</span>
                     <span>Temp DM</span>
                     <span data-i18n="roll-u">Roll</span>
@@ -11188,22 +11188,34 @@
                 </h5>
                 <br>
                 <span class="sheet-redbold-noborder" name="attr_shipweapon_error"></span>
-                <div class="sheet-laf-centredgrid sheet-laf-ship-hardpoint sheet-laf-ship-hardpoint-abs">
-                    <span data-i18n="hardpoint-u">Hardpoint</span>
-                    <span data-i18n="type-u">Type</span>
-                    <span data-i18n="shiptl-u">TL</span>
-                    <span data-i18n="skilltablepower-u">Power</span>
-                    <span data-i18n="weaponrange-u">Range</span>
-                    <span data-i18n="shipammunition-u">Ammo</span>
-                    <span data-i18n="damage-u">Damage</span>
-                    <span data-i18n="traits-u">Traits</span>
-                    <span data-i18n="skilltabledicemodifier-u">DM</span>
-                    <span>#</span>
-                    <span></span>
-                    <span></span>
-                </div>
+<!--                <div class="sheet-laf-centredgrid sheet-laf-ship-hardpoint sheet-laf-ship-hardpoint-abs">-->
+<!--                    <span data-i18n="hardpoint-u">Hardpoint</span>-->
+<!--                    <span data-i18n="type-u">Type</span>-->
+<!--                    <span data-i18n="shiptl-u">TL</span>-->
+<!--                    <span data-i18n="skilltablepower-u">Power</span>-->
+<!--                    <span data-i18n="weaponrange-u">Range</span>-->
+<!--                    <span data-i18n="shipammunition-u">Ammo</span>-->
+<!--                    <span data-i18n="damage-u">Damage</span>-->
+<!--                    <span data-i18n="traits-u">Traits</span>-->
+<!--                    <span data-i18n="skilltabledicemodifier-u">DM</span>-->
+<!--                    <span>#</span>-->
+<!--                    <span></span>-->
+<!--                    <span></span>-->
+<!--                </div>-->
                 <fieldset class="repeating_shipweapon">
                     <div class="sheet-laf-centredgrid sheet-laf-ship-hardpoint">
+                        <span data-i18n="hardpoint-u">Hardpoint</span>
+                        <span data-i18n="type-u">Type</span>
+                        <span data-i18n="shiptl-u">TL</span>
+                        <span data-i18n="skilltablepower-u">Power</span>
+                        <span data-i18n="weaponrange-u">Range</span>
+                        <span data-i18n="shipammunition-u">Ammo</span>
+                        <span data-i18n="damage-u">Damage</span>
+                        <span data-i18n="traits-u">Traits</span>
+                        <span data-i18n="skilltabledicemodifier-u">DM</span>
+                        <span>#</span>
+                        <span></span>
+                        <span></span>
                         <input class="sheet-laf-ship-traitstext sheet-redbold" type="text" min="0"
                                name="attr_w_hardpoint_name">
                         <input class="sheet-redbold" type="text" name="attr_w_type">
@@ -13008,7 +13020,7 @@
     </div>
 </div>
 <div class="sheet-tab-content sheet-help">
-    <h3>Character Sheet Version 1.1.13</h3>
+    <h3>Character Sheet Version 1.1.14</h3>
     <br>
     <h4>Assigning Attributes To Tokens</h4>
     <p style="margin-left: 10px; margin-top: 5px;">To represent the core character attributes on a token so they can be

@@ -33,6 +33,7 @@ p {
     background-color: #ededed;
     font-family: "Rationale", sans-serif;
     font-size: 1.2em !important;
+    min-width: 825px;
 }
 
 /* Tabs */
