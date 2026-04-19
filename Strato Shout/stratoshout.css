@@ -314,7 +314,7 @@ fieldset {margin:0; padding:0; border:none;}
 .sheet-rolltemplate-StratoSkillDice .sheet-stratioDice-wrap .sheet-dice {display:block; position:relative; background:#fff; text-align:center; padding:15px 0; font-size:22px; color:#000; font-weight:800; z-index:1; margin:0 1px;}
 .sheet-rolltemplate-StratoSkillDice .sheet-stratioDice-wrap .sheet-dice .fullcrit,.sheet-rolltemplate-StratoSkillDice .sheet-stratioDice-wrap .sheet-dice .importantroll,.sheet-rolltemplate-StratoSkillDice .sheet-stratioDice-wrap .sheet-dice .fullfail {border:none !important;}
 .sheet-rolltemplate-StratoSkillDice .sheet-stratioDice-wrap .sheet-subject {display:block; position:relative; text-align:center; padding-bottom:10px;}
-.sheet-rolltemplate-StratoSkillDice .sheet-stratioDice-wrap .sheet-subject strong {display:block; position:relative; padding:5px; background:#111; color:#fff; text-align:center; font-size:14px; font-weight:600;}
+.sheet-rolltemplate-StratoSkillDice .sheet-stratioDice-wrap .sheet-subject strong {display:block; position:relative; padding:5px; background:#fff; color:#111; text-align:center; font-size:14px; font-weight:600;}
 .sheet-rolltemplate-StratoSkillDice .sheet-stratioDice-wrap .sheet-subject strong > span {font-size:12px; font-weight:400; padding-left:5px;}
 .sheet-rolltemplate-StratoSkillDice .sheet-stratioDice-wrap .sheet-descript {padding:10px 20px; font-size:12px; line-height:1.5; background:#ffffff;}
 .sheet-rolltemplate-StratoSkillDice .sheet-stratioDice-wrap .sheet-descript strong {display:inline-block; padding:2px 5px; border-radius:2px; color:#fff; background:#0064b0; margin-right:10px; vertical-align:middle;}
