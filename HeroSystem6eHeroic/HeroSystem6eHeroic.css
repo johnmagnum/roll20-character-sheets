@@ -158,9 +158,10 @@ input.customCheckbox {
 /* Skill list */
 
 .item-flex-container-skill-list,
-.flex-container-talent-selectors-container {
+.flex-container-talent-selectors-list {
 	scrollbar-width: thin;
 	scrollbar-color: #f0c566 transparent;
+	transform: rotateY(180deg);
 }
 
 
@@ -3562,8 +3563,9 @@ select:focus + .focus {
 	grid-template-areas:
 		"selectors slides";
 	height: 354px;
-	width: 427px;
+	width: 430px;
 	padding: 4px;
+	padding-left:1px;
 	margin-left: 6px;
 	border: 2px solid #f0c566;
 	border-top-left-radius: 3px;
@@ -3582,6 +3584,7 @@ select:focus + .focus {
 	border-top-right-radius: 3px;
 	border-bottom-right-radius: 3px;
 	border: solid 2px #dbdbdb;
+	background: white;
 }
 
 .flex-container-complications {
@@ -3610,6 +3613,7 @@ select:focus + .focus {
 	border-top-right-radius: 3px;
 	border-bottom-right-radius: 3px;
 	border: solid 2px #dbdbdb;
+	background: white;
 }
 
 .container-talents-text textarea,
@@ -3625,14 +3629,17 @@ select:focus + .focus {
 }
 
 /* Talent and Complication selectors */
-.flex-container-talent-selectors-container,
+.flex-container-talent-selectors-list,
 .flex-container-complication-selectors {
 	grid-area: selectors;
 	height: 354px;
-	width: 190px;
 	margin-left: 0px;
 	overflow-y: automatic;
 	overflow-x: hidden;
+}
+
+.flex-container-talent-selectors-list {
+	width: 193px;
 }
 
 .flex-container-talent-selectors {
@@ -3640,12 +3647,14 @@ select:focus + .focus {
 	flex-direction: column;
 	justify-content: space-between;
 	height: 708px;
+	transform: rotateY(180deg);
 }
 
 .flex-container-complication-selectors {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	width: 190px;
 }
 
 .flex-container-talent-selectors button,
@@ -3660,7 +3669,7 @@ select:focus + .focus {
 	line-height: 1.1;
 }
 
-.flex-container-talents .flex-container-talent-selectors button {
+.flex-container-talents .flex-container-talent-selectors-list .flex-container-talent-selectors button {
 	border: 1px solid #faf6c6;
 	background-color: #f9f4b3;
 	height: 22px;
@@ -3672,7 +3681,7 @@ select:focus + .focus {
 	height: 22px;
 }
 
-.flex-container-talents .flex-container-talent-selectors button:hover {
+.flex-container-talents .flex-container-talent-selectors-list .flex-container-talent-selectors button:hover {
 	background-color: #d2e9ff;
 }
 
@@ -4002,26 +4011,26 @@ select:focus + .focus {
 }
 
 /* Make a selection button appear to be continuous with its slide via color and border */
-.item-talent-selection[value="talent01"] ~ .flex-container-talent-selectors button[name="act_talent01"]:not(:hover),
-.item-talent-selection[value="talent02"] ~ .flex-container-talent-selectors button[name="act_talent02"]:not(:hover),
-.item-talent-selection[value="talent03"] ~ .flex-container-talent-selectors button[name="act_talent03"]:not(:hover),
-.item-talent-selection[value="talent04"] ~ .flex-container-talent-selectors button[name="act_talent04"]:not(:hover),
-.item-talent-selection[value="talent05"] ~ .flex-container-talent-selectors button[name="act_talent05"]:not(:hover),
-.item-talent-selection[value="talent06"] ~ .flex-container-talent-selectors button[name="act_talent06"]:not(:hover),
-.item-talent-selection[value="talent07"] ~ .flex-container-talent-selectors button[name="act_talent07"]:not(:hover),
-.item-talent-selection[value="talent08"] ~ .flex-container-talent-selectors button[name="act_talent08"]:not(:hover),
-.item-talent-selection[value="talent09"] ~ .flex-container-talent-selectors button[name="act_talent09"]:not(:hover),
-.item-talent-selection[value="talent10"] ~ .flex-container-talent-selectors button[name="act_talent10"]:not(:hover),
-.item-talent-selection[value="talent11"] ~ .flex-container-talent-selectors button[name="act_talent11"]:not(:hover),
-.item-talent-selection[value="talent12"] ~ .flex-container-talent-selectors button[name="act_talent12"]:not(:hover),
-.item-talent-selection[value="talent13"] ~ .flex-container-talent-selectors button[name="act_talent13"]:not(:hover),
-.item-talent-selection[value="talent14"] ~ .flex-container-talent-selectors button[name="act_talent14"]:not(:hover),
-.item-talent-selection[value="talent15"] ~ .flex-container-talent-selectors button[name="act_talent15"]:not(:hover),
-.item-talent-selection[value="talent16"] ~ .flex-container-talent-selectors button[name="act_talent16"]:not(:hover),
-.item-talent-selection[value="talent17"] ~ .flex-container-talent-selectors button[name="act_talent17"]:not(:hover),
-.item-talent-selection[value="talent18"] ~ .flex-container-talent-selectors button[name="act_talent18"]:not(:hover),
-.item-talent-selection[value="talent19"] ~ .flex-container-talent-selectors button[name="act_talent19"]:not(:hover),
-.item-talent-selection[value="talent20"] ~ .flex-container-talent-selectors button[name="act_talent20"]:not(:hover) {
+.item-talent-selection[value="talent01"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent01"]:not(:hover),
+.item-talent-selection[value="talent02"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent02"]:not(:hover),
+.item-talent-selection[value="talent03"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent03"]:not(:hover),
+.item-talent-selection[value="talent04"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent04"]:not(:hover),
+.item-talent-selection[value="talent05"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent05"]:not(:hover),
+.item-talent-selection[value="talent06"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent06"]:not(:hover),
+.item-talent-selection[value="talent07"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent07"]:not(:hover),
+.item-talent-selection[value="talent08"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent08"]:not(:hover),
+.item-talent-selection[value="talent09"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent09"]:not(:hover),
+.item-talent-selection[value="talent10"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent10"]:not(:hover),
+.item-talent-selection[value="talent11"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent11"]:not(:hover),
+.item-talent-selection[value="talent12"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent12"]:not(:hover),
+.item-talent-selection[value="talent13"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent13"]:not(:hover),
+.item-talent-selection[value="talent14"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent14"]:not(:hover),
+.item-talent-selection[value="talent15"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent15"]:not(:hover),
+.item-talent-selection[value="talent16"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent16"]:not(:hover),
+.item-talent-selection[value="talent17"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent17"]:not(:hover),
+.item-talent-selection[value="talent18"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent18"]:not(:hover),
+.item-talent-selection[value="talent19"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent19"]:not(:hover),
+.item-talent-selection[value="talent20"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent20"]:not(:hover) {
 	background-color: white;
 	border: 1px solid #bcdeff;
 	border-right: none;
@@ -4043,26 +4052,26 @@ select:focus + .focus {
 }
 
 /* Ignore hover styling for selector button of current slide */
-.item-talent-selection[value="talent01"] ~ .flex-container-talent-selectors button[name="act_talent01"]:hover,
-.item-talent-selection[value="talent02"] ~ .flex-container-talent-selectors button[name="act_talent02"]:hover,
-.item-talent-selection[value="talent03"] ~ .flex-container-talent-selectors button[name="act_talent03"]:hover,
-.item-talent-selection[value="talent04"] ~ .flex-container-talent-selectors button[name="act_talent04"]:hover,
-.item-talent-selection[value="talent05"] ~ .flex-container-talent-selectors button[name="act_talent05"]:hover,
-.item-talent-selection[value="talent06"] ~ .flex-container-talent-selectors button[name="act_talent06"]:hover,
-.item-talent-selection[value="talent07"] ~ .flex-container-talent-selectors button[name="act_talent07"]:hover,
-.item-talent-selection[value="talent08"] ~ .flex-container-talent-selectors button[name="act_talent08"]:hover,
-.item-talent-selection[value="talent09"] ~ .flex-container-talent-selectors button[name="act_talent09"]:hover,
-.item-talent-selection[value="talent10"] ~ .flex-container-talent-selectors button[name="act_talent10"]:hover,
-.item-talent-selection[value="talent11"] ~ .flex-container-talent-selectors button[name="act_talent11"]:hover,
-.item-talent-selection[value="talent12"] ~ .flex-container-talent-selectors button[name="act_talent12"]:hover,
-.item-talent-selection[value="talent13"] ~ .flex-container-talent-selectors button[name="act_talent13"]:hover,
-.item-talent-selection[value="talent14"] ~ .flex-container-talent-selectors button[name="act_talent14"]:hover,
-.item-talent-selection[value="talent15"] ~ .flex-container-talent-selectors button[name="act_talent15"]:hover,
-.item-talent-selection[value="talent16"] ~ .flex-container-talent-selectors button[name="act_talent16"]:hover,
-.item-talent-selection[value="talent17"] ~ .flex-container-talent-selectors button[name="act_talent17"]:hover,
-.item-talent-selection[value="talent18"] ~ .flex-container-talent-selectors button[name="act_talent18"]:hover,
-.item-talent-selection[value="talent19"] ~ .flex-container-talent-selectors button[name="act_talent19"]:hover,
-.item-talent-selection[value="talent20"] ~ .flex-container-talent-selectors button[name="act_talent20"]:hover {
+.item-talent-selection[value="talent01"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent01"]:hover,
+.item-talent-selection[value="talent02"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent02"]:hover,
+.item-talent-selection[value="talent03"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent03"]:hover,
+.item-talent-selection[value="talent04"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent04"]:hover,
+.item-talent-selection[value="talent05"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent05"]:hover,
+.item-talent-selection[value="talent06"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent06"]:hover,
+.item-talent-selection[value="talent07"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent07"]:hover,
+.item-talent-selection[value="talent08"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent08"]:hover,
+.item-talent-selection[value="talent09"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent09"]:hover,
+.item-talent-selection[value="talent10"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent10"]:hover,
+.item-talent-selection[value="talent11"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent11"]:hover,
+.item-talent-selection[value="talent12"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent12"]:hover,
+.item-talent-selection[value="talent13"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent13"]:hover,
+.item-talent-selection[value="talent14"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent14"]:hover,
+.item-talent-selection[value="talent15"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent15"]:hover,
+.item-talent-selection[value="talent16"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent16"]:hover,
+.item-talent-selection[value="talent17"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent17"]:hover,
+.item-talent-selection[value="talent18"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent18"]:hover,
+.item-talent-selection[value="talent19"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent19"]:hover,
+.item-talent-selection[value="talent20"] ~ .flex-container-talent-selectors-list .flex-container-talent-selectors button[name="act_talent20"]:hover {
 	background-color: white;
 	border: 1px solid #f9f4b3;
 	border-right: none;

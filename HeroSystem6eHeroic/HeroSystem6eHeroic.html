@@ -14855,7 +14855,7 @@
 			
 			<!-- Talent selection buttons -->
 			
-			<div class="flex-container-talent-selectors-container">
+			<div class="flex-container-talent-selectors-list">
 				<div class="flex-container-talent-selectors">
 					<button type="action" name="act_talent01" ><span name="attr_talentName01"></span></button>
 					<button type="action" name="act_talent02" ><span name="attr_talentName02"></span></button>
@@ -16998,7 +16998,7 @@
 			
 			<div class="item-version-information">
 				<!-- Update version before release. -->
-				<input type="text" value="4.80" name="attr_version" title="@{version}" readonly tabindex="-1"/>
+				<input type="text" value="4.81" name="attr_version" title="@{version}" readonly tabindex="-1"/>
 			</div>
 		</div>
 		
@@ -19971,7 +19971,7 @@
 	
 	
 	// Update Tally Bar after change to any Talent's CP cost.
-	on("change:talentCP01 change:talentCP02 change:talentCP03 change:talentCP04 change:talentCP05 change:talentCP06 change:talentCP07 change:talentCP08 change:talentCP09 change:talentCP10", function () {
+	on("change:talentCP01 change:talentCP02 change:talentCP03 change:talentCP04 change:talentCP05 change:talentCP06 change:talentCP07 change:talentCP08 change:talentCP09 change:talentCP10 change:talentCP11 change:talentCP12 change:talentCP13 change:talentCP14 change:talentCP15 change:talentCP16 change:talentCP17 change:talentCP18 change:talentCP19 change:talentCP20", function () {
 		sumPowersPerksTalents();
 	});
 	
@@ -26528,6 +26528,10 @@
 			attributes["optionKnockdown"] = "1";
 			
 			version = 4.80;
+		}
+		
+		if (version < 4.81) {
+			version = 4.81;
 		}
 		
 		if (version != origVersion) {
