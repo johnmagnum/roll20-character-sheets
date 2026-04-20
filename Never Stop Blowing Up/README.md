@@ -1,6 +1,5 @@
 # Never Stop Blowing Up
 Never Stop Blowing Up Roll20 character sheet.
-Puedes descargar los archivos para jugar a Medievo Oscuro en Roll20
 The name of the game is [Never Stop Blowing Up]
 The publisher is [Dropout]
 The game system/family is [Kids on Bikes]
