@@ -155,12 +155,15 @@ input.customCheckbox {
 	scrollbar-color: #78bcff transparent;
 }
 
-/* Skill list */
+/* Skills and Talents lists */
 
 .item-flex-container-skill-list,
 .flex-container-talent-selectors-list {
 	scrollbar-width: thin;
 	scrollbar-color: #f0c566 transparent;
+}
+
+.flex-container-talent-selectors-list {
 	transform: rotateY(180deg);
 }
 
