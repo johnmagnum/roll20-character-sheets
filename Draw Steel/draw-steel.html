@@ -11,7 +11,7 @@
 	<input id="sheet-options-checkbox" class="sheet-options-checkbox" type="checkbox" />
 	<div class="sheet-panel sheet-options-toggle">
 	<!-- Options Panel -->
-		<div class="sheet-panel-box import-panel">
+		<div class="sheet-panel-box">
 			<div>
 				<span data-i18n="whisper-gm"></span>
 				<select name="attr_wtype">
@@ -21,6 +21,12 @@
 				</select>	
 				<hr>
 				<div>
+					<input id="options-show-director-screen" name="attr_show_director_screen" type="checkbox" value="1" />
+					<label for="options-show-director-screen" data-i18n="options-show-director-screen"></label>
+				</div>
+				<hr>
+				<h5 data-i18n="player-options-title"></h5>
+				<div>
 					<input id="options-calculate-damage" name="attr_options_calculate_damage" type="checkbox" value="1" />
 					<label for="options-calculate-damage" data-i18n="options-calculate-damage"></label>
 				</div>
@@ -28,14 +34,6 @@
 					<input id="options-sticky-characteristics" name="attr_options_sticky_characteristics" type="checkbox" value="1" />
 					<label for="options-sticky-characteristics" data-i18n="options-sticky-characteristics"></label>
 				</div>
-				<hr>
-				<div>
-					<input id="options-show-director-screen" name="attr_show_director_screen" type="checkbox" value="1" />
-					<label for="options-show-director-screen" data-i18n="options-show-director-screen"></label>
-				</div>
-			</div>
-			<div>
-				<h5 data-i18n="player-options-title"></h5>
 				<div>
 					<input id="growing-resource-checkbox" name="attr_has_growing_resource" class="npc-checkbox" type="checkbox" />
 					<label for="growing-resource-checkbox" data-i18n="growing-resource-checkbox"></label>
@@ -66,7 +64,11 @@
 						</select>
 					</div>
 				</div>
-				<hr>
+			</div>
+		</div>
+		<div class="sheet-panel-box">
+			<div>
+				
 				<div class="grid-span-full">
 					<h5 data-i18n="npc-options-title"></h5>
 				</div>
@@ -82,10 +84,18 @@
 					<input id="npc-has-villain-actions" name="attr_villain_action_show" class="npc-checkbox" type="checkbox" value="1" />
 					<label for="npc-has-villain-actions" data-i18n="has-villain-actions"></label>
 				</div>
+				<div>
+					<input id="npc-is-companion" name="attr_options_is_companion" class="npc-checkbox" type="checkbox" value="1" />
+					<label for="npc-is_companion" data-i18n="options-is-companion"></label>
+				</div>
+				<div>
+					<input id="npc-advanced-stamina" name="attr_options_npc_advanced_stamina" class="npc-checkbox" type="checkbox" value="1" />
+					<label for="npc-advanced-stamina" data-i18n="options-advanced-stamina"></label>
+				</div>
 			</div>
 			
 		</div>
-		<div class="sheet-panel-box import-panel">
+		<div class="sheet-panel-box import-panel grid-span-full">
 			<div class="grid-span-full">
 				<h5 data-i18n="import">Import</h5>
 			</div>
@@ -99,6 +109,7 @@
 				<textarea name="attr_forgesteel_json" style="width: 100%;"></textarea>
 				<button type="action" name="act_import" data-i18n="import-player">Import Player</button>
 				<button type="action" name="act_importmonster" data-i18n="import-monster">Import Monster</button>
+				<button type="action" name="act_importmonster" data-i18n="import-companion">Import Companion</button>
 			</div>
 		</div>
 	</div>
@@ -2968,9 +2979,35 @@
 				<span name="attr_speed"></span>
 				<label class="sublabel" data-i18n="speed"></label>
 			</div>
-			<div class="npc-stat">
+			<input type="hidden" class="advanced-stamina-toggle" name="attr_options_npc_advanced_stamina" value="0" />
+			<div class="npc-stat simple-stamina-panel">
 				<span name="attr_stamina"></span>
 				<label class="sublabel" data-i18n="stamina"></label>
+			</div>
+			<div class="npc-stat advanced-stamina-panel">
+				<div class="advanced-stamina-stat">
+					<input type="number" name="attr_stamina" title="Macro: @{NAME|stamina}" />	
+					<label class="sublabel" data-i18n="stamina">Stamina</label>
+				</div>
+				<div class="npc-winded-group">
+					<input type="number" name="attr_stamina_max" title="Macro: @{NAME|stamina_max}">
+					<label class="sublabel minimize-ignore" data-i18n="stamina-max"></label>
+				</div>
+				<div class="npc-winded-group">
+					<label class="sublabel" data-i18n="winded"></label>
+					<div>
+						<span class="sublabel" name="attr_stamina_winded" title="Macro: @{NAME|stamina_winded}"></span>
+					</div>
+				</div>
+				<div class="npc-winded-group">
+					<label class="sublabel" data-i18n="dying"></label>
+					<div class="npc-dying-group">
+						0 to <span class="sublabel" name="attr_stamina_dead" title="Macro: @{NAME|stamina_dead}"></span></div>
+				</div>
+				<div class="npc-winded-group">
+					<input type="number" name="attr_stamina_temporary" title="Macro: @{NAME|stamina_temporary}" />
+					<label class="sublabel" data-i18n="stamina-temporary">Temporary</label>
+				</div>
 			</div>
 			<div class="npc-stat">
 				<span name="attr_stability"></span>
@@ -3023,6 +3060,49 @@
 			</div>
 		</div>
 	</div>
+	<input type="hidden" class="npc-companion-toggle" name="attr_options_is_companion" />
+	<div class="npc-companion-panel npc-panel">
+		<div class="resource-panel">
+			<div class="dashboard-stat-group resource-input-group">
+				<label data-i18n="beastheart-rampage" data-i18n-title="rampage-tooltip">Rampage</label>
+				<input type="number" name="attr_resource" title="Macro: @{NAME|resource}" />
+			</div>				
+		</div>
+		<div class="rampage-table minimizable">
+			<div class="minimize-control">
+				<input id="rampage-table-minimize-checkbox" class="minimize" type="checkbox" checked />
+				<label for="rampage-table-minimize-checkbox" data-i18n="beastheart-rampage-table"></label>
+			</div>
+			<div class="resource-container sheet-panel-box">
+				<div class="growing-resource-grid">
+					<div class="grid-header">
+						<span class="header-label" data-i18n="beastheart-rampage"></span>
+						<span class="header-benefit" data-i18n="effect"></span>
+					</div>
+					<div class="resource-row">
+						<span class="row-label" data-i18n="beastheart-rampage-table-8">8</span>
+						<span class="row-text" data-i18n="beastheart-rampage-table-8-text"></span>
+					</div>
+					<div class="resource-row">
+						<span class="row-label" data-i18n="beastheart-rampage-table-12">12</span>
+						<span class="row-text" data-i18n="beastheart-rampage-table-12-text"></span>
+					</div>
+					<div class="resource-row">
+						<span class="row-label" data-i18n="beastheart-rampage-table-16">16</span>
+						<span class="row-text" data-i18n="beastheart-rampage-table-16-text"></span>
+					</div>
+					<div class="resource-row">
+						<span class="row-label" data-i18n="beastheart-rampage-table-20">20</span>
+						<span class="row-text" data-i18n="beastheart-rampage-table-20-text"></span>
+					</div>
+					<div class="resource-row">
+						<span class="row-label" data-i18n="beastheart-rampage-table-24">24</span>
+						<span class="row-text" data-i18n="beastheart-rampage-table-24-text"></span>
+					</div>
+				</div>
+			</div>
+		</div>	
+	</div>
 	<div class="npc-conditions npc-panel">
 		<h5 class="panel-title" data-i18n="conditions"></h5>
 		<fieldset class="repeating_conditions">
@@ -3047,10 +3127,6 @@
 			<label data-i18n="d6-level"></label><button type="roll" value="@{wtype} &amp;{template:simpleroll} {{rolltitle=1d6+@{level}}} {{roll=[[1d6[1d6] + @{level}[level]]]}} {{name=Bleeding or Dying}} {{charactername=@{character_name}}}" data-i18n-title="bleeding-dying-title" class="btn ui-draggable"></button>
 		</div>
 	</div>
-	<input type="hidden" name="attr_is_companion_show" value = "0" />
-	<div class="npc-companion-panel">
-		
-	</div>
 	<!-- NPC Abilities -->
 	<div class="npc-abilities-panel">
 		<!-- NPC Ability Type Tabs -->
@@ -3060,7 +3136,7 @@
 		<input type="hidden" name="attr_ability_tab_show" value="0" />
 		<div class="abilities-buttons">
 		    <button type="action" name="act_npcabilities" class="sheet-button-npcabilities" data-i18n="npc-abilities"></button>
-		    <button type="action" name="act_malice" class="sheet-button-malice" data-i18n="faction-malice"></button>
+			<button type="action" name="act_malice" class="sheet-button-malice" data-i18n="faction-malice"></button>
 		    <button type="action" name="act_villainaction" class="sheet-button-villainaction" data-i18n="villain-action"></button>
 		</div>
 		<div class="sheet-npcabilities">
@@ -5808,7 +5884,6 @@
 
 		setAttrs(updateObj);
 	}
-	
 
 /**
 ** Import from Forge Steel Start
@@ -6609,7 +6684,7 @@
 	 */
 
 	function _processAbilityCore(abilityData, isNPC = false) {
-		console.log('~~~ processAbilityCore ```');
+		console.log('~~~ processAbilityCore ~~~');
 		const id = generateRowID();
 		//console.log(abilityData);
 		const { type: usageData, sections, cost: rawCost, name, description, keywords, target } = abilityData;
@@ -6658,7 +6733,8 @@
 		// Effect and Power Roll extraction
 		const powerRoll = sections.find(s => s.type === 'roll');
 		const special = sections.find(s => s.type === 'text' && s.text.startsWith('**Special:**'));
-		const malice = sections.find(s => s.type === 'field' && ['Spend', 'Malice'].includes(s.name));
+		const spend = sections.find(s => s.type === 'field' && ['Spend'].includes(s.name));
+		const malice = sections.find(s => s.type === 'field' && ['Malice'].includes(s.name));
 		const custom = sections.find(s => s.type === 'field' && ['Persist', 'Mark Benefit', 'Strained'].includes(s.name))
 	
 		let effectText = sections
@@ -6688,8 +6764,6 @@
 			[`repeating_${section}_${id}_has_power_roll`]: powerRoll ? 'on' : 0,
 		};
 		
-		
-		
 		if (custom) {
 			attrs[`repeating_${section}_${id}_has_custom`] = 'on';
 			attrs[`${prefix}_custom_label`] = `${custom.name}${parseInt(custom.value) > 0 ? ' ' + custom.value : ''}`;
@@ -6711,17 +6785,23 @@
 			attrs[`${prefix}_tier_3`] = powerRoll.roll.tier3;
 		}
 	
-		if (isNPC && special) {
+		if (special) {
 			attrs[`repeating_${section}_${id}_has_special`] = 'on';
 			attrs[`${prefix}_special`] = special.text.replace('**Special:** ', '');
 		}
 	
+		if (spend) {
+			attrs[`repeating_${section}_${id}_has_spend`] = 'on';
+			attrs[`${prefix}_spend_cost`] = spend.value; // Map Spend value
+			attrs[`${prefix}_spend`] = spend.effect;
+		}
+		
 		if (isNPC && malice) {
 			attrs[`repeating_${section}_${id}_has_malice`] = 'on';
-			attrs[`${prefix}_cost`] = malice.value; // Map Spend value
-			attrs[`${prefix}_malice`] = malice.effect;
+			attrs[`${prefix}_cost`] = malice.value; // Map Malice value
+			attrs[`${prefix}_malice`] = malice.effect; 
 		}
-	
+		
 		return attrs;
 	}
 	
