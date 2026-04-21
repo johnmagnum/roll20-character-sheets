@@ -7968,7 +7968,8 @@
             Hits</h5>
         <h5>
             Speed</h5>
-        <input type="text" class="sheet-input" name="attr_animal_name"/>
+        <input type="hidden" class="sheet-input" name="attr_animal_name"/>
+        <input type="text" class="sheet-input" name="attr_character_name"/>
         <input type="number" class="sheet-input" name="attr_animal_hits" value="0"/>
         <span><input type="number" class="sheet-input" name="attr_animal_speed" value="0"/>m</span>
     </div>
@@ -11188,20 +11189,20 @@
                 </h5>
                 <br>
                 <span class="sheet-redbold-noborder" name="attr_shipweapon_error"></span>
-                <!--                <div class="sheet-laf-centredgrid sheet-laf-ship-hardpoint sheet-laf-ship-hardpoint-abs">-->
-                <!--                    <span data-i18n="hardpoint-u">Hardpoint</span>-->
-                <!--                    <span data-i18n="type-u">Type</span>-->
-                <!--                    <span data-i18n="shiptl-u">TL</span>-->
-                <!--                    <span data-i18n="skilltablepower-u">Power</span>-->
-                <!--                    <span data-i18n="weaponrange-u">Range</span>-->
-                <!--                    <span data-i18n="shipammunition-u">Ammo</span>-->
-                <!--                    <span data-i18n="damage-u">Damage</span>-->
-                <!--                    <span data-i18n="traits-u">Traits</span>-->
-                <!--                    <span data-i18n="skilltabledicemodifier-u">DM</span>-->
-                <!--                    <span>#</span>-->
-                <!--                    <span></span>-->
-                <!--                    <span></span>-->
-                <!--                </div>-->
+<!--                <div class="sheet-laf-centredgrid sheet-laf-ship-hardpoint sheet-laf-ship-hardpoint-abs">-->
+<!--                    <span data-i18n="hardpoint-u">Hardpoint</span>-->
+<!--                    <span data-i18n="type-u">Type</span>-->
+<!--                    <span data-i18n="shiptl-u">TL</span>-->
+<!--                    <span data-i18n="skilltablepower-u">Power</span>-->
+<!--                    <span data-i18n="weaponrange-u">Range</span>-->
+<!--                    <span data-i18n="shipammunition-u">Ammo</span>-->
+<!--                    <span data-i18n="damage-u">Damage</span>-->
+<!--                    <span data-i18n="traits-u">Traits</span>-->
+<!--                    <span data-i18n="skilltabledicemodifier-u">DM</span>-->
+<!--                    <span>#</span>-->
+<!--                    <span></span>-->
+<!--                    <span></span>-->
+<!--                </div>-->
                 <fieldset class="repeating_shipweapon">
                     <div class="sheet-laf-centredgrid sheet-laf-ship-hardpoint">
                         <span data-i18n="hardpoint-u">Hardpoint</span>
@@ -19532,7 +19533,7 @@
             attrs.animal_name = compendiumData["data-Name"];
             attrs.character_name = compendiumData["data-Name"];
             attrs.animal_hits = compendiumData["Hits"];
-            attrs.animal_speed = compendiumData["Speed"];
+            attrs.animal_speed = compendiumData["Speed"].replace('m', '');
 
             console.log("- Processing animal skills: " + compendiumData["Skills"]);
 
@@ -19540,16 +19541,18 @@
             removeRepeatingRows("repeating_animalskills");
             // Bit hacky but sometimes we have 'Athletics (endurance)+2' so want to space out the mod for parsing
             let skills = compendiumData["Skills"].replace(")+", ") +").replace(")-", ") -").split(",");
-            console.log("- Skills- " + skills);
+            console.log("- Skills: " + skills);
             skills.forEach((skill, index) => {
-                console.log("- Skill: " + skill);
-                let skillRec = skill.trim().split(" ");
-                let mod = skillRec.pop().replace("+", "");
-                let skillName = skillRec.join(" ");
+                if(skill.trim() !== "None" && skill.trim() !== "") {
+                    console.log("- Skill: " + skill);
+                    let skillRec = skill.trim().split(" ");
+                    let mod = skillRec.pop().replace("+", "");
+                    let skillName = skillRec.join(" ");
 
-                let slotId = generateRowID();
-                attrs["repeating_animalskills_" + slotId + "_name"] = skillName;
-                attrs["repeating_animalskills_" + slotId + "_mod"] = mod;
+                    let slotId = generateRowID();
+                    attrs["repeating_animalskills_" + slotId + "_name"] = skillName;
+                    attrs["repeating_animalskills_" + slotId + "_mod"] = mod;
+                }
             });
 
             // Process attacks (repeating)
@@ -19559,14 +19562,39 @@
                 let attacks = compendiumData["Attacks"].split(",");
                 console.log("- Attacks: " + attacks);
                 attacks.forEach((attack, index) => {
-                    console.log("- Attack: " + attack);
-                    let attackRec = attack.trim().split(" ");
-                    let damage = attackRec.pop().replace(")", "").replace("(", "");
-                    let attackName = attackRec.join(" ");
+                    if(attack.trim() !== "None" && attack.trim() !== "") {
+                        console.log("- Attack: " + attack);
 
-                    let slotId = generateRowID();
-                    attrs["repeating_animalattacks_" + slotId + "_name"] = attackName;
-                    attrs["repeating_animalattacks_" + slotId + "_damage"] = damage.replace("D", "D6");
+                        // Check if we have damage and parse out
+                        let attackName = attack;
+                        let damage;
+
+                        // On very rare occasions we may get damage as e.g. 1Dx1D or 1D6x1D6, process this first
+                        let match = /(\d+D6x\d+D6|\d+Dx\d+D)/.exec(attack);
+
+                        if(match) {
+                            damage = match[1].replace("D6", "D").replace("x", "*");
+                            attackName = attackName.replace(match[0], "").replace("  ", " ").replace("()", "").replace("( ", "(").trim();
+                        }
+                        else {
+                            // Normal damage
+                            match = /(\d+D6|\d+D3|\d+D)/.exec(attack);
+
+                            damage = match ? match[1] : undefined;
+                            if(!damage) {
+                                damage = "";
+                            }
+                            else {
+                                // Sometimes we have e.g. 2D, sometimes 2D6, we replace below so remove now
+                                damage = damage.replace("D6", "D");
+                                attackName = attackName.replace(match[0], "").replace("  ", " ").replace("()", "").replace("( ", "(").trim();
+                            }
+                        }
+
+                        let slotId = generateRowID();
+                        attrs["repeating_animalattacks_" + slotId + "_name"] = attackName.trim();
+                        attrs["repeating_animalattacks_" + slotId + "_damage"] = damage.replace(/D$/, "D6").trim();
+                    }
                 });
             }
 
@@ -19575,18 +19603,20 @@
 
             let traits = compendiumData["Traits"].split(",");
             traits.forEach((trait, index) => {
-                let traitRec = trait.trim();
-                let mod = "";
-                let traitArr = traitRec.split(" ");
-                if(traitRec.endsWith(")")) {
-                    // Has a modifier
-                    mod = traitArr.pop().replace(")", "").replace("(", "");
-                }
-                let traitName = traitArr.join(" ");
+                if(trait !== "None") {
+                    let traitRec = trait.trim();
+                    let mod = "";
+                    let traitArr = traitRec.split(" ");
+                    if(traitRec.endsWith(")") || /\d/.test(traitRec)) {
+                        // Has a modifier
+                        mod = traitArr.pop().replace(")", "").replace("(", "");
+                    }
+                    let traitName = traitArr.join(" ");
 
-                let slotId = generateRowID();
-                attrs["repeating_animaltraits_" + slotId + "_animaltraits-trait"] = traitName;
-                attrs["repeating_animaltraits_" + slotId + "_animaltraits-mod"] = mod;
+                    let slotId = generateRowID();
+                    attrs["repeating_animaltraits_" + slotId + "_animaltraits-trait"] = traitName;
+                    attrs["repeating_animaltraits_" + slotId + "_animaltraits-mod"] = mod;
+                }
             });
 
             // Process Behaviour (repeating)
@@ -19598,7 +19628,9 @@
                 attrs["repeating_animalbehaviour_" + slotId + "_animalbehaviour"] = behaviour.trim();
             });
 
-            attrs.animal_notes = compendiumData["Description"];
+            attrs.animal_notes = compendiumData["Description"].replaceAll("\n", " ");
+
+            console.log("FINAL ATTRS: " + JSON.stringify(attrs, null, 4));
 
             setAttrs(attrs);
         });
