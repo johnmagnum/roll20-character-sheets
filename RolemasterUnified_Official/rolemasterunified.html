@@ -2295,7 +2295,7 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
     <div class='tab-panel'>
       <h2>Training Packages</h2>
 
-      <button type='action' class='fancybutton' name='act_dump_summary'>Dump Summary</button>
+      <button type='action' class='fancybutton' name='act_dump_summary'>Show Progress</button>
 
       <div class='tplist'></div>
     </div>
@@ -2432,26 +2432,51 @@ Lists Selected <input type='number' name='comp_cmbaselistcount'> / 6
 
 <charmancer class="sheet-repeating-tpitem">
   <div>
-    <p><b><span class='tpname'></span></b></p>
+    <h3 class='tpname'>X</h3>
+    <div class='two-even-columns'>
+      <div> 
+	<p>Fulfilled: <span class='tpfulfilled' name='comp_tpfulfilled'></span>
+	  (<span class='tppercent' name='comp_tppercent'></span>%).</p>
+	<input type='checkbox' class='accordian'> 
+	<span class='tpgrants'></span>
+	<div class='accordiantoggle'>
+	  <span class='tpdescription'></span>
+	  <p><b>Bonus</b></p>
 
-    <div style='display: grid;grid-template-columns: 2em 1fr'>
-      <span name='comp_tphas0' class='tphas0'></span>
-	    <span name='comp_tpskill0' class='tpskill0'></span>
-      <span name='comp_tphas1' class='tphas1'></span>
-	    <span name='comp_tpskill1' class='tpskill1'></span>
-      <span name='comp_tphas2' class='tphas2'></span>
-	    <span name='comp_tpskill2' class='tpskill2'></span>
-      <span name='comp_tphas3' class='tphas3'></span>
-	    <span name='comp_tpskill3' class='tpskill3'></span>
-      <span name='comp_tphas4' class='tphas4'></span>
-	    <span name='comp_tpskill4' class='tpskill4'></span>
-      <span name='comp_tphas5' class='tphas5'></span>
-	    <span name='comp_tpskill5' class='tpskill5'></span>
-      <span name='comp_tphas6' class='tphas6'></span>
-	    <span name='comp_tpskill6' class='tpskill6'></span>
-      <span name='comp_tphas7' class='tphas7'></span>
-	    <span name='comp_tpskill7' class='tpskill7'></span>
-    </div>
+	    <input type='checkbox' name='comp_tpbonusshow1' class='toggle'><div class='toggler dottedlist'><span name='comp_tpbonus1' class='tpbonusitem1 dottedleft'>A</span><span class='dots'></span><span name='comp_tpbonus1' class='tpbonuschance1'>A</span></div>
+<input type='checkbox' name='comp_tpbonusshow2' class='toggle'><div class='toggler dottedlist'><span name='comp_tpbonus2' class='tpbonusitem2 dottedleft'>A</span><span class='dots'></span><span name='comp_tpbonus2' class='tpbonuschance2'>A</span></div>
+<input type='checkbox' name='comp_tpbonusshow3' class='toggle'><div class='toggler dottedlist'><span name='comp_tpbonus3' class='tpbonusitem3 dottedleft'>A</span><span class='dots'></span><span name='comp_tpbonus3' class='tpbonuschance3'>A</span></div>
+<input type='checkbox' name='comp_tpbonusshow4' class='toggle'><div class='toggler dottedlist'><span name='comp_tpbonus4' class='tpbonusitem4 dottedleft'>A</span><span class='dots'></span><span name='comp_tpbonus4' class='tpbonuschance4'>A</span></div>
+<input type='checkbox' name='comp_tpbonusshow5' class='toggle'><div class='toggler dottedlist'><span name='comp_tpbonus5' class='tpbonusitem5 dottedleft'>A</span><span class='dots'></span><span name='comp_tpbonus5' class='tpbonuschance5'>A</span></div>
+<input type='checkbox' name='comp_tpbonusshow6' class='toggle'><div class='toggler dottedlist'><span name='comp_tpbonus6' class='tpbonusitem6 dottedleft'>A</span><span class='dots'></span><span name='comp_tpbonus6' class='tpbonuschance6'>A</span></div>
+<input type='checkbox' name='comp_tpbonusshow7' class='toggle'><div class='toggler dottedlist'><span name='comp_tpbonus7' class='tpbonusitem7 dottedleft'>A</span><span class='dots'></span><span name='comp_tpbonus7' class='tpbonuschance7'>A</span></div>
+<input type='checkbox' name='comp_tpbonusshow8' class='toggle'><div class='toggler dottedlist'><span name='comp_tpbonus8' class='tpbonusitem8 dottedleft'>A</span><span class='dots'></span><span name='comp_tpbonus8' class='tpbonuschance8'>A</span></div>
+<input type='checkbox' name='comp_tpbonusshow9' class='toggle'><div class='toggler dottedlist'><span name='comp_tpbonus9' class='tpbonusitem9 dottedleft'>A</span><span class='dots'></span><span name='comp_tpbonus9' class='tpbonuschance9'>A</span></div>
+<input type='checkbox' name='comp_tpbonusshow10' class='toggle'><div class='toggler dottedlist'><span name='comp_tpbonus10' class='tpbonusitem10 dottedleft'>A</span><span class='dots'></span><span name='comp_tpbonus10' class='tpbonuschance10'>A</span></div>
+
+	</div> 
+      </div>
+      <div> 
+        <div style='display: grid;grid-template-columns: 2em 1fr'>
+	  <span name='comp_tphas0' class='tphas0'></span>
+		<span name='comp_tpskill0' class='tpskill0'></span>
+	  <span name='comp_tphas1' class='tphas1'></span>
+	      <span name='comp_tpskill1' class='tpskill1'></span>
+	  <span name='comp_tphas2' class='tphas2'></span>
+	      <span name='comp_tpskill2' class='tpskill2'></span>
+	  <span name='comp_tphas3' class='tphas3'></span>
+	      <span name='comp_tpskill3' class='tpskill3'></span>
+	  <span name='comp_tphas4' class='tphas4'></span>
+	      <span name='comp_tpskill4' class='tpskill4'></span>
+	  <span name='comp_tphas5' class='tphas5'></span>
+	      <span name='comp_tpskill5' class='tpskill5'></span>
+	  <span name='comp_tphas6' class='tphas6'></span>
+	      <span name='comp_tpskill6' class='tpskill6'></span>
+	  <span name='comp_tphas7' class='tphas7'></span>
+	      <span name='comp_tpskill7' class='tpskill7'></span>
+	</div> 
+      </div>
+    </div> 
   </div>
 </charmancer>
 
@@ -11050,7 +11075,7 @@ Sheet Version: <span name='attr_version'></span>
 
 <br>
 
-Revision 17008f2a176f51f73ce925bee90a5e89d9ef37eb
+Revision c2915c28d100896f758c38652168a55f568b8a67
 
 
 <hr>
@@ -13228,6 +13253,7 @@ function lookupSkillResult(skill, skillinfo, umroll, total) {
 	for (let c = 0; c < categories.length ; c ++){
 	  let tr = categories[c].display;
 	  cache[tr] = categories[c]
+	  cache[categories[c].aname] = categories[c]
 	}
 	getCatByDisplayNameCache_ = cache;
       }
@@ -15303,7 +15329,7 @@ function xpcalculateRMSS(xp) {
     return 99; 
 }
 
-// If adding more, don't forget to update create.js.gvz
+// If addin`g more, don't forget to update create.js.gvz
 const xpfuncs = {
   rmu: (xp) => { return Math.floor(xp/ 10000) },
   milestone: (xp) => { return xp },
@@ -16386,6 +16412,7 @@ function levelUpReview() {
 
 /**/
 function getLevelUpSummary(cmdata) {
+  'use strict';
   const level = cmdata.levelup.values.current_level + 1;
 
   const result = {}
@@ -16488,8 +16515,6 @@ function getLevelUpSummary(cmdata) {
     
   }
 
-
-
   return result
 }
 
@@ -16515,42 +16540,41 @@ function getTPreport(levelupsummary, tp) {
     report.skills.push(skillreport)
     skillreport.skill = req.skill;
     skillreport.category = req.category;
-    skillreport.display = req.name;
+    skillreport.display = req.display;
     skillreport.ranks = req.ranks;
     skillreport.fulfilled = false; // Assume for now
 
-    console.log("Requirement", req);
     total ++;
-    console.log("req.alternatives", req.alternatives)
     if (req.alternatives) {
-      console.log("Alternatives");
-      for (let alt in req.alternatives) {
-	console.log("alt", alt)
-	if (alt.category) {
-	  let f = tpRequirementCategory(alt.category, developed, skillreport);
-	  console.log("got ", f, alt)
-	  fulfilled += f;
-	}
+      let ranks = 0;
+      req.alternatives.forEach((alt) => {
+	  if (alt.category) {
+	    let n = tpRanksInCategory(alt.category, developed, alt.notskill);
+	    ranks += n
+	  } else if (alt.skill) {
+	    let n = tpRanksInSkill(alt.skill, developed);
+	    ranks += n
+	  }
+      });
+      if (ranks >= req.ranks) {
+	skillreport.fulfilled = true;
+	fulfilled ++;
       }
     } else if (req.category) {
       let n = tpRanksInCategory(req.category, developed, req.notskill);
       skillreport.ranks = n;
-      if (n > req.ranks) {
+      if (n >= req.ranks) {
 	skillreport.fulfilled = true;
+	fulfilled ++;
       }
     } else if (req.skill) {
-
-      console.log(req.skill, developed[req.skill])
-      if (developed[req.skill]) {
-	const ds = developed[req.skill];
-	if (ds.ranks >= req.ranks) {
-	  console.log("Fulfilled requirement");
-	  fulfilled ++;
-	  skillreport.fulfilled = true
-	}
+      let n = tpRanksInSkill(req.skill, developed);
+      if (n >= req.ranks) {
+	fulfilled ++;
+	skillreport.fulfilled = true
       }
     } else {
-      rmuerror("Unknown requirement for TP");
+      rmuerror("Unknown requirement for TP, req");
     }
   }
 
@@ -16565,50 +16589,97 @@ function getTPreport(levelupsummary, tp) {
 function tpRanksInCategory(category, developed, excludes) {
   'use strict'
   const cat = RMUSkills.getCatByDisplayName(category);
-  if (!cat) return undefined;
+  if (!cat) {
+    rmuerror(`Unable to find category "${category}"`);
+    return undefined;
+  }
 
   let total = 0;
-  for (let skill of cat.skills) {
-    if (excludes) {
-      if (skill.aname == excludes) {
-	continue;
+  cat.skills.forEach((skill) => {
+      if (excludes && skill.aname == excludes) {
+	return;
       }
-    }
-   // console.log(developed[skill.aname].ranks.ranks)
-    if (developed[skill.aname]) {
-      // Non-specalised skill
-      if (developed[skill.aname].ranks) {
-	total += developed[skill.aname].ranks;
-      } else if (developed[skill.aname].specialisations) {
-	for (let subskill of developed[skill.aname].specialisations) {
-	  total += subskill.ranks;
-	}
+      let ranks = tpRanksInSkill(skill.aname, developed, false);
+      if (ranks && ranks > 0) {
+	total += ranks;
       }
-    }
-  }
+  });
 
   return total;
 }
 
-function tpRequirementCategory(category, targetranks, developed) {
+function tpRanksInSkill(skillname, developed, requiredspecialisation) {
   'use strict';
-  let fulfilled = false;
-  let filter = false;
-  if (category && category.startsWith("!")) {
-    filter = category.substring(1,999);
+  const skill = RMUSkills.getSkillByName(skillname);
+  if (!skill) {
+    rmuerror("Unable to find skill", skillname);
+    return undefined;
   }
 
-  let ranksdveloped = tpRequirementCategory(category, developed);
-  if (ranks >= targetranks) {
-      skillreport.skill = skill.aname;
-      skillreport.display = skill.display;
-      skillreport.fulfilled = true;
+  if (skill.specializations) {
+    // So each of the developed skills is under a different skill (the specialisaztion)
+    // Try each.
+    let total = 0;
+    skill.specializations.forEach((spec) => {
+	if (!developed[spec.aname]) {
+	  return
+	}
+	total += developed[spec.aname].ranks;
+    });
+
+    return total;
+  } else  if (skill.dynamicspecializations) {
+    // did the character develop any specialisations in this field
+    if (!developed[skill.aname]) {
+      // Nope : easy case.
+      return 0;
     }
-  return fulfilled;
+    let total = 0;
+
+    if (requiredspecialisation) {
+      // So we need one of them specifically
+      // So this is an array of name & ranks { name: "Charm", ranks: 83 }
+      for (let skillspec of skill.specialisations || {}) {
+	if (skillspec.aname == requiredspecialisation ||
+	      skillspec.display == requiredspecialisation) {
+
+	}
+      }
+   
+    } else {
+      const devspec = developed[skill.aname];
+      // Need to check each specialisation
+      if (devspec) {
+	for (let ds of devspec) {
+	  if (ds.ranks) {
+	    total += ds.ranks;
+	  }
+	}
+      }
+    }
+    return total;
+  } else {
+    if (requiredspecialisation) {
+      rmuerror("Got a specialisation request on a non-specalised skill");
+      return undefined;
+    }
+
+    if (developed[skill.aname] && developed[skill.aname].ranks) {
+      return developed[skill.aname].ranks;
+    }
+    return 0;
+  }
+
+  console.log(skill);
+  return 0;
 }
 
 
 onCheck("clicked:dump_summary", () => {
+  'use strict';
+  // In charactermancer" So use charactermancer API
+  clearRepeatingSections("tplist");
+
   let levelup = getLevelUpSummary(getCharmancerData());
   console.log("Levelup summary", levelup);
   getCompendiumQuery("Category:TrainingPackage", (tps) => {
@@ -16618,31 +16689,66 @@ onCheck("clicked:dump_summary", () => {
       return;
     }
 
-    for (let i = 0 ; i < tps.length ; i ++) {
-      let tp = tps[i];
+    const reports = []
+
+    // First; get all the reports.
+    tps.forEach((tp, i) => {
+      console.log(tp);
+      let checktp = {}
+      checktp.name = tp.name
+      try {
+	checktp.requires = JSON.parse(tp.data.requires);
+      } catch (e) {
+	rmuerror(`Bad JSON for requires on Training Package ${tp.name}`, e);
+	return;
+      }
+      const report = getTPreport(levelup, checktp);
+      report.tp = tp;
+      reports.push(report);
+    })
+
+    // Sort them by percent %, then fulfilled
+    reports.sort((a, b) => {
+      if (a.percent != b.percent) {
+	return b.percent - a.percent;
+      }
+      if (a.fulfilled != b.fulfilled) {
+	return b.fulfilled - a.fulfilled;
+      }
+      return a.name.localeCompare(b.name);
+    });
+
+    // Now for each report, render the thing 
+    // This is like absurdely async...
+    reports.forEach(report => {
       addRepeatingSection("tplist", 'tpitem', 'tpx', (prefix) => {
-	console.log("tp.name", tp.name, typeof(tp.data.requires), tp.data.requires);
-	// So lets work out how much we have of this one:
-	let requires = JSON.parse(tp.data.requires)
-	let meets = 0
-	let needed = requires.length
 	const updates = {};
-	for (let i = 0 ; i < needed ; i ++) {
-	  const require = requires[i];
-	  if (require.skill) {
-	    updates[`${prefix} .tpskill${i}`] = require.skill
-	    if (levelup.skills[require.skill]) {
-	      updates[`${prefix} .tphas${i}`] = '+';
-	    } else {
-	      updates[`${prefix} .tphas${i}`] = '-';
-	    }
-	  }
+	const toggles = {};
+	updates[`${prefix} .tppercent`] = report.percent;
+	updates[`${prefix} .tpfulfilled`] = report.fulfilled;
+	updates[`${prefix} .tpname`] = report.tp.name;
+	updates[`${prefix} .tpdescription`] = report.tp.data['data-description'];
+	report.skills.forEach((result, row) => {
+	    updates[`${prefix} .tphas${row}`] = result.fulfilled ? '✅' : '➖';
+	    updates[`${prefix} .tpskill${row}`] = result.display;
+	});
+	// Now the bonus items:
+	try {
+	  const bonus = JSON.parse(report.tp.data.bonus);
+	  console.log(bonus);
+	  bonus.forEach((item, index) => {
+	      updates[`${prefix} .tpbonusitem${index}`] = item.item;
+	      updates[`${prefix} .tpbonuschance${index}`] = item.chance;
+	      toggles[`${prefix}_tpbonusshow${index}`] = 'on';
+	  });
+	} catch (e) {
+	  rmuerror(`Bad JSON for bonus items ${report.tp.name}`, e);
 	}
-	updates[`${prefix} .tpname`] = tp.name;
 	setCharmancerText(updates);
-	console.log("Set TP", updates);
+	setAttrs(toggles);
+	console.log("Set TP", report.tp, updates, toggles);
       });
-    }
+    });
   });
 
   console.log("Level Up Summary", levelup);
@@ -16829,12 +16935,13 @@ RMUStats.updateStatOption = function(stats) {
  * 
  */
 RMUStats.createStatsFinalize = function(cmdata) {
+  'use strict';
   const statsdata = cmdata.stats.values;
   let toUpdate = {}
   const statfullnames = RMUSkills.statfullnames;
 
   // Each stat is by key; object with temp, pot and spare
-  svals = {};
+  const svals = {};
 
   for (const stname of statfullnames) {
     let obj = {}
@@ -16851,7 +16958,7 @@ RMUStats.createStatsFinalize = function(cmdata) {
   const nstatoptions = getNumberOfStatOptions(cmdata);
   console.log("Saving stats", nstatoptions, cmdata.powerlevel.values.powerlevel);
   const averagetemp = getPowerLevelAverageTemp(cmdata);
-  const averagepot = getPowerLevelAverageTemp(cmdata);
+  const averagepot = getPowerLevelAveragePot(cmdata);
 
   for (let suffix = 1  ; suffix <= nstatoptions ; suffix ++) {
     const opt = statsdata[`cmstatoption_${suffix}`];
@@ -19948,7 +20055,7 @@ RMUInventory.itemfields = [ "itemname", "itemweight", "itemcount", "itemsystem",
 	  }
 	  let system = {}
 	  update.name = ia.inventoryaddname;
-	  update.weight = parseIntDefault(ia.inventoryaddweight, 0);
+	  update.weight = Number.parseFloat(ia.inventoryaddweight).toFixed(1) || 0;
 	  system.Strength = parseIntDefault(ia.inventoryaddstrength, 0);
 	  update.notes = ia.inventoryaddnotes || "";
 	  update.count = 1;

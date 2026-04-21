@@ -1,10 +1,24 @@
+# 2026-04-21
+
+- Bugfix: When raising to average stat; set potential correctly (@snowdragon)
+- Round weights of manually added items to 1/10 of a unit, not the whole unit (@snowdragon)
+- Training Packages
+  - Sheet can now validate all known Training Packages
+  - Handle bad Training Packages
+  - Sort Training Packages by %/fulfilled/name
+  - Change button to "Show Progress".
+  - Show description and toggle
+- (Character Companion):
+  - Data for all skills and Training Packages imported
+  - Show human readable descriptions
+
 # 2026-04-13
 
 - Custom Cultures
 - Directed Spell -> Directed Spells
 - Creature movement changes:
   - Now use fixed fields
-  - update to version 20 brings it in
+  - Update to version 20 brings it in
   - Hide useless fields.
 - Update BMR: Don't touch creatures for now.
 - Tracker: Fetch BMR for creatures (and PCs)
