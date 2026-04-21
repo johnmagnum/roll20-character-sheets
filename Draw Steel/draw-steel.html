@@ -109,7 +109,7 @@
 				<textarea name="attr_forgesteel_json" style="width: 100%;"></textarea>
 				<button type="action" name="act_import" data-i18n="import-player">Import Player</button>
 				<button type="action" name="act_importmonster" data-i18n="import-monster">Import Monster</button>
-				<button type="action" name="act_importmonster" data-i18n="import-companion">Import Companion</button>
+				<!--<button type="action" name="act_importcompanion" data-i18n="import-companion">Import Companion</button>-->
 			</div>
 		</div>
 	</div>
@@ -3060,13 +3060,30 @@
 			</div>
 		</div>
 	</div>
-	<input type="hidden" class="npc-companion-toggle" name="attr_options_is_companion" />
+	<input type="hidden" class="npc-companion-toggle" name="attr_options_is_companion" value="0" />
 	<div class="npc-companion-panel npc-panel">
 		<div class="resource-panel">
 			<div class="dashboard-stat-group resource-input-group">
 				<label data-i18n="beastheart-rampage" data-i18n-title="rampage-tooltip">Rampage</label>
 				<input type="number" name="attr_resource" title="Macro: @{NAME|resource}" />
-			</div>				
+			</div>	
+			<div class="kit-melee-damage-group">
+				<label class="kit-damage-label" data-i18n="melee-weapon-damage"></label>
+				<div class="kit-melee-damage">
+					<div class="kit-melee-damage-1-input-group">
+						<input type="number" class="kit-melee-damage-1" name="attr_kit_melee_damage_1" value="0" />
+						<label class="sublabel">≤11</label>
+					</div>
+					<div class="kit-melee-damage-2-input-group">
+						<input type="number" class="kit-melee-damage-2" name="attr_kit_melee_damage_2" value="0" />
+						<label class="sublabel">12-16</label>
+					</div>
+					<div class="kit-melee-damage-3-input-group">
+						<input type="number" class="kit-melee-damage-3" name="attr_kit_melee_damage_3" value="0" />
+						<label class="sublabel">17+</label>
+					</div>
+				</div>
+			</div>			
 		</div>
 		<div class="rampage-table minimizable">
 			<div class="minimize-control">
@@ -3712,7 +3729,7 @@
 					<div class="ability-card card-edit">
 						<textarea class="ability-effect grid-span-full" data-i18n-placeholder="charge" name="attr_charge_name" data-i18n="charge" spellcheck="false"></textarea>
 						<input type="hidden" class="ability-keywords" data-i18n-placeholder="charge-keywords" name="attr_charge_keywords" value="" />
-						<input type="hidden" name="attr_charge_type" value="Main Action" />
+						<input type="hidden" name="attr_charge_type" value="main-action" />
 						<textarea class="ability-effect grid-span-full" data-i18n="charge-effect" name="attr_charge_effect" spellcheck="false"></textarea>
 					</div>
 					<div class="ability-card card-display">
@@ -3737,7 +3754,7 @@
 					<div class="ability-card card-edit">
 						<textarea class="ability-name grid-span-full" data-i18n-placeholder="defend" name="attr_defend_name" data-i18n="defend" spellcheck="false"></textarea>
 						<input type="hidden" class="ability-keywords" data-i18n-placeholder="defend-keywords" name="attr_defend_keywords" value="" />
-						<input type="hidden" name="attr_defend_type" value="Main Action" />
+						<input type="hidden" name="attr_defend_type" value="main-action" />
 						<textarea class="ability-effect grid-span-full" data-i18n="defend-effect" name="attr_defend_effect" spellcheck="false"></textarea>
 					</div>
 					<div class="ability-card card-display">
@@ -3762,7 +3779,7 @@
 					<div class="ability-card card-edit">
 						<textarea class="ability-effect grid-span-full" data-i18n-placeholder="convert" name="attr_convert_name" data-i18n="convert" spellcheck="false"></textarea>
 						<input type="hidden" class="ability-keywords" data-i18n-placeholder="convert-keywords" name="attr_convert_keywords" value="" />
-						<input type="hidden" name="attr_convert_type" value="Main Action" />
+						<input type="hidden" name="attr_convert_type" value="main-action" />
 						<textarea class="ability-effect grid-span-full" data-i18n="convert-effect" name="attr_convert_effect" spellcheck="false"></textarea>
 					</div>	
 					<div class="ability-card card-display">
@@ -5182,7 +5199,7 @@
 		
 		// 2. Define the character-level attributes needed for both.
 		const globalAttrsToGet = prefix === 'repeating_npcabilities'
-			? [] // Monster abilities need nothing
+			? ['kit_melee_damage_1','kit_melee_damage_2','kit_melee_damage_3'] // Companions need melee kit values
 			: ['resource_name','kit_melee_damage_1','kit_melee_damage_2','kit_melee_damage_3','kit_ranged_damage_1','kit_ranged_damage_2','kit_ranged_damage_3', 'mag_psi_dam', 'sanct_weap' ]; // Player abilities need resource names and kit damage info
 			
 		const characteristics = isPowerRoll ? ['might', 'agility', 'reason', 'intuition', 'presence'] : [];
@@ -5237,7 +5254,7 @@
 				parseInt(attrs[`kit_${type}_damage_2`]) || 0,
 				parseInt(attrs[`kit_${type}_damage_3`]) || 0
 			];
-
+			
 			if (attrs['sanct_weap']) {
 				otherDamage += `+${attrs['sanct_weap']}[${getTranslationByKey('sanct-weap')}]`;
 			}
@@ -6004,6 +6021,7 @@
 		CHARACTERISTIC_BONUS: 'Characteristic Bonus',
 		MALICE_ABILITY: 'Malice Ability',
 		CONDITION_IMMUNITY: 'Condition Immunity',
+		SUMMON_CHOICE: 'Summon Choice',
 	};
 
 	/**
@@ -6372,7 +6390,87 @@
 		}
 	});
 
-	
+	// --- Import Companion Event Listener ---
+	on('clicked:importcompanion', async () => {
+		try {
+			// Get the raw JSON string from the character sheet attributes.
+			const data = await loadForgeSteelData();
+			if (!data) { return };
+			
+			// Check if the data is for a single monster or a monster group
+			if (data.hasOwnProperty('class')) {
+				const allFeatures = getFeatures(data);
+				//Get relevant player chaaracter information
+				const level = data.class.level;
+				const baseStats = data.class.characteristics.reduce((acc, i) => ({ ...acc, [i.characteristic]:i.value }), {});
+				const characteristics = ['Might', 'Agility', 'Reason', 'Intuition', 'Presence'].reduce((acc, s) => {
+					acc[s.toLowerCase()] = calculateCharacteristic(allFeatures, s, baseStats[s]);
+					return acc;
+				}, {});
+				const stamina_max = calculateModifiedStat('Stamina', 0, level, characteristics ,allFeatures);
+				
+				const classAbilities = allFeatures
+					.filter(f => f.type === FEATURE_TYPES.CLASS_ABILITY)
+					.flatMap(f => f.data.selectedIDs)
+					.reduce((acc, id) => {
+						const abilityData = extractClassAbility(data, id);
+						console.log(abilityData.keywords);
+						if (abilityData.keywords.includes('Beastheart')) {
+							return { ...acc };
+						}
+						return { ...acc, ...processMonsterAbility(abilityData) };
+					}, {});
+				
+				const abilityFeatures = allFeatures
+					.filter(f => f.type === FEATURE_TYPES.ABILITY)
+					.reduce((acc, f) => {
+						if (f.data.ability.keywords.includes('Beastheart')) {
+							return { ...acc };
+						}
+						return { ...acc, ...processMonsterAbility(f.data.ability) };
+					}, {});
+
+				//Get the base companion
+				const companionFeature = allFeatures.filter(f => f.type === FEATURE_TYPES.SUMMON_CHOICE);
+				
+				if (!companionFeature) throw new Error("No features found in JSON.");
+				
+				// Extract the companion data
+				const companionData = companionFeature[0].data?.selected[0];
+				
+				if (!companionData) {
+					throw new Error("Companion Data not found");
+					return;
+				}				
+				console.log(companionData);
+				console.log(companionData.monster.freeStrikeDamage, characteristics['might']);
+				// Do the bulk of the import with the monster importer
+				await importMonster(companionData.monster, []);
+				
+
+				const newAttrs = {
+					level,
+					stamina_max,
+					stamina: stamina_max,
+					npc_freestrike: parseInt(companionData.monster.freeStrikeDamage) + characteristics['might'],
+					...abilityFeatures,
+					...classAbilities,
+				};
+				
+				// Set the altered attributes on the character sheet.
+				await setAttrsAsync(newAttrs);
+			
+				//Last bit of character sheet setup
+				calculateWinded();
+				console.log('Companion import successful!', newAttrs);
+			} else {
+				console.error('No companion information.');
+				return;
+			}
+		} catch (error) {
+			console.error("Failed to import monster data.", error);
+		}
+	});
 	/**
 	 * Imports player data from a loaded JSON file
 	 * @param {object} data the loaded and validated JSON file
@@ -6642,6 +6740,7 @@
 			size: sizeString,
 			speed: dataSpeed.value ?? 5,
 			stamina,
+			stamina_max: stamina,
 			stability,
 			npc_freestrike: freeStrikeDamage,
 			immunity: getDamageModifiers(data.features, 1, 'Immunity'),
@@ -7040,6 +7139,8 @@
 				convertRepeatingKits();
 				
 				// Set new Damage Calculation option (v1.3)
+				// Set new Sticky Charactersitic Panel option (v1.4)
+				// Set new Monster Malice Tab option (v1.5)
 				setNewOptions();
 				
 				//Sets the sheet's new version

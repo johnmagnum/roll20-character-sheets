@@ -608,7 +608,7 @@ label[for*='minimize']::before {
     display: grid;
     grid-template-columns: 80px 1fr; 
     gap: 4px;
-    align-items: center;
+    align-items: baseline;
 }
 
 .grid-header {
