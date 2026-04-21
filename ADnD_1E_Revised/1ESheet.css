@@ -1556,7 +1556,12 @@ section.npc-box.statblock3 .image-avatar {
   grid-column: 3/4;
   grid-row-start: 1;
   position: absolute;
+  overflow: hidden;
   width: 100%;
+}
+
+.charsheet .header-box:has(.toggle-avatar[value="1"] + .image-avatar img[src]) .portrait-box {
+  overflow: visible;
 }
 
 /* sheet is set to no image */
@@ -1615,7 +1620,6 @@ section.npc-box.statblock3 .image-avatar {
 .charsheet .header-box:has(.toggle-avatar[value="1"] + .image-avatar img),
 .charsheet .header-box:has(.toggle-avatar[value="2"] + .image-avatar img) {
   grid-template-columns: 1fr 1.5fr auto;
-  overflow: hidden;
 }
 
 .charsheet .header-box:has(.image-avatar[style*='http']),
