@@ -6752,11 +6752,11 @@ on(
 // Auto-fill Abilities
 const getValidVariable = (str_value, string_type, lower_bound, higher_bound) => {
   if (str_value < lower_bound) {
-    console.log(`WARNING: ${string_type} value is not a number or out of range. [${str_value}].\nDefaulting to ${lower_bound}.`);
+    console.log(`WARNING: ${string_type} value is not a number or out of range. [${str_value}]. Defaulting to ${lower_bound}.`);
     return lower_bound;
   }
   if (str_value > higher_bound) {
-    console.log(`WARNING: ${string_type} value is out of range. [${str_value}].\nDefaulting to ${higher_bound}.`);
+    console.log(`WARNING: ${string_type} value is out of range. [${str_value}]. Defaulting to ${higher_bound}.`);
     return higher_bound;
   }
   // Keep value between lowerbound and higherbound.
