@@ -1621,6 +1621,7 @@ section.npc-box.statblock3 .image-avatar {
 .charsheet .header-box:has(.toggle-avatar[value="1"] + .image-avatar img[src]) {
   grid-template-columns: 1fr 1.5fr 1fr;
   position: relative;
+  overflow: visible;
 }
 
 .charsheet .background,
@@ -2242,6 +2243,18 @@ section.npc-box.statblock3 .image-avatar {
   grid-template-columns: 0.75fr 1fr 1fr 1fr 3em .5em 5em;
   justify-items: right;
   padding: 4px;
+}
+
+.charsheet .weapons-proficiency-box > span {
+  justify-content: space-evenly;
+}
+
+.charsheet .weapons-proficiency-box span.inline-label {
+  min-width: 49%;
+}
+
+.charsheet .weapons-proficiency-box span.inline-label > label {
+  justify-content: center;
 }
 
 .charsheet input[value='0'].weapon-type-toggle ~ .top-row .weapons-row1 .hide-if-melee,
