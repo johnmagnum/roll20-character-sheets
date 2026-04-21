@@ -276,6 +276,7 @@
 	color: var(--color-button-bg);
 	cursor: pointer;
 	right: 30px;
+	top: 100px;
 	font-weight: normal;
 }
 
@@ -286,10 +287,6 @@
 .charsheet .sheet-header:has(#sheet-options-checkbox:checked) > .sheet-options-checkbox-label::before { /*~ label.sheet-options-checkbox-label::before {*/
   color: var(--color-accent-steel);
   content: '*';
-}
-
-.charsheet .sheet-header:has(#sheet-options-checkbox:checked) > .sheet-options-checkbox-label {
-  top: 108px;
 }
 
 .charsheet label.sheet-options-checkbox-label:hover {
@@ -308,6 +305,7 @@ input.sheet-options-checkbox {
 .sheet-options-toggle {
   display: grid;
   gap: 0.5em;
+  grid-template-columns: 1fr 1fr;
 }
 
 .sheet-options-toggle hr {
@@ -610,7 +608,7 @@ label[for*='minimize']::before {
     display: grid;
     grid-template-columns: 80px 1fr; 
     gap: 4px;
-    align-items: center;
+    align-items: baseline;
 }
 
 .grid-header {
@@ -1225,7 +1223,8 @@ label[for*='minimize']::before {
 	display: block;
 }
 
-.charsheet .npc-abilities-panel:not(:has(input[name="attr_villain_action_show"][value="1"])) .sheet-villainaction {
+.charsheet .npc-abilities-panel:not(:has(input[name="attr_villain_action_show"][value="1"])) .sheet-villainaction,
+.charsheet .npc-abilities-panel:not(:has(input[name="attr_malice_action_show"][value="1"])) .sheet-malice {
 	display: none;
 }
 
@@ -1241,9 +1240,12 @@ label[for*='minimize']::before {
 	border-color: var(--color-button-hover-border);
 }
 
-.charsheet .npc-abilities-panel:not(:has(input[name="attr_villain_action_show"][value="1"])) .abilities-buttons .sheet-button-villainaction {
+.charsheet .npc-abilities-panel:not(:has(input[name="attr_villain_action_show"][value="1"])) .abilities-buttons .sheet-button-villainaction,
+.charsheet .npc-abilities-panel:not(:has(input[name="attr_malice_action_show"][value="1"])) .abilities-buttons .sheet-button-malice,
+.charsheet .npc-abilities-panel:not(:has(input[name="attr_ability_tab_show"][value="1"])) .abilities-buttons {
 	display: none;
 }
+
 
 .power-roll label.sublabel {
 	background-color: var(--color-bg-subsection);
@@ -1664,20 +1666,6 @@ input.name-input {
 	font-family: Menlo, Monaco, Consolas;
 }
 
-/* NPC Sheet */
-.npc-sheet-body {
-	min-width: 566px;
-}
-
-.npc-panel {
-	display: grid;
-	background: var(--color-bg-section);
-	padding: var(--sheet-padding);
-	border-bottom: var(--border-section);
-	border-left: var(--border-main);
-	border-right: var(--border-main);
-}
-
 /*Director screen styling */
 
 #director-screen-toggle:not([value="1"]) ~ .director-screen-panel {
@@ -1695,23 +1683,19 @@ input.name-input {
 	margin-left: -15px;
 }
 
-
-/* Container for the specific rules */
 .director-rules-container {
     display: flex;
     flex-direction: column;
     gap: 0.5em;
 }
 
-/* Individual Rule Item */
 .director-rule-item {
-    display: block; /* Stacked for better mobile/small panel flow */
+    display: block;
     border-bottom: var(--border-main);
     padding-bottom: 4px;
 	padding-left: 15px;
 }
 
-/* The Label (e.g., "Bleeding") */
 .director-rule-name {
     display: inline-block;
     font-weight: bold;
@@ -1722,7 +1706,6 @@ input.name-input {
 	text-decoration: underline;
 }
 
-/* The Description */
 .director-rule-desc, 
 .director-section-text {
     font-size: 0.85em;
@@ -1730,13 +1713,28 @@ input.name-input {
     color: var(--color-text-body);
 }
 
+/* NPC Sheet */
+.npc-sheet-body {
+	min-width: 566px;
+	position: relative;
+}
+
+.npc-panel {
+	display: grid;
+	background: var(--color-bg-section);
+	padding: var(--sheet-padding);
+	border-bottom: var(--border-section);
+	border-left: var(--border-main);
+	border-right: var(--border-main);
+}
+
 /* NPC edit styling */
 .charsheet label.npc-edit-icon {
 	font-family: "Pictos";
 	font-size: 20px;
-	position: relative;
+	position: absolute;
 	left: calc(100% - 35px);
-	top: 25px;
+	top: 5px;
 	color: var(--color-button-bg);
 	cursor: pointer;
 }
@@ -1745,38 +1743,57 @@ input.name-input {
 	color: var(--color-accent-steel);
 }
 
+.charsheet .npc-sheet-body:has(#npc-edit-toggle:checked) > .npc-edit-icon::before { 
+  color: var(--color-accent-steel);
+  content: '*';
+}
+
+.charsheet .npc-sheet-body .npc-edit-icon::before { 
+  content: 'p';
+}
+
 input.npc-edit-toggle {
 	display: none;
 }
 
-input.npc-edit-toggle:not(:checked) ~ div.npc-edit {
+.charsheet .npc-panel:has(.npc-edit-icon:checked) > .npc-edit-icon::before { 
+  color: var(--color-accent-steel);
+  content: '*';
+}
+
+input.npc-edit-toggle:not(:checked) ~ div.npc-edit,
+input.npc-edit-toggle:checked ~ div.npc-display {
     display: none;
 } 
 
 .npc-edit {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 1em;
-	align-items: baseline;
-	justify-items: start;
 	font-size: 0.8em;
-	width: 400px;
 	margin-bottom: 10px;
-}
-
-.npc-edit-group {
-	display: grid;
-	gap: 3px;
-}
-
-.npc-edit-stats {
-	grid-template-columns: 1fr 1fr;
 }
 
 .npc-edit .npc-edit-stats > input[type="text"],
 .npc-edit .npc-edit-stats > input[type="number"] {
 	width: 4.5em;
 }
+
+.npc-edit .npc-header-panel {
+	padding-top: 27px;
+}
+
+.npc-edit .npc-header-panel,
+.npc-edit .npc-skills-panel {
+	gap: 0.5em;
+}
+
+.npc-edit .npc-skills-panel div:nth-child(even) {
+	justify-self: end;
+}
+
+.npc-edit .npc-header-panel .npc-level #attr_level,
+.npc-edit .npc-stats-panel .npc-stat #attr_size {
+	width: 3.5em;
+}
+
 
 .npc-edit-text {
 	grid-template-columns: auto 1fr;
@@ -1790,9 +1807,9 @@ input.npc-edit-toggle:not(:checked) ~ div.npc-edit {
 	border-radius: 20px 20px 0px 0px;
 	border-top: var(--border-main);
 }
-*/
+
 .npc-header-panel div:nth-child(even) {
-	justify-self: right;
+	justify-self: end;
 }
 
 .npc-name {
@@ -1828,6 +1845,10 @@ input.npc-edit-toggle:not(:checked) ~ div.npc-edit {
 	border-bottom: none;
 }
 
+.npc-skills-panel #attr_npc_with_captain[value=""] + div {
+	display: none;
+}
+
 .npc-marip-panel {
 	grid-template-columns: repeat(5,1fr);
 }
@@ -1855,7 +1876,8 @@ input.npc-edit-toggle:not(:checked) ~ div.npc-edit {
 }
 
 .npc-abilities-panel {
-	padding-top: 5px;
+	padding-top: var(--sheet-padding);
+	padding-bottom: var(--sheet-padding);
 }
 
 /* Roll Template Styling */
@@ -2286,4 +2308,62 @@ input.npc-edit-toggle:not(:checked) ~ div.npc-edit {
 .sheet-rolltemplate-monsterability .sheet-damage,
 .sheet-rolltemplate-powerrollability .sheet-damage {
   font-size: 0.95em;
+}
+
+
+/* NPC Advanced Stamina Toggle */
+
+.npc-stats-panel .advanced-stamina-toggle[value="1"] ~ .simple-stamina-panel,
+.npc-stats-panel .advanced-stamina-toggle:not([value="1"]) ~ .advanced-stamina-panel {
+	display: none;
+}
+	
+.npc-stats-panel .advanced-stamina-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.2em;
+  align-items: baseline;
+}
+
+.advanced-stamina-panel .npc-winded-group {
+  font-size: 0.7em;
+}
+
+.npc-winded-group .npc-dying-group {
+	flex-direction: row;
+	gap: 0.2em;
+	min-width: 60px;
+}
+
+.advanced-stamina-panel div input {
+	min-width: 4.5em;
+}
+
+.advanced-stamina-stat {
+	grid-column: span 2;
+}
+
+.advanced-stamina-panel .advanced-stamina-stat input {
+	height: 40px;
+	font-size: 1.2em;
+	min-width: 3.5em;
+}
+
+
+/* NPC Companion Panel */
+.npc-sheet-body .npc-companion-toggle[value="0"] + .npc-companion-panel {
+	display: none;
+}
+	
+.npc-companion-panel {
+	grid-template-columns: 1fr 3fr;
+}
+
+.rampage-table {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.npc-stat input {
+	min-width: 4.5em;
 }
