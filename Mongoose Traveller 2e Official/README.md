@@ -140,5 +140,12 @@ This is the Official Mongoose Traveller 2nd Edition Character Sheet
 - Added max hits for robot so works on token
 - Added characteristics panel to Robot
 
+### Version 1.1.14
+- Fixed weapon headers and fields width on resize on Ship Combat tab
+- Changed DEX Mod label on Ship Combat Pilot tab to 'Charac. Mod'
+- Added Characteristic Mod to initiative roll
+- Changed Ship Combat Initiative button text to specify 'Available Thrust'
+- Fixed Animal drag and drop parsing
+- 
 ![Image](Official%20Mongoose%20Publishing%20Traveller%202nd%20Edition.png)
 
