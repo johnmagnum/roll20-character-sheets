@@ -65,15 +65,17 @@
             <span class="left">
               <span>v<span name="attr_sheet_version">
             </span>
-            <span class="right"> • 4/3/26'</span>
+            <span class="right"> • 4/21/26'</span>
           </h5>
           <ul>
             <h5>Latest</h5>
+            <li>Fixed a small overflow issue in the sheet's header.</li>
+            <li>Added borders around the hit/damage and dual-wield fields at the top of the attacks section.</li>
+
+            <h5>Recent/Previous</h5>
             <li>Updated the sheet's version/update function.</li>
             <li>Fixed a bug the was introduced with the last update that prevented the sheet's version check from setting the sheet_version to the latest final_version.</li>
             <li>Added the sheet's default attack macro to the sheet settings page. This will allow you to edit the default attack macro if desired. Editing the macro will automatically be applied to any new attacks. I've also included an "Update Attacks" button that will update all existing attacks on the sheet. The default attack macro can also be edited outside the game from the game settings page. By doing so, all new PC's/NPC's will use the customized attack macro by default. In order to update existing attacks on existing PC/NPC's, you would need to use the "Update Attacks" button from the sheet settings on each PC/NPC. This is an advanced optional feature.</li>
-
-            <h5>Recent/Previous</h5>
             <li>One-time Open Doors value check/update added. Some older sheets may have a percent value for Open Doors. non-d6 values will be reset according to the Strength score.</li>
             <li>Items removed from the Armor Details section(deleting the item's name field) will also delete the item from Equipment|Armor as well. Previously, synced items in Equipment|Armor were left untouched if the Armor Details name was deleted. These "orphaned" entries have been deemed confusing and unnecessary.</li>
             <li>Row Shading option added. Applies a subtle alternating background contrast to sheet rows.</li>
@@ -2388,29 +2390,33 @@
           <textarea class="height-short" name="attr_weapon_proficiency_list" title="@{weapon_proficiency_list}" placeholder="List weapon proficiencies"></textarea>
         </label>
         <span class="span-all inline-label">
-          <label title="@{meleebonus} | STR Melee attack adjustment.">
-            <span class="stack-text">To-Hit:</span>
-            <input type="text" class="width-smaller" name="attr_meleebonus" value="0" readonly />
-          </label>
-          <label title="@{dmgbonus} | STR Melee attack Damage adjustment.">
-            <span class="stack-text">Damage:</span>
-            <input type="text" class="width-smaller" name="attr_dmgbonus" value="0" readonly />
-          </label>
-          <label title="@{rangedbonus} | DEX Ranged attack 'To-Hit' adjustment.">
-            <span class="stack-text">Missile:</span>
-            <input type="text" class="width-smaller" name="attr_rangedbonus" value="0" readonly />
-          </label>
-          <label class="inline-label">
-            <span>Dual-Wield Pen:</span>
-          </label>
-          <label title="@{dual_pen_primary} | -2 and adjusted as per Dexterity. Auto-calculated based on Dexterity.">
-            <span class="stack-text">Primary:</span>
-            <input type="text" class="width-smaller" name="attr_dual_pen_primary" value="0" readonly>
-          </label>
-          <label title="@{dual_pen_secondary} | -4 and adjusted as per Dexterity. Auto-calculated based on Dexterity.">
-            <span class="stack-text">Secondary:</span>
-            <input type="text" class="width-smaller" name="attr_dual_pen_secondary" value="0" readonly>
-          </label>
+          <span class="inline-label border">
+            <label title="@{meleebonus} | STR Melee attack adjustment.">
+              <span class="stack-text">To-Hit:</span>
+              <input type="text" class="width-smaller" name="attr_meleebonus" value="0" readonly="">
+            </label>
+            <label title="@{dmgbonus} | STR Melee attack Damage adjustment.">
+              <span class="stack-text">Damage:</span>
+              <input type="text" class="width-smaller" name="attr_dmgbonus" value="0" readonly="">
+            </label>
+            <label title="@{rangedbonus} | DEX Ranged attack 'To-Hit' adjustment.">
+              <span class="stack-text">Missile:</span>
+              <input type="text" class="width-smaller" name="attr_rangedbonus" value="0" readonly="">
+            </label>
+          </span>
+          <span class="inline-label border">
+            <label class="inline-label">
+              <span>Dual-Wield Pen:</span>
+            </label>
+            <label title="@{dual_pen_primary} | -2 and adjusted as per Dexterity. Auto-calculated based on Dexterity.">
+              <span class="stack-text">Primary:</span>
+              <input type="text" class="width-smaller" name="attr_dual_pen_primary" value="0" readonly="">
+            </label>
+            <label title="@{dual_pen_secondary} | -4 and adjusted as per Dexterity. Auto-calculated based on Dexterity.">
+              <span class="stack-text">Secondary:</span>
+              <input type="text" class="width-smaller" name="attr_dual_pen_secondary" value="0" readonly="">
+            </label>
+          </span>
         </span>
         <label class="span-two inline-label" title="@{weapon_in_use} | Current weapon In-Use/Armed. If multiple attack rows are 'In-Use', the fastest weapon will be used here.">
           <span>Weapon In-Use:</span>
