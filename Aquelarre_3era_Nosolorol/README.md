@@ -1,3 +1,6 @@
-# Medievo_-Oscuro
-Medievo Oscuro roll20-character-sheets.
-Puedes descargar los archivos para jugar a Medievo Oscuro en Roll20
+# AQUELARRE-3era- Nosolorol
+
+Roll20 Character sheet del juego Aquelarre, 3era edición publicada por Nosolorol en 2011.
+
+Más información 
+
