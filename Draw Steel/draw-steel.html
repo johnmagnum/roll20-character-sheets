@@ -5311,7 +5311,7 @@
 			const resName = attrs.resource_name || getTranslationByKey('resource-name-placeholder');
 			const cost = attrs[`${base}cost`];
 			subtype = (cost && cost !== '0') ? `(${cost} ${resName})` : '';
-			characteristic = getTranslationByKey(attrs[`${base}characteristic`]) || '';
+			characteristic = attrs[`${base}characteristic`] ? getTranslationByKey(attrs[`${base}characteristic`]) : '';
 			characteristicValue = attrs[attrs[`${base}characteristic`]] || 0;
 			hasEffect = attrs[`${base}effect`] ? 1 : 0;
 		}
