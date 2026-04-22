@@ -218,7 +218,7 @@
     z-index: 0;
   }
 
-  .abilities-columns > span:has(+ label .ability-button):nth-child(odd of span:has(+ label .ability-button)):after {
+  .abilities-columns > span:has(+ label .ability-button):nth-child(odd of span:has(+ label .ability-button))::after {
     content: '';
     display: block;
     height: 2.85em;
@@ -237,7 +237,7 @@
     background-color: oklch(77.944% 0.00009 271.152 / 0.5);
   }
 
-  .abilities-columns > span:has(+ label .ability-button):nth-child(odd of span:has(+ label .ability-button)):after,
+  .abilities-columns > span:has(+ label .ability-button):nth-child(odd of span:has(+ label .ability-button))::after,
   .repcontainer[data-groupname='repeating_weapon'] .repitem:nth-child(even),
   .column-header ~ .armor-columns:nth-child(even):not(.sect),
   .column-header ~ .armor-columns.sect:nth-child(odd),
@@ -256,7 +256,7 @@
   .repcontainer[data-groupname='repeating_ability'] .repitem:nth-child(odd),
   .repcontainer[data-groupname='repeating_nonweaponproficiencies'] .repitem:nth-child(odd),
   .repcontainer[data-groupname='repeating_notes'] .repitem:nth-child(odd),
-  .abilities-columns > label:has(.ability-button):nth-child(odd of label:has(.ability-button)):after,
+  .abilities-columns > label:has(.ability-button):nth-child(odd of label:has(.ability-button))::after,
   .column-header ~ .armor-columns:nth-child(even):not(.sect),
   .column-header ~ .armor-columns.sect:nth-child(odd),
   .column-header ~ .thief-columns:nth-child(odd),
