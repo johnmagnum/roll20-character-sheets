@@ -5263,13 +5263,26 @@ section.npc-box.statblock3 .image-avatar {
   box-shadow: none;
   font-size: 0;
   padding: 2px 2px 0 2px;
+  transition: all .3s ease-in-out;
+}
+
+.ui-dialog .charsheet .repcontrol_edit:hover,
+.ui-dialog .charsheet .repcontrol_add:hover {
+  color: var(--color-darkgrey1);
+  font-size: var(--text-sm);
+  position: relative;
+}
+
+.ui-dialog .charsheet .repcontrol_edit:hover::after,
+.ui-dialog .charsheet .repcontrol_add:hover::before {
+  margin-inline: 2px;
 }
 
 .charsheet .repcontrol .btn:focus {
   outline: 0;
 }
 
-.charsheet .repcontrol .repcontrol_edit:after,
+.charsheet .repcontrol .repcontrol_edit::after,
 .charsheet .repcontrol .repcontrol_add::before {
   background-color: var(--color-white1);
   border: 1px solid var(--color-lightgrey2);
@@ -5282,21 +5295,21 @@ section.npc-box.statblock3 .image-avatar {
   visibility: visible;
 }
 
-.charsheet .repcontrol .repcontrol_edit:after {
+.charsheet .repcontrol .repcontrol_edit::after {
   content: '(';
 }
 
-.charsheet .editmode ~ .repcontrol .repcontrol_edit:after {
+.charsheet .editmode ~ .repcontrol .repcontrol_edit::after {
   content: ')';
 }
 
-.charsheet .repcontrol .repcontrol_add:before {
+.charsheet .repcontrol .repcontrol_add::before {
   content: '&';
 }
 
-.charsheet .editmode ~ .repcontrol .repcontrol_edit:hover:after,
-.charsheet .repcontrol .repcontrol_edit:hover:after,
-.charsheet .repcontrol .repcontrol_add:hover:before {
+.charsheet .editmode ~ .repcontrol .repcontrol_edit:hover::after,
+.charsheet .repcontrol .repcontrol_edit:hover::after,
+.charsheet .repcontrol .repcontrol_add:hover::before {
   color: var(--black);
 }
 
