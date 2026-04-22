@@ -5200,7 +5200,7 @@
 		// 2. Define the character-level attributes needed for both.
 		const globalAttrsToGet = prefix === 'repeating_npcabilities'
 			? ['kit_melee_damage_1','kit_melee_damage_2','kit_melee_damage_3'] // Companions need melee kit values
-			: ['resource_name','kit_melee_damage_1','kit_melee_damage_2','kit_melee_damage_3','kit_ranged_damage_1','kit_ranged_damage_2','kit_ranged_damage_3', 'mag_psi_dam', 'sanct_weap' ]; // Player abilities need resource names and kit damage info
+			: ['resource_name','kit_melee_damage_1','kit_melee_damage_2','kit_melee_damage_3','kit_ranged_damage_1','kit_ranged_damage_2','kit_ranged_damage_3', 'mag_psi_dam', 'sanct_weap', 'fire_dam' ]; // Player abilities need resource names and kit damage info
 			
 		const characteristics = isPowerRoll ? ['might', 'agility', 'reason', 'intuition', 'presence'] : [];
 				
@@ -5265,9 +5265,15 @@
 		if (magPsiDam) {
 			['psionic', 'magic'].forEach(key => {
 				if (keywords.includes(getTranslationByKey(key))) {
-					otherDamage += `+${magPsiDam}[${getTranslationByKey(key)}]`;
+					otherDamage += `+${magPsiDam}[${getTranslationByKey(key)}]`;					
 				}
 			});
+		}
+		
+		// Acolyte of Fire needs Fire and Magic Keywords
+		const fireDam = attrs['fire_dam'];
+		if (keywords.includes(getTranslationByKey('magic')) && keywords.includes(getTranslationByKey('fire-keyword'))) {
+			otherDamage += `+${fireDam}[${getTranslationByKey('fire-keyword')}]`;
 		}
 
 		return rawTiers.map((val, i) => damageCalculation(val, kit[i] || 0, otherDamage));
