@@ -427,7 +427,7 @@
 	"startcombat": "&#9876;Draw Steel&#9876;",
 	"respite": "Respite",
 	"initiative-title": "Roll 1d10",
-	"initiative": "Initiative:",
+	"initiative": "Initiative",
 	"import-warning1": "Paste the contents of the Forge Steel data export (*.ds-hero, *.ds-monster, or *.ds-monster-group file) into the text box below, then click 'Import'.",
 	"import-warning2": "This will overwrite attributes on this sheet. This cannot be undone.",
 	"import-warning3": "The import feature is a work in progress. Check for mistakes.",

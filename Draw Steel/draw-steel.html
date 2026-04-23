@@ -474,10 +474,12 @@
 <!-- Character Sheet Start -->
 <div class="sheet-body">
 	<!-- Header Panel --> 
-	<label data-i18n="initiative"></label><button type="roll" value="@{wtype} &amp;{template:simpleroll} {{rolltitle=1d10}} {{roll=[[ [[1d10]][1d10]]]}} {{name=Initiative}} {{charactername=@{character_name}}}" data-i18n-title="initiative-title" class="btn ui-draggable"></button>
-	<button class="startcombat-button" type="action" data-i18n-title="startcombat-title" name="act_startcombat" data-i18n="startcombat"></button>
-	<button class="endcombat-button" type="action" data-i18n-title="endcombat-title" name="act_endcombat" data-i18n="endcombat"></button>
-	<button class="respite-button" type="action" data-i18n-title="respite-title" name="act_respite" data-i18n="respite"></button>
+	<div class="button-bar">
+		<button class="initiative-button" type="roll" name="roll_init" value="@{wtype} &amp;{template:simpleroll} {{rolltitle=1d10}} {{roll=[[ [[1d10]][1d10]]]}} {{name=Initiative}} {{charactername=@{character_name}}}" data-i18n-title="initiative-title" data-i18n="initiative"></button>
+		<button class="startcombat-button" type="action" data-i18n-title="startcombat-title" name="act_startcombat" data-i18n="startcombat"></button>
+		<button class="endcombat-button" type="action" data-i18n-title="endcombat-title" name="act_endcombat" data-i18n="endcombat"></button>
+		<button class="respite-button" type="action" data-i18n-title="respite-title" name="act_respite" data-i18n="respite"></button>
+	</div>
 	<div class="sheet-panel header-panel">
 		<div class="sheet-panel-box profile-panel">
 			<div class="name-input-group">
@@ -1138,8 +1140,6 @@
 								  <option value="intuition" data-i18n="intuition"></option>
 								  <option value="presence" data-i18n="presence"></option>
 								</select>
-<!--								<input type="checkbox" name="attr_has_potency" />								-->
-<!--								<label data-i18n="potency"></label>										-->
 								<div class="ability-toggle-group">
 									<input type="checkbox" name="attr_has_pre_effect" />
 									<label data-i18n="pre-effect"></label>
@@ -1149,50 +1149,14 @@
 							<div class="tier-row tier-1">
 								<label class="sublabel">≤ 11</label>
 								<input type="text" class="power-roll-tier-effect" name="attr_ability_tier_1" />
-<!--								<div class="potency-tier-1">											-->
-<!--									<select class="ability-type" name="attr_potency_characteristic">					-->
-<!--									  <option value="" ></option>										-->
-<!--									  <option value="M" data-i18n="M" selected></option>							-->
-<!--									  <option value="A" data-i18n="A"></option>								-->
-<!--									  <option value="R" data-i18n="R"></option>								-->
-<!--									  <option value="I" data-i18n="I"></option>								-->
-<!--									  <option value="P" data-i18n="P"></option>								-->
-<!--									</select>												-->
-<!--									&lt; [weak]												-->
-<!--									<input type="text" class="power-roll-tier-effect" name="attr_potency_tier_1" />				-->
-<!--								</div>														-->
 							</div>
 							<div class="tier-row tier-2">
 								<label class="sublabel">12-16</label>
 								<input type="text" class="power-roll-tier-effect" name="attr_ability_tier_2" />
-<!--								<div class="potency-tier-2">											-->
-<!--									<select class="ability-type" name="attr_potency_characteristic">					-->
-<!--									  <option value="" ></option>										-->
-<!--									  <option value="M" data-i18n="M" selected></option>							-->
-<!--									  <option value="A" data-i18n="A"></option>								-->
-<!--									  <option value="R" data-i18n="R"></option>								-->
-<!--									  <option value="I" data-i18n="I"></option>								-->
-<!--									  <option value="P" data-i18n="P"></option>								-->
-<!--									</select>												-->
-<!--									&lt; [average]												-->
-<!--									<input type="text" class="power-roll-tier-effect" name="attr_potency_tier_2" />				-->
-<!--								</div>														-->
 							</div>
 							<div class="tier-row tier-3">
 								<label class="sublabel">17+</label>
 								<input type="text" class="power-roll-tier-effect" name="attr_ability_tier_3" />
-<!--								<div class="potency-tier-3">											-->
-<!--									<select class="ability-type" name="attr_potency_characteristic">					-->
-<!--									  <option value="" ></option>										-->
-<!--									  <option value="M" data-i18n="M" selected></option>							-->
-<!--									  <option value="A" data-i18n="A"></option>								-->
-<!--									  <option value="R" data-i18n="R"></option>								-->
-<!--									  <option value="I" data-i18n="I"></option>								-->
-<!--									  <option value="P" data-i18n="P"></option>								-->
-<!--									</select>												-->
-<!--									&lt; [strong]												-->
-<!--									<input type="text" class="power-roll-tier-effect" name="attr_potency_tier_3" />				-->
-<!--								</div>														-->
 							</div>
 						</div>
 						<div class="ability-toggle-group">
@@ -1433,7 +1397,7 @@
 					<div class="ability-card card-edit">
 						<textarea class="ability-effect grid-span-full" data-i18n-placeholder="charge" name="attr_charge_name" data-i18n="charge" spellcheck="false"></textarea>
 						<input type="hidden" class="ability-keywords" data-i18n-placeholder="charge-keywords" name="attr_charge_keywords" value="" />
-						<input type="hidden" name="attr_charge_type" value="Main Action" />
+						<input type="hidden" name="attr_charge_type" value="main-action" />
 						<textarea class="ability-effect grid-span-full" data-i18n="charge-effect" name="attr_charge_effect" spellcheck="false"></textarea>
 					</div>
 					<div class="ability-card card-display">
@@ -1458,7 +1422,7 @@
 					<div class="ability-card card-edit">
 						<textarea class="ability-name grid-span-full" data-i18n-placeholder="defend" name="attr_defend_name" data-i18n="defend" spellcheck="false"></textarea>
 						<input type="hidden" class="ability-keywords" data-i18n-placeholder="defend-keywords" name="attr_defend_keywords" value="" />
-						<input type="hidden" name="attr_defend_type" value="Main Action" />
+						<input type="hidden" name="attr_defend_type" value="main-action" />
 						<textarea class="ability-effect grid-span-full" data-i18n="defend-effect" name="attr_defend_effect" spellcheck="false"></textarea>
 					</div>
 					<div class="ability-card card-display">
@@ -1483,7 +1447,7 @@
 					<div class="ability-card card-edit">
 						<textarea class="ability-effect grid-span-full" data-i18n-placeholder="heal" name="attr_heal_name" data-i18n="heal" spellcheck="false"></textarea>
 						<input type="hidden" class="ability-keywords" data-i18n-placeholder="heal-keywords" name="attr_heal_keywords" value="" />
-						<input type="hidden" name="attr_heal_type" value="Main Action" />
+						<input type="hidden" name="attr_heal_type" value="main-action" />
 						<textarea class="ability-effect grid-span-full" data-i18n-placeholder="melee-one" name="attr_heal_distance" data-i18n="melee-one" spellcheck="false"></textarea>
 						<textarea class="ability-effect grid-span-full" data-i18n-placeholder="one-creature" name="attr_heal_target" data-i18n="one-creature" spellcheck="false"></textarea>
 						<textarea class="ability-effect grid-span-full" data-i18n="heal-effect" name="attr_heal_effect" spellcheck="false"></textarea>
@@ -1512,7 +1476,7 @@
 					<div class="ability-card card-edit">
 						<textarea class="ability-effect grid-span-full" data-i18n-placeholder="convert" name="attr_convert_name" data-i18n="convert" spellcheck="false"></textarea>
 						<input type="hidden" class="ability-keywords" data-i18n-placeholder="convert-keywords" name="attr_convert_keywords" value="" />
-						<input type="hidden" name="attr_convert_type" value="Main Action" />
+						<input type="hidden" name="attr_convert_type" value="main-action" />
 						<textarea class="ability-effect grid-span-full" data-i18n="convert-effect" name="attr_convert_effect" spellcheck="false"></textarea>
 					</div>
 					<div class="ability-card card-display">
@@ -1680,7 +1644,7 @@
 				</div>
 			</fieldset>
 			<!-- Standard Maneuvers -->
-                        <h5 class="panel-title" data-i18n="standard-maneuvers"></h5>
+            <h5 class="panel-title" data-i18n="standard-maneuvers"></h5>
 			<div class="standard-abilities">
 				<!-- Knockback -->
 				<div class="standard-abilities-item">
@@ -2265,7 +2229,7 @@
 				</div>
 			</fieldset>
 			<!-- Standard Triggered Abilities -->
-                        <h5 class="panel-title" data-i18n="standard-triggers"></h5>
+            <h5 class="panel-title" data-i18n="standard-triggers"></h5>
 			<div class="standard-abilities">
 				<!-- Opportunity Attack -->
 				<div class="standard-abilities-item">
@@ -2434,7 +2398,7 @@
 				</div>
 			</fieldset>
 			<!-- Standard Abilities -->
-                        <h5 class="panel-title" data-i18n="standard-noaction-trait"></h5>
+            <h5 class="panel-title" data-i18n="standard-noaction-trait"></h5>
 			<div class="standard-abilities">
 				<!-- Jump Move -->
 				<div class="standard-abilities-item">
@@ -2560,7 +2524,7 @@
 		<div class="sheet-move">
 		    <h2 data-i18n="move-actions"></h2>
 			<!-- Moves: repeating_moves -->
-				<fieldset class="repeating_moves">
+			<fieldset class="repeating_moves">
 				<input class="ability-edit" type="checkbox" id="ability-edit" />
 				<div class="ability-card card-edit">
 					<input type="text" class="ability-name" data-i18n-placeholder="ability-name" name="attr_moves_name" />
@@ -2688,11 +2652,10 @@
 						<label><span name="attr_moves_custom_label"></span>:</label>
 						<span class="ability-custom" name="attr_moves_custom"></span>
 					</div>
-					
 				</div>
 			</fieldset>
 			<!-- Standard Moves -->
-                        <h5 class="panel-title" data-i18n="standard-move-actions"></h5>
+            <h5 class="panel-title" data-i18n="standard-move-actions"></h5>
 			<div class="standard-abilities">
 				<!-- Advance Move Action -->
 				<div class="standard-abilities-item">
