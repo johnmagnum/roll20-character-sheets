@@ -13738,7 +13738,7 @@ visualize what it will look like in chat.
 															<option value="2" data-i18n="option-two">+2</option>
 															<option value="3" data-i18n="option-three">+3</option>
 															<option value="4" data-i18n="option-four">+4</option>
-															<option value="5" data-i18n="option-four">+5</option>
+															<option value="5" data-i18n="option-five">+5</option>
 														</select>
 													</div>
 												</div>
@@ -60990,17 +60990,19 @@ Characters with Skill: ${knowsSkill}`;
 		// now we need to get calculate the final modifier. 
 		let finalModifier = originalModifier + flatModifier + dieModifierValue;
 
-		// check for applyDiceAdds
-		if (applyDiceAdds && finalModifier >= 4) {
-
-			// if finalModifier is 4 to 6, finalModifier = finalModifier - 4 but add 1 to numberOfDice
-			// if finalModifier is 7 or higher, finalModifier = finalModifier - 7 but add 1 to numberOfDice
-			if (finalModifier >= 7) {
-				finalModifier -= 7;
-				numberOfDice += 1;
-			} else {
-				finalModifier -= 4;
-				numberOfDice += 1;
+		// B269 Optional Rule: Modifying Dice + Adds
+		if (applyDiceAdds) {
+			// Convert positive adds first.
+			// +4 to +6 -> +1d
+			// +7 or more -> +2d
+			while (finalModifier >= 4) {
+				if (finalModifier >= 7) {
+					finalModifier -= 7;
+					numberOfDice += 2;
+				} else {
+					finalModifier -= 4;
+					numberOfDice += 1;
+				}
 			}
 		}
 
