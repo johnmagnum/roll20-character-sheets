@@ -158,7 +158,8 @@
   filter: invert(100%);
 }
 
-.charsheet button[type="action"] {
+.charsheet button[type="action"],
+.charsheet .button-bar button[type="roll"] {
 	background-color: var(--color-button-bg);
     color: var(--color-text-body);
     border: 1px solid var(--color-button-border);
@@ -168,7 +169,8 @@
     transition: background-color 0.2s ease;
 }
 
-.charsheet button[type="action"]:hover {
+.charsheet button[type="action"]:hover,
+.charsheet .button-bar button[type="roll"]:hover {
 	background-color: var(--color-button-hover-bg);
 	border-color: var(--color-button-hover-border);
 }
@@ -2366,4 +2368,25 @@ input.npc-edit-toggle:checked ~ div.npc-display {
 
 .npc-stat input {
 	min-width: 4.5em;
+}
+
+.button-bar {
+	display: flex;
+	flex-direction: row;
+	gap: 0.2em;
+	margin-bottom: var(--sheet-padding);
+}
+.initiative-button.btn.ui-draggable {
+	all: initial; 
+}
+
+.ui-dialog .charsheet .button-bar button[type="roll"] {
+	background-image: none;
+	font-size: 1em;
+	margin: 0px;
+	padding: 3px;
+}
+
+.ui-dialog .charsheet .button-bar button[type=roll]::before {
+    content: "";
 }
