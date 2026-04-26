@@ -1532,7 +1532,7 @@ section.npc-box.statblock3 .image-avatar {
 
 .charsheet .logo-box .normalmode,
 .charsheet .logo-box .darkmode {
-  background-image: url(https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/ADnD_1E/images/logo.png);
+  background-image: url('https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/ADnD_1E/images/logo.png');
   background-position: 50% 0;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1547,7 +1547,7 @@ section.npc-box.statblock3 .image-avatar {
 
 /* darkmode */
 .sheet-darkmode .tab-content .charsheet .logo-box .darkmode {
-  background-image: url(https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/ADnD_1E/images/logo_inverted.png);
+  background-image: url('https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/ADnD_1E/images/logo_inverted.png');
   display: block;
   opacity: 0.8;
 }
@@ -3053,7 +3053,7 @@ section.npc-box.statblock3 .image-avatar {
 
 .charsheet .options-box .hide-areas-image {
   aspect-ratio: 1;
-  background-image: url("https://raw.githubusercontent.com/vince-roll20/roll20-character-sheets/refs/heads/AD%26D1e_Changes_Only_hideAR/ADnD_1E_Revised/images/hidden_image.png");
+  background-image: url('https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/ADnD_1E/images/hidden_image.png');
   background-repeat: no-repeat;
   background-size: contain;
   height: 4em;
@@ -5464,7 +5464,7 @@ section.npc-box.statblock3 .image-avatar {
   }
 
   .charsheet .logo-box .normalmode {
-    background-image: url(https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/ADnD_1E/images/logo.png) !important;
+    background-image: url('https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/ADnD_1E/images/logo.png') !important;
     background-position: 50% 0 !important;
     background-repeat: no-repeat !important;
     background-size: contain !important;
