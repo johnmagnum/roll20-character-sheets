@@ -5307,10 +5307,15 @@ section.npc-box.statblock3 .image-avatar {
   transition: all .3s ease-in-out;
 }
 
+.ui-dialog .charsheet .repcontrol_add:hover {
+  padding: 0 2px 0 0;
+}
+
 .ui-dialog .charsheet .repcontrol_edit:hover,
 .ui-dialog .charsheet .repcontrol_add:hover {
   color: var(--color-darkgrey1);
   font-size: var(--text-sm);
+  margin-inline: 4px;
   position: relative;
 }
 
