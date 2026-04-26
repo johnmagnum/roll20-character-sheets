@@ -2562,7 +2562,7 @@ versionator = async (current_version, final_version) => {
     return await recalcToHitACadj(1.692, final_version);
   }
   if (current_version < 1.693) {
-    return await checkOpenDoors(1.693, final_version);
+    return await checkOpenDoors(1.694, final_version);
   }
   // All updates completed
   const finalCheck = await getAttrsAsync(['sheet_version', 'old_character']);
@@ -2581,7 +2581,7 @@ versionator = async (current_version, final_version) => {
 };
 
 on('sheet:opened', async () => {
-  const final_version = 1.693;
+  const final_version = 1.694;
   const v = await getAttrsAsync(['sheet_version', 'old_character']);
   let current_version = parseFloat(v.sheet_version) || 0;
   // New Sheet?
