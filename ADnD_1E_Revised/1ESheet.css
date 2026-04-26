@@ -508,6 +508,12 @@
   display: none;
 }
 
+/* toggle AR */
+.charsheet input[type='checkbox'].toggle-ar:checked ~ .background .toggle-ar {
+  display: none;
+  outline: 1px solid red;
+}
+
 .charsheet .background .toggle-multiclass-swap {
   display: none;
 }
@@ -1656,6 +1662,20 @@ section.npc-box.statblock3 .image-avatar {
   .charsheet .background .wrapper .header-box:has(.toggle-avatar[value="1"] + .image-avatar img[src]) .logo-box .ac-columns label:last-child {
     margin-left: 8px;
   }
+
+  /* toggle AR */
+  .charsheet input[type='checkbox'].toggle-ar:checked ~ .background .wrapper .header-box:has(.image-avatar[style*='http']) .logo-box .ac-columns,
+  .charsheet input[type='checkbox'].toggle-ar:checked ~ .background .wrapper .header-box:has(.toggle-avatar[value="1"] + .image-avatar img[src]) .logo-box .ac-columns {
+    margin-right: -7em;
+    min-width: 92px;
+    width: 13vw;
+  }
+
+  .charsheet input[type='checkbox'].toggle-ar:checked ~ .background .wrapper .header-box:has(.image-avatar[style*='http']) .logo-box .ac-columns label,
+  .charsheet input[type='checkbox'].toggle-ar:checked ~ .background .wrapper .header-box:has(.toggle-avatar[value="1"] + .image-avatar img[src]) .logo-box .ac-columns label {
+    margin: auto;
+    min-width: stretch;
+  }
 }
 
 @container (max-width: 686px) {
@@ -1881,6 +1901,11 @@ section.npc-box.statblock3 .image-avatar {
   display: grid;
   grid-template-columns: minmax(7em, 1.5fr) 3em minmax(11em, 2fr) repeat(4, minmax(3em, 1fr)) 3.5em 7em;
   justify-items: center;
+}
+
+/* toggle AR */
+.charsheet input[type='checkbox'].toggle-ar:checked ~ .background .armor-columns {
+  grid-template-columns: minmax(7em, 1.5fr) 3em minmax(11em, 2fr) repeat(3, minmax(3em, 1fr)) 3.5em 9em;
 }
 
 .charsheet .armor-box .armor-columns.sect {
@@ -3026,6 +3051,16 @@ section.npc-box.statblock3 .image-avatar {
   color: initial;
 }
 
+.charsheet .options-box .hide-areas-image {
+  aspect-ratio: 1;
+  background-image: url("https://raw.githubusercontent.com/vince-roll20/roll20-character-sheets/refs/heads/AD%26D1e_Changes_Only_hideAR/ADnD_1E_Revised/images/hidden_image.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 4em;
+  margin: -2em 0 0 3em;
+  position: relative;
+}
+
 .charsheet .options-box .settings label,
 .charsheet .wrapper .options-box .settings span h4 {
   background-color: revert;
@@ -4108,7 +4143,7 @@ section.npc-box.statblock3 .image-avatar {
 .charsheet .wrapper .text-notes {
   font-family: system-ui;
   font-size: var(--text-med);
-  padding: inherit;
+  padding-inline: 1em;
 }
 
 .charsheet .wrapper textarea,
@@ -5272,10 +5307,15 @@ section.npc-box.statblock3 .image-avatar {
   transition: all .3s ease-in-out;
 }
 
+.ui-dialog .charsheet .repcontrol_add:hover {
+  padding: 0 2px 0 0;
+}
+
 .ui-dialog .charsheet .repcontrol_edit:hover,
 .ui-dialog .charsheet .repcontrol_add:hover {
   color: var(--color-darkgrey1);
   font-size: var(--text-sm);
+  margin-inline: 4px;
   position: relative;
 }
 
