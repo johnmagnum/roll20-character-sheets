@@ -3051,6 +3051,16 @@ section.npc-box.statblock3 .image-avatar {
   color: initial;
 }
 
+.charsheet .options-box .hide-areas-image {
+  aspect-ratio: 1;
+  background-image: url("https://raw.githubusercontent.com/vince-roll20/roll20-character-sheets/refs/heads/AD%26D1e_Changes_Only_hideAR/ADnD_1E_Revised/images/hidden_image.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 4em;
+  margin: -2em 0 0 3em;
+  position: relative;
+}
+
 .charsheet .options-box .settings label,
 .charsheet .wrapper .options-box .settings span h4 {
   background-color: revert;
