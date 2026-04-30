@@ -1,12 +1,8 @@
-# Medievo_Oscuro
-Medievo Oscuro Roll20 character sheet.
+# WILD SPACE
+Wild Space character sheet.
 
-We recomend to download and install Morpheus font. 
-
-Hoja del superviviente lista para jugar a Medievo Oscuro, el juego de rol infernal, en Roll20.
-
-Recomendamos descargar e instalar la fuente Morpheus.
+We recomend to download from google and install goldman and Rammetto One fonts. 
 
 More information about the game / Más información sobre el juego
 
-[Medievo Oscuro](http://medievooscuro.es/).
+[WILD SPACE - LOST HAVEN ART](https://losthavenart.com/).
