@@ -1,0 +1,60 @@
+/* Remove Arrow froms numbers */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+    text-align:center;
+}
+
+select{
+    margin:0;
+}
+
+input{
+    border-radius: 0.75rem;
+    background-color: white;
+}
+
+.bordered-input{
+    border: 2px solid black;
+}
+
+
+/* Roll buttons */
+.custom-roll{
+    border: 2px solid black;
+    background: #EEE;
+    color: black;
+    border-radius: 0.75rem;
+    padding: 0.35rem;
+}
+/* Labels */
+.centered{
+    text-align: center;
+}
+
+.right{
+    text-align: right;
+}
+
+.label{
+    color: black;
+    margin: 0;
+    padding: .2rem;
+}
+
+.title{
+    position: absolute;
+    top : 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background-color: lightgray;
+    padding: 0.25rem 0.5rem;
+    width: fit-content;
+}
+.title + input{
+    padding-top: .75rem;
+}

@@ -1,0 +1,261 @@
+<div class="flex-column core">
+    <div class="flex-row frame align-center">
+        <label class="label w-1"><span data-i18n="common.name">Name</span></label>
+        <input type="text" class="input w-11" name="attr_character_name"></input>
+    </div>
+    <div class="flex-row">
+        <div class="flex-column w-6 justify-sb">
+            <div class="flex-row">
+                <div class="flex-column w-6 frame">
+                    <div class="flex-row align-center">
+                        <label class="label w-8"><span data-i18n="attributes.strength">Strength</span></label>
+                        <input type="number" class="bordered-input input w-2" name="attr_strength"></input>
+                        <button type="roll" name="attr_atq-roll" value="[[2d6 + @{strength}]]" class="w-2 custom-roll"></button>
+                    </div>
+                    <div class="flex-row align-center">
+                        <label class="label w-8"><span data-i18n="attributes.agility">Agility</span></label>
+                        <input type="number" class="bordered-input input w-2" name="attr_agility"></input>
+                        <button type="roll" name="attr_atq-roll" value="[[2d6 + @{agility}]]" class="w-2 custom-roll"></button>
+                    </div>
+                    <div class="flex-row align-center">
+                        <label class="label w-8"><span data-i18n="attributes.mind">Mind</span></label>
+                        <input type="number" class="bordered-input input w-2" name="attr_mind"></input>
+                        <button type="roll" name="attr_atq-roll" value="[[2d6 + @{mind}]]" class="w-2 custom-roll"></button>
+                    </div>
+                    <div class="flex-row align-center">
+                        <label class="label w-8"><span data-i18n="attributes.appeal">Appeal</span></label>
+                        <input type="number" class="bordered-input input w-2" name="attr_appeal"></input>
+                        <button type="roll" name="attr_atq-roll" value="[[2d6 + @{appeal}]]" class="w-2 custom-roll"></button>  
+                    </div>
+                </div>
+                <div class="flex-column w-6 frame">
+                    <div class="flex-row align-center">
+                        <label class="label w-8"><span data-i18n="combat.initiative">Initiative</span></label>
+                        <input type="number" class="bordered-input input w-2" name="attr_initiative"></input>
+                        <button type="roll" name="attr_atq-roll" value="[[2d6 + @{initiative}]]" class="w-2 custom-roll"></button>
+                    </div>
+                    <div class="flex-row align-center">
+                        <label class="label w-8"><span data-i18n="combat.melee">Melee</span></label>
+                        <input type="number" class="bordered-input input w-2" name="attr_melee"></input>
+                        <button type="roll" name="attr_atq-roll" value="[[2d6 + @{melee}]]" class="w-2 custom-roll"></button>
+                    </div>
+                    <div class="flex-row align-center">
+                        <label class="label w-8"><span data-i18n="combat.ranged">Ranged</span></label>
+                        <input type="number" class="bordered-input input w-2" name="attr_ranged"></input>
+                        <button type="roll" name="attr_atq-roll" value="[[2d6 + @{ranged}]]" class="w-2 custom-roll"></button>
+                    </div>
+                    <div class="flex-row align-center">
+                        <label class="label w-8"><span data-i18n="combat.defense">Defense</span></label>
+                        <input type="number" class="bordered-input input w-2" name="attr_defense"></input>
+                        <button type="roll" name="attr_atq-roll" value="[[2d6 + @{defense}]]" class="w-2 custom-roll"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-column w-12 frame">
+                <label class="title label"><span data-i18n="common.languages">Languages</span></label>
+                <input type="text" class="input w-12" name="attr_languages"></input>
+            </div>
+        </div>
+        <div class="flex-column w-3 frame">
+            <div class="flex-row">
+                <input type="text" class="input w-8" name="attr_career_1_name" placeholder="Career 1"></input>
+                <input type="number" class="bordered-input input w-2" name="attr_career_1_rank"></input>
+                <button type="roll" name="attr_atq-roll" value="[[2d6 + @{attr_career_1_rank}]]" class="w-2 custom-roll"></button>
+            </div>
+            <div class="flex-row">
+                <input type="text" class="input w-8" name="attr_career_2_name" placeholder="Career 2"></input>
+                <input type="number" class="bordered-input input w-2" name="attr_career_2_rank"></input>
+                <button type="roll" name="attr_atq-roll" value="[[2d6 + @{attr_career_2_rank}]]" class="w-2 custom-roll"></button>
+            </div>
+            <div class="flex-row">
+                <input type="text" class="input w-8" name="attr_career_3_name" placeholder="Career 3" ></input>
+                <input type="number" class="bordered-input input w-2" name="attr_career_3_rank"></input>
+                <button type="roll" name="attr_atq-roll" value="[[2d6 + @{attr_career_3_rank}]]" class="w-2 custom-roll"></button>
+            </div>
+            <div class="flex-row">
+                <input type="text" class="input w-8" name="attr_career_4_name" placeholder="Career 4"></input>
+                <input type="number" class="bordered-input input w-2" name="attr_career_4_rank"></input>
+                <button type="roll" name="attr_atq-roll" value="[[2d6 + @{attr_career_4_rank}]]" class="w-2 custom-roll"></button>
+            </div>
+            <div class="flex-row">
+                <input type="text" class="input w-8" name="attr_career_5_name" placeholder="Career 5"></input>
+                <input type="number" class="bordered-input input w-2" name="attr_career_5_rank"></input>
+                <button type="roll" name="attr_atq-roll" value="[[2d6 + @{attr_career_5_rank}]]" class="w-2 custom-roll"></button>
+            </div>
+            <div class="flex-row">
+                <input type="text" class="input w-8" name="attr_career_6_name" placeholder="Career 6"></input>
+                <input type="number" class="bordered-input input w-2" name="attr_career_6_rank"></input>
+                <button type="roll" name="attr_atq-roll" value="[[2d6 + @{attr_career_6_rank}]]" class="w-2 custom-roll"></button>
+            </div>
+        </div>
+        <div class="flex-column w-3 frame align-center">
+            <label class="label centered"><span data-i18n="resources.heropoints">Hero Points</span></label>
+            <div class="flex-row justify-center">
+                <input type="checkbox" name="attr_hero_points_1"></input>
+                <input type="checkbox" name="attr_hero_points_2"></input>
+                <input type="checkbox" name="attr_hero_points_3"></input>
+                <input type="checkbox" name="attr_hero_points_4"></input>
+                <input type="checkbox" name="attr_hero_points_5"></input>
+                <input type="checkbox" name="attr_hero_points_6"></input>
+            </div>
+            <label class="label centered"><span data-i18n="resources.faithpoints">Faith Points</span></label>
+            <div class="flex-row justify-center">
+                <input type="checkbox" name="attr_faith_points_1"></input>
+                <input type="checkbox" name="attr_faith_points_2"></input>
+                <input type="checkbox" name="attr_faith_points_3"></input>
+                <input type="checkbox" name="attr_faith_points_4"></input>
+                <input type="checkbox" name="attr_faith_points_5"></input>
+                <input type="checkbox" name="attr_faith_points_6"></input>
+                <input type="checkbox" name="attr_faith_points_7"></input>
+            </div>
+            <label class="label centered"><span data-i18n="resources.arcanepoints">Arcane Points</span></label>
+            <div class="flex-row justify-center">
+                <input type="checkbox" name="attr_arcanepoints_1"></input>
+                <input type="checkbox" name="attr_arcanepoints_2"></input>
+                <input type="checkbox" name="attr_arcanepoints_3"></input>
+                <input type="checkbox" name="attr_arcanepoints_4"></input>
+                <input type="checkbox" name="attr_arcanepoints_5"></input>
+                <input type="checkbox" name="attr_arcanepoints_6"></input>
+                <input type="checkbox" name="attr_arcanepoints_7"></input>
+                <input type="checkbox" name="attr_arcanepoints_8"></input>
+                <input type="checkbox" name="attr_arcanepoints_9"></input>
+            </div>
+            <div class="flex-row justify-center">
+                <input type="checkbox" name="attr_arcanepoints_10"></input>
+                <input type="checkbox" name="attr_arcanepoints_11"></input>
+                <input type="checkbox" name="attr_arcanepoints_12"></input>
+                <input type="checkbox" name="attr_arcanepoints_13"></input>
+                <input type="checkbox" name="attr_arcanepoints_14"></input>
+                <input type="checkbox" name="attr_arcanepoints_15"></input>
+                <input type="checkbox" name="attr_arcanepoints_16"></input>
+                <input type="checkbox" name="attr_arcanepoints_17"></input>
+                <input type="checkbox" name="attr_arcanepoints_18"></input>
+            </div>
+            <label class="label centered"><span data-i18n="resources.psionicpoints">Psionic Points</span></label>
+            <div class="flex-row justify-center">
+                <input type="checkbox" name="attr_psionicpoints_1"></input>
+                <input type="checkbox" name="attr_psionicpoints_2"></input>
+                <input type="checkbox" name="attr_psionicpoints_3"></input>
+                <input type="checkbox" name="attr_psionicpoints_4"></input>
+                <input type="checkbox" name="attr_psionicpoints_5"></input>
+                <input type="checkbox" name="attr_psionicpoints_6"></input>
+                <input type="checkbox" name="attr_psionicpoints_7"></input>
+                <input type="checkbox" name="attr_psionicpoints_8"></input>
+                <input type="checkbox" name="attr_psionicpoints_9"></input>
+            </div>
+            <div class="flex-row justify-center">
+                <input type="checkbox" name="attr_psionicpoints_10"></input>
+                <input type="checkbox" name="attr_psionicpoints_11"></input>
+                <input type="checkbox" name="attr_psionicpoints_12"></input>
+                <input type="checkbox" name="attr_psionicpoints_13"></input>
+                <input type="checkbox" name="attr_psionicpoints_14"></input>
+                <input type="checkbox" name="attr_psionicpoints_15"></input>
+                <input type="checkbox" name="attr_psionicpoints_16"></input>
+                <input type="checkbox" name="attr_psionicpoints_17"></input>
+                <input type="checkbox" name="attr_psionicpoints_18"></input>
+            </div>
+        </div>
+    </div>
+    <div class="flex-row frame align-center gap-2">
+        <label class="label w-2"><span data-i18n="resources.lifeblood">Lifeblood</span></label>
+        <input type="number" class="bordered-input input w-1" name="attr_lifeblood"></input>
+        <div class="flex-column w-9">
+            <div class="flex-row justify-end align-center">
+                <input type="checkbox" name="attr_lifeblood_1"></input>
+                <input type="checkbox" name="attr_lifeblood_2"></input>
+                <input type="checkbox" name="attr_lifeblood_3"></input>
+                <input type="checkbox" name="attr_lifeblood_4"></input>
+                <input type="checkbox" name="attr_lifeblood_5"></input>
+                <input type="checkbox" name="attr_lifeblood_6"></input>
+                <input type="checkbox" name="attr_lifeblood_7"></input>
+                <input type="checkbox" name="attr_lifeblood_8"></input>
+                <input type="checkbox" name="attr_lifeblood_9"></input>
+                <input type="checkbox" name="attr_lifeblood_10"></input>
+                <input type="checkbox" name="attr_lifeblood_11"></input>
+                <input type="checkbox" name="attr_lifeblood_12"></input>
+                <input type="checkbox" name="attr_lifeblood_13"></input>
+                <input type="checkbox" name="attr_lifeblood_14"></input>
+                <input type="checkbox" name="attr_lifeblood_15"></input>
+                <input type="checkbox" name="attr_lifeblood_16"></input>
+                <input type="checkbox" name="attr_lifeblood_17"></input>
+                <input type="checkbox" name="attr_lifeblood_18"></input>
+            </div>
+            <div class="flex-row justify-end align-center">
+                <label class="label right"><span data-i18n="resources.critical">Critical</span></label>
+                <input type="checkbox" name="attr_lifeblood_critical_1"></input>
+                <input type="checkbox" name="attr_lifeblood_critical_2"></input>
+                <input type="checkbox" name="attr_lifeblood_critical_3"></input>
+                <input type="checkbox" name="attr_lifeblood_critical_4"></input>
+                <input type="checkbox" name="attr_lifeblood_critical_5"></input>
+            </div>
+        </div>
+    </div>
+    <div class="flex-row frame align-center gap-2">
+        <label class="label w-2"><span data-i18n="resources.resolve">Resolve</span></label>
+        <input type="number" class="bordered-input input w-1" name="attr_resolve"></input>
+        <div class="flex-column w-9">
+            <div class="flex-row justify-end align-center">
+                <input type="checkbox" name="attr_resolve_1"></input>
+                <input type="checkbox" name="attr_resolve_2"></input>
+                <input type="checkbox" name="attr_resolve_3"></input>
+                <input type="checkbox" name="attr_resolve_4"></input>
+                <input type="checkbox" name="attr_resolve_5"></input>
+                <input type="checkbox" name="attr_resolve_6"></input>
+                <input type="checkbox" name="attr_resolve_7"></input>
+                <input type="checkbox" name="attr_resolve_8"></input>
+                <input type="checkbox" name="attr_resolve_9"></input>
+                <input type="checkbox" name="attr_resolve_10"></input>
+                <input type="checkbox" name="attr_resolve_11"></input>
+                <input type="checkbox" name="attr_resolve_12"></input>
+                <input type="checkbox" name="attr_resolve_13"></input>
+                <input type="checkbox" name="attr_resolve_14"></input>
+                <input type="checkbox" name="attr_resolve_15"></input>
+                <input type="checkbox" name="attr_resolve_16"></input>
+                <input type="checkbox" name="attr_resolve_17"></input>
+                <input type="checkbox" name="attr_resolve_18"></input>
+            </div>
+            <div class="flex-row justify-end align-center">
+                <label class="label right"><span data-i18n="resources.critical">Critical</span></label>
+                <input type="checkbox" name="attr_resolve_critical_1"></input>
+                <input type="checkbox" name="attr_resolve_critical_2"></input>
+                <input type="checkbox" name="attr_resolve_critical_3"></input>
+                <input type="checkbox" name="attr_resolve_critical_4"></input>
+                <input type="checkbox" name="attr_resolve_critical_5"></input>
+            </div>
+        </div>
+    </div>
+    <div class="flex-row">
+        <div class="flex-column w-6">
+            <div class="flex-column frame">
+                <label class="title label"><span data-i18n="resources.boons">Boons</span></label>
+                <input type="text" class="input w-12" name="attr_boons"></input>
+            </div>
+            <div class="flex-column frame">
+                <label class="title label"><span data-i18n="resources.flaws">Flaws</span></label>
+                <input type="text" class="input w-12" name="attr_flaws"></input>
+            </div>
+            <div class="flex-column frame">
+                <label class="title label"><span data-i18n="resources.tempflaws">Temporary Flaws</span></label>
+                <input type="text" class="input w-12" name="attr_tempflaws"></input>
+            </div>
+        </div>
+        <div class="flex-column w-6">
+            <div class="flex-column frame">
+                <label class="title label"><span data-i18n="resources.weapons">Weapons</span></label>
+                <input type="text" class="input w-12" name="attr_weapons"></input>
+            </div>
+            <div class="flex-column frame">
+                <label class="title label"><span data-i18n="resources.armour">Armour</span></label>
+                <input type="text" class="input w-12" name="attr_armour"></input>
+            </div>
+            <div class="flex-column frame">
+                <label class="title label"><span data-i18n="resources.gear">Gear</span></label>
+                <input type="text" class="input w-12" name="attr_gear"></input>
+            </div>
+        </div>
+    </div>
+    <div class="flex-column frame">
+        <label class="label centered"><span data-i18n="notes.vademecum-1">Dice Roll Modifier</span></label>
+        <label class="label centered"><span data-i18n="notes.vademecum-2">Dice Roll Increase / Decrease</span></label>
+    </div>
+</div>
