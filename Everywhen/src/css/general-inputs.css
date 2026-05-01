@@ -31,6 +31,13 @@ input{
     border-radius: 0.75rem;
     padding: 0.35rem;
 }
+.white-roll{
+    background: white;
+    border-radius: 0.75rem;
+}
+.white-roll::before{
+    content:""
+}
 /* Labels */
 .centered{
     text-align: center;
@@ -54,7 +61,12 @@ input{
     background-color: lightgray;
     padding: 0.25rem 0.5rem;
     width: fit-content;
+    z-index: 20;
 }
 .title + input{
     padding-top: .75rem;
+}
+
+.boons{
+    margin-top: 1.25rem;
 }

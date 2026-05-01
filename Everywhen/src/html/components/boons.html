@@ -1,0 +1,26 @@
+
+<div class="boons">
+    <fieldset class="repeating_boons">
+        <div class="hoverable flex-column">
+            <input class="options-flag" type="checkbox" name="attr_options-flag" checked><span>y</span>
+            <div class="flex-row align-center">
+                <input type="hidden" name="attr_boon_rollvalue"
+                       value="&{template:main} {{titre=Attaque avec @{name}}} {{subtitle=@{character_name}}}">
+                <button type="roll" name="attr_boon_roll" value="@{boon_rollvalue}"
+                        class="flex-row bold w-12 white-roll">
+                    <span class="w-12" name="attr_name"></span>
+                </button>
+            </div>
+            <div class="flex-column options-options option-frame">
+                <div class="flex-row align-center">
+                    <label class="attq-label w-3"><span data-i18n="common.name">Name</span></label>
+                    <input type="text" class="visible-input text-left w-9" name="attr_name">
+                </div>
+                <div class="flex-column w-12">
+                    <label class="skill-label w-3"><span data-i18n="common.description">Description</span></label>
+                    <input type="text" class="visible-input w-12" name="attr_notes">
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>

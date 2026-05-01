@@ -1,5 +1,7 @@
 {
   "common.name": "Name",
+  "common.description": "Description",
+  "common.notes": "Notes",
   "common.languages": "Languages",
   "attributes.strength": "Strength",
   "attributes.agility": "Agility",
