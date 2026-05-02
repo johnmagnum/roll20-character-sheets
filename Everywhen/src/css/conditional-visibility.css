@@ -36,8 +36,8 @@
 }
 
 .options-flag ~ .options-options {
-    background-color: #CCC;
-    border: 1px dotted #999;
+    background-color: #E0E0E0;
+    border: 2px dotted darkgray;
     padding: .5rem;
     display: none !important;
 }

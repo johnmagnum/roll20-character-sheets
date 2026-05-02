@@ -5,37 +5,25 @@
             {{#subtitle}}
             <label class="sheet-w12 sheet-label sheet-text-center">{{subtitle}}</label>
             {{/subtitle}}
-            {{#Jet}}
+            {{#Roll}}
             <div class="sheet-line sheet-border-bottom"></div>
-            <div class="sheet-colu sheet-align-center">
-                <div class="sheet-roll sheet-w12 sheet-bold sheet-result sheet-text-center">{{Jet}}</div>
-                <label class="sheet-label sheet-bold sheet-w12 sheet-text-center"><span data-i18n="rolltemplate.result">Résultat</span></label>
+            <div class="sheet-white-line">
+                <div class="sheet-colu sheet-w12 sheet-align-center">
+                    <div class="sheet-roll sheet-w12 sheet-bold sheet-result sheet-text-center">{{Roll}}</div>
+                    <label class="sheet-label sheet-bold sheet-w12 sheet-text-center"><span data-i18n="rolltemplate.result">Roll</span></label>
+                </div>
             </div>
-            {{/Jet}}
-            {{#Attaque}}
+            {{/Roll}}
+            {{#allprops() titre subtitle description Roll}}
             <div class="sheet-line sheet-border-bottom"></div>
-            <div class="sheet-colu sheet-align-center">
-                <div class="sheet-roll sheet-w12 sheet-bold sheet-result sheet-text-center">{{Attaque}}</div>
-                <label class="sheet-label sheet-bold sheet-w12 sheet-text-center"><span data-i18n="rolltemplate.attack">Toucher</span></label>
-            </div>
-            {{/Attaque}}
-            {{#Dégats}}
-            <div class="sheet-line sheet-border-bottom"></div>
-            <div class="sheet-colu sheet-align-center">
-                <div class="sheet-roll sheet-w12 sheet-bold sheet-result sheet-text-center">{{Dégats}}</div>
-                <label class="sheet-label sheet-bold sheet-w12 sheet-text-center"><span data-i18n="rolltemplate.damage">Dégats</span></label>
-            </div>
-            {{/Dégats}}
-            {{#allprops() titre subtitle description Attaque Dégats Jet}}
-            <div class="sheet-line sheet-border-bottom"></div>
-            <div class="sheet-line sheet-align-center">
+            <div class="sheet-white-line  sheet-align-center">
                 <label class="sheet-label sheet-bold sheet-w4 sheet-text-right">{{key}} :</label>
                 <div class="sheet-w8 sheet-colu sheet-justify-center sheet-align-center">{{value}}</div>
             </div>
-            {{/allprops() titre subtitle description Attaque Dégats Jet}}
+            {{/allprops() titre subtitle description Roll}}
             {{#description}}
             <div class="sheet-line sheet-border-bottom"></div>
-            <div class="sheet-line">
+            <div class="sheet-white-line">
                 <div>
                     {{description}}
                 </div>

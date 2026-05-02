@@ -1,12 +1,12 @@
 
-<div class="boons">
-    <fieldset class="repeating_boons">
+<div class="flaws">
+    <fieldset class="repeating_flaws">
         <div class="hoverable flex-column">
             <input class="options-flag" type="checkbox" name="attr_options-flag" checked><span>y</span>
             <div class="flex-row align-center">
-                <input type="hidden" name="attr_boon_rollvalue"
+                <input type="hidden" name="attr_flaw_rollvalue"
                        value="&{template:main} {{titre=@{name}}} {{subtitle=@{character_name}}} {{description=@{description}}}">
-                <button type="roll" name="attr_boon_roll" value="@{boon_rollvalue}"
+                <button type="roll" name="attr_flaw_roll" value="@{flaw_rollvalue}"
                         class="flex-row bold w-12 white-roll">
                     <span class="w-12" name="attr_name">&nbsp;</span>
                 </button>

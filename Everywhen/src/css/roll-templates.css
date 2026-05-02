@@ -5,10 +5,9 @@
 .sheet-rolltemplate-attack .sheet-cadre,
 .sheet-rolltemplate-spell .sheet-cadre,
 .sheet-rolltemplate-main .sheet-cadre {
-    background-color: white;;
-    border: 0.2rem solid black;
-    padding: 0.75rem;
-    border-radius: 25% 25% 25% 25% / 1rem 1rem 1rem 1rem;
+    padding: 0.5rem;
+    background-color: lightgray;
+    border-radius : 0.5rem;
     min-height: 50px;
 }
 
@@ -42,6 +41,17 @@
 .sheet-rolltemplate-main .sheet-line {
     display: flex;
     flex-direction: row;
+}
+.sheet-rolltemplate-attack .sheet-white-line,
+.sheet-rolltemplate-spell .sheet-white-line,
+.sheet-rolltemplate-main .sheet-white-line {
+    margin-top: 0.25rem;
+    display: flex;
+    flex-direction: row;
+    margin: 0.1rem;
+    background-color: white;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
 }
 
 .sheet-rolltemplate-attack .sheet-border-bottom,

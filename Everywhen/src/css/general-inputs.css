@@ -13,9 +13,12 @@ select{
     margin:0;
 }
 
-input{
+input, textarea{
     border-radius: 0.75rem;
     background-color: white;
+}
+textarea{
+    resize: none;
 }
 
 .bordered-input{
@@ -67,6 +70,48 @@ input{
     padding-top: .75rem;
 }
 
-.boons{
+.boons,.flaws,.tempflaws,.gears{
     margin-top: 1.25rem;
+
+    .editmode .itemcontrol{
+        display : flex !important;
+        gap: .25rem;
+
+        .repcontrol_del,.repcontrol_move{
+            position: relative;
+            z-index: 50;
+            float:none !important;
+        }
+        .repcontrol_del{
+            order : 2;
+        }
+        .repcontrol_move{
+            order : 1;
+        }
+    }
+}
+
+/* Lifeblood & Resolve checkbox */
+input[type=hidden].lifebox + button{
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    background-color: white;
+    position: relative;
+    content: "";
+}
+input[type=hidden][value="1"].lifebox + button{
+    content: "/";
+}
+input[type=hidden][value="2"].lifebox + button{
+    content: "X";
+}
+input[type=hidden][value="3"].lifebox + button{
+    background-color: black;
+}
+
+input[type=checkbox].box{
+     display: none;
 }

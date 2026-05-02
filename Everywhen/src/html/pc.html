@@ -159,36 +159,7 @@
     <div class="flex-row frame align-center gap-2">
         <label class="label w-2"><span data-i18n="resources.lifeblood">Lifeblood</span></label>
         <input type="number" class="bordered-input input w-1" name="attr_lifeblood"></input>
-        <div class="flex-column w-9">
-            <div class="flex-row justify-end align-center">
-                <input type="checkbox" name="attr_lifeblood_1"></input>
-                <input type="checkbox" name="attr_lifeblood_2"></input>
-                <input type="checkbox" name="attr_lifeblood_3"></input>
-                <input type="checkbox" name="attr_lifeblood_4"></input>
-                <input type="checkbox" name="attr_lifeblood_5"></input>
-                <input type="checkbox" name="attr_lifeblood_6"></input>
-                <input type="checkbox" name="attr_lifeblood_7"></input>
-                <input type="checkbox" name="attr_lifeblood_8"></input>
-                <input type="checkbox" name="attr_lifeblood_9"></input>
-                <input type="checkbox" name="attr_lifeblood_10"></input>
-                <input type="checkbox" name="attr_lifeblood_11"></input>
-                <input type="checkbox" name="attr_lifeblood_12"></input>
-                <input type="checkbox" name="attr_lifeblood_13"></input>
-                <input type="checkbox" name="attr_lifeblood_14"></input>
-                <input type="checkbox" name="attr_lifeblood_15"></input>
-                <input type="checkbox" name="attr_lifeblood_16"></input>
-                <input type="checkbox" name="attr_lifeblood_17"></input>
-                <input type="checkbox" name="attr_lifeblood_18"></input>
-            </div>
-            <div class="flex-row justify-end align-center">
-                <label class="label right"><span data-i18n="resources.critical">Critical</span></label>
-                <input type="checkbox" name="attr_lifeblood_critical_1"></input>
-                <input type="checkbox" name="attr_lifeblood_critical_2"></input>
-                <input type="checkbox" name="attr_lifeblood_critical_3"></input>
-                <input type="checkbox" name="attr_lifeblood_critical_4"></input>
-                <input type="checkbox" name="attr_lifeblood_critical_5"></input>
-            </div>
-        </div>
+        <!--=include components/lifeblood.html -->
     </div>
     <div class="flex-row frame align-center gap-2">
         <label class="label w-2"><span data-i18n="resources.resolve">Resolve</span></label>
@@ -232,11 +203,11 @@
             </div>
             <div class="flex-column frame">
                 <label class="title label"><span data-i18n="resources.flaws">Flaws</span></label>
-                <input type="text" class="input w-12" name="attr_flaws"></input>
+                <!--=include components/flaws.html -->
             </div>
             <div class="flex-column frame">
                 <label class="title label"><span data-i18n="resources.tempflaws">Temporary Flaws</span></label>
-                <input type="text" class="input w-12" name="attr_tempflaws"></input>
+                <!--=include components/temp_flaws.html -->
             </div>
         </div>
         <div class="flex-column w-6">
@@ -250,7 +221,7 @@
             </div>
             <div class="flex-column frame">
                 <label class="title label"><span data-i18n="resources.gear">Gear</span></label>
-                <input type="text" class="input w-12" name="attr_gear"></input>
+                <!--=include components/gears.html -->
             </div>
         </div>
     </div>
