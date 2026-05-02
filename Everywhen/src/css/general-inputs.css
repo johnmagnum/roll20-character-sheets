@@ -26,8 +26,8 @@ textarea{
 }
 
 
-/* Roll buttons */
-.custom-roll{
+/* Roll & buttons */
+.custom-roll,.damage-button{
     border: 2px solid black;
     background: #EEE;
     color: black;
@@ -41,13 +41,31 @@ textarea{
 .white-roll::before{
     content:""
 }
+.tab-button{
+    background: gray;
+    color: black;
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
+    padding-left: 0.70rem;
+    padding-right: 0.70rem;
+    border:none;
+}
 /* Labels */
+.left{
+    text-align: left !important;
+}
 .centered{
-    text-align: center;
+    text-align: center !important;
 }
 
 .right{
-    text-align: right;
+    text-align: right !important;
+}
+
+.fit-content{
+    width: fit-content !important;
 }
 
 .label{
@@ -70,7 +88,7 @@ textarea{
     padding-top: .75rem;
 }
 
-.boons,.flaws,.tempflaws,.gears{
+.boons,.flaws,.tempflaws,.gears,.weapons,.armours{
     margin-top: 1.25rem;
 
     .editmode .itemcontrol{
@@ -92,7 +110,7 @@ textarea{
 }
 
 /* Lifeblood & Resolve checkbox */
-input[type=hidden].lifebox + button{
+input[type=hidden].lifebox + span, label.box,label.large-box{
     display: inline-block;
     width: 1.5rem;
     height: 1.5rem;
@@ -102,16 +120,39 @@ input[type=hidden].lifebox + button{
     position: relative;
     content: "";
 }
-input[type=hidden][value="1"].lifebox + button{
-    content: "/";
+input[type=hidden].lifebox + span,label.large-box{
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
 }
-input[type=hidden][value="2"].lifebox + button{
-    content: "X";
-}
-input[type=hidden][value="3"].lifebox + button{
-    background-color: black;
+label.box,label.large-box{
+    margin: 0;
+    padding: 0;
 }
 
-input[type=checkbox].box{
-     display: none;
+label.box > input[type=checkbox],label.large-box > input[type=checkbox]{
+    opacity: 0;
+    margin: 0;
+    width: 1px;
+    height: 1px;
+}
+
+input[type=hidden][value="1"].lifebox + span::before{
+    content: "/";
+    color: black;
+    font-weight: bolder;
+}
+input[type=hidden][value="2"].lifebox + span::before{
+    content: "X";
+    color: black;
+    font-weight: bolder;
+}
+input[type=hidden][value="3"].lifebox + span::before{
+    content: "★";
+    color: black;
+    font-weight: bolder;
+}
+
+input[type=hidden][value="-1"].lifebox + span, label.box:has(input:checked), label.large-box:has(input:checked){
+    background-color: black;
 }
