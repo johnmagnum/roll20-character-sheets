@@ -1,9 +1,9 @@
 <div class="flex-column core">
     <div class="flex-row frame align-center">
-        <label class="label w-1"><span data-i18n="common.name">Name</span></label>
-        <input type="text" class="input w-6" name="attr_character_name"></input>
-        <label class="label w-1"><span data-i18n="common.roll">Roll</span></label>
-        <select class="w-8" name="attr_roll">
+        <label class="label w-1 right"><span data-i18n="common.name">Name</span></label>
+        <input type="text" class="input w-3" name="attr_character_name"></input>
+        <label class="label w-1 right"><span data-i18n="common.roll">Roll</span></label>
+        <select class="w-2" name="attr_roll_base">
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="1D3">d3</option>
@@ -17,6 +17,14 @@
             <option value="3D6">3D6</option>
             <option value="4D6KH3">3D6H</option>
         </select>
+        <label class="label fit-content">±</label>
+        <input type="number" class="input w-1" name="attr_bonus_dices"></input>
+        <input type="hidden" name="attr_roll"></input>
+        <label class="label fit-content">dices</label>
+        <label class="label w-1"><span data-i18n="common.xp">Xp</span></label>
+        <input type="number" class="input w-1" name="attr_xp"></input>
+        <label class="label fit-content">/</label>
+        <input type="number" class="input w-1" name="attr_xp_max"></input>
     </div>
     <div class="flex-row">
         <div class="flex-column w-6 justify-sb">

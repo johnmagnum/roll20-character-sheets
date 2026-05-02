@@ -95,7 +95,7 @@ on("change:repeating_weapons", (eventInfo) => {
         {
             damageText += getPositiveSign(damage_ability_mod) + damage_ability_mod + "[^{attributes."+damage_ability_val+"}]";
         }
-        
+
         let typeLabel = getTranslationByKey("attack.type." + typeval) || typeval;
         if(typeval == "ranged" && !!rangeVal){
             typeLabel += " (" + rangeVal + ")";
@@ -119,4 +119,50 @@ on("sheet:opened", function(eventInfo){
     let rollQuery = {}
     rollQuery["attribute_choose"] = "?{"+getTranslationByKey("common.choose")+"|"+getTranslationByKey("attributes.strength")+",@{strength}|"+getTranslationByKey("attributes.agility")+",@{agility}|"+getTranslationByKey("attributes.mind")+",@{mind}|"+getTranslationByKey("attributes.appeal")+",@{appeal}}";
     setAttrs(rollQuery);     
+});
+
+/* add - remove bonus dices from roll */
+on("change:roll_base change:bonus_dices", (eventInfo) => {
+    
+    getAttrs(["roll_base","bonus_dices"], (attrs) => {
+        let roll_base = attrs["roll_base"];
+        let bonus_dices = parseInt(attrs["bonus_dices"],10) || 0;
+
+        const match = roll_base.match(/^(\d+)[dD](\d+)(k[hHlL]?(\d+))?$/);
+        if (!match) {
+            return;
+        }
+        const count = parseInt(match[1], 10);
+        const sides = parseInt(match[2], 10);
+        const modifier = match[3] ? match[3].toLowerCase() : null;
+        const value = match[4] ? parseInt(match[4], 10) : null;
+        if(modifier && !value)
+        {
+            return;
+        }
+
+        let baseDice = modifier ? value : count;
+        let bonusDice = 0;
+        if(modifier == "kh"){
+            bonusDice = count - value;
+        } 
+        else if(modifier == "kl"){
+            bonusDice = value - count;
+        }
+        bonusDice += bonus_dices;
+
+        let totalDice = baseDice + Math.abs(bonusDice);
+        let stringRoll = totalDice+"d"+sides;
+        if(bonusDice > 0){
+            stringRoll += "kh"+baseDice;
+        }
+        else if(bonusDice < 0){
+            stringRoll += "kl"+baseDice;
+        }
+
+        let toUpdate = {};
+        toUpdate["roll"] = stringRoll;
+        setAttrs(toUpdate);
+        
+    });
 });

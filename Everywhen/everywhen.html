@@ -13,10 +13,10 @@
     <!-- PC Core-->
     <div class="flex-column core">
         <div class="flex-row frame align-center">
-            <label class="label w-1"><span data-i18n="common.name">Name</span></label>
-            <input type="text" class="input w-6" name="attr_character_name"></input>
-            <label class="label w-1"><span data-i18n="common.roll">Roll</span></label>
-            <select class="w-8" name="attr_roll">
+            <label class="label w-1 right"><span data-i18n="common.name">Name</span></label>
+            <input type="text" class="input w-3" name="attr_character_name"></input>
+            <label class="label w-1 right"><span data-i18n="common.roll">Roll</span></label>
+            <select class="w-2" name="attr_roll_base">
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="1D3">d3</option>
@@ -30,6 +30,14 @@
                 <option value="3D6">3D6</option>
                 <option value="4D6KH3">3D6H</option>
             </select>
+            <label class="label fit-content">±</label>
+            <input type="number" class="input w-1" name="attr_bonus_dices"></input>
+            <input type="hidden" name="attr_roll"></input>
+            <label class="label fit-content">dices</label>
+            <label class="label w-1"><span data-i18n="common.xp">Xp</span></label>
+            <input type="number" class="input w-1" name="attr_xp"></input>
+            <label class="label fit-content">/</label>
+            <input type="number" class="input w-1" name="attr_xp_max"></input>
         </div>
         <div class="flex-row">
             <div class="flex-column w-6 justify-sb">
@@ -527,9 +535,9 @@
                                     <input type="hidden" name="attr_weapon_damage_value"></input>
                                     <button type="roll" name="attr_weapon_roll" value="@{weapon_rollvalue}"
                                             class="flex-row bold w-12 left white-roll ">
-                                        <span class="w-4" name="attr_name">&nbsp;</span>
-                                        <span class="w-4" name="attr_type_label">&nbsp;</span>
-                                        <span class="w-4" name="attr_damage_label">&nbsp;</span>
+                                        <span class="w-6" name="attr_name">&nbsp;</span>
+                                        <span class="w-3 center" name="attr_type_label">&nbsp;</span>
+                                        <span class="w-3 center" name="attr_damage_label">&nbsp;</span>
                                     </button>
                                 </div>
                                 <div class="flex-column options-options option-frame">
@@ -1160,7 +1168,7 @@
             {
                 damageText += getPositiveSign(damage_ability_mod) + damage_ability_mod + "[^{attributes."+damage_ability_val+"}]";
             }
-            
+    
             let typeLabel = getTranslationByKey("attack.type." + typeval) || typeval;
             if(typeval == "ranged" && !!rangeVal){
                 typeLabel += " (" + rangeVal + ")";
@@ -1185,4 +1193,51 @@
         rollQuery["attribute_choose"] = "?{"+getTranslationByKey("common.choose")+"|"+getTranslationByKey("attributes.strength")+",@{strength}|"+getTranslationByKey("attributes.agility")+",@{agility}|"+getTranslationByKey("attributes.mind")+",@{mind}|"+getTranslationByKey("attributes.appeal")+",@{appeal}}";
         setAttrs(rollQuery);     
     });
+    
+    /* add - remove bonus dices from roll */
+    on("change:roll_base change:bonus_dices", (eventInfo) => {
+        
+        getAttrs(["roll_base","bonus_dices"], (attrs) => {
+            let roll_base = attrs["roll_base"];
+            let bonus_dices = parseInt(attrs["bonus_dices"],10) || 0;
+    
+            const match = roll_base.match(/^(\d+)[dD](\d+)(k[hHlL]?(\d+))?$/);
+            if (!match) {
+                return;
+            }
+            const count = parseInt(match[1], 10);
+            const sides = parseInt(match[2], 10);
+            const modifier = match[3] ? match[3].toLowerCase() : null;
+            const value = match[4] ? parseInt(match[4], 10) : null;
+            if(modifier && !value)
+            {
+                return;
+            }
+    
+            let baseDice = modifier ? value : count;
+            let bonusDice = 0;
+            if(modifier == "kh"){
+                bonusDice = count - value;
+            } 
+            else if(modifier == "kl"){
+                bonusDice = value - count;
+            }
+            bonusDice += bonus_dices;
+    
+            let totalDice = baseDice + Math.abs(bonusDice);
+            let stringRoll = totalDice+"d"+sides;
+            if(bonusDice > 0){
+                stringRoll += "kh"+baseDice;
+            }
+            else if(bonusDice < 0){
+                stringRoll += "kl"+baseDice;
+            }
+    
+            let toUpdate = {};
+            toUpdate["roll"] = stringRoll;
+            setAttrs(toUpdate);
+            
+        });
+    });
+    
 </script>
