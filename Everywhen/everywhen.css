@@ -39,6 +39,10 @@
         border: 2px solid black;
     }
     
+    .smaller{
+        font-size: 0.90%;
+    }
+    
     
     /* Roll & buttons */
     .custom-roll,.damage-button{
