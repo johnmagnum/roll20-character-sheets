@@ -12,6 +12,10 @@
         box-sizing: border-box !important;
     }
 
+    .container{
+        min-width: 795px;
+    }
+
     /* Remove Arrow froms numbers */
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
