@@ -1,6 +1,7 @@
 /*=include tools.js */
 /*=include visibility.js */
 /*=include life.js */
+/*=include resolve.js */
 //Armour Changes
 on("change:repeating_armours", (eventInfo) => {
     let armourId = eventInfo.triggerName;
@@ -116,11 +117,39 @@ on("change:repeating_weapons", (eventInfo) => {
 
 /*Translate Roll query */
 on("sheet:opened", function(eventInfo){
+    initSheetIfNeeded();     
     let rollQuery = {}
     rollQuery["attribute_choose"] = "?{"+getTranslationByKey("common.choose")+"|"+getTranslationByKey("attributes.strength")+",@{strength}|"+getTranslationByKey("attributes.agility")+",@{agility}|"+getTranslationByKey("attributes.mind")+",@{mind}|"+getTranslationByKey("attributes.appeal")+",@{appeal}}";
-    setAttrs(rollQuery);     
+    setAttrs(rollQuery);
 });
 
+function initSheetIfNeeded(){ 
+    getAttrs(["page","has_faith","has_arcana","has_psionics","has_resolve","has_credit"], (attrs) => {
+        let toUpdate = {};
+        console.log(attrs);
+        if(!attrs["page"]){
+            toUpdate["page"] = "core";
+        }
+        if(!attrs["has_faith"] || attrs["has_faith"] == "on"){
+            toUpdate["has_faith"] = "on";
+        }
+        if(!attrs["has_arcana"] || attrs["has_faith"] == "on"){
+            toUpdate["has_arcana"] = "on";
+        }
+        if(!attrs["has_psionics"] || attrs["has_faith"] == "on"){
+            toUpdate["has_psionics"] = "on";
+        }
+        if(!attrs["has_resolve"] || attrs["has_faith"] == "on"){
+            toUpdate["has_resolve"] = "on";
+        }
+        if(!attrs["has_credit"] || attrs["has_faith"] == "on"){
+            toUpdate["has_credit"] = "on";
+        }
+        console.log(toUpdate);
+        setAttrs(toUpdate);
+    });
+
+}
 /* add - remove bonus dices from roll */
 on("change:roll_base change:bonus_dices", (eventInfo) => {
     

@@ -85,3 +85,16 @@ input[name="attr_type"] + .conditional-range{
 input[name="attr_type"][value="ranged"] + .conditional-range{
     display: flex;
 }
+
+/* Optionals Rules */
+.conditional-faith, .conditional-arcana, .conditional-psionic, .conditional-credit, .conditional-resolve{
+    display: none;
+}
+
+input[name="attr_has_faith"][value="on"] ~ .conditional-faith,
+input[name="attr_has_arcana"][value="on"] ~ .conditional-arcana,
+input[name="attr_has_psionics"][value="on"] ~ .conditional-psionic,
+input[name="attr_has_credit"][value="on"] ~ .conditional-credit,
+input[name="attr_has_resolve"][value="on"] ~ .conditional-resolve{
+    display: flex;
+}

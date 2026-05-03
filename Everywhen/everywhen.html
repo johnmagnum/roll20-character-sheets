@@ -41,8 +41,8 @@
         </div>
         <div class="flex-row">
             <div class="flex-column w-6 justify-sb">
-                <div class="flex-row">
-                    <div class="flex-column w-6 frame">
+                <div class="flex-row grow">
+                    <div class="flex-column w-6 frame justify-sa">
                         <input type="hidden" name="attr_attribute_choose" value="?{common.choose|attributes.strength,@{strength}|attributes.agility,@{agility}|attributes.mind,@{mind}|attributes.appeal,@{appeal}}">
                         <div class="flex-row align-center">
                             <label class="label w-8"><span data-i18n="attributes.strength">Strength</span></label>
@@ -73,7 +73,7 @@
                             <button type="roll" name="attr_appeal_roll" value="@{appeal_rollvalue}" class="w-2 custom-roll"></button>  
                         </div>
                     </div>
-                    <div class="flex-column w-6 frame">
+                    <div class="flex-column w-6 frame justify-sa">
                         <div class="flex-row align-center">
                             <label class="label w-8"><span data-i18n="combat.initiative">Initiative</span></label>
                             <input type="number" class="bordered-input input w-2" name="attr_initiative"></input>
@@ -160,6 +160,9 @@
                 </div>
             </div>
             <div class="flex-column w-3 frame align-center">
+                <input type="hidden" name="attr_has_faith">
+                <input type="hidden" name="attr_has_arcana">
+                <input type="hidden" name="attr_has_psionics">
                 <label class="label centered"><span data-i18n="resources.heropoints">Hero Points</span></label>
                 <div class="flex-row justify-center">
                     <label class="box">
@@ -181,8 +184,8 @@
                         <input type="checkbox" name="attr_hero_points_6"></input>
                     </label>
                 </div>
-                <label class="label centered"><span data-i18n="resources.faithpoints">Faith Points</span></label>
-                <div class="flex-row justify-center">
+                <label class="label justify-center conditional-faith"><span data-i18n="resources.faithpoints">Faith Points</span></label>
+                <div class="flex-row justify-center conditional-faith">
                     <label class="box">
                         <input type="checkbox" name="attr_faith_points_1"></input>
                     </label>
@@ -205,8 +208,8 @@
                         <input type="checkbox" name="attr_faith_points_7"></input>
                     </label>
                 </div>
-                <label class="label centered"><span data-i18n="resources.arcanepoints">Arcane Points</span></label>
-                <div class="flex-row justify-center">
+                <label class="label justify-center conditional-arcana"><span data-i18n="resources.arcanepoints">Arcane Points</span></label>
+                <div class="flex-row justify-center conditional-arcana">
                     <label class="box">
                         <input type="checkbox" name="attr_arcanepoints_1"></input>
                     </label>
@@ -235,7 +238,7 @@
                         <input type="checkbox" name="attr_arcanepoints_9"></input>
                     </label>
                 </div>
-                <div class="flex-row justify-center">
+                <div class="flex-row justify-center conditional-arcana">
                     <label class="box">
                         <input type="checkbox" name="attr_arcanepoints_10"></input>
                     </label>
@@ -264,8 +267,8 @@
                         <input type="checkbox" name="attr_arcanepoints_18"></input>
                     </label>
                 </div>
-                <label class="label centered"><span data-i18n="resources.psionicpoints">Psionic Points</span></label>
-                <div class="flex-row justify-center">
+                <label class="label justify-center conditional-psionic"><span data-i18n="resources.psionicpoints">Psionic Points</span></label>
+                <div class="flex-row justify-center conditional-psionic">
                     <label class="box">
                         <input type="checkbox" name="attr_psionicpoints_1"></input>
                     </label>
@@ -294,7 +297,7 @@
                         <input type="checkbox" name="attr_psionicpoints_9"></input>
                     </label>
                 </div>
-                <div class="flex-row justify-center">
+                <div class="flex-row justify-center conditional-arcana">
                     <label class="box">
                         <input type="checkbox" name="attr_psionicpoints_10"></input>
                     </label>
@@ -326,109 +329,148 @@
             </div>
         </div>
         <div class="flex-row frame align-center gap-2">
-                    
-                    <div class="flex-column align-center">
-                        <label class="label"><span data-i18n="resources.lifeblood">Lifeblood</span></label>
-                        <input type="number" class="bordered-input input" name="attr_lifeblood"></input>
-                    </div>
-                    <div class="flex-column w-2">
-                        <button type="action" name="act_damage_fatigue" class="damage-button"><span data-i18n="damage.fatigue">Fatigue</span></button>
-                        <button type="action" name="act_damage_normal" class="damage-button"><span data-i18n="damage.normal">Normal</span></button>
-                    </div>
-                    <div class="flex-column w-2">
-                        <button type="action" name="act_damage_rest" class="damage-button"><span data-i18n="rest.short">Rest</span></button>
-                        <button type="action" name="act_damage_heal" class="damage-button"><span data-i18n="rest.heal">Heal</span></button>
-                    </div>
-                    <div class="flex-column w-7">
-                        <div class="flex-row justify-end align-center">
-                            <input type="hidden" name="attr_lifeblood_1" class="lifebox"></input>
-                            <span></span>
-                            <input type="hidden" name="attr_lifeblood_2" class="lifebox"></input>
-                            <span></span>
-                            <input type="hidden" name="attr_lifeblood_3" class="lifebox"></input>
-                            <span></span>
-                            <input type="hidden" name="attr_lifeblood_4" class="lifebox"></input>
-                            <span></span>
-                            <input type="hidden" name="attr_lifeblood_5" class="lifebox"></input>
-                            <span></span>
-                            <input type="hidden" name="attr_lifeblood_6" class="lifebox"></input>
-                            <span></span>
-                            <input type="hidden" name="attr_lifeblood_7" class="lifebox"></input>
-                            <span></span>
-                            <input type="hidden" name="attr_lifeblood_8" class="lifebox"></input>
-                            <span></span>
-                            <input type="hidden" name="attr_lifeblood_9" class="lifebox"></input>
-                            <span></span>
-                            <input type="hidden" name="attr_lifeblood_10" class="lifebox"></input>
-                            <span></span>
-                            <input type="hidden" name="attr_lifeblood_11" class="lifebox"></input>
-                            <span></span>
-                            <input type="hidden" name="attr_lifeblood_12" class="lifebox"></input>
-                            <span></span>
-                            <input type="hidden" name="attr_lifeblood_13" class="lifebox"></input>
-                            <span></span>
-                            <input type="hidden" name="attr_lifeblood_14" class="lifebox"></input>
-                            <span></span>
-                            <input type="hidden" name="attr_lifeblood_15" class="lifebox"></input>
-                            <span></span>
-                            <input type="hidden" name="attr_lifeblood_16" class="lifebox"></input>
-                            <span></span>
-                            <input type="hidden" name="attr_lifeblood_17" class="lifebox"></input>
-                            <span></span>
-                            <input type="hidden" name="attr_lifeblood_18" class="lifebox"></input>
-                            <span></span>
-                        </div>
-                        <div class="flex-row justify-end align-center">
-                            <label class="label fit-content"><span data-i18n="resources.critical">Critical</span></label>
-                            <label class="large-box">
-                                <input type="checkbox" name="attr_lifeblood_critical_1"></input>
-                            </label>
-                            <label class="large-box">
-                                <input type="checkbox" name="attr_lifeblood_critical_2"></input>
-                            </label>
-                            <label class="large-box">
-                                <input type="checkbox" name="attr_lifeblood_critical_3"></input>
-                            </label>
-                            <label class="large-box">
-                                <input type="checkbox" name="attr_lifeblood_critical_4"></input>
-                            </label>
-                            <label class="large-box">
-                                <input type="checkbox" name="attr_lifeblood_critical_5"></input>
-                            </label>
-                        </div>
-                    </div>
-        </div>
-        <div class="flex-row frame align-center gap-2" style="display: none;"> <!--Todo-->
-            <label class="label w-2"><span data-i18n="resources.resolve">Resolve</span></label>
-            <input type="number" class="bordered-input input w-1" name="attr_resolve"></input>
-            <div class="flex-column w-9">
+            <div class="flex-column w-2 align-center">
+                <label class="label fit-content"><span data-i18n="resources.lifeblood">Lifeblood</span></label>
+                <input type="number" class="bordered-input input" name="attr_lifeblood"></input>
+            </div>
+            <div class="flex-column w-2">
+                <button type="action" name="act_damage_fatigue" class="damage-button"><span data-i18n="damage.fatigue">Fatigue</span></button>
+                <button type="action" name="act_damage_normal" class="damage-button"><span data-i18n="damage.normal">Normal</span></button>
+            </div>
+            <div class="flex-column w-2">
+                <button type="action" name="act_damage_rest" class="damage-button"><span data-i18n="rest.short">Rest</span></button>
+                <button type="action" name="act_damage_heal" class="damage-button"><span data-i18n="rest.heal">Heal</span></button>
+            </div>
+            <div class="flex-column w-7">
                 <div class="flex-row justify-end align-center">
-                    <input type="checkbox" name="attr_resolve_1"></input>
-                    <input type="checkbox" name="attr_resolve_2"></input>
-                    <input type="checkbox" name="attr_resolve_3"></input>
-                    <input type="checkbox" name="attr_resolve_4"></input>
-                    <input type="checkbox" name="attr_resolve_5"></input>
-                    <input type="checkbox" name="attr_resolve_6"></input>
-                    <input type="checkbox" name="attr_resolve_7"></input>
-                    <input type="checkbox" name="attr_resolve_8"></input>
-                    <input type="checkbox" name="attr_resolve_9"></input>
-                    <input type="checkbox" name="attr_resolve_10"></input>
-                    <input type="checkbox" name="attr_resolve_11"></input>
-                    <input type="checkbox" name="attr_resolve_12"></input>
-                    <input type="checkbox" name="attr_resolve_13"></input>
-                    <input type="checkbox" name="attr_resolve_14"></input>
-                    <input type="checkbox" name="attr_resolve_15"></input>
-                    <input type="checkbox" name="attr_resolve_16"></input>
-                    <input type="checkbox" name="attr_resolve_17"></input>
-                    <input type="checkbox" name="attr_resolve_18"></input>
+                    <input type="hidden" name="attr_lifeblood_1" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_lifeblood_2" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_lifeblood_3" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_lifeblood_4" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_lifeblood_5" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_lifeblood_6" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_lifeblood_7" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_lifeblood_8" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_lifeblood_9" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_lifeblood_10" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_lifeblood_11" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_lifeblood_12" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_lifeblood_13" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_lifeblood_14" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_lifeblood_15" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_lifeblood_16" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_lifeblood_17" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_lifeblood_18" class="lifebox"></input>
+                    <span></span>
                 </div>
                 <div class="flex-row justify-end align-center">
-                    <label class="label right"><span data-i18n="resources.critical">Critical</span></label>
-                    <input type="checkbox" name="attr_resolve_critical_1"></input>
-                    <input type="checkbox" name="attr_resolve_critical_2"></input>
-                    <input type="checkbox" name="attr_resolve_critical_3"></input>
-                    <input type="checkbox" name="attr_resolve_critical_4"></input>
-                    <input type="checkbox" name="attr_resolve_critical_5"></input>
+                    <label class="label fit-content"><span data-i18n="resources.critical">Critical</span></label>
+                    <label class="large-box">
+                        <input type="checkbox" name="attr_lifeblood_critical_1"></input>
+                    </label>
+                    <label class="large-box">
+                        <input type="checkbox" name="attr_lifeblood_critical_2"></input>
+                    </label>
+                    <label class="large-box">
+                        <input type="checkbox" name="attr_lifeblood_critical_3"></input>
+                    </label>
+                    <label class="large-box">
+                        <input type="checkbox" name="attr_lifeblood_critical_4"></input>
+                    </label>
+                    <label class="large-box">
+                        <input type="checkbox" name="attr_lifeblood_critical_5"></input>
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        <input type="hidden" name="attr_has_resolve"></input>
+        <div class="flex-row frame align-center gap-2 conditional-resolve">
+            <div class="flex-column w-2 align-center">
+                <label class="label fit-content"><span data-i18n="resources.resolve">resolve</span></label>
+                <input type="number" class="bordered-input input" name="attr_resolve"></input>
+            </div>
+            <div class="flex-column w-2">
+                <button type="action" name="act_resolve_fatigue" class="damage-button"><span data-i18n="damage.fatigue">Fatigue</span></button>
+                <button type="action" name="act_resolve_normal" class="damage-button"><span data-i18n="damage.normal">Normal</span></button>
+            </div>
+            <div class="flex-column w-2">
+                <button type="action" name="act_resolve_rest" class="damage-button"><span data-i18n="rest.short">Rest</span></button>
+                <button type="action" name="act_resolve_heal" class="damage-button"><span data-i18n="rest.heal">Heal</span></button>
+            </div>
+            <div class="flex-column w-7">
+                <div class="flex-row justify-end align-center">
+                    <input type="hidden" name="attr_resolve_1" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_resolve_2" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_resolve_3" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_resolve_4" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_resolve_5" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_resolve_6" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_resolve_7" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_resolve_8" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_resolve_9" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_resolve_10" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_resolve_11" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_resolve_12" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_resolve_13" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_resolve_14" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_resolve_15" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_resolve_16" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_resolve_17" class="lifebox"></input>
+                    <span></span>
+                    <input type="hidden" name="attr_resolve_18" class="lifebox"></input>
+                    <span></span>
+                </div>
+                <div class="flex-row justify-end align-center">
+                    <label class="label fit-content"><span data-i18n="resources.critical">Critical</span></label>
+                    <label class="large-box">
+                        <input type="checkbox" name="attr_resolve_critical_1"></input>
+                    </label>
+                    <label class="large-box">
+                        <input type="checkbox" name="attr_resolve_critical_2"></input>
+                    </label>
+                    <label class="large-box">
+                        <input type="checkbox" name="attr_resolve_critical_3"></input>
+                    </label>
+                    <label class="large-box">
+                        <input type="checkbox" name="attr_resolve_critical_4"></input>
+                    </label>
+                    <label class="large-box">
+                        <input type="checkbox" name="attr_resolve_critical_5"></input>
+                    </label>
                 </div>
             </div>
         </div>
@@ -664,14 +706,83 @@
     <!-- PC Bio-->
     <div class="flex-column bio">
         <div class="flex-row frame align-center">
-            BIO
+            <label class="label w-1 right"><span data-i18n="common.name">Name</span></label>
+            <input type="text" class="input w-3" name="attr_character_name"></input>
+            <label class="label w-1 right"><span data-i18n="common.race">Race</span></label>
+            <input type="text" class="input w-3" name="attr_character_race"></input>
+            <label class="label w-1 right"><span data-i18n="common.origin">Origin</span></label>
+            <input type="text" class="input w-3" name="attr_character_origin"></input>
+        </div>
+        <div class="flex-row">
+            <div class="flex-column frame w-6">
+                <label class="label title"><span data-i18n="bio.background">Background</span></label>
+                <textarea name="attr_bio_background"></textarea>
+            </div>
+            <div class="flex-column frame w-6">
+                <label class="label title"><span data-i18n="bio.friendfoe">Friend & Foes</span></label>
+                <textarea name="attr_bio_background"></textarea>
+            </div>
+        </div>
+        <div class="flex-row frame">
+            <label class="label title"><span data-i18n="common.notes">Notes</span></label>
+            <textarea name="attr_bio_notes"></textarea>
         </div>
     </div>
 
     <!-- PC config-->
     <div class="flex-column config">
         <div class="flex-row frame align-center">
-            CONFIG
+            <label class="label"><span data-i18n="common.config">Configuration</span></label>
+        </div>
+        <div class="flex-row">
+            <div class="flex-column w-6 frame config-frame">
+                <label class="label title"><span data-i18n="config.sheet">Sheet Configuration</span></label>
+                <div class="flex-row">
+                    <label class="label w-6 right"><span data-i18n="config.hasfaith">Has Faith</span></label>
+                    <select class="w-6" name="attr_has_faith">
+                        <option value="on">Yes</option>
+                        <option value="off">No</option>
+                    </select>
+                </div>
+                <div class="flex-row">
+                    <label class="label w-6 right"><span data-i18n="config.hasarcana">Has Arcana</span></label>
+                    <select class="w-6" name="attr_has_arcana">
+                        <option value="on">Yes</option>
+                        <option value="off">No</option>
+                    </select>
+                </div>
+                <div class="flex-row">
+                    <label class="label w-6 right"><span data-i18n="config.haspsionic">Has Psionic</span></label>
+                    <select class="w-6" name="attr_has_psionics">
+                        <option value="on">Yes</option>
+                        <option value="off">No</option>
+                    </select>
+                </div>
+                <div class="flex-row">
+                    <label class="label w-6 right"><span data-i18n="config.hasresolve">Has Resolve</span></label>
+                    <select class="w-6" name="attr_has_resolve">
+                        <option value="on">Yes</option>
+                        <option value="off">No</option>
+                    </select>
+                </div>
+                <div class="flex-row">
+                    <label class="label w-6 right"><span data-i18n="config.hascredit">Has Credit Rating</span></label>
+                    <label class="label w-6">Not yet available</label>
+                    <select class="w-6" name="attr_has_credit" style="display: none;">
+                        <option value="on">Yes</option>
+                        <option value="off">No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex-column w-6 frame config-frame">
+                <label class="label title"><span data-i18n="config.export">Import / Export</span></label>
+                Not yet available
+            </div>
+    
+        </div>
+        <div class="flex-column frame">
+            <label class="label centered"><span data-i18n="help.info">Need info? Look here</span></label>
+            <label class="label centered"><span data-i18n="help.bug">Found bug? Look here</span></label>
         </div>
     </div>
 
@@ -1074,6 +1185,197 @@
             return;
         });
     });
+    on("change:resolve", (eventInfo) => {
+        let attrsName = ["resolve"];
+        for(let i = 1 ; i <= 18 ; i++ ) {
+            attrsName.push("resolve_"+i);
+        }
+        getAttrs(attrsName, (attrs) => {
+            let life = parseInt(attrs["resolve"],10) || 0;
+            let toUpdate = {}
+            for(let i = 1 ; i <= 18 ; i++) {
+                let resolveI = attrs["resolve_"+i];
+                if(resolveI == null || resolveI == undefined) {
+                    toUpdate["resolve_"+i] = (i <= life) ? 0 : -1;
+                }
+                let resolveINum = parseInt(resolveI,10) || 0;
+                if(i <= life && resolveINum == -1) {
+                    resolveINum = 0;
+                }
+                else if(i > life && resolveINum != -1) {
+                    resolveINum = -1;
+                }
+                toUpdate["resolve_"+i] = resolveINum;
+            }
+            setAttrs(toUpdate);
+        });
+    });
+    
+    on("clicked:resolve_fatigue", (eventInfo) => {
+        let attrsName = [];
+        for(let i = 1 ; i <= 18 ; i++ ) {
+            attrsName.push("resolve_"+i);
+        }
+        getAttrs(attrsName, (attrs) => {
+            let toUpdate= {};
+            for(let i = 18; i > 0 ; i--) {
+                let resolveI = attrs["resolve_"+i];
+                if(resolveI == null || resolveI == undefined) {
+                    toUpdate["resolve_"+i] = 1;
+                    setAttrs(toUpdate);
+                    return;
+                }
+                let resolveINum = parseInt(resolveI,10) || 0;
+                if(resolveINum == -1 || resolveINum == 1)
+                {
+                    continue;
+                }
+                if(resolveINum == 2 || resolveINum == 3)
+                {
+                    return;
+                }
+                toUpdate["resolve_"+i] = 1;
+                setAttrs(toUpdate);
+                return;
+            }
+        });
+    });
+    
+    on("clicked:resolve_normal", (eventInfo) => {
+        let attrsName = [];
+        for(let i = 1 ; i <= 18 ; i++ ) {
+            attrsName.push("resolve_"+i);
+        }
+        getAttrs(attrsName, (attrs) => {
+            let toUpdate= {};
+            for(let i = 1; i <= 18 ; i++) {
+                let resolveI = attrs["resolve_"+i];
+                if(resolveI == null || resolveI == undefined) {
+                    toUpdate["resolve_"+i] = 2;
+                    setAttrs(toUpdate);
+                    return;
+                }
+                let resolveINum = parseInt(resolveI,10) || 0;
+                if(resolveINum == 2 || resolveINum == 3)
+                {
+                    continue;
+                }
+                if(resolveINum == -1 || resolveINum == 1)
+                {
+                    return;
+                }
+                toUpdate["resolve_"+i] = 2;
+                setAttrs(toUpdate);
+                return;
+            }
+        });
+    });
+    
+    on("clicked:resolve_rest", (eventInfo) => {
+        let attrsName = [];
+        for(let i = 1 ; i <= 18 ; i++ ) {
+            attrsName.push("resolve_"+i);
+        }
+        getAttrs(attrsName, (attrs) => {
+            let toUpdate = {};
+            let normal_damage = 0;
+            //First Pass, Heal Fatigue Damage and sanitize
+            for(let i = 1; i <= 18 ; i++) {
+                let resolveI = attrs["resolve_"+i];
+                if(resolveI == null || resolveI == undefined) {
+                    toUpdate["resolve_"+i] = 0;
+                    continue;
+                }
+                let resolveINum = parseInt(resolveI,10) || 0;
+                if(resolveINum == 1)
+                {
+                    toUpdate["resolve_"+i] = 0;
+                    continue;
+                }
+                if(resolveINum == 2)
+                {
+                    normal_damage++;
+                }
+            }
+            //Second pass, Heal half normal damage, Agravate rest 
+            normal_damage = Math.ceil(normal_damage / 2);
+            for(let i = 18 ; i > 0; i--)
+            {
+                let resolveI = attrs["resolve_"+i];
+                let resolveINum = parseInt(resolveI,10) || 0;
+                
+                if(resolveINum == 2 && normal_damage > 0)
+                {
+                    toUpdate["resolve_"+i] = 0;
+                    normal_damage--;
+                }
+                else if(resolveINum == 2)
+                {
+                    toUpdate["resolve_"+i] = 3;
+                }
+            }
+            setAttrs(toUpdate);
+        });
+    });
+    
+    on("clicked:resolve_heal", (eventInfo) => {
+        let attrsName = [];
+        for(let i = 1 ; i <= 18 ; i++ ) {
+            attrsName.push("resolve_"+i);
+        }
+        getAttrs(attrsName, (attrs) => {
+            let toUpdate = {};
+            //Heal fatigue & one Normal/Lasting Damage
+            let normalDamageLeft;
+            let lastingDamageLeft;
+            let healed = false;
+            //First pass, Set the track clean and count how many normal/lasting damage are left
+            for(let i = 18 ; i > 0 && !healed; i--)
+            {
+                let resolveI = attrs["resolve_"+i];
+                if(resolveI == null || resolveI == undefined) {
+                    toUpdate["resolve_"+i] = 0;
+                    continue;
+                }
+                let resolveINum = parseInt(resolveI,10) || 0;
+                if(resolveINum == 1){
+                    toUpdate["resolve_"+i] = 0;
+                    continue;
+                }
+                if((resolveINum == 3 || resolveINum == 2) && !healed)
+                {
+                    toUpdate["resolve_"+i] = 0;
+                    healed = true;
+                    continue;
+                }
+                if(resolveINum == 3)
+                {
+                    toUpdate["resolve_"+i] = 0;
+                    lastingDamageLeft++;
+                    continue;
+                }
+                if(resolveINum == 2)
+                {
+                    toUpdate["resolve_"+i] = 0;
+                    normalDamageLeft++;
+                    continue;
+                }
+            }
+            for(let i = 1 ; i <=18 && normalDamageLeft > 0 && lastingDamageLeft > 0;i++)
+            {
+                if(lastingDamageLeft > 0)
+                {
+                    toUpdate["resolve_"+i] = 3;
+                    lastingDamageLeft--;
+                    continue
+                }
+                toUpdate["resolve_"+i] = 2;
+                normalDamageLeft--;
+            }
+            setAttrs(toUpdate);
+            return;
+        });
+    });
     //Armour Changes
     on("change:repeating_armours", (eventInfo) => {
         let armourId = eventInfo.triggerName;
@@ -1189,11 +1491,39 @@
     
     /*Translate Roll query */
     on("sheet:opened", function(eventInfo){
+        initSheetIfNeeded();     
         let rollQuery = {}
         rollQuery["attribute_choose"] = "?{"+getTranslationByKey("common.choose")+"|"+getTranslationByKey("attributes.strength")+",@{strength}|"+getTranslationByKey("attributes.agility")+",@{agility}|"+getTranslationByKey("attributes.mind")+",@{mind}|"+getTranslationByKey("attributes.appeal")+",@{appeal}}";
-        setAttrs(rollQuery);     
+        setAttrs(rollQuery);
     });
     
+    function initSheetIfNeeded(){ 
+        getAttrs(["page","has_faith","has_arcana","has_psionics","has_resolve","has_credit"], (attrs) => {
+            let toUpdate = {};
+            console.log(attrs);
+            if(!attrs["page"]){
+                toUpdate["page"] = "core";
+            }
+            if(!attrs["has_faith"] || attrs["has_faith"] == "on"){
+                toUpdate["has_faith"] = "on";
+            }
+            if(!attrs["has_arcana"] || attrs["has_faith"] == "on"){
+                toUpdate["has_arcana"] = "on";
+            }
+            if(!attrs["has_psionics"] || attrs["has_faith"] == "on"){
+                toUpdate["has_psionics"] = "on";
+            }
+            if(!attrs["has_resolve"] || attrs["has_faith"] == "on"){
+                toUpdate["has_resolve"] = "on";
+            }
+            if(!attrs["has_credit"] || attrs["has_faith"] == "on"){
+                toUpdate["has_credit"] = "on";
+            }
+            console.log(toUpdate);
+            setAttrs(toUpdate);
+        });
+    
+    }
     /* add - remove bonus dices from roll */
     on("change:roll_base change:bonus_dices", (eventInfo) => {
         

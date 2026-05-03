@@ -28,8 +28,8 @@
     </div>
     <div class="flex-row">
         <div class="flex-column w-6 justify-sb">
-            <div class="flex-row">
-                <div class="flex-column w-6 frame">
+            <div class="flex-row grow">
+                <div class="flex-column w-6 frame justify-sa">
                     <input type="hidden" name="attr_attribute_choose" value="?{common.choose|attributes.strength,@{strength}|attributes.agility,@{agility}|attributes.mind,@{mind}|attributes.appeal,@{appeal}}">
                     <div class="flex-row align-center">
                         <label class="label w-8"><span data-i18n="attributes.strength">Strength</span></label>
@@ -60,7 +60,7 @@
                         <button type="roll" name="attr_appeal_roll" value="@{appeal_rollvalue}" class="w-2 custom-roll"></button>  
                     </div>
                 </div>
-                <div class="flex-column w-6 frame">
+                <div class="flex-column w-6 frame justify-sa">
                     <div class="flex-row align-center">
                         <label class="label w-8"><span data-i18n="combat.initiative">Initiative</span></label>
                         <input type="number" class="bordered-input input w-2" name="attr_initiative"></input>
@@ -147,6 +147,9 @@
             </div>
         </div>
         <div class="flex-column w-3 frame align-center">
+            <input type="hidden" name="attr_has_faith">
+            <input type="hidden" name="attr_has_arcana">
+            <input type="hidden" name="attr_has_psionics">
             <label class="label centered"><span data-i18n="resources.heropoints">Hero Points</span></label>
             <div class="flex-row justify-center">
                 <label class="box">
@@ -168,8 +171,8 @@
                     <input type="checkbox" name="attr_hero_points_6"></input>
                 </label>
             </div>
-            <label class="label centered"><span data-i18n="resources.faithpoints">Faith Points</span></label>
-            <div class="flex-row justify-center">
+            <label class="label justify-center conditional-faith"><span data-i18n="resources.faithpoints">Faith Points</span></label>
+            <div class="flex-row justify-center conditional-faith">
                 <label class="box">
                     <input type="checkbox" name="attr_faith_points_1"></input>
                 </label>
@@ -192,8 +195,8 @@
                     <input type="checkbox" name="attr_faith_points_7"></input>
                 </label>
             </div>
-            <label class="label centered"><span data-i18n="resources.arcanepoints">Arcane Points</span></label>
-            <div class="flex-row justify-center">
+            <label class="label justify-center conditional-arcana"><span data-i18n="resources.arcanepoints">Arcane Points</span></label>
+            <div class="flex-row justify-center conditional-arcana">
                 <label class="box">
                     <input type="checkbox" name="attr_arcanepoints_1"></input>
                 </label>
@@ -222,7 +225,7 @@
                     <input type="checkbox" name="attr_arcanepoints_9"></input>
                 </label>
             </div>
-            <div class="flex-row justify-center">
+            <div class="flex-row justify-center conditional-arcana">
                 <label class="box">
                     <input type="checkbox" name="attr_arcanepoints_10"></input>
                 </label>
@@ -251,8 +254,8 @@
                     <input type="checkbox" name="attr_arcanepoints_18"></input>
                 </label>
             </div>
-            <label class="label centered"><span data-i18n="resources.psionicpoints">Psionic Points</span></label>
-            <div class="flex-row justify-center">
+            <label class="label justify-center conditional-psionic"><span data-i18n="resources.psionicpoints">Psionic Points</span></label>
+            <div class="flex-row justify-center conditional-psionic">
                 <label class="box">
                     <input type="checkbox" name="attr_psionicpoints_1"></input>
                 </label>
@@ -281,7 +284,7 @@
                     <input type="checkbox" name="attr_psionicpoints_9"></input>
                 </label>
             </div>
-            <div class="flex-row justify-center">
+            <div class="flex-row justify-center conditional-arcana">
                 <label class="box">
                     <input type="checkbox" name="attr_psionicpoints_10"></input>
                 </label>
@@ -313,42 +316,12 @@
         </div>
     </div>
     <div class="flex-row frame align-center gap-2">
-        
         <!--=include components/lifeblood.html -->
     </div>
-    <div class="flex-row frame align-center gap-2" style="display: none;"> <!--Todo-->
-        <label class="label w-2"><span data-i18n="resources.resolve">Resolve</span></label>
-        <input type="number" class="bordered-input input w-1" name="attr_resolve"></input>
-        <div class="flex-column w-9">
-            <div class="flex-row justify-end align-center">
-                <input type="checkbox" name="attr_resolve_1"></input>
-                <input type="checkbox" name="attr_resolve_2"></input>
-                <input type="checkbox" name="attr_resolve_3"></input>
-                <input type="checkbox" name="attr_resolve_4"></input>
-                <input type="checkbox" name="attr_resolve_5"></input>
-                <input type="checkbox" name="attr_resolve_6"></input>
-                <input type="checkbox" name="attr_resolve_7"></input>
-                <input type="checkbox" name="attr_resolve_8"></input>
-                <input type="checkbox" name="attr_resolve_9"></input>
-                <input type="checkbox" name="attr_resolve_10"></input>
-                <input type="checkbox" name="attr_resolve_11"></input>
-                <input type="checkbox" name="attr_resolve_12"></input>
-                <input type="checkbox" name="attr_resolve_13"></input>
-                <input type="checkbox" name="attr_resolve_14"></input>
-                <input type="checkbox" name="attr_resolve_15"></input>
-                <input type="checkbox" name="attr_resolve_16"></input>
-                <input type="checkbox" name="attr_resolve_17"></input>
-                <input type="checkbox" name="attr_resolve_18"></input>
-            </div>
-            <div class="flex-row justify-end align-center">
-                <label class="label right"><span data-i18n="resources.critical">Critical</span></label>
-                <input type="checkbox" name="attr_resolve_critical_1"></input>
-                <input type="checkbox" name="attr_resolve_critical_2"></input>
-                <input type="checkbox" name="attr_resolve_critical_3"></input>
-                <input type="checkbox" name="attr_resolve_critical_4"></input>
-                <input type="checkbox" name="attr_resolve_critical_5"></input>
-            </div>
-        </div>
+    
+    <input type="hidden" name="attr_has_resolve"></input>
+    <div class="flex-row frame align-center gap-2 conditional-resolve">
+        <!--=include components/resolve.html -->
     </div>
     <div class="flex-row">
         <div class="flex-column w-6">

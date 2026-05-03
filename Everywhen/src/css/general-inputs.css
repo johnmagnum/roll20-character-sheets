@@ -13,7 +13,7 @@ select{
     margin:0;
 }
 
-input, textarea{
+input, textarea, select{
     border-radius: 0.75rem;
     background-color: white;
 }
@@ -88,6 +88,9 @@ textarea{
     padding-top: .75rem;
 }
 
+.config-frame{
+    padding-top: 2.5rem !important;
+}
 .boons,.flaws,.tempflaws,.gears,.weapons,.armours{
     margin-top: 1.25rem;
 
