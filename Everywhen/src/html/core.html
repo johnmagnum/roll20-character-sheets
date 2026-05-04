@@ -3,22 +3,9 @@
         <label class="label w-1 right"><span data-i18n="common.name">Name</span></label>
         <input type="text" class="input w-3" name="attr_character_name"></input>
         <label class="label w-1 right"><span data-i18n="common.roll">Roll</span></label>
-        <select class="w-2" name="attr_roll_base">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="1D3">d3</option>
-            <option value="2D6KL1">d6L</option>
-            <option value="1D6">d6</option>
-            <option value="2D6Kh1">d6H</option>
-            <option value="3D6KL2">2D6L</option>
-            <option value="2D6" selected>2D6</option>
-            <option value="3D6KH2">2D6H</option>
-            <option value="4D6KL3">3D6L</option>
-            <option value="3D6">3D6</option>
-            <option value="4D6KH3">3D6H</option>
-        </select>
+        <input type="text" value="2d6" placeholder="2D6H - 3D8L - ..."="w-2" name="attr_roll_base">
         <label class="label fit-content">±</label>
-        <input type="number" class="input w-1" name="attr_bonus_dices"></input>
+        <input type="number" placeholder="1" class="input w-1" name="attr_bonus_dices"></input>
         <input type="hidden" name="attr_roll"></input>
         <label class="label fit-content">dices</label>
         <label class="label w-1 right"><span data-i18n="common.xp">Xp</span></label>
@@ -32,71 +19,85 @@
                 <div class="flex-column w-6 frame justify-sa">
                     <input type="hidden" name="attr_attribute_choose" value="?{common.choose|attributes.strength,@{strength}|attributes.agility,@{agility}|attributes.mind,@{mind}|attributes.appeal,@{appeal}}">
                     <div class="flex-row align-center">
-                        <label class="label w-8"><span data-i18n="attributes.strength">Strength</span></label>
-                        <input type="number" class="bordered-input input w-2" name="attr_strength"></input>
-                        <input type="hidden" name="attr_strength_rollvalue"
-                            value="&{template:main} {{titre=^{attributes.strength}}} {{subtitle=@{character_name}}} {{roll=[[@{roll} + @{strength}]]}}">
-                        <button type="roll" name="attr_strength_roll" value="@{strength_rollvalue}" class="w-2 custom-roll"></button>
+                        <label class="label w-7"><span data-i18n="attributes.strength">Strength</span></label>
+                        <div class="flex-row w-5">
+                            <input type="number" class="bordered-input input w-6" name="attr_strength"></input>
+                            <input type="hidden" name="attr_strength_rollvalue"
+                                value="&{template:main} {{titre=^{attributes.strength}}} {{subtitle=@{character_name}}} {{roll=[[@{roll} + @{strength}]]}}">
+                            <button type="roll" name="attr_strength_roll" value="@{strength_rollvalue}" class="w-6 custom-roll"></button>
+                        </div>
                     </div>
                     <div class="flex-row align-center">
-                        <label class="label w-8"><span data-i18n="attributes.agility">Agility</span></label>
-                        <input type="number" class="bordered-input input w-2" name="attr_agility"></input>
-                        <input type="hidden" name="attr_agility_rollvalue"
-                            value="&{template:main} {{titre=^{attributes.agility}}} {{subtitle=@{character_name}}} {{roll=[[@{roll} + @{agility}]]}}">
-                        <button type="roll" name="attr_agility_roll" value="@{agility_rollvalue}" class="w-2 custom-roll"></button>
+                        <label class="label w-7"><span data-i18n="attributes.agility">Agility</span></label>
+                        <div class="flex-row w-5">
+                            <input type="number" class="bordered-input input w-6" name="attr_agility"></input>
+                            <input type="hidden" name="attr_agility_rollvalue"
+                                value="&{template:main} {{titre=^{attributes.agility}}} {{subtitle=@{character_name}}} {{roll=[[@{roll} + @{agility}]]}}">
+                            <button type="roll" name="attr_agility_roll" value="@{agility_rollvalue}" class="w-6 custom-roll"></button>
+                        </div>
                     </div>
                     <div class="flex-row align-center">
-                        <label class="label w-8"><span data-i18n="attributes.mind">Mind</span></label>
-                        <input type="number" class="bordered-input input w-2" name="attr_mind"></input>
-                        <input type="hidden" name="attr_mind_rollvalue"
-                            value="&{template:main} {{titre=^{attributes.mind}}} {{subtitle=@{character_name}}} {{roll=[[@{roll} + @{mind}]]}}">
-                        <button type="roll" name="attr_mind_roll" value="@{mind_rollvalue}" class="w-2 custom-roll"></button>
+                        <label class="label w-7"><span data-i18n="attributes.mind">Mind</span></label>
+                        <div class="flex-row w-5">
+                            <input type="number" class="bordered-input input w-6" name="attr_mind"></input>
+                            <input type="hidden" name="attr_mind_rollvalue"
+                                value="&{template:main} {{titre=^{attributes.mind}}} {{subtitle=@{character_name}}} {{roll=[[@{roll} + @{mind}]]}}">
+                            <button type="roll" name="attr_mind_roll" value="@{mind_rollvalue}" class="w-6 custom-roll"></button>
+                        </div>
                     </div>
                     <div class="flex-row align-center">
-                        <label class="label w-8"><span data-i18n="attributes.appeal">Appeal</span></label>
-                        <input type="number" class="bordered-input input w-2" name="attr_appeal"></input>
-                        <input type="hidden" name="attr_appeal_rollvalue"
-                            value="&{template:main} {{titre=^{attributes.appeal}}} {{subtitle=@{character_name}}} {{roll=[[@{roll} + @{appeal}]]}}">
-                        <button type="roll" name="attr_appeal_roll" value="@{appeal_rollvalue}" class="w-2 custom-roll"></button>  
+                        <label class="label w-7"><span data-i18n="attributes.appeal">Appeal</span></label>
+                        <div class="flex-row w-5">
+                            <input type="number" class="bordered-input input w-6" name="attr_appeal"></input>
+                            <input type="hidden" name="attr_appeal_rollvalue"
+                                value="&{template:main} {{titre=^{attributes.appeal}}} {{subtitle=@{character_name}}} {{roll=[[@{roll} + @{appeal}]]}}">
+                            <button type="roll" name="attr_appeal_roll" value="@{appeal_rollvalue}" class="w-6 custom-roll"></button>  
+                        </div>
                     </div>
                 </div>
                 <div class="flex-column w-6 frame justify-sa">
                     <div class="flex-row align-center">
-                        <label class="label w-8"><span data-i18n="combat.initiative">Initiative</span></label>
-                        <input type="number" class="bordered-input input w-2" name="attr_initiative"></input>
-                        <input type="hidden" name="attr_initiative_rollvalue"
-                            value="&{template:main} {{titre=^{combat.initiative}}} {{subtitle=@{character_name}}} {{roll=[[@{roll} + @{mind}+  @{initiative}]]}}">
-                        <button type="roll" name="attr_initiative_roll" value="@{initiative_rollvalue}" class="w-2 custom-roll"></button>
+                        <label class="label w-7"><span data-i18n="combat.initiative">Initiative</span></label>
+                        <div class="flex-row w-5">
+                            <input type="number" class="bordered-input input w-6" name="attr_initiative"></input>
+                            <input type="hidden" name="attr_initiative_rollvalue"
+                                value="&{template:main} {{titre=^{combat.initiative}}} {{subtitle=@{character_name}}} {{roll=[[@{roll} + @{mind}+  @{initiative}]]}}">
+                            <button type="roll" name="attr_initiative_roll" value="@{initiative_rollvalue}" class="w-6 custom-roll"></button>
+                        </div>
                     </div>
                     <div class="flex-row align-center">
-                        <label class="label w-8"><span data-i18n="combat.melee">Melee</span></label>
-                        <input type="number" class="bordered-input input w-2" name="attr_melee"></input>
-                        <input type="hidden" name="attr_melee_rollvalue"
-                            value="&{template:main} {{titre=^{combat.melee}}} {{subtitle=@{character_name}}} {{roll=[[@{roll} + @{agility} + @{melee}]]}}">
-                        <button type="roll" name="attr_melee_roll" value="@{melee_rollvalue}" class="w-2 custom-roll"></button>
+                        <label class="label w-7"><span data-i18n="combat.melee">Melee</span></label>
+                        <div class="flex-row w-5">
+                            <input type="number" class="bordered-input input w-6" name="attr_melee"></input>
+                            <input type="hidden" name="attr_melee_rollvalue"
+                                value="&{template:main} {{titre=^{combat.melee}}} {{subtitle=@{character_name}}} {{roll=[[@{roll} + @{agility} + @{melee}]]}}">
+                            <button type="roll" name="attr_melee_roll" value="@{melee_rollvalue}" class="w-6 custom-roll"></button>
+                        </div>
                     </div>
                     <div class="flex-row align-center">
-                        <label class="label w-8"><span data-i18n="combat.ranged">Ranged</span></label>
-                        <input type="number" class="bordered-input input w-2" name="attr_ranged"></input>
-                        <input type="hidden" name="attr_ranged_rollvalue"
-                            value="&{template:main} {{titre=^{combat.ranged}}} {{subtitle=@{character_name}}} {{roll=[[@{roll} + @{agility} + @{ranged}]]}}">
-                        <button type="roll" name="attr_ranged_roll" value="@{ranged_rollvalue}" class="w-2 custom-roll"></button>
+                        <label class="label w-7"><span data-i18n="combat.ranged">Ranged</span></label>
+                        <div class="flex-row w-5">
+                            <input type="number" class="bordered-input input w-6" name="attr_ranged"></input>
+                            <input type="hidden" name="attr_ranged_rollvalue"
+                                value="&{template:main} {{titre=^{combat.ranged}}} {{subtitle=@{character_name}}} {{roll=[[@{roll} + @{agility} + @{ranged}]]}}">
+                            <button type="roll" name="attr_ranged_roll" value="@{ranged_rollvalue}" class="w-6 custom-roll"></button>
+                        </div>
                     </div>
                     <div class="flex-row align-center">
-                        <label class="label w-8"><span data-i18n="combat.defense">Defense</span></label>
-                        <input type="number" class="bordered-input input w-2" name="attr_defense"></input>
-                        <input type="hidden" name="attr_defense_rollvalue"
+                        <label class="label w-7"><span data-i18n="combat.defense">Defense</span></label>
+                        <input type="number" class="bordered-input input w-5" name="attr_defense"></input>
+                        <!--<input type="hidden" name="attr_defense_rollvalue"
                             value="&{template:main} {{titre=^{combat.defense}}} {{subtitle=@{character_name}}} {{roll=[[@{roll} + @{defense}]]}}">
-                        <button type="roll" name="attr_defense_roll" value="@{defense_rollvalue}" class="w-2 custom-roll"></button>
+                        <button type="roll" name="attr_defense_roll" value="@{defense_rollvalue}" class="w-2 custom-roll"></button>-->
                     </div>
                 </div>
             </div>
             <div class="flex-column w-12 frame">
                 <label class="title label"><span data-i18n="common.languages">Languages</span></label>
-                <input type="text" class="input w-12" name="attr_languages"></input>
+                <input type="text" class="input w-12 languages" name="attr_languages"></input>
             </div>
         </div>
-        <div class="flex-column w-3 frame">
+        <div class="flex-column w-3 justify-sb frame">
             <div class="flex-row">
                 <input type="text" class="input w-8" name="attr_career_1_name" placeholder="Career 1"></input>
                 <input type="number" class="bordered-input input w-2" name="attr_career_1_rank"></input>
@@ -150,168 +151,181 @@
             <input type="hidden" name="attr_has_faith">
             <input type="hidden" name="attr_has_arcana">
             <input type="hidden" name="attr_has_psionics">
-            <label class="label centered"><span data-i18n="resources.heropoints">Hero Points</span></label>
-            <div class="flex-row justify-center">
-                <label class="box">
-                    <input type="checkbox" name="attr_hero_points_1"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_hero_points_2"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_hero_points_3"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_hero_points_4"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_hero_points_5"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_hero_points_6"></input>
-                </label>
+            <input type="hidden" name="attr_has_credit">
+            <div class="flex-column">
+                <label class="label centered"><span data-i18n="resources.heropoints">Hero Points</span></label>
+                <div class="flex-row justify-center">
+                    <label class="box">
+                        <input type="checkbox" name="attr_hero_points_1"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_hero_points_2"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_hero_points_3"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_hero_points_4"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_hero_points_5"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_hero_points_6"></input>
+                    </label>
+                </div>
             </div>
-            <label class="label justify-center conditional-faith"><span data-i18n="resources.faithpoints">Faith Points</span></label>
-            <div class="flex-row justify-center conditional-faith">
-                <label class="box">
-                    <input type="checkbox" name="attr_faith_points_1"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_faith_points_2"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_faith_points_3"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_faith_points_4"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_faith_points_5"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_faith_points_6"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_faith_points_7"></input>
-                </label>
+            <div class="flex-column conditional-faith">
+                <label class="label centered"><span data-i18n="resources.faithpoints">Faith Points</span></label>
+                <div class="flex-row justify-center">
+                    <label class="box">
+                        <input type="checkbox" name="attr_faith_points_1"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_faith_points_2"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_faith_points_3"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_faith_points_4"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_faith_points_5"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_faith_points_6"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_faith_points_7"></input>
+                    </label>
+                </div>
             </div>
-            <label class="label justify-center conditional-arcana"><span data-i18n="resources.arcanepoints">Arcane Points</span></label>
-            <div class="flex-row justify-center conditional-arcana">
-                <label class="box">
-                    <input type="checkbox" name="attr_arcanepoints_1"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_arcanepoints_2"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_arcanepoints_3"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_arcanepoints_4"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_arcanepoints_5"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_arcanepoints_6"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_arcanepoints_7"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_arcanepoints_8"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_arcanepoints_9"></input>
-                </label>
+            <div class="flex-column conditional-arcana">
+                <label class="label centered"><span data-i18n="resources.arcanepoints">Arcane Points</span></label>
+                <div class="flex-row justify-center">
+                    <label class="box">
+                        <input type="checkbox" name="attr_arcanepoints_1"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_arcanepoints_2"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_arcanepoints_3"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_arcanepoints_4"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_arcanepoints_5"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_arcanepoints_6"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_arcanepoints_7"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_arcanepoints_8"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_arcanepoints_9"></input>
+                    </label>
+                </div>
+                <div class="flex-row justify-center">
+                    <label class="box">
+                        <input type="checkbox" name="attr_arcanepoints_10"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_arcanepoints_11"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_arcanepoints_12"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_arcanepoints_13"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_arcanepoints_14"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_arcanepoints_15"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_arcanepoints_16"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_arcanepoints_17"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_arcanepoints_18"></input>
+                    </label>
+                </div>
             </div>
-            <div class="flex-row justify-center conditional-arcana">
-                <label class="box">
-                    <input type="checkbox" name="attr_arcanepoints_10"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_arcanepoints_11"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_arcanepoints_12"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_arcanepoints_13"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_arcanepoints_14"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_arcanepoints_15"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_arcanepoints_16"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_arcanepoints_17"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_arcanepoints_18"></input>
-                </label>
+            <div class="flex-column conditional-psionic">
+                <label class="label centered"><span data-i18n="resources.psionicpoints">Psionic Points</span></label>
+                <div class="flex-row justify-center">
+                    <label class="box">
+                        <input type="checkbox" name="attr_psionicpoints_1"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_psionicpoints_2"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_psionicpoints_3"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_psionicpoints_4"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_psionicpoints_5"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_psionicpoints_6"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_psionicpoints_7"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_psionicpoints_8"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_psionicpoints_9"></input>
+                    </label>
+                </div>
+                <div class="flex-row justify-center">
+                    <label class="box">
+                        <input type="checkbox" name="attr_psionicpoints_10"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_psionicpoints_11"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_psionicpoints_12"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_psionicpoints_13"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_psionicpoints_14"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_psionicpoints_15"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_psionicpoints_16"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_psionicpoints_17"></input>
+                    </label>
+                    <label class="box">
+                        <input type="checkbox" name="attr_psionicpoints_18"></input>
+                    </label>
+                </div>
             </div>
-            <label class="label justify-center conditional-psionic"><span data-i18n="resources.psionicpoints">Psionic Points</span></label>
-            <div class="flex-row justify-center conditional-psionic">
-                <label class="box">
-                    <input type="checkbox" name="attr_psionicpoints_1"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_psionicpoints_2"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_psionicpoints_3"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_psionicpoints_4"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_psionicpoints_5"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_psionicpoints_6"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_psionicpoints_7"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_psionicpoints_8"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_psionicpoints_9"></input>
-                </label>
-            </div>
-            <div class="flex-row justify-center conditional-arcana">
-                <label class="box">
-                    <input type="checkbox" name="attr_psionicpoints_10"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_psionicpoints_11"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_psionicpoints_12"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_psionicpoints_13"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_psionicpoints_14"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_psionicpoints_15"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_psionicpoints_16"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_psionicpoints_17"></input>
-                </label>
-                <label class="box">
-                    <input type="checkbox" name="attr_psionicpoints_18"></input>
-                </label>
+            <div class="flex-column conditional-credit align-center">
+                <label class="label centered"><span data-i18n="resources.credit_rating">Credit Rating</span></label>
+                <input type="number" class="bordered-input input w-4" name="attr_credit_rating"></input>
             </div>
         </div>
     </div>

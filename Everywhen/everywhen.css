@@ -113,7 +113,7 @@
     .config-frame{
         padding-top: 2.5rem !important;
     }
-    .boons,.flaws,.tempflaws,.gears,.weapons,.armours{
+    .boons,.flaws,.tempflaws,.gears,.weapons,.armours,.languages{
         margin-top: 1.25rem;
     
         .editmode .itemcontrol{

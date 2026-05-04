@@ -53,6 +53,7 @@
   "resources.gear": "Gear",
   "resources.weapons": "Weapons",
   "resources.armours": "Armours",
+  "resources.credit_rating":"Credit Rating",
   "notes.vademecum-1": "Very easy +2 / Easy +1 / Moderate 0 / Hard -1 / Tough -2 / Demanding -4 / Formidable -6 / Heroic -8",
   "notes.vademecum-2": "0 - 1 - d3 - d6L - d6 - d6H - 2d6L - 2d6 - 2d6H - 3d6L - 3d6 - 3d6H",
   "help.info":"Need help ? Check https://wiki.roll20.net/Everywhen#Sheet_Overview",

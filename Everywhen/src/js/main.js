@@ -133,16 +133,16 @@ function initSheetIfNeeded(){
         if(!attrs["has_faith"] || attrs["has_faith"] == "on"){
             toUpdate["has_faith"] = "on";
         }
-        if(!attrs["has_arcana"] || attrs["has_faith"] == "on"){
+        if(!attrs["has_arcana"] || attrs["has_arcana"] == "on"){
             toUpdate["has_arcana"] = "on";
         }
-        if(!attrs["has_psionics"] || attrs["has_faith"] == "on"){
+        if(!attrs["has_psionics"] || attrs["has_psionics"] == "on"){
             toUpdate["has_psionics"] = "on";
         }
-        if(!attrs["has_resolve"] || attrs["has_faith"] == "on"){
+        if(!attrs["has_resolve"] || attrs["has_resolve"] == "on"){
             toUpdate["has_resolve"] = "on";
         }
-        if(!attrs["has_credit"] || attrs["has_faith"] == "on"){
+        if(!attrs["has_credit"] || attrs["has_credit"] == "on"){
             toUpdate["has_credit"] = "on";
         }
         console.log(toUpdate);
@@ -154,7 +154,7 @@ function initSheetIfNeeded(){
 on("change:roll_base change:bonus_dices", (eventInfo) => {
     
     getAttrs(["roll_base","bonus_dices"], (attrs) => {
-        let roll_base = attrs["roll_base"];
+        let roll_base = normalizeDice(attrs["roll_base"]);
         let bonus_dices = parseInt(attrs["bonus_dices"],10) || 0;
 
         const match = roll_base.match(/^(\d+)[dD](\d+)(k[hHlL]?(\d+))?$/);
