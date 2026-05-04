@@ -510,7 +510,7 @@ on('change:character_name', function (eventInfo) {
         return;
     }
 
-    let message = `@{${eventInfo.sourceAttribute}} had the special characters '${specialCharacters.filter(unique).join(", ")}'. As these can break various buttons, calculations, and functionality on the sheet, they have been removed.\n\nFor flavor names, try using single quotes ' as these has not yet caused any issues. For instance: Thaldrin 'Hawkeye' Ravenflock.`
+    let message = `@{${eventInfo.sourceAttribute}} had the special characters '${specialCharacters.filter(unique).join(" ")}'. As these can break various buttons, calculations, and functionality on the sheet, they have been removed.\n\nFor flavor names, try using single quotes ' as these has not yet caused any issues. For instance: Thaldrin 'Hawkeye' Ravenflock.`
 
 
     let toast = getToastObject(INFO, "Special characters removed", message);
